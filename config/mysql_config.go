@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"github.com/joho/godotenv"
 	"log"
 	"os"
 	"time"
@@ -15,6 +16,12 @@ var db *sql.DB
 
 // initMySQLDB initializes the database connection
 func initMySQLDB(ctx context.Context) *sql.DB {
+	// Load .env file
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatalf("Error loading .env file: %v", err)
+	}
+
 	dbUser := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASSWORD")
 	dbName := os.Getenv("DB_NAME")
@@ -22,7 +29,6 @@ func initMySQLDB(ctx context.Context) *sql.DB {
 	dbPort := os.Getenv("DB_PORT")
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", dbUser, dbPassword, dbHost, dbPort, dbName)
-
 	db, err := sql.Open("mysql", dsn)
 	if err != nil {
 		log.Fatalf("Could not open db: %v", err)

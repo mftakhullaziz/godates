@@ -11,7 +11,7 @@ func main() {
 	// Ensure to close the database connection when the application exits
 	defer config.CloseDBConnection()
 	// Create of the database connection
-	db := config.CreateDBConnection(ctx)
+	_ = config.CreateDBConnection(ctx)
 
-	defer db.Close()
+	//defer db.Close()
 }
