@@ -39,6 +39,7 @@ func initMySQLDB(ctx context.Context) *sql.DB {
 	if err != nil {
 		log.Fatalf("Could not connect to db: %v", err)
 	}
+	log.Println("Connected to db")
 
 	return db
 }

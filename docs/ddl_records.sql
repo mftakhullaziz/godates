@@ -17,18 +17,28 @@ CREATE TABLE users
     gender     VARCHAR(5),
     address    VARCHAR(255),
     bio        TEXT,
-    photos     JSONB,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE storages
+(
+    storage_id  SERIAL PRIMARY KEY,
+    account_id  INTEGER REFERENCES accounts (account_id),
+    user_id     INTEGER REFERENCES users (user_id),
+    videos_path VARCHAR(255),
+    photos_path VARCHAR(255),
+    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE swipes
 (
     swipe_id   SERIAL PRIMARY KEY,
     account_id INTEGER REFERENCES accounts (account_id),
-    profile_id INTEGER,
+    user_id INTEGER,
     action     VARCHAR(5) CHECK (action IN ('left', 'right')),
-    swipe_date DATE DEFAULT CURRENT_DATE
+    swipe_date DATE DEFAULT (CURRENT_DATE)
 );
 
 CREATE TABLE daily_quotas
@@ -66,5 +76,5 @@ CREATE TABLE viewed_user_accounts
     view_id    SERIAL PRIMARY KEY,
     account_id INTEGER REFERENCES accounts (account_id),
     user_id    INTEGER,
-    date       DATE DEFAULT CURRENT_DATE
+    date       DATE DEFAULT (CURRENT_DATE)
 );

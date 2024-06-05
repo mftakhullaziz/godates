@@ -13,4 +13,5 @@ func main() {
 	// Create of the database connection
 	db := config.CreateDBConnection(ctx)
 
+	defer db.Close()
 }
