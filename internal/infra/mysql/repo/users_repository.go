@@ -2,7 +2,7 @@ package repo
 
 import (
 	"context"
-	"godating-dealls/infra/mysql/record"
+	"godating-dealls/internal/infra/mysql/record"
 )
 
 type UserRepository interface {

@@ -2,16 +2,16 @@ package main
 
 import (
 	"context"
-	"godating-dealls/config"
+	"godating-dealls/conf"
 )
 
 func main() {
 	// Init context before run application
 	ctx := context.Background()
 	// Ensure to close the database connection when the application exits
-	defer config.CloseDBConnection()
+	defer conf.CloseDBConnection()
 	// Create of the database connection
-	_ = config.CreateDBConnection(ctx)
+	_ = conf.CreateDBConnection(ctx)
 
 	//defer db.Close()
 }
