@@ -31,7 +31,7 @@ func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request paylo
 
 	account, err := au.entities.SaveAccountEntities(ctx, accountDTO)
 	if err != nil {
-		log.Printf(err.Error())
+		log.Fatalln(err.Error())
 		return err
 	}
 

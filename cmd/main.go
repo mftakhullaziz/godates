@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/go-playground/validator/v10"
 	"godating-dealls/conf"
+	"godating-dealls/internal/common"
 	authEntities "godating-dealls/internal/core/entities/auths"
 	authUsecase "godating-dealls/internal/core/usecase/auths"
 	authHandler "godating-dealls/internal/handler"
@@ -12,6 +13,11 @@ import (
 )
 
 func main() {
+	// Set up logging
+	setupLogger, err := common.SetupLogger()
+	common.HandleErrorWithParam(err, "Setup Logger Failed")
+	defer setupLogger.Close()
+
 	// Init context before run application
 	ctx := context.Background()
 	// Ensure to close the database connection when the application exits
@@ -34,8 +40,6 @@ func main() {
 	r := http.NewServeMux()
 	r.HandleFunc("POST /godating-dealls/api/authenticate/register", handlerAuth.RegisterUserHandler)
 
-	err := http.ListenAndServe(":8000", r)
-	if err != nil {
-		return
-	}
+	err = http.ListenAndServe(":8000", r)
+	common.HandleErrorReturn(err)
 }

@@ -2,6 +2,7 @@ package presenters
 
 import (
 	"encoding/json"
+	"godating-dealls/internal/common"
 	usecase "godating-dealls/internal/core/usecase/auths"
 	"godating-dealls/internal/domain/auths"
 	"net/http"
@@ -19,10 +20,7 @@ func NewAuthPresenter(w http.ResponseWriter) usecase.OutputAuthBoundary {
 
 // RegisterResponse sends the registration response to the client
 func (ap *AuthPresenter) RegisterResponse(response auths.RegisterResponse, err error) {
-	if err != nil {
-		http.Error(ap.w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	common.HandleInternalServerError(err, ap.w)
 
 	// Set content type to JSON
 	ap.w.Header().Set("Content-Type", "application/json")

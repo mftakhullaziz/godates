@@ -2,9 +2,11 @@ package handler
 
 import (
 	"encoding/json"
+	"godating-dealls/internal/common"
 	input "godating-dealls/internal/core/usecase/auths"
 	"godating-dealls/internal/domain/auths"
 	presenters "godating-dealls/internal/presenter"
+	"log"
 	"net/http"
 )
 
@@ -24,14 +26,13 @@ func (ah *AuthHandler) RegisterUserHandler(w http.ResponseWriter, r *http.Reques
 		http.Error(w, "Invalid request payload", http.StatusBadRequest)
 		return
 	}
+	log.Println(request)
 
 	ctx := r.Context()
 	// Instantiate the presenter
 	presenter := presenters.NewAuthPresenter(w)
+
 	// Call the use case method passing the presenter
 	err := ah.usecase.ExecuteRegisterUsecase(ctx, request, presenter)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	common.HandleInternalServerError(err, w)
 }

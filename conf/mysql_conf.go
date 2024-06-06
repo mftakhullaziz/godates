@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/joho/godotenv"
+	"godating-dealls/internal/common"
 	"log"
 	"os"
 	"time"
@@ -30,9 +31,7 @@ func initMySQLDB(ctx context.Context) *sql.DB {
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true", dbUser, dbPassword, dbHost, dbPort, dbName)
 	db, err := sql.Open("mysql", dsn)
-	if err != nil {
-		log.Fatalf("Could not open db: %v", err)
-	}
+	common.HandleErrorWithParam(err, "Could not opn DB connection, DB connection is failed")
 
 	db.SetMaxOpenConns(25)
 	db.SetMaxIdleConns(25)
@@ -42,10 +41,8 @@ func initMySQLDB(ctx context.Context) *sql.DB {
 	defer cancel()
 
 	err = db.PingContext(ctx)
-	if err != nil {
-		log.Fatalf("Could not connect to db: %v", err)
-	}
-	log.Println("Connected to db")
+	common.HandleErrorWithParam(err, "Could not connect to DB MySQL")
+	log.Println("Connected to DB MySQL success!")
 
 	return db
 }
@@ -61,6 +58,7 @@ func CreateDBConnection(ctx context.Context) *sql.DB {
 // CloseDBConnection closes the database connection
 func CloseDBConnection() {
 	if db != nil {
-		db.Close()
+		err := db.Close()
+		common.HandleErrorReturn(err)
 	}
 }
