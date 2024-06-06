@@ -6,7 +6,7 @@ import (
 )
 
 type InputAuthBoundary interface {
-	ExecuteLogin(ctx context.Context, request auths.LoginRequest) error
-	ExecuteRegister(ctx context.Context, request auths.RegisterRequest) error
-	ExecuteLogout(ctx context.Context, request auths.LoginRequest) error
+	ExecuteLoginUsecase(ctx context.Context, request auths.LoginRequest, boundary OutputAuthBoundary) error
+	ExecuteRegisterUsecase(ctx context.Context, request auths.RegisterRequest, boundary OutputAuthBoundary) error
+	ExecuteLogoutUsecase(ctx context.Context, request auths.LoginRequest, boundary OutputAuthBoundary) error
 }
