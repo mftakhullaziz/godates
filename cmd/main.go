@@ -21,9 +21,9 @@ func main() {
 	// Initiate validator
 	validate := validator.New()
 
-	// initiate repo
+	// Initiate repo
 	repoAuth := authRepo.NewAccountsRepositoryImpl(sqlConnection, validate)
-	// call business rules
+	// Call business rules
 	entitiesAuth := authEntities.NewAccountsEntitiesImpl(repoAuth, validate)
 	// Create the use case with entities
 	usecaseAuth := authUsecase.NewAuthUsecase(entitiesAuth)
