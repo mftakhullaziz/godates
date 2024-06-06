@@ -6,9 +6,10 @@ import (
 	"godating-dealls/conf"
 	"godating-dealls/internal/common"
 	authEntities "godating-dealls/internal/core/entities/auths"
+	userEntities "godating-dealls/internal/core/entities/users"
 	authUsecase "godating-dealls/internal/core/usecase/auths"
 	authHandler "godating-dealls/internal/handler"
-	authRepo "godating-dealls/internal/infra/mysql/repo"
+	repo "godating-dealls/internal/infra/mysql/repo"
 	"net/http"
 )
 
@@ -28,11 +29,15 @@ func main() {
 	validate := validator.New()
 
 	// Initiate repo
-	repoAuth := authRepo.NewAccountsRepositoryImpl(sqlConnection, validate)
+	repoAuth := repo.NewAccountsRepositoryImpl(sqlConnection, validate)
+	repoUser := repo.NewUsersRepositoryImpl(sqlConnection, validate)
+
 	// Call business rules
 	entitiesAuth := authEntities.NewAccountsEntitiesImpl(repoAuth, validate)
+	entitiesUser := userEntities.NewUserEntitiesImpl(repoUser, validate)
+
 	// Create the use case with entities
-	usecaseAuth := authUsecase.NewAuthUsecase(entitiesAuth)
+	usecaseAuth := authUsecase.NewAuthUsecase(entitiesAuth, entitiesUser)
 	// Create the handler with the use case
 	handlerAuth := authHandler.NewAuthHandler(usecaseAuth)
 

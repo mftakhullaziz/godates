@@ -2,18 +2,22 @@ package auths
 
 import (
 	"context"
-	entities "godating-dealls/internal/core/entities/auths"
+	ae "godating-dealls/internal/core/entities/auths"
+	ue "godating-dealls/internal/core/entities/users"
 	payload "godating-dealls/internal/domain/auths"
+	"godating-dealls/internal/domain/users"
 	"log"
 )
 
 type AuthUsecase struct {
-	entities entities.AuthEntities
+	ae ae.AuthEntities
+	ue ue.UserEntities
 }
 
-func NewAuthUsecase(entities entities.AuthEntities) InputAuthBoundary {
+func NewAuthUsecase(ae ae.AuthEntities, ue ue.UserEntities) InputAuthBoundary {
 	return &AuthUsecase{
-		entities: entities,
+		ae: ae,
+		ue: ue,
 	}
 }
 
@@ -29,13 +33,22 @@ func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request paylo
 		Email:    request.Email,
 	}
 
-	account, err := au.entities.SaveAccountEntities(ctx, accountDTO)
+	account, err := au.ae.SaveAccountEntities(ctx, accountDTO)
 	if err != nil {
 		log.Fatalln(err.Error())
 		return err
 	}
 
-	// save to user record again
+	userDto := users.UserDto{
+		AccountID: account.AccountId,
+	}
+
+	// Save to user record again
+	err = au.ue.SaveUserEntities(ctx, userDto)
+	if err != nil {
+		log.Fatalln(err.Error())
+		return err
+	}
 
 	// Transform to response
 	res := payload.RegisterResponse{

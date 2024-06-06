@@ -3,12 +3,12 @@ package auths
 import (
 	"context"
 	"errors"
-	"fmt"
 	"github.com/go-playground/validator/v10"
 	"godating-dealls/internal/common"
 	"godating-dealls/internal/domain/auths"
 	"godating-dealls/internal/infra/mysql/record"
 	repository "godating-dealls/internal/infra/mysql/repo"
+	"log"
 )
 
 type AccountEntitiesImpl struct {
@@ -42,7 +42,7 @@ func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, dto auths.
 		Email:        dto.Email,
 		Verified:     false,
 	}
-	fmt.Println(records)
+	log.Printf("account record saved: %+v", records)
 
 	account, err := a.repository.CreateAccountToDB(ctx, records)
 	if err != nil {

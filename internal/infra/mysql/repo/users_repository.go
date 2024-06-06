@@ -6,6 +6,6 @@ import (
 )
 
 type UserRepository interface {
-	CreateUserToDB(ctx context.Context, accountRecord record.AccountRecord) (record.AccountRecord, error)
-	FindUserByUserIDFromDB(ctx context.Context, id string) (record.AccountRecord, error)
+	CreateUserToDB(ctx context.Context, userRecord record.UserRecord) (record.UserRecord, error)
+	FindUserByUserIDFromDB(ctx context.Context, id string) (record.UserRecord, error)
 }
