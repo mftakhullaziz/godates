@@ -35,6 +35,8 @@ func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request paylo
 		return err
 	}
 
+	// save to user record again
+
 	// Transform to response
 	res := payload.RegisterResponse{
 		AccountId: account.AccountId,
@@ -43,6 +45,7 @@ func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request paylo
 		Password:  account.Password,
 	}
 	boundary.RegisterResponse(res, nil)
+
 	return nil
 }
 

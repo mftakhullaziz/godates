@@ -2,6 +2,7 @@ package auths
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"github.com/go-playground/validator/v10"
 	"godating-dealls/internal/common"
@@ -28,6 +29,12 @@ func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, dto auths.
 	}
 
 	// add validate username and email
+	emailIsExist := a.repository.IsExistAccountByEmailFromDB(ctx, dto.Email)
+	usernameIsExist := a.repository.IsExistAccountByUsernameFromDB(ctx, dto.Username)
+
+	if emailIsExist || usernameIsExist {
+		return auths.Accounts{}, errors.New("email or username already exists")
+	}
 
 	records := record.AccountRecord{
 		Username:     dto.Username,

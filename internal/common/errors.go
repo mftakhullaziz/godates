@@ -19,7 +19,7 @@ func HandleErrorReturn(err error) {
 
 func HandleErrorWithParam(err error, str string) {
 	if err != nil {
-		log.Fatalf(str+": %v", err)
+		log.Fatalf("%s: %v", str, err)
 	}
 }
 

@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/go-playground/validator/v10"
+	"godating-dealls/internal/common"
 	"godating-dealls/internal/infra/mysql/queries"
 	"godating-dealls/internal/infra/mysql/record"
 )
@@ -70,11 +71,31 @@ func (a AccountRepositoryImpl) FindAccountByAccountIDFromDB(ctx context.Context,
 }
 
 func (a AccountRepositoryImpl) IsExistAccountByEmailFromDB(ctx context.Context, email string) bool {
-	//TODO implement me
-	panic("implement me")
+	tx, err := a.query.BeginTx(ctx, nil)
+	common.HandleErrorWithParam(err, "Could not begin transaction")
+	result, err := tx.ExecContext(ctx, queries.FindByEmailAccountRecord, email)
+	if err != nil {
+		return false
+	}
+
+	rowCount, err := result.RowsAffected()
+	if err != nil {
+		return false
+	}
+	return rowCount > 0
 }
 
 func (a AccountRepositoryImpl) IsExistAccountByUsernameFromDB(ctx context.Context, username string) bool {
-	//TODO implement me
-	panic("implement me")
+	tx, err := a.query.BeginTx(ctx, nil)
+	common.HandleErrorWithParam(err, "Could not begin transaction")
+	result, err := tx.ExecContext(ctx, queries.FindByUsernameAccountRecord, username)
+	if err != nil {
+		return false
+	}
+
+	rowCount, err := result.RowsAffected()
+	if err != nil {
+		return false
+	}
+	return rowCount > 0
 }
