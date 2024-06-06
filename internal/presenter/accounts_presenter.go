@@ -26,6 +26,7 @@ func (ap *AuthPresenter) RegisterResponse(response auths.RegisterResponse, err e
 		StatusCode: http.StatusCreated,
 		Message:    "Created account successfully",
 		IsSuccess:  true,
+		RequestAt:  common.FormatTime(),
 		Data:       response,
 	}
 	// Set content type to JSON
