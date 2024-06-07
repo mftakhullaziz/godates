@@ -8,5 +8,5 @@ import (
 
 type UserRepository interface {
 	CreateUserToDB(ctx context.Context, tx *sql.Tx, userRecord record.UserRecord) (record.UserRecord, error)
-	FindUserByUserIDFromDB(ctx context.Context, tx *sql.Tx, id string) (record.UserRecord, error)
+	FindUserByUserIDFromDB(ctx context.Context, tx *sql.Tx, id int64) bool
 }

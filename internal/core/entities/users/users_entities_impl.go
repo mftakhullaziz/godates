@@ -3,6 +3,7 @@ package users
 import (
 	"context"
 	"database/sql"
+	"errors"
 	"github.com/go-playground/validator/v10"
 	"godating-dealls/internal/common"
 	"godating-dealls/internal/domain/users"
@@ -28,6 +29,10 @@ func (u UserEntitiesImpl) SaveUserEntities(ctx context.Context, tx *sql.Tx, dto 
 	}
 
 	// Add validate find user by account id
+	userIsExist := u.repository.FindUserByUserIDFromDB(ctx, tx, dto.AccountID)
+	if userIsExist {
+		return errors.New("users already exists")
+	}
 
 	// Set default user data
 	records := record.UserRecord{

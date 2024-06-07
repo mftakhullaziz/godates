@@ -48,7 +48,15 @@ func (u UserRepositoryImpl) CreateUserToDB(ctx context.Context, tx *sql.Tx, user
 	return userRecord, nil
 }
 
-func (u UserRepositoryImpl) FindUserByUserIDFromDB(ctx context.Context, tx *sql.Tx, id string) (record.UserRecord, error) {
-	//TODO implement me
-	panic("implement me")
+func (u UserRepositoryImpl) FindUserByUserIDFromDB(ctx context.Context, tx *sql.Tx, accountId int64) bool {
+	result, err := tx.ExecContext(ctx, queries.FindByAccountIdUserRecord, accountId)
+	if err != nil {
+		return false
+	}
+
+	rowCount, err := result.RowsAffected()
+	if err != nil {
+		return false
+	}
+	return rowCount > 0
 }
