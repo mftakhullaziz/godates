@@ -4,7 +4,6 @@ CREATE TABLE accounts
     username      VARCHAR(255) UNIQUE NOT NULL,
     password_hash VARCHAR(255)        NOT NULL,
     email         VARCHAR(255) UNIQUE NOT NULL,
-    phone_number  VARCHAR(255)        NOT NULL,
     verified      BOOLEAN   DEFAULT FALSE,
     created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -102,3 +101,11 @@ CREATE TABLE login_histories
     FOREIGN KEY (user_id) REFERENCES users (user_id),
     FOREIGN KEY (account_id) REFERENCES accounts (account_id)
 );
+
+
+
+-- SELECT EXISTS(SELECT 1 FROM accounts WHERE email = "test@gmail.com")
+--
+-- SELECT * FROM accounts a WHERE email = "hai3@gmail.com" or username ="hai3";
+
+

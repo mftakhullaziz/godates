@@ -9,7 +9,9 @@ import (
 	"fmt"
 	"godating-dealls/internal/common"
 	ae "godating-dealls/internal/core/entities/auths"
+	loginHistory "godating-dealls/internal/core/entities/login_histories"
 	ue "godating-dealls/internal/core/entities/users"
+	"godating-dealls/internal/domain"
 	payload "godating-dealls/internal/domain/auths"
 	"godating-dealls/internal/domain/users"
 	"godating-dealls/internal/infra/jsonwebtoken"
@@ -18,22 +20,25 @@ import (
 )
 
 type AuthUsecase struct {
-	db  *sql.DB
-	ae  ae.AuthEntities
-	ue  ue.UserEntities
-	rds redisclient.RedisInterface
+	db           *sql.DB
+	ae           ae.AuthEntities
+	ue           ue.UserEntities
+	rds          redisclient.RedisInterface
+	loginHistory loginHistory.LoginHistoriesEntities
 }
 
 func NewAuthUsecase(
 	db *sql.DB,
 	ae ae.AuthEntities,
 	ue ue.UserEntities,
-	rds redisclient.RedisInterface) InputAuthBoundary {
+	rds redisclient.RedisInterface,
+	loginHistory loginHistory.LoginHistoriesEntities) InputAuthBoundary {
 	return &AuthUsecase{
-		db:  db,
-		ae:  ae,
-		ue:  ue,
-		rds: rds,
+		db:           db,
+		ae:           ae,
+		ue:           ue,
+		rds:          rds,
+		loginHistory: loginHistory,
 	}
 }
 
@@ -69,6 +74,14 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request payload.
 			return errors.New("failed to generate JWT token")
 		}
 
+		// Store to logins history
+		loginDto := domain.LoginHistoriesDto{
+			UserID:    user.UserID,
+			AccountID: account.AccountId,
+		}
+		err = au.loginHistory.SaveLoginHistoriesEntities(ctx, tx, loginDto)
+		common.HandleErrorWithParam(err, "Failed to save login history")
+
 		// Store token to redis
 		redisKey := BuildRedisKey(fmt.Sprintf("access_token:%s:%s", account.AccountId, account.Email))
 		err = au.rds.StoreToRedis(ctx, redisKey, token)
@@ -85,7 +98,7 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request payload.
 		return nil
 	}
 
-	err := common.WithReadOnlyTransactionManager(ctx, au.db, fn)
+	err := common.WithExecuteTransactionalManager(ctx, au.db, fn)
 	if err != nil {
 		log.Println("Transaction failed:", err)
 	}

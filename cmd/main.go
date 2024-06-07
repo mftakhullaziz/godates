@@ -6,6 +6,7 @@ import (
 	"godating-dealls/conf"
 	"godating-dealls/internal/common"
 	authEntities "godating-dealls/internal/core/entities/auths"
+	"godating-dealls/internal/core/entities/login_histories"
 	userEntities "godating-dealls/internal/core/entities/users"
 	authUsecase "godating-dealls/internal/core/usecase/auths"
 	authHandler "godating-dealls/internal/handler"
@@ -36,13 +37,15 @@ func main() {
 	// Initiate repo
 	repoAuth := repo.NewAccountsRepositoryImpl(validate)
 	repoUser := repo.NewUsersRepositoryImpl(validate)
+	repoLoginHistory := repo.NewLoginHistoriesRepositoryImpl(validate)
 
 	// Call business rules
 	entitiesAuth := authEntities.NewAccountsEntitiesImpl(repoAuth, validate)
 	entitiesUser := userEntities.NewUserEntitiesImpl(repoUser, validate)
+	entitiesLoginHistory := login_histories.NewLoginHistoriesEntitiesImpl(validate, repoLoginHistory)
 
 	// Create the use case with entities
-	usecaseAuth := authUsecase.NewAuthUsecase(DB, entitiesAuth, entitiesUser, RedisService)
+	usecaseAuth := authUsecase.NewAuthUsecase(DB, entitiesAuth, entitiesUser, RedisService, entitiesLoginHistory)
 	// Create the handler with the use case
 	handlerAuth := authHandler.NewAuthHandler(usecaseAuth)
 

@@ -528,3 +528,17 @@ created by net/http.(*Server).Serve in goroutine 1
 [godating-dealls-service] 2024/06/07 21:26:17 Connected to DB MySQL success!
 [godating-dealls-service] 2024/06/07 21:26:17 Connected to Redis successfully
 [godating-dealls-service] 2024/06/07 21:26:22 {hai3  test1234}
+[godating-dealls-service] 2024/06/07 22:11:45 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 22:11:45 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 22:12:17 {haijoe@gmail.com haijoe test1234}
+[godating-dealls-service] 2024/06/07 22:12:17 account record saved: {AccountID:0 Username:haijoe PasswordHash:$2a$04$8dlK49Hh4r775Tk.g6PH2OYCDDl7ICTGCZ9rORM3a2gAJl39tnLUq Email:haijoe@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 22:12:17 Transaction failed: could not insert account: Error 1364 (HY000): Field 'phone_number' doesn't have a default value
+[godating-dealls-service] 2024/06/07 22:13:20 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 22:13:20 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 22:13:37 {haijoe@gmail.com haijoe test1234}
+[godating-dealls-service] 2024/06/07 22:13:37 account record saved: {AccountID:0 Username:haijoe PasswordHash:$2a$04$iQ9Pj5.KVtiLNtC2CHrneuL3eREidbxLTwtggCW0hJNiaRFhk/BrW Email:haijoe@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 22:13:37 user record saved: {UserID:0 AccountID:1 DateOfBirth:<nil> Age:0 Gender: Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 22:13:37 Query result: {0x1400018e900 0x1400048e5d0}
+[godating-dealls-service] 2024/06/07 22:14:20 {haijoe@gmail.com  test1234}
+[godating-dealls-service] 2024/06/07 22:14:20 Transaction failed: no account found with username: haijoe@gmail.com
+[godating-dealls-service] 2024/06/07 22:14:34 { haijoe@gmail.com test1234}

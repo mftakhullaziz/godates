@@ -16,6 +16,7 @@ const (
 	GetByEmailAccountRecord            = `SELECT * FROM accounts WHERE email = ?;`
 	GetByUsernameAndEmailAccountRecord = `SELECT * FROM accounts WHERE username = ? AND email = ?;`
 	GetUserByAccountIdUserRecord       = `SELECT * FROM users WHERE account_id = ?`
+	SaveLoginHistoryRecord             = `INSERT INTO login_histories (user_id, account_id) VALUES(?, ?);`
 )
 
 func ExecuteQuery(ctx context.Context, db *sql.DB, query string, args ...interface{}) (sql.Result, error) {
