@@ -8,4 +8,5 @@ import (
 
 type LoginHistoriesEntities interface {
 	SaveLoginHistoriesEntities(ctx context.Context, tx *sql.Tx, dto domain.LoginHistoriesDto) error
+	UpdateLoginHistoriesEntities(ctx context.Context, tx *sql.Tx, dto domain.LoginHistoriesDto) error
 }

@@ -143,19 +143,33 @@ func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request paylo
 }
 
 func (au *AuthUsecase) ExecuteLogoutUsecase(ctx context.Context, accessToken *string, boundary OutputAuthBoundary) error {
-	verify, err := jsonwebtoken.VerifyJWTToken(*accessToken)
-	common.HandleErrorReturn(err)
+	fn := func(tx *sql.Tx) error {
+		verify, err := jsonwebtoken.VerifyJWTToken(*accessToken)
+		common.HandleErrorReturn(err)
 
-	redisKey := BuildRedisKey(fmt.Sprintf("access_token:%s:%s", verify.AccountId, verify.Email))
-	err = au.rds.ClearFromRedis(ctx, redisKey)
-	common.HandleErrorReturn(err)
+		err = au.loginHistory.UpdateLoginHistoriesEntities(ctx, tx, domain.LoginHistoriesDto{
+			UserID:    verify.UserId,
+			AccountID: verify.AccountId,
+		})
+		common.HandleErrorReturn(err)
 
-	res := payload.LogoutResponse{
-		Message: "User successfully logged out",
+		redisKey := BuildRedisKey(fmt.Sprintf("access_token:%s:%s", verify.AccountId, verify.Email))
+		err = au.rds.ClearFromRedis(ctx, redisKey)
+		common.HandleErrorReturn(err)
+
+		res := payload.LogoutResponse{
+			Message: "User successfully logged out",
+		}
+		boundary.LogoutResponse(res, nil)
+
+		return nil
 	}
-	boundary.LogoutResponse(res, nil)
 
-	return nil
+	err := common.WithExecuteTransactionalManager(ctx, au.db, fn)
+	if err != nil {
+		log.Println("Transaction failed:", err)
+	}
+	return err
 }
 
 func BuildRedisKey(input string) string {

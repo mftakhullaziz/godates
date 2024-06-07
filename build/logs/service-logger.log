@@ -542,3 +542,91 @@ created by net/http.(*Server).Serve in goroutine 1
 [godating-dealls-service] 2024/06/07 22:14:20 {haijoe@gmail.com  test1234}
 [godating-dealls-service] 2024/06/07 22:14:20 Transaction failed: no account found with username: haijoe@gmail.com
 [godating-dealls-service] 2024/06/07 22:14:34 { haijoe@gmail.com test1234}
+[godating-dealls-service] 2024/06/07 22:32:10 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 22:32:10 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 22:33:55 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 22:33:55 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 22:34:11 { haijoe@gmail.com test1234}
+[godating-dealls-service] 2024/06/07 22:38:28 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 22:38:28 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 22:38:37 { haijoe@gmail.com test1234}
+[godating-dealls-service] 2024/06/07 22:42:22 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 22:42:22 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 22:43:57 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 22:43:57 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 22:44:03 { haijoe@gmail.com test1234}
+[godating-dealls-service] 2024/06/07 22:49:12 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 22:49:12 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 22:49:19 { haijoe@gmail.com test1234}
+[godating-dealls-service] 2024/06/07 22:50:54 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 22:50:54 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 22:51:29 { haijoe@gmail.com test1234}
+[godating-dealls-service] 2024/06/07 22:54:06 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 22:54:06 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 22:54:15 { haijoe@gmail.com test1234}
+[godating-dealls-service] 2024/06/07 22:54:23 http: panic serving [::1]:56612: runtime error: invalid memory address or nil pointer dereference
+goroutine 26 [running]:
+net/http.(*conn).serve.func1()
+	/usr/local/go/src/net/http/server.go:1898 +0xb0
+panic({0x10248acc0?, 0x102766500?})
+	/usr/local/go/src/runtime/panic.go:770 +0x124
+godating-dealls/internal/common.WithExecuteTransactionalManager.func1()
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/common/transactional_manager.go:18 +0xb4
+panic({0x10248acc0?, 0x102766500?})
+	/usr/local/go/src/runtime/panic.go:770 +0x124
+godating-dealls/internal/infra/mysql/repo.LoginRepositoryImpl.UpdateLoginHistoryDB({{0x140000335d8?, 0x1024ce400?}, 0x14000516bd0?}, {0x10250ac88, 0x1400058e690}, 0x1400022a280, {0x0, 0x1, 0x1, 0x0, ...})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/infra/mysql/repo/login_histories_repository_impl.go:67 +0x290
+godating-dealls/internal/core/entities/login_histories.LoginHistoriesEntitiesImpl.UpdateLoginHistoriesEntities({{0x102509420?, 0x140000b29a8?}, 0x14000232150?}, {0x10250ac88, 0x1400058e690}, 0x1400022a280, {0x0, 0x1, 0x1, 0x0, ...})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/entities/login_histories/login_histories_entities_impl.go:52 +0xec
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLogoutUsecase.func1(0x1400022a280)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:155 +0x150
+godating-dealls/internal/common.WithExecuteTransactionalManager({0x10250ac88?, 0x1400058e690?}, 0x10276b560?, 0x14000033910)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/common/transactional_manager.go:26 +0xb0
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLogoutUsecase(0x102508168?, {0x10250ac88?, 0x1400058e690?}, 0x1?, {0x10250a340?, 0x14000020280?})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:169 +0x78
+godating-dealls/internal/handler.(*AuthHandler).LogoutUserHandler(0x140004dad50, {0x10250a430, 0x140002221c0}, 0x10231d678?)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/handler/auth_handler.go:71 +0x190
+net/http.HandlerFunc.ServeHTTP(0x140000006c0?, {0x10250a430?, 0x140002221c0?}, 0x1025066b8?)
+	/usr/local/go/src/net/http/server.go:2166 +0x38
+main.setupRouter.AuthMiddleware.func1({0x10250a430, 0x140002221c0}, 0x140000006c0)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/common/middleware.go:31 +0x1ec
+net/http.HandlerFunc.ServeHTTP(0x140000a8340?, {0x10250a430?, 0x140002221c0?}, 0x102322478?)
+	/usr/local/go/src/net/http/server.go:2166 +0x38
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x10250a430, 0x140002221c0}, 0x140000006c0)
+	/usr/local/go/src/net/http/server.go:2683 +0x1a4
+net/http.serverHandler.ServeHTTP({0x14000516780?}, {0x10250a430?, 0x140002221c0?}, 0x6?)
+	/usr/local/go/src/net/http/server.go:3137 +0xbc
+net/http.(*conn).serve(0x140000fe360, {0x10250ac88, 0x14000516630})
+	/usr/local/go/src/net/http/server.go:2039 +0x508
+created by net/http.(*Server).Serve in goroutine 1
+	/usr/local/go/src/net/http/server.go:3285 +0x3f0
+[godating-dealls-service] 2024/06/07 22:54:56 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 22:54:56 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 22:55:32 { haijoe@gmail.com test1234}
+[godating-dealls-service] 2024/06/07 22:56:34 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 22:56:34 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 22:56:51 { haijoe@gmail.com test1234}
+[godating-dealls-service] 2024/06/07 22:59:31 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 22:59:31 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 22:59:55 { haijoe@gmail.com test1234}
+[godating-dealls-service] 2024/06/07 23:02:52 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 23:02:52 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 23:02:57 { haijoe@gmail.com test1234}
+[godating-dealls-service] 2024/06/07 23:05:02 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 23:05:02 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 23:05:16 { haijoe@gmail.com test1234}
+[godating-dealls-service] 2024/06/07 23:10:23 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 23:10:23 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 23:10:31 { haijoe@gmail.com test1234}
+[godating-dealls-service] 2024/06/07 23:11:02 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 23:11:02 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 23:12:02 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 23:12:02 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 23:12:34 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 23:12:34 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 23:12:48 { haijoe@gmail.com test1234}
+[godating-dealls-service] 2024/06/07 23:14:04 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 23:14:04 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 23:14:25 { haijoe@gmail.com test1234}
+[godating-dealls-service] 2024/06/07 23:16:09 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 23:16:09 Connected to Redis successfully

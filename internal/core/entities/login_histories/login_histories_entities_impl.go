@@ -37,3 +37,19 @@ func (l LoginHistoriesEntitiesImpl) SaveLoginHistoriesEntities(ctx context.Conte
 	_ = common.HandleErrorDefault(err)
 	return nil
 }
+
+func (l LoginHistoriesEntitiesImpl) UpdateLoginHistoriesEntities(ctx context.Context, tx *sql.Tx, dto domain.LoginHistoriesDto) error {
+	// validate request dto
+	err := l.Validate.Struct(dto)
+	if err != nil {
+		return err
+	}
+
+	records := record.LoginHistoriesRecord{
+		UserID:    dto.UserID,
+		AccountID: dto.AccountID,
+	}
+	_, err = l.LoginRepository.UpdateLoginHistoryDB(ctx, tx, records)
+	_ = common.HandleErrorDefault(err)
+	return nil
+}
