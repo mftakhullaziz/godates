@@ -10,21 +10,27 @@ import (
 	payload "godating-dealls/internal/domain/auths"
 	"godating-dealls/internal/domain/users"
 	"godating-dealls/internal/infra/jsonwebtoken"
+	"godating-dealls/internal/infra/redisclient"
 	"log"
 )
 
 type AuthUsecase struct {
-	db *sql.DB
-	ae ae.AuthEntities
-	ue ue.UserEntities
-	//rds redisclient.Rds
+	db  *sql.DB
+	ae  ae.AuthEntities
+	ue  ue.UserEntities
+	rds redisclient.RedisInterface
 }
 
-func NewAuthUsecase(db *sql.DB, ae ae.AuthEntities, ue ue.UserEntities) InputAuthBoundary {
+func NewAuthUsecase(
+	db *sql.DB,
+	ae ae.AuthEntities,
+	ue ue.UserEntities,
+	rds redisclient.RedisInterface) InputAuthBoundary {
 	return &AuthUsecase{
-		db: db,
-		ae: ae,
-		ue: ue,
+		db:  db,
+		ae:  ae,
+		ue:  ue,
+		rds: rds,
 	}
 }
 
@@ -61,10 +67,10 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request payload.
 		}
 
 		// Store token to redis
-		//err = au.rds.StoreToRedis("test", token)
-		//if err != nil {
-		//	return errors.New("failed to save token")
-		//}
+		err = au.rds.StoreToRedis(account.Email, token)
+		if err != nil {
+			return errors.New("failed to save token")
+		}
 
 		res := payload.LoginResponse{
 			Username:    account.Username,

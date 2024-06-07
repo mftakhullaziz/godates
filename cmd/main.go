@@ -10,6 +10,7 @@ import (
 	authUsecase "godating-dealls/internal/core/usecase/auths"
 	authHandler "godating-dealls/internal/handler"
 	repo "godating-dealls/internal/infra/mysql/repo"
+	"godating-dealls/internal/infra/redisclient"
 	"net/http"
 )
 
@@ -28,7 +29,8 @@ func main() {
 	// Create of the database connection
 	DB := conf.CreateDBConnection(ctx)
 	// Create redis client connection
-	conf.InitializeRedisClient(ctx)
+	RedisClient := conf.InitializeRedisClient(ctx)
+	RedisService := redisclient.NewRedisService(RedisClient)
 
 	// Initiate validator
 	validate := validator.New()
@@ -42,7 +44,7 @@ func main() {
 	entitiesUser := userEntities.NewUserEntitiesImpl(repoUser, validate)
 
 	// Create the use case with entities
-	usecaseAuth := authUsecase.NewAuthUsecase(DB, entitiesAuth, entitiesUser)
+	usecaseAuth := authUsecase.NewAuthUsecase(DB, entitiesAuth, entitiesUser, RedisService)
 	// Create the handler with the use case
 	handlerAuth := authHandler.NewAuthHandler(usecaseAuth)
 

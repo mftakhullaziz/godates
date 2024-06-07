@@ -315,3 +315,7 @@ created by net/http.(*Server).Serve in goroutine 1
 [godating-dealls-service] 2024/06/07 09:21:46 Connected to DB MySQL success!
 [godating-dealls-service] 2024/06/07 09:21:46 Connected to Redis successfully
 [godating-dealls-service] 2024/06/07 09:21:51 {hai3  test1234}
+[godating-dealls-service] 2024/06/07 09:42:02 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 09:42:02 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 09:42:17 {hai3  test1234}
+[godating-dealls-service] 2024/06/07 09:42:18 {hai3  test1234}

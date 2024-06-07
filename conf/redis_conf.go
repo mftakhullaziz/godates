@@ -6,7 +6,6 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/redis/go-redis/v9"
 	"godating-dealls/internal/common"
-	"godating-dealls/internal/infra/redisclient"
 	"log"
 	"os"
 )
@@ -15,7 +14,7 @@ import (
 var RedisClient *redis.Client
 
 // InitializeRedisClient initializes the Redis client
-func InitializeRedisClient(ctx context.Context) {
+func InitializeRedisClient(ctx context.Context) *redis.Client {
 	err := godotenv.Load()
 	common.HandleErrorWithParam(err, "Error loading .env file")
 
@@ -34,6 +33,5 @@ func InitializeRedisClient(ctx context.Context) {
 	common.HandleErrorWithParam(err, "Error connecting to redisclient")
 	log.Println("Connected to Redis successfully")
 
-	// Instantiate a new Redis service with the Redis client
-	_ = redisclient.NewRedisService(RedisClient)
+	return RedisClient
 }
