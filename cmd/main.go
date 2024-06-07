@@ -12,6 +12,7 @@ import (
 	authHandler "godating-dealls/internal/handler"
 	"godating-dealls/internal/infra/mysql/repo"
 	"godating-dealls/internal/infra/redisclient"
+	"godating-dealls/router"
 	"net/http"
 )
 
@@ -50,17 +51,7 @@ func main() {
 	handlerAuth := authHandler.NewAuthHandler(usecaseAuth)
 
 	// Set up the router
-	r := setupRouter(handlerAuth)
-
+	r := router.SetupRouter(handlerAuth)
 	err = http.ListenAndServe(":8000", r)
 	common.HandleErrorReturn(err)
-}
-
-func setupRouter(handlerAuth *authHandler.AuthHandler) *http.ServeMux {
-	r := http.NewServeMux()
-	r.HandleFunc("POST /godating-dealls/api/authenticate/register", handlerAuth.RegisterUserHandler)
-	r.HandleFunc("POST /godating-dealls/api/authenticate/login", handlerAuth.LoginUserHandler)
-	// Using middleware authenticate
-	r.Handle("POST /godating-dealls/api/authenticate/logout", common.AuthMiddleware(http.HandlerFunc(handlerAuth.LogoutUserHandler)))
-	return r
 }
