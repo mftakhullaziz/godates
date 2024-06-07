@@ -5,39 +5,21 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/go-playground/validator/v10"
-	"godating-dealls/internal/common"
 	"godating-dealls/internal/infra/mysql/queries"
 	"godating-dealls/internal/infra/mysql/record"
 )
 
 type AccountRepositoryImpl struct {
 	AccountsRepository AccountRepository
-	query              *sql.DB
 	validate           *validator.Validate
 }
 
-func NewAccountsRepositoryImpl(query *sql.DB, validate *validator.Validate) AccountRepository {
-	return &AccountRepositoryImpl{query: query, validate: validate}
+func NewAccountsRepositoryImpl(validate *validator.Validate) AccountRepository {
+	return &AccountRepositoryImpl{validate: validate}
 }
 
-func (a AccountRepositoryImpl) CreateAccountToDB(ctx context.Context, accountRecord record.AccountRecord) (record.AccountRecord, error) {
-	// Begin a new transaction
-	tx, err := a.query.BeginTx(ctx, nil)
-	if err != nil {
-		return record.AccountRecord{}, fmt.Errorf("could not begin transaction: %v", err)
-	}
-
-	//// Ensure to be rollback the transaction in case of an error
-	defer func() {
-		if err != nil {
-			err := tx.Rollback()
-			if err != nil {
-				return
-			}
-		}
-	}()
-
-	// Execute the query within the transaction
+func (a AccountRepositoryImpl) CreateAccountToDB(ctx context.Context, tx *sql.Tx, accountRecord record.AccountRecord) (record.AccountRecord, error) {
+	// Execute the query within the provided transaction
 	result, err := tx.ExecContext(ctx, queries.SaveToAccountsRecord,
 		accountRecord.Username,
 		accountRecord.PasswordHash,
@@ -54,25 +36,18 @@ func (a AccountRepositoryImpl) CreateAccountToDB(ctx context.Context, accountRec
 		return record.AccountRecord{}, fmt.Errorf("could not retrieve last insert id: %v", err)
 	}
 
-	// Commit the transaction if no errors occur
-	if err := tx.Commit(); err != nil {
-		return record.AccountRecord{}, fmt.Errorf("could not commit transaction: %v", err)
-	}
-
 	// Set the AccountID in the accountRecord
 	accountRecord.AccountID = accountId
 
 	return accountRecord, nil
 }
 
-func (a AccountRepositoryImpl) FindAccountByAccountIDFromDB(ctx context.Context, id string) (record.AccountRecord, error) {
+func (a AccountRepositoryImpl) FindAccountByAccountIDFromDB(ctx context.Context, tx *sql.Tx, id string) (record.AccountRecord, error) {
 	//TODO implement me
 	panic("implement me")
 }
 
-func (a AccountRepositoryImpl) IsExistAccountByEmailFromDB(ctx context.Context, email string) bool {
-	tx, err := a.query.BeginTx(ctx, nil)
-	common.HandleErrorWithParam(err, "Could not begin transaction")
+func (a AccountRepositoryImpl) IsExistAccountByEmailFromDB(ctx context.Context, tx *sql.Tx, email string) bool {
 	result, err := tx.ExecContext(ctx, queries.FindByEmailAccountRecord, email)
 	if err != nil {
 		return false
@@ -85,9 +60,7 @@ func (a AccountRepositoryImpl) IsExistAccountByEmailFromDB(ctx context.Context, 
 	return rowCount > 0
 }
 
-func (a AccountRepositoryImpl) IsExistAccountByUsernameFromDB(ctx context.Context, username string) bool {
-	tx, err := a.query.BeginTx(ctx, nil)
-	common.HandleErrorWithParam(err, "Could not begin transaction")
+func (a AccountRepositoryImpl) IsExistAccountByUsernameFromDB(ctx context.Context, tx *sql.Tx, username string) bool {
 	result, err := tx.ExecContext(ctx, queries.FindByUsernameAccountRecord, username)
 	if err != nil {
 		return false

@@ -12,29 +12,16 @@ import (
 
 type UserRepositoryImpl struct {
 	UsersRepository UserRepository
-	query           *sql.DB
 	validate        *validator.Validate
 }
 
-func NewUsersRepositoryImpl(query *sql.DB, validate *validator.Validate) UserRepository {
-	return &UserRepositoryImpl{query: query, validate: validate}
+func NewUsersRepositoryImpl(validate *validator.Validate) UserRepository {
+	return &UserRepositoryImpl{validate: validate}
 }
 
-func (u UserRepositoryImpl) CreateUserToDB(ctx context.Context, userRecord record.UserRecord) (record.UserRecord, error) {
-	// Begin a new transaction
-	tx, err := u.query.BeginTx(ctx, nil)
-	if err != nil {
-		return record.UserRecord{}, fmt.Errorf("could not begin transaction: %v", err)
-	}
-
-	// Construct the query
-	query := queries.SaveToUserRecord
-
-	// Log the query before executing it
-	log.Printf("Executing query: %s", query)
-
+func (u UserRepositoryImpl) CreateUserToDB(ctx context.Context, tx *sql.Tx, userRecord record.UserRecord) (record.UserRecord, error) {
 	// Execute the query within the transaction
-	result, err := tx.ExecContext(ctx, query,
+	result, err := tx.ExecContext(ctx, queries.SaveToUserRecord,
 		userRecord.AccountID,
 		userRecord.DateOfBirth,
 		userRecord.Age,
@@ -61,7 +48,7 @@ func (u UserRepositoryImpl) CreateUserToDB(ctx context.Context, userRecord recor
 	return userRecord, nil
 }
 
-func (u UserRepositoryImpl) FindUserByUserIDFromDB(ctx context.Context, id string) (record.UserRecord, error) {
+func (u UserRepositoryImpl) FindUserByUserIDFromDB(ctx context.Context, tx *sql.Tx, id string) (record.UserRecord, error) {
 	//TODO implement me
 	panic("implement me")
 }

@@ -3,10 +3,12 @@ package auths
 import (
 	"context"
 	"database/sql"
+	"godating-dealls/internal/common"
 	ae "godating-dealls/internal/core/entities/auths"
 	ue "godating-dealls/internal/core/entities/users"
 	payload "godating-dealls/internal/domain/auths"
 	"godating-dealls/internal/domain/users"
+	"log"
 )
 
 type AuthUsecase struct {
@@ -29,43 +31,40 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request payload.
 }
 
 func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request payload.RegisterRequest, boundary OutputAuthBoundary) error {
-	// Start a transaction
-	//fn := func(tx *sql.Tx) error {
-	//
-	//}
-	//
-	//// Execute the business logic within a transaction
-	//return common.WithTransactionalManager(ctx, au.db, fn)
+	fn := func(tx *sql.Tx) error {
+		accountDTO := payload.AccountDto{
+			Username: request.Username,
+			Password: request.Password,
+			Email:    request.Email,
+		}
+		account, err := au.ae.SaveAccountEntities(ctx, tx, accountDTO)
+		if err != nil {
+			return err
+		}
 
-	// Save account entity
-	accountDTO := payload.AccountDto{
-		Username: request.Username,
-		Password: request.Password,
-		Email:    request.Email,
+		userDto := users.UserDto{
+			AccountID: account.AccountId,
+		}
+		if err := au.ue.SaveUserEntities(ctx, tx, userDto); err != nil {
+			return err
+		}
+
+		res := payload.RegisterResponse{
+			AccountId: account.AccountId,
+			Email:     account.Email,
+			Username:  account.Username,
+			Password:  account.Password,
+		}
+		boundary.RegisterResponse(res, nil)
+
+		return nil
 	}
-	account, err := au.ae.SaveAccountEntities(ctx, accountDTO)
+
+	err := common.WithTransactionalManager(ctx, au.db, fn)
 	if err != nil {
-		return err
+		log.Println("Transaction failed:", err)
 	}
-
-	// Save user entity
-	userDto := users.UserDto{
-		AccountID: account.AccountId,
-	}
-	if err := au.ue.SaveUserEntities(ctx, userDto); err != nil {
-		return err
-	}
-
-	// Transform to response
-	res := payload.RegisterResponse{
-		AccountId: account.AccountId,
-		Email:     account.Email,
-		Username:  account.Username,
-		Password:  account.Password,
-	}
-	boundary.RegisterResponse(res, nil)
-
-	return nil
+	return err
 }
 
 func (au *AuthUsecase) ExecuteLogoutUsecase(ctx context.Context, request payload.LoginRequest, boundary OutputAuthBoundary) error {

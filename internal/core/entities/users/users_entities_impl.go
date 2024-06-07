@@ -2,6 +2,7 @@ package users
 
 import (
 	"context"
+	"database/sql"
 	"github.com/go-playground/validator/v10"
 	"godating-dealls/internal/common"
 	"godating-dealls/internal/domain/users"
@@ -19,7 +20,7 @@ func NewUserEntitiesImpl(repository repository.UserRepository, validate *validat
 	return &UserEntitiesImpl{repository: repository, validate: validate}
 }
 
-func (u UserEntitiesImpl) SaveUserEntities(ctx context.Context, dto users.UserDto) error {
+func (u UserEntitiesImpl) SaveUserEntities(ctx context.Context, tx *sql.Tx, dto users.UserDto) error {
 	// validate request dto
 	err := u.validate.Struct(dto)
 	if err != nil {
@@ -39,7 +40,7 @@ func (u UserEntitiesImpl) SaveUserEntities(ctx context.Context, dto users.UserDt
 	}
 	log.Printf("user record saved: %+v", records)
 
-	_, err = u.repository.CreateUserToDB(ctx, records)
+	_, err = u.repository.CreateUserToDB(ctx, tx, records)
 	err = common.HandleErrorDefault(err)
 	return err
 }

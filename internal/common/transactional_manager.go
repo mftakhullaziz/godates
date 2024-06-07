@@ -3,31 +3,25 @@ package common
 import (
 	"context"
 	"database/sql"
-	"fmt"
 )
 
 func WithTransactionalManager(ctx context.Context, db *sql.DB, fn func(*sql.Tx) error) error {
-	tx, err := db.Begin()
+	tx, err := db.BeginTx(ctx, nil)
 	if err != nil {
 		return err
 	}
+
 	defer func() {
 		if p := recover(); p != nil {
-			err := tx.Rollback()
-			if err != nil {
-				return
-			}
+			_ = tx.Rollback()
 			panic(p)
 		} else if err != nil {
-			err := tx.Rollback()
-			if err != nil {
-				return
-			}
+			_ = tx.Rollback()
 		} else {
-			fmt.Printf("MASUK SINI")
 			err = tx.Commit()
 		}
 	}()
 
-	return fn(tx)
+	err = fn(tx)
+	return err
 }

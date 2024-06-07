@@ -24,20 +24,20 @@ func main() {
 	// Ensure to close the database connection when the application exits
 	defer conf.CloseDBConnection()
 	// Create of the database connection
-	sqlConnection := conf.CreateDBConnection(ctx)
+	DB := conf.CreateDBConnection(ctx)
 	// Initiate validator
 	validate := validator.New()
 
 	// Initiate repo
-	repoAuth := repo.NewAccountsRepositoryImpl(sqlConnection, validate)
-	repoUser := repo.NewUsersRepositoryImpl(sqlConnection, validate)
+	repoAuth := repo.NewAccountsRepositoryImpl(validate)
+	repoUser := repo.NewUsersRepositoryImpl(validate)
 
 	// Call business rules
 	entitiesAuth := authEntities.NewAccountsEntitiesImpl(repoAuth, validate)
 	entitiesUser := userEntities.NewUserEntitiesImpl(repoUser, validate)
 
 	// Create the use case with entities
-	usecaseAuth := authUsecase.NewAuthUsecase(sqlConnection, entitiesAuth, entitiesUser)
+	usecaseAuth := authUsecase.NewAuthUsecase(DB, entitiesAuth, entitiesUser)
 	// Create the handler with the use case
 	handlerAuth := authHandler.NewAuthHandler(usecaseAuth)
 

@@ -174,3 +174,28 @@ created by net/http.(*Server).Serve in goroutine 1
 [godating-dealls-service] 2024/06/07 06:56:41 user record saved: {UserID:0 AccountID:32 DateOfBirth:<nil> Age:0 Gender: Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
 [godating-dealls-service] 2024/06/07 06:56:41 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
 [godating-dealls-service] 2024/06/07 06:56:41 Query result: {0x14000486120 0x14000422840}
+[godating-dealls-service] 2024/06/07 07:14:28 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 07:14:57 {hai1@gmail.com hai1 test1234}
+[godating-dealls-service] 2024/06/07 07:14:57 account record saved: {AccountID:0 Username:hai1 PasswordHash:$2a$04$9KlM7FD96YC9bH0FD.j5.u6Tb/.OvOGz4vZooX6YJlFEV45oMOjPa Email:hai1@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 07:14:57 user record saved: {UserID:0 AccountID:33 DateOfBirth:<nil> Age:0 Gender: Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 07:14:57 Query result: {0x1400059c000 0x14000121440}
+[godating-dealls-service] 2024/06/07 07:15:38 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 07:15:50 {hai2@gmail.com hai2 test1234}
+[godating-dealls-service] 2024/06/07 07:15:50 account record saved: {AccountID:0 Username:hai2 PasswordHash:$2a$04$HYpnaYOwk3RFEEF5YNEjNu.7mu0R0ma2RvseuwelyYMPXnB3blxPK Email:hai2@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 07:15:50 user record saved: {UserID:0 AccountID:34 DateOfBirth:<nil> Age:0 Gender:NUNKNOW Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 07:19:57 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 07:20:06 {hai2@gmail.com hai2 test1234}
+[godating-dealls-service] 2024/06/07 07:20:06 account record saved: {AccountID:0 Username:hai2 PasswordHash:$2a$04$88MjZPgY6KhHYZbUVfBbC..AAjxpeRzmWdyKNspe8xFEn8BSDGMaa Email:hai2@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 07:20:06 Transaction failed: could not insert account: Error 1062 (23000): Duplicate entry 'hai2' for key 'accounts.username'
+[godating-dealls-service] 2024/06/07 07:20:13 {hai3@gmail.com hai3 test1234}
+[godating-dealls-service] 2024/06/07 07:20:13 account record saved: {AccountID:0 Username:hai3 PasswordHash:$2a$04$zgVPcU9eKQHpBl7pIxZJnubczssK9afoOOqGIUbP04Mbi0IGNZluK Email:hai3@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 07:20:13 user record saved: {UserID:0 AccountID:36 DateOfBirth:<nil> Age:0 Gender:NUNKNOW Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 07:20:13 Transaction failed: could not insert users: Error 1406 (22001): Data too long for column 'gender' at row 1
+[godating-dealls-service] 2024/06/07 07:20:52 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 07:21:06 {hai3@gmail.com hai3 test1234}
+[godating-dealls-service] 2024/06/07 07:21:06 account record saved: {AccountID:0 Username:hai3 PasswordHash:$2a$04$XggGs00tOxgrY717Wegd2OHR7o5isSUHFAdZ9BagDxGsphYz/6TMi Email:hai3@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 07:21:06 user record saved: {UserID:0 AccountID:37 DateOfBirth:<nil> Age:0 Gender: Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 07:21:06 Query result: {0x1400059c000 0x14000120d80}
+[godating-dealls-service] 2024/06/07 07:21:08 {hai3@gmail.com hai3 test1234}
+[godating-dealls-service] 2024/06/07 07:21:08 account record saved: {AccountID:0 Username:hai3 PasswordHash:$2a$04$PpFyq.F6x2RO90M9zEgaq.xTfzYCL3m.4Rp0O4iuJ5VZHEDmI4aWK Email:hai3@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 07:21:08 Transaction failed: could not insert account: Error 1062 (23000): Duplicate entry 'hai3' for key 'accounts.username'

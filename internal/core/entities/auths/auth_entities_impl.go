@@ -2,6 +2,7 @@ package auths
 
 import (
 	"context"
+	"database/sql"
 	"errors"
 	"github.com/go-playground/validator/v10"
 	"godating-dealls/internal/common"
@@ -21,7 +22,7 @@ func NewAccountsEntitiesImpl(repository repository.AccountRepository, validate *
 }
 
 // SaveAccountEntities this is business rules enterprise of accounts
-func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, dto auths.AccountDto) (auths.Accounts, error) {
+func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, tx *sql.Tx, dto auths.AccountDto) (auths.Accounts, error) {
 	// validate request dto
 	err := a.validate.Struct(dto)
 	if err != nil {
@@ -29,8 +30,8 @@ func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, dto auths.
 	}
 
 	// add validate username and email
-	emailIsExist := a.repository.IsExistAccountByEmailFromDB(ctx, dto.Email)
-	usernameIsExist := a.repository.IsExistAccountByUsernameFromDB(ctx, dto.Username)
+	emailIsExist := a.repository.IsExistAccountByEmailFromDB(ctx, tx, dto.Email)
+	usernameIsExist := a.repository.IsExistAccountByUsernameFromDB(ctx, tx, dto.Username)
 
 	if emailIsExist || usernameIsExist {
 		return auths.Accounts{}, errors.New("email or username already exists")
@@ -44,7 +45,7 @@ func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, dto auths.
 	}
 	log.Printf("account record saved: %+v", records)
 
-	account, err := a.repository.CreateAccountToDB(ctx, records)
+	account, err := a.repository.CreateAccountToDB(ctx, tx, records)
 	if err != nil {
 		return auths.Accounts{}, err
 	}
