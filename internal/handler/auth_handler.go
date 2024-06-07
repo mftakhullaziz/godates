@@ -36,3 +36,21 @@ func (ah *AuthHandler) RegisterUserHandler(w http.ResponseWriter, r *http.Reques
 	err := ah.usecase.ExecuteRegisterUsecase(ctx, request, presenter)
 	common.HandleInternalServerError(err, w)
 }
+
+func (ah *AuthHandler) LoginUserHandler(w http.ResponseWriter, r *http.Request) {
+	var request auths.LoginRequest
+	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+		http.Error(w, "Invalid request payload", http.StatusBadRequest)
+		return
+	}
+	log.Println(request)
+
+	_ = r.Context()
+
+	// Instantiate the presenter
+	_ = presenters.NewAuthPresenter(w)
+
+	//// Call the use case method passing the presenter
+	//err := ah.usecase.ExecuteRegisterUsecase(ctx, request, presenter)
+	//common.HandleInternalServerError(err, w)
+}

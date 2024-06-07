@@ -38,9 +38,24 @@ func (ap *AuthPresenter) RegisterResponse(response auths.RegisterResponse, err e
 	common.HandleErrorReturn(err)
 }
 
-func (ap *AuthPresenter) LoginResponse(err error) {
-	//TODO implement me
-	panic("implement me")
+// LoginResponse sends the login response to the client
+func (ap *AuthPresenter) LoginResponse(response auths.LoginResponse, err error) {
+	common.HandleInternalServerError(err, ap.w)
+	// Transform to default response
+	res := common.DefaultResponse{
+		StatusCode: http.StatusCreated,
+		Message:    "Created account successfully",
+		IsSuccess:  true,
+		RequestAt:  common.FormatTime(),
+		Data:       response,
+	}
+	// Set content type to JSON
+	ap.w.Header().Set("Content-Type", "application/json")
+	// Set status code to 200 OK
+	ap.w.WriteHeader(http.StatusOK)
+	// Encode the response as JSON and write to the response writer
+	err = json.NewEncoder(ap.w).Encode(res)
+	common.HandleErrorReturn(err)
 }
 
 func (ap *AuthPresenter) LogoutResponse(err error) {

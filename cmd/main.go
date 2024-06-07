@@ -21,10 +21,15 @@ func main() {
 
 	// Init context before run application
 	ctx := context.Background()
+
 	// Ensure to close the database connection when the application exits
 	defer conf.CloseDBConnection()
+
 	// Create of the database connection
 	DB := conf.CreateDBConnection(ctx)
+	// Create redisclient connection
+	conf.InitializeRedisClient(ctx)
+
 	// Initiate validator
 	validate := validator.New()
 
@@ -44,6 +49,7 @@ func main() {
 	// Set up the router
 	r := http.NewServeMux()
 	r.HandleFunc("POST /godating-dealls/api/authenticate/register", handlerAuth.RegisterUserHandler)
+	r.HandleFunc("POST /godating-dealls/api/authenticate/login", handlerAuth.LoginUserHandler)
 
 	err = http.ListenAndServe(":8000", r)
 	common.HandleErrorReturn(err)
