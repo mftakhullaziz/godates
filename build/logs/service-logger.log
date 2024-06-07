@@ -319,3 +319,212 @@ created by net/http.(*Server).Serve in goroutine 1
 [godating-dealls-service] 2024/06/07 09:42:02 Connected to Redis successfully
 [godating-dealls-service] 2024/06/07 09:42:17 {hai3  test1234}
 [godating-dealls-service] 2024/06/07 09:42:18 {hai3  test1234}
+[godating-dealls-service] 2024/06/07 20:34:54 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 20:34:54 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 20:35:33 http: panic serving [::1]:55024: runtime error: invalid memory address or nil pointer dereference
+goroutine 51 [running]:
+net/http.(*conn).serve.func1()
+	/usr/local/go/src/net/http/server.go:1898 +0xb0
+panic({0x104566800?, 0x10483e500?})
+	/usr/local/go/src/runtime/panic.go:770 +0x124
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLogoutUsecase(0x140001981c0, {0x1045e60a0, 0x14000038230}, {0x0?, 0x72?}, {0x1045e5720, 0x14000020d50})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:134 +0x4c
+godating-dealls/internal/handler.(*AuthHandler).LogoutUserHandler(0x14000020bf0, {0x1045e5810, 0x1400061c2a0}, 0x1049a13c8?)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/handler/auth_handler.go:65 +0xe4
+net/http.HandlerFunc.ServeHTTP(0x140006180d0?, {0x1045e5810?, 0x1400061c2a0?}, 0x1043fe1c8?)
+	/usr/local/go/src/net/http/server.go:2166 +0x38
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x1045e5810, 0x1400061c2a0}, 0x1400046e5a0)
+	/usr/local/go/src/net/http/server.go:2683 +0x1a4
+net/http.serverHandler.ServeHTTP({0x14000502600?}, {0x1045e5810?, 0x1400061c2a0?}, 0x6?)
+	/usr/local/go/src/net/http/server.go:3137 +0xbc
+net/http.(*conn).serve(0x14000614120, {0x1045e6068, 0x140005024b0})
+	/usr/local/go/src/net/http/server.go:2039 +0x508
+created by net/http.(*Server).Serve in goroutine 1
+	/usr/local/go/src/net/http/server.go:3285 +0x3f0
+[godating-dealls-service] 2024/06/07 20:35:43 {hai3  test1234}
+[godating-dealls-service] 2024/06/07 20:35:46 http: panic serving [::1]:55027: runtime error: invalid memory address or nil pointer dereference
+goroutine 47 [running]:
+net/http.(*conn).serve.func1()
+	/usr/local/go/src/net/http/server.go:1898 +0xb0
+panic({0x104566800?, 0x10483e500?})
+	/usr/local/go/src/runtime/panic.go:770 +0x124
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLogoutUsecase(0x140001981c0, {0x1045e60a0, 0x14000182370}, {0x0?, 0x72?}, {0x1045e5720, 0x140001124e0})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:134 +0x4c
+godating-dealls/internal/handler.(*AuthHandler).LogoutUserHandler(0x14000020bf0, {0x1045e5810, 0x140000d20e0}, 0x1049a0a68?)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/handler/auth_handler.go:65 +0xe4
+net/http.HandlerFunc.ServeHTTP(0x140006180d0?, {0x1045e5810?, 0x140000d20e0?}, 0x1043fe1c8?)
+	/usr/local/go/src/net/http/server.go:2166 +0x38
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x1045e5810, 0x140000d20e0}, 0x140000c85a0)
+	/usr/local/go/src/net/http/server.go:2683 +0x1a4
+net/http.serverHandler.ServeHTTP({0x14000266390?}, {0x1045e5810?, 0x140000d20e0?}, 0x6?)
+	/usr/local/go/src/net/http/server.go:3137 +0xbc
+net/http.(*conn).serve(0x140000a4090, {0x1045e6068, 0x140005024b0})
+	/usr/local/go/src/net/http/server.go:2039 +0x508
+created by net/http.(*Server).Serve in goroutine 1
+	/usr/local/go/src/net/http/server.go:3285 +0x3f0
+[godating-dealls-service] 2024/06/07 20:36:29 http: panic serving [::1]:55040: runtime error: invalid memory address or nil pointer dereference
+goroutine 56 [running]:
+net/http.(*conn).serve.func1()
+	/usr/local/go/src/net/http/server.go:1898 +0xb0
+panic({0x104566800?, 0x10483e500?})
+	/usr/local/go/src/runtime/panic.go:770 +0x124
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLogoutUsecase(0x140001981c0, {0x1045e60a0, 0x1400045c230}, {0x140001fc1a0?, 0x72?}, {0x1045e5720, 0x140002ca260})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:134 +0x4c
+godating-dealls/internal/handler.(*AuthHandler).LogoutUserHandler(0x14000020bf0, {0x1045e5810, 0x14000238000}, 0x1049a05b8?)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/handler/auth_handler.go:65 +0xe4
+net/http.HandlerFunc.ServeHTTP(0x140006180d0?, {0x1045e5810?, 0x14000238000?}, 0x1043fe1c8?)
+	/usr/local/go/src/net/http/server.go:2166 +0x38
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x1045e5810, 0x14000238000}, 0x14000176900)
+	/usr/local/go/src/net/http/server.go:2683 +0x1a4
+net/http.serverHandler.ServeHTTP({0x14000117950?}, {0x1045e5810?, 0x14000238000?}, 0x6?)
+	/usr/local/go/src/net/http/server.go:3137 +0xbc
+net/http.(*conn).serve(0x14000614510, {0x1045e6068, 0x140005024b0})
+	/usr/local/go/src/net/http/server.go:2039 +0x508
+created by net/http.(*Server).Serve in goroutine 1
+	/usr/local/go/src/net/http/server.go:3285 +0x3f0
+[godating-dealls-service] 2024/06/07 20:36:44 http: panic serving [::1]:55043: runtime error: invalid memory address or nil pointer dereference
+goroutine 58 [running]:
+net/http.(*conn).serve.func1()
+	/usr/local/go/src/net/http/server.go:1898 +0xb0
+panic({0x104566800?, 0x10483e500?})
+	/usr/local/go/src/runtime/panic.go:770 +0x124
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLogoutUsecase(0x140001981c0, {0x1045e60a0, 0x14000182460}, {0x140000e20d0?, 0x72?}, {0x1045e5720, 0x14000112570})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:134 +0x4c
+godating-dealls/internal/handler.(*AuthHandler).LogoutUserHandler(0x14000020bf0, {0x1045e5810, 0x140000d21c0}, 0x1049a0a68?)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/handler/auth_handler.go:65 +0xe4
+net/http.HandlerFunc.ServeHTTP(0x140006180d0?, {0x1045e5810?, 0x140000d21c0?}, 0x1043fe1c8?)
+	/usr/local/go/src/net/http/server.go:2166 +0x38
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x1045e5810, 0x140000d21c0}, 0x1400046ed80)
+	/usr/local/go/src/net/http/server.go:2683 +0x1a4
+net/http.serverHandler.ServeHTTP({0x14000502ae0?}, {0x1045e5810?, 0x140000d21c0?}, 0x6?)
+	/usr/local/go/src/net/http/server.go:3137 +0xbc
+net/http.(*conn).serve(0x14000614630, {0x1045e6068, 0x140005024b0})
+	/usr/local/go/src/net/http/server.go:2039 +0x508
+created by net/http.(*Server).Serve in goroutine 1
+	/usr/local/go/src/net/http/server.go:3285 +0x3f0
+[godating-dealls-service] 2024/06/07 20:37:00 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 20:37:00 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 20:38:03 http: panic serving [::1]:55062: runtime error: invalid memory address or nil pointer dereference
+goroutine 16 [running]:
+net/http.(*conn).serve.func1()
+	/usr/local/go/src/net/http/server.go:1898 +0xb0
+panic({0x100eee800?, 0x1011c6500?})
+	/usr/local/go/src/runtime/panic.go:770 +0x124
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLogoutUsecase(0x140001741c0, {0x100f6e0a0, 0x140000aa320}, {0x140000a2000?, 0x1?}, {0x100f6d720, 0x1400048a130})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:134 +0x4c
+godating-dealls/internal/handler.(*AuthHandler).LogoutUserHandler(0x14000426dd0, {0x100f6d810, 0x1400016e0e0}, 0x101328108?)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/handler/auth_handler.go:67 +0x13c
+net/http.HandlerFunc.ServeHTTP(0x140004961a0?, {0x100f6d810?, 0x1400016e0e0?}, 0x100d861c8?)
+	/usr/local/go/src/net/http/server.go:2166 +0x38
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x100f6d810, 0x1400016e0e0}, 0x14000438000)
+	/usr/local/go/src/net/http/server.go:2683 +0x1a4
+net/http.serverHandler.ServeHTTP({0x14000486300?}, {0x100f6d810?, 0x1400016e0e0?}, 0x6?)
+	/usr/local/go/src/net/http/server.go:3137 +0xbc
+net/http.(*conn).serve(0x140004941b0, {0x100f6e068, 0x14000466630})
+	/usr/local/go/src/net/http/server.go:2039 +0x508
+created by net/http.(*Server).Serve in goroutine 1
+	/usr/local/go/src/net/http/server.go:3285 +0x3f0
+[godating-dealls-service] 2024/06/07 20:38:52 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 20:38:52 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 20:43:33 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 20:43:33 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 20:50:31 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 20:50:31 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 20:50:43 {hai3  test1234}
+[godating-dealls-service] 2024/06/07 20:50:49 http: panic serving [::1]:55159: runtime error: invalid memory address or nil pointer dereference
+goroutine 5 [running]:
+net/http.(*conn).serve.func1()
+	/usr/local/go/src/net/http/server.go:1898 +0xb0
+panic({0x104636800?, 0x10490e500?})
+	/usr/local/go/src/runtime/panic.go:770 +0x124
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLogoutUsecase(0x140001a01c0, {0x1046b60a0, 0x14000458370}, 0x1?, {0x1046b5720, 0x140000202e0})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:146 +0x108
+godating-dealls/internal/handler.(*AuthHandler).LogoutUserHandler(0x1400044ce20, {0x1046b5810, 0x1400019a1c0}, 0x140000007e0)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/handler/auth_handler.go:67 +0x170
+net/http.HandlerFunc.ServeHTTP(0x14000122340?, {0x1046b5810?, 0x1400019a1c0?}, 0x1044ce1c8?)
+	/usr/local/go/src/net/http/server.go:2166 +0x38
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x1046b5810, 0x1400019a1c0}, 0x140000007e0)
+	/usr/local/go/src/net/http/server.go:2683 +0x1a4
+net/http.serverHandler.ServeHTTP({0x140004967e0?}, {0x1046b5810?, 0x1400019a1c0?}, 0x6?)
+	/usr/local/go/src/net/http/server.go:3137 +0xbc
+net/http.(*conn).serve(0x1400018e360, {0x1046b6068, 0x14000496690})
+	/usr/local/go/src/net/http/server.go:2039 +0x508
+created by net/http.(*Server).Serve in goroutine 1
+	/usr/local/go/src/net/http/server.go:3285 +0x3f0
+[godating-dealls-service] 2024/06/07 20:52:26 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 20:52:26 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 20:52:47 http: panic serving [::1]:55191: runtime error: invalid memory address or nil pointer dereference
+goroutine 6 [running]:
+net/http.(*conn).serve.func1()
+	/usr/local/go/src/net/http/server.go:1898 +0xb0
+panic({0x10059e800?, 0x100876500?})
+	/usr/local/go/src/runtime/panic.go:770 +0x124
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLogoutUsecase(0x140001a01c0, {0x10061e0a0, 0x140000380a0}, 0x1?, {0x10061d720, 0x14000020050})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:145 +0x108
+godating-dealls/internal/handler.(*AuthHandler).LogoutUserHandler(0x1400044cd90, {0x10061d810, 0x14000246000}, 0x1400047a6c0)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/handler/auth_handler.go:67 +0x170
+net/http.HandlerFunc.ServeHTTP(0x140000a60d0?, {0x10061d810?, 0x14000246000?}, 0x1004361c8?)
+	/usr/local/go/src/net/http/server.go:2166 +0x38
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x10061d810, 0x14000246000}, 0x1400047a6c0)
+	/usr/local/go/src/net/http/server.go:2683 +0x1a4
+net/http.serverHandler.ServeHTTP({0x1400050e690?}, {0x10061d810?, 0x14000246000?}, 0x6?)
+	/usr/local/go/src/net/http/server.go:3137 +0xbc
+net/http.(*conn).serve(0x1400005e120, {0x10061e068, 0x1400050e4b0})
+	/usr/local/go/src/net/http/server.go:2039 +0x508
+created by net/http.(*Server).Serve in goroutine 1
+	/usr/local/go/src/net/http/server.go:3285 +0x3f0
+[godating-dealls-service] 2024/06/07 20:53:33 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 20:53:33 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 20:53:42 http: panic serving [::1]:55202: runtime error: invalid memory address or nil pointer dereference
+goroutine 6 [running]:
+net/http.(*conn).serve.func1()
+	/usr/local/go/src/net/http/server.go:1898 +0xb0
+panic({0x104772800?, 0x104a4a500?})
+	/usr/local/go/src/runtime/panic.go:770 +0x124
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLogoutUsecase(0x140001a01c0, {0x1047f20a0, 0x140004581e0}, 0x1?, {0x1047f1720, 0x14000020d50})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:144 +0x108
+godating-dealls/internal/handler.(*AuthHandler).LogoutUserHandler(0x14000020be0, {0x1047f1810, 0x1400051e380}, 0x140004825a0)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/handler/auth_handler.go:67 +0x170
+net/http.HandlerFunc.ServeHTTP(0x140005261a0?, {0x1047f1810?, 0x1400051e380?}, 0x10460a1c8?)
+	/usr/local/go/src/net/http/server.go:2166 +0x38
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x1047f1810, 0x1400051e380}, 0x140004825a0)
+	/usr/local/go/src/net/http/server.go:2683 +0x1a4
+net/http.serverHandler.ServeHTTP({0x14000121da0?}, {0x1047f1810?, 0x1400051e380?}, 0x6?)
+	/usr/local/go/src/net/http/server.go:3137 +0xbc
+net/http.(*conn).serve(0x140000aa120, {0x1047f2068, 0x14000121b90})
+	/usr/local/go/src/net/http/server.go:2039 +0x508
+created by net/http.(*Server).Serve in goroutine 1
+	/usr/local/go/src/net/http/server.go:3285 +0x3f0
+[godating-dealls-service] 2024/06/07 20:54:12 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 20:54:12 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 20:54:41 http: panic serving [::1]:55218: runtime error: invalid memory address or nil pointer dereference
+goroutine 11 [running]:
+net/http.(*conn).serve.func1()
+	/usr/local/go/src/net/http/server.go:1898 +0x118
+panic({0x104fefa40?, 0x1052d1b60?})
+	/usr/local/go/src/runtime/panic.go:770 +0xf0
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLogoutUsecase(0x140000a41c0, {0x105072708, 0x140003e2280}, 0x14000020d70, {0x105072170, 0x14000020d80})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:144 +0xb8
+godating-dealls/internal/handler.(*AuthHandler).LogoutUserHandler(0x14000020c10, {0x105071e70, 0x1400050e2a0}, 0x14000000360)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/handler/auth_handler.go:67 +0x178
+net/http.HandlerFunc.ServeHTTP(0x14000020ca0, {0x105071e70, 0x1400050e2a0}, 0x14000000360)
+	/usr/local/go/src/net/http/server.go:2166 +0x40
+net/http.(*ServeMux).ServeHTTP(0x140000b8270, {0x105071e70, 0x1400050e2a0}, 0x14000000360)
+	/usr/local/go/src/net/http/server.go:2683 +0x29c
+net/http.serverHandler.ServeHTTP({0x14000510000}, {0x105071e70, 0x1400050e2a0}, 0x14000000360)
+	/usr/local/go/src/net/http/server.go:3137 +0x2a0
+net/http.(*conn).serve(0x140005061b0, {0x105072708, 0x140003e2230})
+	/usr/local/go/src/net/http/server.go:2039 +0x15f8
+created by net/http.(*Server).Serve in goroutine 1
+	/usr/local/go/src/net/http/server.go:3285 +0x88c
+[godating-dealls-service] 2024/06/07 20:54:43 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 20:54:43 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 20:54:59 http: superfluous response.WriteHeader call from godating-dealls/internal/common.HandleInternalServerError (errors.go:28)
+[godating-dealls-service] 2024/06/07 21:13:23 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 21:13:23 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 21:22:58 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 21:22:58 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 21:23:51 {hai3  test1234}
+[godating-dealls-service] 2024/06/07 21:26:17 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 21:26:17 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 21:26:22 {hai3  test1234}

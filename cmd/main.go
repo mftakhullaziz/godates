@@ -57,5 +57,7 @@ func setupRouter(handlerAuth *authHandler.AuthHandler) *http.ServeMux {
 	r := http.NewServeMux()
 	r.HandleFunc("POST /godating-dealls/api/authenticate/register", handlerAuth.RegisterUserHandler)
 	r.HandleFunc("POST /godating-dealls/api/authenticate/login", handlerAuth.LoginUserHandler)
+	// Using middleware authenticate
+	r.Handle("POST /godating-dealls/api/authenticate/logout", common.AuthMiddleware(http.HandlerFunc(handlerAuth.LogoutUserHandler)))
 	return r
 }

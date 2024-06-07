@@ -19,9 +19,7 @@ func NewRedisService(Client *redis.Client) RedisInterface {
 	}
 }
 
-func (r RdsImpl) StoreToRedis(key string, data interface{}) error {
-	ctx := context.Background()
-
+func (r RdsImpl) StoreToRedis(ctx context.Context, key string, data interface{}) error {
 	serializedData, err := json.Marshal(data)
 	if err != nil {
 		return err
@@ -35,9 +33,7 @@ func (r RdsImpl) StoreToRedis(key string, data interface{}) error {
 	return nil
 }
 
-func (r RdsImpl) LoadFromRedis(key string) (interface{}, error) {
-	ctx := context.Background()
-
+func (r RdsImpl) LoadFromRedis(ctx context.Context, key string) (interface{}, error) {
 	data, err := r.Client.Get(ctx, key).Result()
 	if err != nil {
 		if errors.Is(err, redis.Nil) {
@@ -53,4 +49,13 @@ func (r RdsImpl) LoadFromRedis(key string) (interface{}, error) {
 	}
 
 	return result, nil
+}
+
+func (r RdsImpl) ClearFromRedis(ctx context.Context, key string) error {
+	err := r.Client.Del(ctx, key).Err()
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

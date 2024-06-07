@@ -2,6 +2,7 @@ package handler
 
 import (
 	"encoding/json"
+	"fmt"
 	"godating-dealls/internal/common"
 	input "godating-dealls/internal/core/usecase/auths"
 	"godating-dealls/internal/domain/auths"
@@ -52,5 +53,21 @@ func (ah *AuthHandler) LoginUserHandler(w http.ResponseWriter, r *http.Request) 
 
 	// Call the use case method passing the presenter
 	err := ah.usecase.ExecuteLoginUsecase(ctx, request, presenter)
+	common.HandleInternalServerError(err, w)
+}
+
+func (ah *AuthHandler) LogoutUserHandler(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	token, ok := ctx.Value("token").(string)
+	if !ok || token == "" {
+		http.Error(w, "Invalid token", http.StatusUnauthorized)
+		return
+	}
+
+	presenter := presenters.NewAuthPresenter(w)
+	fmt.Println(token)
+
+	// Call the use case method passing the presenter
+	err := ah.usecase.ExecuteLogoutUsecase(ctx, &token, presenter)
 	common.HandleInternalServerError(err, w)
 }

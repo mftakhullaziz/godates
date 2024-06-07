@@ -2,8 +2,11 @@ package auths
 
 import (
 	"context"
+	"crypto/sha256"
 	"database/sql"
+	"encoding/hex"
 	"errors"
+	"fmt"
 	"godating-dealls/internal/common"
 	ae "godating-dealls/internal/core/entities/auths"
 	ue "godating-dealls/internal/core/entities/users"
@@ -67,7 +70,8 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request payload.
 		}
 
 		// Store token to redis
-		err = au.rds.StoreToRedis(account.Email, token)
+		redisKey := BuildRedisKey(fmt.Sprintf("access_token:%s:%s", account.AccountId, account.Email))
+		err = au.rds.StoreToRedis(ctx, redisKey, token)
 		if err != nil {
 			return errors.New("failed to save token")
 		}
@@ -81,7 +85,7 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request payload.
 		return nil
 	}
 
-	err := common.WithTransactionalManager(ctx, au.db, fn)
+	err := common.WithReadOnlyTransactionManager(ctx, au.db, fn)
 	if err != nil {
 		log.Println("Transaction failed:", err)
 	}
@@ -118,14 +122,32 @@ func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request paylo
 		return nil
 	}
 
-	err := common.WithTransactionalManager(ctx, au.db, fn)
+	err := common.WithExecuteTransactionalManager(ctx, au.db, fn)
 	if err != nil {
 		log.Println("Transaction failed:", err)
 	}
 	return err
 }
 
-func (au *AuthUsecase) ExecuteLogoutUsecase(ctx context.Context, request payload.LoginRequest, boundary OutputAuthBoundary) error {
-	// TODO: Implement logout logic
+func (au *AuthUsecase) ExecuteLogoutUsecase(ctx context.Context, accessToken *string, boundary OutputAuthBoundary) error {
+	verify, err := jsonwebtoken.VerifyJWTToken(*accessToken)
+	common.HandleErrorReturn(err)
+
+	redisKey := BuildRedisKey(fmt.Sprintf("access_token:%s:%s", verify.AccountId, verify.Email))
+	err = au.rds.ClearFromRedis(ctx, redisKey)
+	common.HandleErrorReturn(err)
+
+	res := payload.LogoutResponse{
+		Message: "User successfully logged out",
+	}
+	boundary.LogoutResponse(res, nil)
+
 	return nil
+}
+
+func BuildRedisKey(input string) string {
+	hash := sha256.New()
+	hash.Write([]byte(input))
+	hashedBytes := hash.Sum(nil)
+	return hex.EncodeToString(hashedBytes)
 }

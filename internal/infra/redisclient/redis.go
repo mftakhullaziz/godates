@@ -1,6 +1,9 @@
 package redisclient
 
+import "context"
+
 type RedisInterface interface {
-	StoreToRedis(key string, data interface{}) error
-	LoadFromRedis(key string) (interface{}, error)
+	StoreToRedis(ctx context.Context, key string, data interface{}) error
+	LoadFromRedis(ctx context.Context, key string) (interface{}, error)
+	ClearFromRedis(ctx context.Context, key string) error
 }
