@@ -97,7 +97,7 @@ CREATE TABLE login_histories
     account_id         INTEGER NOT NULL,
     login_at           TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     logout_at          TIMESTAMP DEFAULT NULL,
-    active_duration    TIMESTAMP DEFAULT NULL,
+    duration_in_seconds DOUBLE DEFAULT NULL,
     FOREIGN KEY (user_id) REFERENCES users (user_id),
     FOREIGN KEY (account_id) REFERENCES accounts (account_id)
 );
