@@ -83,3 +83,94 @@ created by net/http.(*Server).Serve in goroutine 1
 [godating-dealls-service] 2024/06/07 06:20:43 {0 16 <nil> 0    0001-01-01 00:00:00 +0000 UTC 0001-01-01 00:00:00 +0000 UTC}
 [godating-dealls-service] 2024/06/07 06:20:43 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
 [godating-dealls-service] 2024/06/07 06:20:43 Query result: {0x1400018a510 0x140004a0b40}
+[godating-dealls-service] 2024/06/07 06:28:41 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 06:28:53 {testas1@gmail.com testas1 test1234}
+[godating-dealls-service] 2024/06/07 06:28:53 account record saved: {AccountID:0 Username:testas1 PasswordHash:$2a$04$usb8xk0NgfXtZA1Si98C6OZzPVUCG20tnXmgoHIKrI9J8l/XmuScS Email:testas1@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:28:53 user record saved: {UserID:0 AccountID:17 DateOfBirth:<nil> Age:0 Gender:unknown Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:28:53 {0 17 <nil> 0 unknown   0001-01-01 00:00:00 +0000 UTC 0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:28:53 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
+[godating-dealls-service] 2024/06/07 06:32:11 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 06:32:24 {testas2@gmail.com testas2 test1234}
+[godating-dealls-service] 2024/06/07 06:32:24 account record saved: {AccountID:0 Username:testas2 PasswordHash:$2a$04$3gbBs4QIuTq.oubyAaazrOBWIWkHPecJWKGnmIv.moLJevRrYdpzy Email:testas2@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:32:24 user record saved: {UserID:0 AccountID:18 DateOfBirth:<nil> Age:0 Gender:unknown Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:32:24 {0 18 <nil> 0 unknown   0001-01-01 00:00:00 +0000 UTC 0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:32:24 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
+[godating-dealls-service] 2024/06/07 06:38:09 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 06:38:21 {testas22@gmail.com testas22 test1234}
+[godating-dealls-service] 2024/06/07 06:38:21 account record saved: {AccountID:0 Username:testas22 PasswordHash:$2a$04$xv19a7zRJoauBqFFwCbiRORcuNafXqjk1O3KhqKxfp.Tm8dKet4T6 Email:testas22@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:38:21 user record saved: {UserID:0 AccountID:19 DateOfBirth:<nil> Age:0 Gender:unknown Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:38:21 {0 19 <nil> 0 unknown   0001-01-01 00:00:00 +0000 UTC 0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:38:21 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
+[godating-dealls-service] 2024/06/07 06:40:15 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 06:40:24 {testas223@gmail.com testas223 test1234}
+[godating-dealls-service] 2024/06/07 06:40:24 account record saved: {AccountID:0 Username:testas223 PasswordHash:$2a$04$A5sCyOIWAcp0qZ/t1jIyQOI2Xxfzze2tXU9Fi1O0OzFono1YoZXX. Email:testas223@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:40:24 user record saved: {UserID:0 AccountID:20 DateOfBirth:<nil> Age:0 Gender:unknown Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:40:24 {0 20 <nil> 0 unknown   0001-01-01 00:00:00 +0000 UTC 0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:40:24 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
+[godating-dealls-service] 2024/06/07 06:40:24 MASUK SINI KOK
+[godating-dealls-service] 2024/06/07 06:40:44 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 06:40:54 {testas2234@gmail.com testas2234 test1234}
+[godating-dealls-service] 2024/06/07 06:40:54 account record saved: {AccountID:0 Username:testas2234 PasswordHash:$2a$04$1GIEa0VLV2kkWoWzSiOlTuOJJVGViWL7XROg9lXLc9l/0.bpc8Aze Email:testas2234@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:40:54 user record saved: {UserID:0 AccountID:21 DateOfBirth:<nil> Age:0 Gender:unknown Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:40:54 {0 21 <nil> 0 unknown   0001-01-01 00:00:00 +0000 UTC 0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:40:54 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
+[godating-dealls-service] 2024/06/07 06:40:54 MASUK SINI KOK
+[godating-dealls-service] 2024/06/07 06:42:38 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 06:42:52 {testas2234@gmail.com testas2234 test1234}
+[godating-dealls-service] 2024/06/07 06:42:52 account record saved: {AccountID:0 Username:testas2234 PasswordHash:$2a$04$caFvPUUOmj4MSoGnfCFHZee6z6mYMvOomPgCjI2hAYcTNne6qm5GO Email:testas2234@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:43:02 {testas22345@gmail.com testas22345 test1234}
+[godating-dealls-service] 2024/06/07 06:43:02 account record saved: {AccountID:0 Username:testas22345 PasswordHash:$2a$04$XD1piX6sAQnEWLMeVXPvEu37lNcSmD57X26nSQfCryh6W34a0HbC2 Email:testas22345@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:43:02 user record saved: {UserID:0 AccountID:23 DateOfBirth:<nil> Age:0 Gender:unknown Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:43:02 {0 23 <nil> 0 unknown   0001-01-01 00:00:00 +0000 UTC 0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:43:02 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
+[godating-dealls-service] 2024/06/07 06:44:40 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 06:44:50 {testas223415@gmail.com testas223415 test1234}
+[godating-dealls-service] 2024/06/07 06:44:50 account record saved: {AccountID:0 Username:testas223415 PasswordHash:$2a$04$b.i4OBliw8EcluymqRT2L.fh2e9Anh.HokOKNXCZfgDGGYErO4duO Email:testas223415@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:44:50 user record saved: {UserID:0 AccountID:24 DateOfBirth:<nil> Age:0 Gender:unknown Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:44:50 {0 24 <nil> 0 unknown   0001-01-01 00:00:00 +0000 UTC 0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:44:50 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
+[godating-dealls-service] 2024/06/07 06:48:39 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 06:48:50 {testas223415@gmail.com testas223415 test1234}
+[godating-dealls-service] 2024/06/07 06:48:50 account record saved: {AccountID:0 Username:testas223415 PasswordHash:$2a$04$NCaV883pppJF3Uary160P.pa41OHZaMjOI79hmtHu.CEBjENY2zHm Email:testas223415@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:48:50 user record saved: {UserID:0 AccountID:25 DateOfBirth:<nil> Age:0 Gender: Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:48:50 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
+[godating-dealls-service] 2024/06/07 06:48:50 Query result: {0x1400059c1b0 0x1400058e210}
+[godating-dealls-service] 2024/06/07 06:51:44 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 06:51:49 {testas223415@gmail.com testas223415 test1234}
+[godating-dealls-service] 2024/06/07 06:51:49 account record saved: {AccountID:0 Username:testas223415 PasswordHash:$2a$04$mMepKnxQDTYH191u2VIgw..7xJd9oYvoXrKyhJFILwDcMnk5.KF.e Email:testas223415@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:51:49 user record saved: {UserID:0 AccountID:26 DateOfBirth:<nil> Age:0 Gender: Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:51:49 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
+[godating-dealls-service] 2024/06/07 06:51:49 Query result: {0x140000fe5a0 0x14000422b10}
+[godating-dealls-service] 2024/06/07 06:51:50 {testas223415@gmail.com testas223415 test1234}
+[godating-dealls-service] 2024/06/07 06:51:50 account record saved: {AccountID:0 Username:testas223415 PasswordHash:$2a$04$fbITjaT23pXwl.BAsWJR9eP9U6pdQa0qWJWkHXlZrenD922N1F2ke Email:testas223415@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:51:50 user record saved: {UserID:0 AccountID:27 DateOfBirth:<nil> Age:0 Gender: Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:51:50 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
+[godating-dealls-service] 2024/06/07 06:51:50 Query result: {0x1400049c000 0x14000422fc0}
+[godating-dealls-service] 2024/06/07 06:51:51 {testas223415@gmail.com testas223415 test1234}
+[godating-dealls-service] 2024/06/07 06:51:51 account record saved: {AccountID:0 Username:testas223415 PasswordHash:$2a$04$XIeXASu0LyBzVJnYrhHdZOqPwBFEfYAernCR/hssHeAlfQUX3LPe. Email:testas223415@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:51:51 user record saved: {UserID:0 AccountID:28 DateOfBirth:<nil> Age:0 Gender: Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:51:51 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
+[godating-dealls-service] 2024/06/07 06:51:51 Query result: {0x140000fe5a0 0x1400048e810}
+[godating-dealls-service] 2024/06/07 06:51:52 {testas223415@gmail.com testas223415 test1234}
+[godating-dealls-service] 2024/06/07 06:51:52 account record saved: {AccountID:0 Username:testas223415 PasswordHash:$2a$04$KwGGXpDf.coeShXK37Ne3OdK34Acji.xJrXra/qYwxeffkA1iFZbG Email:testas223415@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:51:52 user record saved: {UserID:0 AccountID:29 DateOfBirth:<nil> Age:0 Gender: Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:51:52 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
+[godating-dealls-service] 2024/06/07 06:51:52 Query result: {0x1400049c240 0x14000580240}
+[godating-dealls-service] 2024/06/07 06:52:12 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 06:52:30 {testas223415@gmail.com testas223415 test1234}
+[godating-dealls-service] 2024/06/07 06:52:30 account record saved: {AccountID:0 Username:testas223415 PasswordHash:$2a$04$4QK.PEwEW81VXBUPPK1zPOclQjBDsXCLC8fBekL9qZgX3MCe3UCN2 Email:testas223415@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:52:30 user record saved: {UserID:0 AccountID:30 DateOfBirth:<nil> Age:0 Gender: Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:52:30 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
+[godating-dealls-service] 2024/06/07 06:52:30 Query result: {0x14000714090 0x140004a0cc0}
+[godating-dealls-service] 2024/06/07 06:55:42 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 06:55:56 {testas223415@gmail.com testas223415 test1234}
+[godating-dealls-service] 2024/06/07 06:55:56 account record saved: {AccountID:0 Username:testas223415 PasswordHash:$2a$04$vafXgwNSXwYR/jjmU7QHUexA5ChDTJ5eTlsN4SpddmAM.1Wy4ek0W Email:testas223415@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:55:56 user record saved: {UserID:0 AccountID:31 DateOfBirth:<nil> Age:0 Gender: Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:55:56 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
+[godating-dealls-service] 2024/06/07 06:55:56 Query result: {0x1400018a2d0 0x140004a0c90}
+[godating-dealls-service] 2024/06/07 06:56:34 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 06:56:41 {testas223415@gmail.com testas223415 test1234}
+[godating-dealls-service] 2024/06/07 06:56:41 account record saved: {AccountID:0 Username:testas223415 PasswordHash:$2a$04$qF/B4EbMd8rPa.Wev6xVM.VEL460UpSxKsGtQpzKclBXbQjGPfdqK Email:testas223415@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:56:41 user record saved: {UserID:0 AccountID:32 DateOfBirth:<nil> Age:0 Gender: Address: Bio: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
+[godating-dealls-service] 2024/06/07 06:56:41 Executing query: INSERT INTO users (account_id, date_of_birth, age, gender, address, bio) VALUES(?, ?, ?, ?, ?, ?);
+[godating-dealls-service] 2024/06/07 06:56:41 Query result: {0x14000486120 0x14000422840}

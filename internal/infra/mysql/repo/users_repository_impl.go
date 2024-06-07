@@ -27,20 +27,9 @@ func (u UserRepositoryImpl) CreateUserToDB(ctx context.Context, userRecord recor
 		return record.UserRecord{}, fmt.Errorf("could not begin transaction: %v", err)
 	}
 
-	// Ensure to be rollback the transaction in case of an error
-	defer func() {
-		if err != nil {
-			err := tx.Rollback()
-			if err != nil {
-				log.Printf("Error rolling back transaction: %v", err)
-			}
-		}
-	}()
-
 	// Construct the query
 	query := queries.SaveToUserRecord
 
-	log.Println(userRecord)
 	// Log the query before executing it
 	log.Printf("Executing query: %s", query)
 
@@ -53,6 +42,7 @@ func (u UserRepositoryImpl) CreateUserToDB(ctx context.Context, userRecord recor
 		userRecord.Address,
 		userRecord.Bio,
 	)
+
 	if err != nil {
 		return record.UserRecord{}, fmt.Errorf("could not insert users: %v", err)
 	}
@@ -64,11 +54,6 @@ func (u UserRepositoryImpl) CreateUserToDB(ctx context.Context, userRecord recor
 	userId, err := result.LastInsertId()
 	if err != nil {
 		return record.UserRecord{}, fmt.Errorf("could not retrieve last insert id: %v", err)
-	}
-
-	// Commit the transaction if no errors occur
-	if err := tx.Commit(); err != nil {
-		return record.UserRecord{}, fmt.Errorf("could not commit transaction: %v", err)
 	}
 
 	// Set the UserID in the userRecord

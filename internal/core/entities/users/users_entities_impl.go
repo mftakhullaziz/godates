@@ -40,8 +40,6 @@ func (u UserEntitiesImpl) SaveUserEntities(ctx context.Context, dto users.UserDt
 	log.Printf("user record saved: %+v", records)
 
 	_, err = u.repository.CreateUserToDB(ctx, records)
-	common.HandleErrorReturn(err)
-
-	return nil
-
+	err = common.HandleErrorDefault(err)
+	return err
 }

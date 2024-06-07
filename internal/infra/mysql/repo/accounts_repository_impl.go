@@ -27,7 +27,7 @@ func (a AccountRepositoryImpl) CreateAccountToDB(ctx context.Context, accountRec
 		return record.AccountRecord{}, fmt.Errorf("could not begin transaction: %v", err)
 	}
 
-	// Ensure to be rollback the transaction in case of an error
+	//// Ensure to be rollback the transaction in case of an error
 	defer func() {
 		if err != nil {
 			err := tx.Rollback()

@@ -2,20 +2,22 @@ package auths
 
 import (
 	"context"
+	"database/sql"
 	ae "godating-dealls/internal/core/entities/auths"
 	ue "godating-dealls/internal/core/entities/users"
 	payload "godating-dealls/internal/domain/auths"
 	"godating-dealls/internal/domain/users"
-	"log"
 )
 
 type AuthUsecase struct {
+	db *sql.DB
 	ae ae.AuthEntities
 	ue ue.UserEntities
 }
 
-func NewAuthUsecase(ae ae.AuthEntities, ue ue.UserEntities) InputAuthBoundary {
+func NewAuthUsecase(db *sql.DB, ae ae.AuthEntities, ue ue.UserEntities) InputAuthBoundary {
 	return &AuthUsecase{
+		db: db,
 		ae: ae,
 		ue: ue,
 	}
@@ -27,26 +29,30 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request payload.
 }
 
 func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request payload.RegisterRequest, boundary OutputAuthBoundary) error {
+	// Start a transaction
+	//fn := func(tx *sql.Tx) error {
+	//
+	//}
+	//
+	//// Execute the business logic within a transaction
+	//return common.WithTransactionalManager(ctx, au.db, fn)
+
+	// Save account entity
 	accountDTO := payload.AccountDto{
 		Username: request.Username,
 		Password: request.Password,
 		Email:    request.Email,
 	}
-
 	account, err := au.ae.SaveAccountEntities(ctx, accountDTO)
 	if err != nil {
-		log.Fatalln(err.Error())
 		return err
 	}
 
+	// Save user entity
 	userDto := users.UserDto{
 		AccountID: account.AccountId,
 	}
-
-	// Save to user record again
-	err = au.ue.SaveUserEntities(ctx, userDto)
-	if err != nil {
-		log.Fatalln(err.Error())
+	if err := au.ue.SaveUserEntities(ctx, userDto); err != nil {
 		return err
 	}
 

@@ -37,7 +37,7 @@ func main() {
 	entitiesUser := userEntities.NewUserEntitiesImpl(repoUser, validate)
 
 	// Create the use case with entities
-	usecaseAuth := authUsecase.NewAuthUsecase(entitiesAuth, entitiesUser)
+	usecaseAuth := authUsecase.NewAuthUsecase(sqlConnection, entitiesAuth, entitiesUser)
 	// Create the handler with the use case
 	handlerAuth := authHandler.NewAuthHandler(usecaseAuth)
 

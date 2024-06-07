@@ -29,3 +29,10 @@ func HandleInternalServerError(err error, w http.ResponseWriter) {
 		return
 	}
 }
+
+func HandleErrorDefault(err error) error {
+	if err != nil {
+		return err
+	}
+	return nil
+}
