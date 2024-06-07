@@ -9,7 +9,7 @@ import (
 	userEntities "godating-dealls/internal/core/entities/users"
 	authUsecase "godating-dealls/internal/core/usecase/auths"
 	authHandler "godating-dealls/internal/handler"
-	repo "godating-dealls/internal/infra/mysql/repo"
+	"godating-dealls/internal/infra/mysql/repo"
 	"godating-dealls/internal/infra/redisclient"
 	"net/http"
 )
@@ -22,10 +22,8 @@ func main() {
 
 	// Init context before run application
 	ctx := context.Background()
-
 	// Ensure to close the database connection when the application exits
 	defer conf.CloseDBConnection()
-
 	// Create of the database connection
 	DB := conf.CreateDBConnection(ctx)
 	// Create redis client connection
@@ -49,10 +47,15 @@ func main() {
 	handlerAuth := authHandler.NewAuthHandler(usecaseAuth)
 
 	// Set up the router
-	r := http.NewServeMux()
-	r.HandleFunc("POST /godating-dealls/api/authenticate/register", handlerAuth.RegisterUserHandler)
-	r.HandleFunc("POST /godating-dealls/api/authenticate/login", handlerAuth.LoginUserHandler)
+	r := setupRouter(handlerAuth)
 
 	err = http.ListenAndServe(":8000", r)
 	common.HandleErrorReturn(err)
+}
+
+func setupRouter(handlerAuth *authHandler.AuthHandler) *http.ServeMux {
+	r := http.NewServeMux()
+	r.HandleFunc("POST /godating-dealls/api/authenticate/register", handlerAuth.RegisterUserHandler)
+	r.HandleFunc("POST /godating-dealls/api/authenticate/login", handlerAuth.LoginUserHandler)
+	return r
 }
