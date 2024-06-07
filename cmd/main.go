@@ -27,7 +27,7 @@ func main() {
 
 	// Create of the database connection
 	DB := conf.CreateDBConnection(ctx)
-	// Create redisclient connection
+	// Create redis client connection
 	conf.InitializeRedisClient(ctx)
 
 	// Initiate validator

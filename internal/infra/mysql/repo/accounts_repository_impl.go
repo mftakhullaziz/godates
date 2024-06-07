@@ -3,6 +3,7 @@ package repo
 import (
 	"context"
 	"database/sql"
+	"errors"
 	"fmt"
 	"github.com/go-playground/validator/v10"
 	"godating-dealls/internal/infra/mysql/queries"
@@ -42,11 +43,6 @@ func (a AccountRepositoryImpl) CreateAccountToDB(ctx context.Context, tx *sql.Tx
 	return accountRecord, nil
 }
 
-func (a AccountRepositoryImpl) FindAccountByAccountIDFromDB(ctx context.Context, tx *sql.Tx, id string) (record.AccountRecord, error) {
-	//TODO implement me
-	panic("implement me")
-}
-
 func (a AccountRepositoryImpl) IsExistAccountByEmailFromDB(ctx context.Context, tx *sql.Tx, email string) bool {
 	result, err := tx.ExecContext(ctx, queries.FindByEmailAccountRecord, email)
 	if err != nil {
@@ -71,4 +67,94 @@ func (a AccountRepositoryImpl) IsExistAccountByUsernameFromDB(ctx context.Contex
 		return false
 	}
 	return rowCount > 0
+}
+
+func (a AccountRepositoryImpl) FindAccountByUsernameFromDB(ctx context.Context, tx *sql.Tx, username string) (record.AccountRecord, error) {
+	// Query the database to find the account record by username
+	row := tx.QueryRowContext(ctx, queries.GetByUsernameAccountRecord, username)
+	// Initialize a new AccountRecord to store the result
+	var accountRecord record.AccountRecord
+	// Scan the row into the AccountRecord fields
+	err := row.Scan(
+		&accountRecord.AccountID,
+		&accountRecord.Username,
+		&accountRecord.PasswordHash,
+		&accountRecord.Email,
+		&accountRecord.Verified,
+		&accountRecord.CreatedAt,
+		&accountRecord.UpdatedAt,
+	)
+
+	if err != nil {
+		// Handle any error that occurred during scanning
+		if errors.Is(err, sql.ErrNoRows) {
+			// If no rows were found, return a specific error
+			return record.AccountRecord{}, fmt.Errorf("no account found with username: %s", username)
+		}
+		// Return any other error encountered during scanning
+		return record.AccountRecord{}, fmt.Errorf("error scanning account record: %v", err)
+	}
+
+	// Return the retrieved account record
+	return accountRecord, nil
+}
+
+func (a AccountRepositoryImpl) FindAccountByEmailFromDB(ctx context.Context, tx *sql.Tx, email string) (record.AccountRecord, error) {
+	// Query the database to find the account record by username
+	row := tx.QueryRowContext(ctx, queries.GetByEmailAccountRecord, email)
+	// Initialize a new AccountRecord to store the result
+	var accountRecord record.AccountRecord
+	// Scan the row into the AccountRecord fields
+	err := row.Scan(
+		&accountRecord.AccountID,
+		&accountRecord.Username,
+		&accountRecord.PasswordHash,
+		&accountRecord.Email,
+		&accountRecord.Verified,
+		&accountRecord.CreatedAt,
+		&accountRecord.UpdatedAt,
+	)
+
+	if err != nil {
+		// Handle any error that occurred during scanning
+		if errors.Is(err, sql.ErrNoRows) {
+			// If no rows were found, return a specific error
+			return record.AccountRecord{}, fmt.Errorf("no account found with email: %s", email)
+		}
+		// Return any other error encountered during scanning
+		return record.AccountRecord{}, fmt.Errorf("error scanning account record: %v", err)
+	}
+
+	// Return the retrieved account record
+	return accountRecord, nil
+}
+
+func (a AccountRepositoryImpl) FindAccountByUsernameAndEmailFromDB(ctx context.Context, tx *sql.Tx, email string, username string) (record.AccountRecord, error) {
+	// Query the database to find the account record by username
+	row := tx.QueryRowContext(ctx, queries.GetByUsernameAndEmailAccountRecord, email, username)
+	// Initialize a new AccountRecord to store the result
+	var accountRecord record.AccountRecord
+	// Scan the row into the AccountRecord fields
+	err := row.Scan(
+		&accountRecord.AccountID,
+		&accountRecord.Username,
+		&accountRecord.PasswordHash,
+		&accountRecord.Email,
+		&accountRecord.Verified,
+		&accountRecord.CreatedAt,
+		&accountRecord.UpdatedAt,
+	)
+
+	if err != nil {
+		// Handle any error that occurred during scanning
+		if errors.Is(err, sql.ErrNoRows) {
+			// If no rows were found, return a specific error
+			return record.AccountRecord{}, fmt.Errorf("no account found with email %s and username: %s", email, username)
+		}
+		// Return any other error encountered during scanning
+		return record.AccountRecord{}, fmt.Errorf("error scanning account record: %v", err)
+	}
+
+	// Return the retrieved account record
+	return accountRecord, nil
 }

@@ -16,9 +16,9 @@ type JWTTokenClaims struct {
 	jwt.RegisteredClaims
 }
 
-func GenerateJWTToken(userId int64, accountId int64, email string, claims JWTTokenClaims) (string, error) {
+func GenerateJWTToken(userId int64, accountId int64, email string) (string, error) {
 	expireAt := time.Now().Add(24 * time.Hour)
-	claims = JWTTokenClaims{
+	claims := JWTTokenClaims{
 		UserId:    userId,
 		AccountId: accountId,
 		Email:     email,

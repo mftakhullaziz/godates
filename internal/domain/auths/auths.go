@@ -28,18 +28,17 @@ type RegisterResponse struct {
 }
 
 type AccountDto struct {
-	Email       string
-	Username    string
+	Email       *string
+	Username    *string
 	Password    string
 	PhoneNumber string
 }
 
 type Accounts struct {
-	AccountId   int64
-	Email       string
-	Username    string
-	Password    string
-	PhoneNumber string
-	CreateAt    time.Time
-	UpdateAt    time.Time
+	AccountId int64
+	Email     string
+	Username  string
+	Password  string
+	CreateAt  time.Time
+	UpdateAt  time.Time
 }

@@ -3,11 +3,13 @@ package auths
 import (
 	"context"
 	"database/sql"
+	"errors"
 	"godating-dealls/internal/common"
 	ae "godating-dealls/internal/core/entities/auths"
 	ue "godating-dealls/internal/core/entities/users"
 	payload "godating-dealls/internal/domain/auths"
 	"godating-dealls/internal/domain/users"
+	"godating-dealls/internal/infra/jsonwebtoken"
 	"log"
 )
 
@@ -15,6 +17,7 @@ type AuthUsecase struct {
 	db *sql.DB
 	ae ae.AuthEntities
 	ue ue.UserEntities
+	//rds redisclient.Rds
 }
 
 func NewAuthUsecase(db *sql.DB, ae ae.AuthEntities, ue ue.UserEntities) InputAuthBoundary {
@@ -26,16 +29,65 @@ func NewAuthUsecase(db *sql.DB, ae ae.AuthEntities, ue ue.UserEntities) InputAut
 }
 
 func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request payload.LoginRequest, boundary OutputAuthBoundary) error {
-	// TODO: Implement login logic
-	return nil
+	fn := func(tx *sql.Tx) error {
+		accountDTO := payload.AccountDto{
+			Username: &request.Username,
+			Password: request.Password,
+			Email:    &request.Email,
+		}
+
+		account, err := au.ae.AuthenticateAccount(ctx, tx, accountDTO)
+		if err != nil {
+			return err
+		}
+
+		passwordIsValid, err := common.ComparedPassword(account.Password, []byte(request.Password))
+		if err != nil {
+			return err
+		}
+
+		if !passwordIsValid {
+			return errors.New("invalid password")
+		}
+
+		user, err := au.ue.FindUserEntities(ctx, tx, account.AccountId)
+		if err != nil {
+			return errors.New("failed to find user")
+		}
+
+		token, err := jsonwebtoken.GenerateJWTToken(user.UserID, account.AccountId, account.Email)
+		if err != nil {
+			return errors.New("failed to generate JWT token")
+		}
+
+		// Store token to redis
+		//err = au.rds.StoreToRedis("test", token)
+		//if err != nil {
+		//	return errors.New("failed to save token")
+		//}
+
+		res := payload.LoginResponse{
+			Username:    account.Username,
+			Email:       account.Email,
+			AccessToken: token,
+		}
+		boundary.LoginResponse(res, nil)
+		return nil
+	}
+
+	err := common.WithTransactionalManager(ctx, au.db, fn)
+	if err != nil {
+		log.Println("Transaction failed:", err)
+	}
+	return err
 }
 
 func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request payload.RegisterRequest, boundary OutputAuthBoundary) error {
 	fn := func(tx *sql.Tx) error {
 		accountDTO := payload.AccountDto{
-			Username: request.Username,
+			Username: &request.Username,
 			Password: request.Password,
-			Email:    request.Email,
+			Email:    &request.Email,
 		}
 		account, err := au.ae.SaveAccountEntities(ctx, tx, accountDTO)
 		if err != nil {

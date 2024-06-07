@@ -8,4 +8,5 @@ import (
 
 type AuthEntities interface {
 	SaveAccountEntities(ctx context.Context, tx *sql.Tx, dto auths.AccountDto) (auths.Accounts, error)
+	AuthenticateAccount(ctx context.Context, tx *sql.Tx, dto auths.AccountDto) (auths.Accounts, error)
 }

@@ -49,3 +49,17 @@ func (u UserEntitiesImpl) SaveUserEntities(ctx context.Context, tx *sql.Tx, dto 
 	err = common.HandleErrorDefault(err)
 	return err
 }
+
+func (u UserEntitiesImpl) FindUserEntities(ctx context.Context, tx *sql.Tx, accountId int64) (users.Users, error) {
+	user, err := u.repository.GetUserByAccountIdFromDB(ctx, tx, accountId)
+	if err != nil {
+		return users.Users{}, err
+	}
+
+	usr := users.Users{
+		UserID:    user.UserID,
+		AccountID: user.AccountID,
+	}
+
+	return usr, nil
+}

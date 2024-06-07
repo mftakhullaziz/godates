@@ -199,3 +199,119 @@ created by net/http.(*Server).Serve in goroutine 1
 [godating-dealls-service] 2024/06/07 07:21:08 {hai3@gmail.com hai3 test1234}
 [godating-dealls-service] 2024/06/07 07:21:08 account record saved: {AccountID:0 Username:hai3 PasswordHash:$2a$04$PpFyq.F6x2RO90M9zEgaq.xTfzYCL3m.4Rp0O4iuJ5VZHEDmI4aWK Email:hai3@gmail.com Verified:false CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC}
 [godating-dealls-service] 2024/06/07 07:21:08 Transaction failed: could not insert account: Error 1062 (23000): Duplicate entry 'hai3' for key 'accounts.username'
+[godating-dealls-service] 2024/06/07 09:13:41 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 09:13:41 Error connecting to redisclient: dial tcp [::1]:6379: connect: connection refused
+[godating-dealls-service] 2024/06/07 09:13:55 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 09:13:55 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 09:14:28 {hai3  test1234}
+[godating-dealls-service] 2024/06/07 09:14:28 Transaction failed: failed to find user
+[godating-dealls-service] 2024/06/07 09:15:52 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 09:15:52 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 09:16:02 {hai3  test1234}
+[godating-dealls-service] 2024/06/07 09:17:32 Transaction failed: failed to find user
+[godating-dealls-service] 2024/06/07 09:17:34 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 09:17:34 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 09:17:43 {hai3  test1234}
+[godating-dealls-service] 2024/06/07 09:18:40 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 09:18:40 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 09:18:51 {hai3  test1234}
+[godating-dealls-service] 2024/06/07 09:19:41 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 09:19:41 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 09:19:44 {hai3  test1234}
+[godating-dealls-service] 2024/06/07 09:20:05 http: panic serving [::1]:61953: runtime error: invalid memory address or nil pointer dereference
+goroutine 67 [running]:
+net/http.(*conn).serve.func1()
+	/usr/local/go/src/net/http/server.go:1898 +0x118
+panic({0x103063340?, 0x10333db60?})
+	/usr/local/go/src/runtime/panic.go:770 +0xf0
+godating-dealls/internal/common.WithTransactionalManager.func1()
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/common/transactional_manager.go:17 +0xc4
+panic({0x103063340?, 0x10333db60?})
+	/usr/local/go/src/runtime/panic.go:770 +0xf0
+godating-dealls/internal/infra/redisclient.(*Rds).StoreToRedis(0x140004842f8, {0x102f9e039, 0x4}, {0x103045500, 0x14000489070})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/infra/redisclient/redis.go:27 +0xfc
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLoginUsecase.func1(0x140000fe000)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:65 +0x464
+godating-dealls/internal/common.WithTransactionalManager({0x1030e5628, 0x140004a8280}, 0x1400009f2b0, 0x140000352f8)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/common/transactional_manager.go:25 +0x164
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLoginUsecase(0x140004842d0, {0x1030e5628, 0x140004a8280}, {{0x14000494200, 0x4}, {0x0, 0x0}, {0x14000494208, 0x8}}, {0x1030e50a0, ...})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:79 +0x1e0
+godating-dealls/internal/handler.(*AuthHandler).LoginUserHandler(0x14000488c00, {0x1030e4da0, 0x1400041a1c0}, 0x14000454a20)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/handler/auth_handler.go:54 +0x244
+net/http.HandlerFunc.ServeHTTP(0x14000488c30, {0x1030e4da0, 0x1400041a1c0}, 0x14000454a20)
+	/usr/local/go/src/net/http/server.go:2166 +0x40
+net/http.(*ServeMux).ServeHTTP(0x1400049a1a0, {0x1030e4da0, 0x1400041a1c0}, 0x14000454a20)
+	/usr/local/go/src/net/http/server.go:2683 +0x29c
+net/http.serverHandler.ServeHTTP({0x14000718000}, {0x1030e4da0, 0x1400041a1c0}, 0x14000454a20)
+	/usr/local/go/src/net/http/server.go:3137 +0x2a0
+net/http.(*conn).serve(0x140004981b0, {0x1030e5628, 0x140004a8230})
+	/usr/local/go/src/net/http/server.go:2039 +0x15f8
+created by net/http.(*Server).Serve in goroutine 1
+	/usr/local/go/src/net/http/server.go:3285 +0x88c
+[godating-dealls-service] 2024/06/07 09:20:29 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 09:20:29 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 09:20:33 {hai3  test1234}
+[godating-dealls-service] 2024/06/07 09:20:33 http: panic serving [::1]:61971: runtime error: invalid memory address or nil pointer dereference
+goroutine 57 [running]:
+net/http.(*conn).serve.func1()
+	/usr/local/go/src/net/http/server.go:1898 +0xb0
+panic({0x1045ca0c0?, 0x10489e500?})
+	/usr/local/go/src/runtime/panic.go:770 +0x124
+godating-dealls/internal/common.WithTransactionalManager.func1()
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/common/transactional_manager.go:17 +0xb4
+panic({0x1045ca0c0?, 0x10489e500?})
+	/usr/local/go/src/runtime/panic.go:770 +0x124
+godating-dealls/internal/infra/redisclient.(*Rds).StoreToRedis(0x1400050e2f8, {0x1044cfa6f, 0x4}, {0x1045ac6e0?, 0x140005263b0?})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/infra/redisclient/redis.go:27 +0x48
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLoginUsecase.func1(0x14000180000)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:65 +0x218
+godating-dealls/internal/common.WithTransactionalManager({0x104648e20?, 0x140001004b0?}, 0x14000530018?, 0x1400053f988)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/common/transactional_manager.go:25 +0xb0
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLoginUsecase(0x1400050e2d0, {0x104648e20, 0x140001004b0}, {{0x14000470780, 0x4}, {0x0, 0x0}, {0x14000470788, 0x8}}, {0x104648490, ...})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:79 +0xe8
+godating-dealls/internal/handler.(*AuthHandler).LoginUserHandler(0x14000020be0, {0x104648580, 0x140005341c0}, 0x1400047c5a0)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/handler/auth_handler.go:54 +0x1dc
+net/http.HandlerFunc.ServeHTTP(0x1400011a340?, {0x104648580?, 0x140005341c0?}, 0x1400053fb00?)
+	/usr/local/go/src/net/http/server.go:2166 +0x38
+net/http.(*ServeMux).ServeHTTP(0x10?, {0x104648580, 0x140005341c0}, 0x1400047c5a0)
+	/usr/local/go/src/net/http/server.go:2683 +0x1a4
+net/http.serverHandler.ServeHTTP({0x1046476c8?}, {0x104648580?, 0x140005341c0?}, 0x6?)
+	/usr/local/go/src/net/http/server.go:3137 +0xbc
+net/http.(*conn).serve(0x1400017e360, {0x104648de8, 0x1400050e510})
+	/usr/local/go/src/net/http/server.go:2039 +0x508
+created by net/http.(*Server).Serve in goroutine 1
+	/usr/local/go/src/net/http/server.go:3285 +0x3f0
+[godating-dealls-service] 2024/06/07 09:20:34 {hai3  test1234}
+[godating-dealls-service] 2024/06/07 09:20:34 http: panic serving [::1]:61974: runtime error: invalid memory address or nil pointer dereference
+goroutine 31 [running]:
+net/http.(*conn).serve.func1()
+	/usr/local/go/src/net/http/server.go:1898 +0xb0
+panic({0x1045ca0c0?, 0x10489e500?})
+	/usr/local/go/src/runtime/panic.go:770 +0x124
+godating-dealls/internal/common.WithTransactionalManager.func1()
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/common/transactional_manager.go:17 +0xb4
+panic({0x1045ca0c0?, 0x10489e500?})
+	/usr/local/go/src/runtime/panic.go:770 +0x124
+godating-dealls/internal/infra/redisclient.(*Rds).StoreToRedis(0x1400050e2f8, {0x1044cfa6f, 0x4}, {0x1045ac6e0?, 0x14000114380?})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/infra/redisclient/redis.go:27 +0x48
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLoginUsecase.func1(0x1400025a000)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:65 +0x218
+godating-dealls/internal/common.WithTransactionalManager({0x104648e20?, 0x140004564b0?}, 0x1400000e030?, 0x1400053f988)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/common/transactional_manager.go:25 +0xb0
+godating-dealls/internal/core/usecase/auths.(*AuthUsecase).ExecuteLoginUsecase(0x1400050e2d0, {0x104648e20, 0x140004564b0}, {{0x140000107a0, 0x4}, {0x0, 0x0}, {0x140000107a8, 0x8}}, {0x104648490, ...})
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/auths/auth_usecase.go:79 +0xe8
+godating-dealls/internal/handler.(*AuthHandler).LoginUserHandler(0x14000020be0, {0x104648580, 0x140001921c0}, 0x140000006c0)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/handler/auth_handler.go:54 +0x1dc
+net/http.HandlerFunc.ServeHTTP(0x1400011a340?, {0x104648580?, 0x140001921c0?}, 0x1400006fb00?)
+	/usr/local/go/src/net/http/server.go:2166 +0x38
+net/http.(*ServeMux).ServeHTTP(0x10?, {0x104648580, 0x140001921c0}, 0x140000006c0)
+	/usr/local/go/src/net/http/server.go:2683 +0x1a4
+net/http.serverHandler.ServeHTTP({0x1046476c8?}, {0x104648580?, 0x140001921c0?}, 0x6?)
+	/usr/local/go/src/net/http/server.go:3137 +0xbc
+net/http.(*conn).serve(0x140000a6630, {0x104648de8, 0x1400050e510})
+	/usr/local/go/src/net/http/server.go:2039 +0x508
+created by net/http.(*Server).Serve in goroutine 1
+	/usr/local/go/src/net/http/server.go:3285 +0x3f0
+[godating-dealls-service] 2024/06/07 09:21:46 Connected to DB MySQL success!
+[godating-dealls-service] 2024/06/07 09:21:46 Connected to Redis successfully
+[godating-dealls-service] 2024/06/07 09:21:51 {hai3  test1234}

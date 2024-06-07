@@ -45,12 +45,12 @@ func (ah *AuthHandler) LoginUserHandler(w http.ResponseWriter, r *http.Request) 
 	}
 	log.Println(request)
 
-	_ = r.Context()
+	ctx := r.Context()
 
 	// Instantiate the presenter
-	_ = presenters.NewAuthPresenter(w)
+	presenter := presenters.NewAuthPresenter(w)
 
-	//// Call the use case method passing the presenter
-	//err := ah.usecase.ExecuteRegisterUsecase(ctx, request, presenter)
-	//common.HandleInternalServerError(err, w)
+	// Call the use case method passing the presenter
+	err := ah.usecase.ExecuteLoginUsecase(ctx, request, presenter)
+	common.HandleInternalServerError(err, w)
 }

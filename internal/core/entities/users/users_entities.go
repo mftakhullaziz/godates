@@ -8,4 +8,5 @@ import (
 
 type UserEntities interface {
 	SaveUserEntities(ctx context.Context, tx *sql.Tx, dto users.UserDto) error
+	FindUserEntities(ctx context.Context, tx *sql.Tx, accountId int64) (users.Users, error)
 }

@@ -30,17 +30,17 @@ func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, tx *sql.Tx
 	}
 
 	// add validate username and email
-	emailIsExist := a.repository.IsExistAccountByEmailFromDB(ctx, tx, dto.Email)
-	usernameIsExist := a.repository.IsExistAccountByUsernameFromDB(ctx, tx, dto.Username)
+	emailIsExist := a.repository.IsExistAccountByEmailFromDB(ctx, tx, *dto.Email)
+	usernameIsExist := a.repository.IsExistAccountByUsernameFromDB(ctx, tx, *dto.Username)
 
 	if emailIsExist || usernameIsExist {
 		return auths.Accounts{}, errors.New("email or username already exists")
 	}
 
 	records := record.AccountRecord{
-		Username:     dto.Username,
+		Username:     *dto.Username,
 		PasswordHash: common.HashingPassword([]byte(dto.Password)),
-		Email:        dto.Email,
+		Email:        *dto.Email,
 		Verified:     false,
 	}
 	log.Printf("account record saved: %+v", records)
@@ -59,4 +59,58 @@ func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, tx *sql.Tx
 		UpdateAt:  account.UpdatedAt,
 	}
 	return result, err
+}
+
+func (a AccountEntitiesImpl) AuthenticateAccount(ctx context.Context, tx *sql.Tx, dto auths.AccountDto) (auths.Accounts, error) {
+	// validate request dto
+	err := a.validate.Struct(dto)
+	if err != nil {
+		return auths.Accounts{}, err
+	}
+
+	if dto.Username != nil && *dto.Username != "" && dto.Email != nil && *dto.Email != "" {
+		account, err := a.repository.FindAccountByUsernameAndEmailFromDB(ctx, tx, *dto.Email, *dto.Username)
+		if err != nil {
+			return auths.Accounts{}, err
+		}
+		res := auths.Accounts{
+			AccountId: account.AccountID,
+			Username:  account.Username,
+			Email:     account.Email,
+			Password:  account.PasswordHash,
+			CreateAt:  account.CreatedAt,
+			UpdateAt:  account.UpdatedAt,
+		}
+		return res, err
+	} else if dto.Username != nil && *dto.Username != "" {
+		account, err := a.repository.FindAccountByUsernameFromDB(ctx, tx, *dto.Username)
+		if err != nil {
+			return auths.Accounts{}, err
+		}
+		res := auths.Accounts{
+			AccountId: account.AccountID,
+			Username:  account.Username,
+			Email:     account.Email,
+			Password:  account.PasswordHash,
+			CreateAt:  account.CreatedAt,
+			UpdateAt:  account.UpdatedAt,
+		}
+		return res, err
+	} else if dto.Email != nil && *dto.Email != "" {
+		account, err := a.repository.FindAccountByEmailFromDB(ctx, tx, *dto.Email)
+		if err != nil {
+			return auths.Accounts{}, err
+		}
+		res := auths.Accounts{
+			AccountId: account.AccountID,
+			Username:  account.Username,
+			Email:     account.Email,
+			Password:  account.PasswordHash,
+			CreateAt:  account.CreatedAt,
+			UpdateAt:  account.UpdatedAt,
+		}
+		return res, err
+	}
+
+	return auths.Accounts{}, err
 }
