@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"godating-dealls/internal/common"
 	ae "godating-dealls/internal/core/entities/auths"
+	"godating-dealls/internal/core/entities/selection_histories"
 	ue "godating-dealls/internal/core/entities/users"
 	res "godating-dealls/internal/domain"
 	"godating-dealls/internal/infra/jsonwebtoken"
@@ -12,13 +13,14 @@ import (
 )
 
 type UserUsecase struct {
-	DB *sql.DB
-	Ue ue.UserEntities
-	Ae ae.AuthEntities
+	DB                     *sql.DB
+	Ue                     ue.UserEntities
+	Ae                     ae.AuthEntities
+	SelectionHistoryEntity selection_histories.SelectionHistoryEntity
 }
 
-func NewUserUsecase(db *sql.DB, ue ue.UserEntities, ae ae.AuthEntities) InputUserBoundary {
-	return &UserUsecase{DB: db, Ue: ue, Ae: ae}
+func NewUserUsecase(db *sql.DB, ue ue.UserEntities, ae ae.AuthEntities, selectionHistoryEntity selection_histories.SelectionHistoryEntity) InputUserBoundary {
+	return &UserUsecase{DB: db, Ue: ue, Ae: ae, SelectionHistoryEntity: selectionHistoryEntity}
 }
 
 func (u UserUsecase) ExecuteUserViewsUsecase(ctx context.Context, token string, boundary OutputUserBoundary) error {
@@ -35,7 +37,14 @@ func (u UserUsecase) ExecuteUserViewsUsecase(ctx context.Context, token string, 
 		common.HandleErrorReturn(err)
 
 		// insert to historical selection users
+		if len(users) > 0 {
+			for _, user := range users {
+				err := u.SelectionHistoryEntity.InsertSelectionHistoryEntity(ctx, tx, user.AccountID)
+				common.HandleErrorReturn(err)
+			}
+		}
 
+		// Build response
 		var userViews []res.UserViewsResponse
 		for _, user := range users {
 			userViews = append(userViews, res.UserViewsResponse{
@@ -56,7 +65,7 @@ func (u UserUsecase) ExecuteUserViewsUsecase(ctx context.Context, token string, 
 		return nil
 	}
 
-	err := common.WithReadOnlyTransactionManager(ctx, u.DB, fn)
+	err := common.WithExecuteTransactionalManager(ctx, u.DB, fn)
 	if err != nil {
 		log.Println("Transaction failed:", err)
 	}

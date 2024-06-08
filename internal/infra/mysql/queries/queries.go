@@ -26,12 +26,14 @@ const (
 												  FROM users u 
 												  INNER JOIN accounts a ON u.account_id = a.account_id
 												  WHERE a.account_id NOT IN (
-													  SELECT profile_id 
-													  FROM selection_history 
+													  SELECT account_id 
+													  FROM selection_histories
 													  WHERE selection_date = CURDATE()
 												  ) 
 												  ORDER BY RAND() 
 												  LIMIT 10;`
+
+	InsertIntoSelectionHistory = `INSERT INTO selection_histories (account_id) VALUES (?)`
 )
 
 func ExecuteQuery(ctx context.Context, db *sql.DB, query string, args ...interface{}) (sql.Result, error) {

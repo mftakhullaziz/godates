@@ -330,3 +330,283 @@
 [application-service] 2024/06/09 02:59:08 Connected to Redis successfully
 [application-service] 2024/06/09 02:59:08 Cron job started
 [application-service] 2024/06/09 02:59:59 Shutting down the server...
+[application-service] 2024/06/09 04:00:17 Connected to DB MySQL success!
+[application-service] 2024/06/09 04:00:17 Connected to Redis successfully
+[application-service] 2024/06/09 04:00:17 Cron job started
+[application-service] 2024/06/09 04:00:42 Handler | Register Request : {
+  "email": "java11@gmail.com",
+  "username": "java11",
+  "password": "test1234",
+  "full_name": "Java"
+}
+[application-service] 2024/06/09 04:00:42 auth usecase | account dto : {
+  "Email": "java11@gmail.com",
+  "Username": "java11",
+  "Password": "test1234"
+}
+[application-service] 2024/06/09 04:00:42 auth entities | email is exist : false
+[application-service] 2024/06/09 04:00:42 auth entities | username is exist : false
+[application-service] 2024/06/09 04:00:42 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "java11",
+  "PasswordHash": "$2a$04$zqb6hzuVMHPAl7wUrAEp..dod6bkrcBc3caLmU/FNESJvbm.oYnHe",
+  "Email": "java11@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/09 04:00:42 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 9,
+  "FullName": "Java",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/09 04:00:42 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 9,
+  "FullName": "Java",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/09 04:00:52 Handler | Register Request : {
+  "email": "java13@gmail.com",
+  "username": "java13",
+  "password": "test1234",
+  "full_name": "Java"
+}
+[application-service] 2024/06/09 04:00:52 auth usecase | account dto : {
+  "Email": "java13@gmail.com",
+  "Username": "java13",
+  "Password": "test1234"
+}
+[application-service] 2024/06/09 04:00:52 auth entities | email is exist : false
+[application-service] 2024/06/09 04:00:52 auth entities | username is exist : false
+[application-service] 2024/06/09 04:00:52 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "java13",
+  "PasswordHash": "$2a$04$Be3.oRR3PMJS3Q5uYgFhe.LcsVKGJ5mWNf0TtbgN/chnaKUAln5pm",
+  "Email": "java13@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/09 04:00:52 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 10,
+  "FullName": "Java",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/09 04:00:52 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 10,
+  "FullName": "Java",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/09 04:00:59 Handler | Register Request : {
+  "email": "ronaljava13@gmail.com",
+  "username": "rjava13",
+  "password": "test1234",
+  "full_name": "Java"
+}
+[application-service] 2024/06/09 04:00:59 auth usecase | account dto : {
+  "Email": "ronaljava13@gmail.com",
+  "Username": "rjava13",
+  "Password": "test1234"
+}
+[application-service] 2024/06/09 04:00:59 auth entities | email is exist : false
+[application-service] 2024/06/09 04:00:59 auth entities | username is exist : false
+[application-service] 2024/06/09 04:00:59 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "rjava13",
+  "PasswordHash": "$2a$04$yX/5BGnTQGOpCvzUc0QjqOKygnuLkrCRS4KBRJXRCbtpf/.2rgNce",
+  "Email": "ronaljava13@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/09 04:00:59 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 11,
+  "FullName": "Java",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/09 04:00:59 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 11,
+  "FullName": "Java",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/09 04:01:14 Handler | Register Request : {
+  "email": "hhhmmjava13@gmail.com",
+  "username": "hhhmmjava13",
+  "password": "test1234",
+  "full_name": "Java"
+}
+[application-service] 2024/06/09 04:01:14 auth usecase | account dto : {
+  "Email": "hhhmmjava13@gmail.com",
+  "Username": "hhhmmjava13",
+  "Password": "test1234"
+}
+[application-service] 2024/06/09 04:01:14 auth entities | email is exist : false
+[application-service] 2024/06/09 04:01:14 auth entities | username is exist : false
+[application-service] 2024/06/09 04:01:14 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "hhhmmjava13",
+  "PasswordHash": "$2a$04$B8pyx8uvvvbrposyhBjKzeV5xE4IVX4d0iyiLye5qZWG/UV9HVBba",
+  "Email": "hhhmmjava13@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/09 04:01:14 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 12,
+  "FullName": "Java",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/09 04:01:14 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 12,
+  "FullName": "Java",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/09 04:01:27 query: INSERT INTO selection_histories (account_id, selection_date) VALUES (?, CURDATE())
+[application-service] 2024/06/09 04:01:27 query: INSERT INTO selection_histories (account_id, selection_date) VALUES (?, CURDATE())
+[application-service] 2024/06/09 04:01:27 query: INSERT INTO selection_histories (account_id, selection_date) VALUES (?, CURDATE())
+[application-service] 2024/06/09 04:01:27 query: INSERT INTO selection_histories (account_id, selection_date) VALUES (?, CURDATE())
+[application-service] 2024/06/09 04:01:27 query: INSERT INTO selection_histories (account_id, selection_date) VALUES (?, CURDATE())
+[application-service] 2024/06/09 04:01:27 query: INSERT INTO selection_histories (account_id, selection_date) VALUES (?, CURDATE())
+[application-service] 2024/06/09 04:01:27 query: INSERT INTO selection_histories (account_id, selection_date) VALUES (?, CURDATE())
+[application-service] 2024/06/09 04:01:27 query: INSERT INTO selection_histories (account_id, selection_date) VALUES (?, CURDATE())
+[application-service] 2024/06/09 04:01:27 query: INSERT INTO selection_histories (account_id, selection_date) VALUES (?, CURDATE())
+[application-service] 2024/06/09 04:01:27 query: INSERT INTO selection_histories (account_id, selection_date) VALUES (?, CURDATE())
+[application-service] 2024/06/09 04:02:23 Shutting down the server...
+[application-service] 2024/06/09 04:02:25 Connected to DB MySQL success!
+[application-service] 2024/06/09 04:02:25 Connected to Redis successfully
+[application-service] 2024/06/09 04:02:25 Cron job started
+[application-service] 2024/06/09 04:02:31 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:02:31 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:02:31 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:02:31 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:02:31 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:02:31 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:02:31 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:02:31 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:02:31 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:02:31 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:04:19 Shutting down the server...
+[application-service] 2024/06/09 04:04:21 Connected to DB MySQL success!
+[application-service] 2024/06/09 04:04:21 Connected to Redis successfully
+[application-service] 2024/06/09 04:04:21 Cron job started
+[application-service] 2024/06/09 04:04:36 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:04:49 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:04:54 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:04:57 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:04:59 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:05:02 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:05:06 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:05:10 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:05:13 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:05:18 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:05:48 Shutting down the server...
+[application-service] 2024/06/09 04:07:23 Connected to DB MySQL success!
+[application-service] 2024/06/09 04:07:23 Connected to Redis successfully
+[application-service] 2024/06/09 04:07:23 Cron job started
+[application-service] 2024/06/09 04:07:34 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:07:34 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:07:34 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:07:34 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:07:34 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:07:34 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:07:34 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:07:34 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:07:34 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:07:34 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:08:46 Shutting down the server...
+[application-service] 2024/06/09 04:08:48 Connected to DB MySQL success!
+[application-service] 2024/06/09 04:08:48 Connected to Redis successfully
+[application-service] 2024/06/09 04:08:48 Cron job started
+[application-service] 2024/06/09 04:09:12 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:12 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:12 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:12 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:12 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:12 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:12 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:12 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:12 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:12 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:13 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:13 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:13 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:13 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:13 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:13 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:13 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:13 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:13 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:09:13 query: INSERT INTO selection_histories (account_id) VALUES (?)
+[application-service] 2024/06/09 04:11:46 Shutting down the server...
+[application-service] 2024/06/09 04:11:48 Connected to DB MySQL success!
+[application-service] 2024/06/09 04:11:48 Connected to Redis successfully
+[application-service] 2024/06/09 04:11:48 Cron job started
+[application-service] 2024/06/09 04:12:22 Shutting down the server...
+[application-service] 2024/06/09 04:15:10 Connected to DB MySQL success!
+[application-service] 2024/06/09 04:15:10 Connected to Redis successfully
+[application-service] 2024/06/09 04:15:10 Cron job started
+[application-service] 2024/06/09 04:16:56 Shutting down the server...
+[application-service] 2024/06/09 04:16:57 Connected to DB MySQL success!
+[application-service] 2024/06/09 04:16:57 Connected to Redis successfully
+[application-service] 2024/06/09 04:16:57 Cron job started
+[application-service] 2024/06/09 04:17:17 Shutting down the server...
+[application-service] 2024/06/09 04:17:18 Connected to DB MySQL success!
+[application-service] 2024/06/09 04:17:18 Connected to Redis successfully
+[application-service] 2024/06/09 04:17:18 Cron job started
+[application-service] 2024/06/09 04:19:53 Shutting down the server...

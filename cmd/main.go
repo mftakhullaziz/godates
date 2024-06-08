@@ -10,6 +10,7 @@ import (
 	authEntities "godating-dealls/internal/core/entities/auths"
 	dailyQuotaEntities "godating-dealls/internal/core/entities/daily_quotas"
 	loginHistories "godating-dealls/internal/core/entities/login_histories"
+	"godating-dealls/internal/core/entities/selection_histories"
 	userEntities "godating-dealls/internal/core/entities/users"
 	authUsecase "godating-dealls/internal/core/usecase/auths"
 	dailyQuotaUsecase "godating-dealls/internal/core/usecase/daily_quotas"
@@ -46,27 +47,27 @@ func main() {
 	userRepository := repo.NewUsersRepositoryImpl()
 	loginHistoryRepository := repo.NewLoginHistoriesRepositoryImpl()
 	dailyQuotaRepository := repo.NewDailyQuotasRepositoryImpl()
+	selectionHistoryRepository := repo.NewSelectionHistoriesRepositoryImpl()
 
-	// Call business rules
-	ea := authEntities.NewAccountsEntitiesImpl(accountRepository, val)
-	eu := userEntities.NewUserEntitiesImpl(userRepository, val)
-	elh := loginHistories.NewLoginHistoriesEntitiesImpl(val, loginHistoryRepository)
-	edq := dailyQuotaEntities.NewDailyQuotasEntitiesImpl(val, dailyQuotaRepository)
+	// Entities represented of enterprise business rules for that self of entity
+	authenticateEntities := authEntities.NewAccountsEntitiesImpl(accountRepository, val)
+	usersEntities := userEntities.NewUserEntitiesImpl(userRepository, val)
+	loginHistoryEntities := loginHistories.NewLoginHistoriesEntitiesImpl(val, loginHistoryRepository)
+	dailyQuotasEntities := dailyQuotaEntities.NewDailyQuotasEntitiesImpl(val, dailyQuotaRepository)
+	selectionHistoryEntity := selection_histories.NewSelectionHistoryEntityImpl(selectionHistoryRepository)
 
-	// Create the use case with entities
-	ua := authUsecase.NewAuthUsecase(DB, ea, eu, RS, elh)
-
-	udq := dailyQuotaUsecase.NewDailyQuotasUsecase(DB, edq, eu)
-	InitializeCronJobDailyQuota(ctx, udq)
-
-	uu := users.NewUserUsecase(eu, DB)
+	// Usecase
+	authenticateUsecase := authUsecase.NewAuthUsecase(DB, authenticateEntities, usersEntities, RS, loginHistoryEntities)
+	dailyQuotasUsecase := dailyQuotaUsecase.NewDailyQuotasUsecase(DB, dailyQuotasEntities, usersEntities)
+	InitializeCronJobDailyQuota(ctx, dailyQuotasUsecase)
+	usersUsecase := users.NewUserUsecase(DB, usersEntities, authenticateEntities, selectionHistoryEntity)
 
 	// Create the handler with the use case
-	ha := handler.NewAuthHandler(ua)
-	hu := handler.NewUsersHandler(uu)
+	authenticateHandler := handler.NewAuthHandler(authenticateUsecase)
+	usersHandler := handler.NewUsersHandler(usersUsecase)
 
 	// Set up the router
-	r := router.InitializeRouter(ha, hu)
+	r := router.InitializeRouter(authenticateHandler, usersHandler)
 
 	// Create a channel to listen for OS signals
 	stop := make(chan os.Signal, 1)
