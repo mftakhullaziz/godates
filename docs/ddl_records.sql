@@ -13,6 +13,7 @@ CREATE TABLE users
 (
     user_id       INTEGER AUTO_INCREMENT PRIMARY KEY,
     account_id    INTEGER NOT NULL,
+    full_name     VARCHAR(255),
     date_of_birth DATE,
     age           INTEGER,
     gender        VARCHAR(5),

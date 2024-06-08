@@ -94,7 +94,7 @@ func (u UserRepositoryImpl) GetUserByAccountIdFromDB(ctx context.Context, tx *sq
 }
 
 func (u UserRepositoryImpl) GetAllUsersFromDB(ctx context.Context, tx *sql.Tx) ([]record.UserAccountRecord, error) {
-	rows, err := tx.QueryContext(ctx, "SELECT a.account_id, u.user_id, a.verified FROM users u INNER JOIN accounts a ON u.account_id = a.account_id")
+	rows, err := tx.QueryContext(ctx, queries.FindAllUserAccountsListRecord)
 	if err != nil {
 		return nil, fmt.Errorf("could not execute query: %v", err)
 	}
@@ -107,6 +107,8 @@ func (u UserRepositoryImpl) GetAllUsersFromDB(ctx context.Context, tx *sql.Tx) (
 			&user.AccountID,
 			&user.UserID,
 			&user.Verified,
+			&user.FullName,
+			&user.Username,
 		); err != nil {
 			return nil, fmt.Errorf("could not scan row: %v", err)
 		}

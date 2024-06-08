@@ -6,6 +6,7 @@ import "time"
 type UserRecord struct {
 	UserID      int64      `db:"user_id"`
 	AccountID   int64      `db:"account_id"`
+	FullName    string     `db:"full_name"`
 	DateOfBirth *time.Time `db:"date_of_birth"`
 	Age         int        `db:"age"`
 	Gender      string     `db:"gender"`
@@ -23,4 +24,6 @@ func (UserRecord) TableName() string {
 type UserAccountRecord struct {
 	UserRecord
 	Verified bool
+	Username string
+	FullName string
 }
