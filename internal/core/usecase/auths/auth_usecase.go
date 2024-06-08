@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"godating-dealls/internal/common"
 	ae "godating-dealls/internal/core/entities/auths"
-	loginHistory "godating-dealls/internal/core/entities/login_histories"
+	lh "godating-dealls/internal/core/entities/login_histories"
 	ue "godating-dealls/internal/core/entities/users"
 	"godating-dealls/internal/domain"
 	payload "godating-dealls/internal/domain/auths"
@@ -20,11 +20,11 @@ import (
 )
 
 type AuthUsecase struct {
-	db           *sql.DB
-	ae           ae.AuthEntities
-	ue           ue.UserEntities
-	rds          redisclient.RedisInterface
-	loginHistory loginHistory.LoginHistoriesEntities
+	DB  *sql.DB
+	AE  ae.AuthEntities
+	UE  ue.UserEntities
+	Rds redisclient.RedisInterface
+	LH  lh.LoginHistoriesEntities
 }
 
 func NewAuthUsecase(
@@ -32,13 +32,13 @@ func NewAuthUsecase(
 	ae ae.AuthEntities,
 	ue ue.UserEntities,
 	rds redisclient.RedisInterface,
-	loginHistory loginHistory.LoginHistoriesEntities) InputAuthBoundary {
+	lh lh.LoginHistoriesEntities) InputAuthBoundary {
 	return &AuthUsecase{
-		db:           db,
-		ae:           ae,
-		ue:           ue,
-		rds:          rds,
-		loginHistory: loginHistory,
+		DB:  db,
+		AE:  ae,
+		UE:  ue,
+		Rds: rds,
+		LH:  lh,
 	}
 }
 
@@ -50,7 +50,7 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request payload.
 			Email:    &request.Email,
 		}
 
-		account, err := au.ae.AuthenticateAccount(ctx, tx, accountDTO)
+		account, err := au.AE.AuthenticateAccount(ctx, tx, accountDTO)
 		if err != nil {
 			return err
 		}
@@ -64,7 +64,7 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request payload.
 			return errors.New("invalid password")
 		}
 
-		user, err := au.ue.FindUserEntities(ctx, tx, account.AccountId)
+		user, err := au.UE.FindUserEntities(ctx, tx, account.AccountId)
 		if err != nil {
 			return errors.New("failed to find user")
 		}
@@ -79,12 +79,12 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request payload.
 			UserID:    user.UserID,
 			AccountID: account.AccountId,
 		}
-		err = au.loginHistory.SaveLoginHistoriesEntities(ctx, tx, loginDto)
+		err = au.LH.SaveLoginHistoriesEntities(ctx, tx, loginDto)
 		common.HandleErrorWithParam(err, "Failed to save login history")
 
 		// Store token to redis
 		redisKey := BuildRedisKey(fmt.Sprintf("access_token:%s:%s", account.AccountId, account.Email))
-		err = au.rds.StoreToRedis(ctx, redisKey, token)
+		err = au.Rds.StoreToRedis(ctx, redisKey, token)
 		if err != nil {
 			return errors.New("failed to save token")
 		}
@@ -98,7 +98,7 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request payload.
 		return nil
 	}
 
-	err := common.WithExecuteTransactionalManager(ctx, au.db, fn)
+	err := common.WithExecuteTransactionalManager(ctx, au.DB, fn)
 	if err != nil {
 		log.Println("Transaction failed:", err)
 	}
@@ -112,7 +112,7 @@ func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request paylo
 			Password: request.Password,
 			Email:    &request.Email,
 		}
-		account, err := au.ae.SaveAccountEntities(ctx, tx, accountDTO)
+		account, err := au.AE.SaveAccountEntities(ctx, tx, accountDTO)
 		if err != nil {
 			return err
 		}
@@ -120,7 +120,7 @@ func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request paylo
 		userDto := users.UserDto{
 			AccountID: account.AccountId,
 		}
-		if err := au.ue.SaveUserEntities(ctx, tx, userDto); err != nil {
+		if err := au.UE.SaveUserEntities(ctx, tx, userDto); err != nil {
 			return err
 		}
 
@@ -135,7 +135,7 @@ func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request paylo
 		return nil
 	}
 
-	err := common.WithExecuteTransactionalManager(ctx, au.db, fn)
+	err := common.WithExecuteTransactionalManager(ctx, au.DB, fn)
 	if err != nil {
 		log.Println("Transaction failed:", err)
 	}
@@ -147,14 +147,14 @@ func (au *AuthUsecase) ExecuteLogoutUsecase(ctx context.Context, accessToken *st
 		verify, err := jsonwebtoken.VerifyJWTToken(*accessToken)
 		common.HandleErrorReturn(err)
 
-		err = au.loginHistory.UpdateLoginHistoriesEntities(ctx, tx, domain.LoginHistoriesDto{
+		err = au.LH.UpdateLoginHistoriesEntities(ctx, tx, domain.LoginHistoriesDto{
 			UserID:    verify.UserId,
 			AccountID: verify.AccountId,
 		})
 		common.HandleErrorReturn(err)
 
 		redisKey := BuildRedisKey(fmt.Sprintf("access_token:%s:%s", verify.AccountId, verify.Email))
-		err = au.rds.ClearFromRedis(ctx, redisKey)
+		err = au.Rds.ClearFromRedis(ctx, redisKey)
 		common.HandleErrorReturn(err)
 
 		res := payload.LogoutResponse{
@@ -165,7 +165,7 @@ func (au *AuthUsecase) ExecuteLogoutUsecase(ctx context.Context, accessToken *st
 		return nil
 	}
 
-	err := common.WithExecuteTransactionalManager(ctx, au.db, fn)
+	err := common.WithExecuteTransactionalManager(ctx, au.DB, fn)
 	if err != nil {
 		log.Println("Transaction failed:", err)
 	}
