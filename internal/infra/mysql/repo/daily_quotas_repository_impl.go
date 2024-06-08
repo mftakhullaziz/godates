@@ -3,6 +3,7 @@ package repo
 import (
 	"context"
 	"database/sql"
+	"godating-dealls/internal/infra/mysql/queries"
 	"godating-dealls/internal/infra/mysql/record"
 	"log"
 )
@@ -16,14 +17,7 @@ func NewDailyQuotasRepositoryImpl() DailyQuotasRepository {
 }
 
 func (d DailyQuotasRepositoryImpl) UpdateOrInsertDailyQuota(ctx context.Context, tx *sql.Tx, dailyQuota record.DailyQuotaRecord) error {
-	query := `
-        INSERT INTO daily_quotas (account_id, swipe_count, total_quota)
-        VALUES (?, ?, ?)
---         ON CONFLICT (account_id, date)
---         DO UPDATE SET
---             swipe_count = EXCLUDED.swipe_count,
---             total_quota = EXCLUDED.total_quota
-    `
+	query := queries.InsertIntoDailyQuotaRecord
 	log.Printf("query: %s", query)
 	_, err := tx.ExecContext(ctx, query, dailyQuota.AccountID, dailyQuota.SwipeCount, dailyQuota.TotalQuota)
 	return err

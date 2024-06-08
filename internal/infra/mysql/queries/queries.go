@@ -19,6 +19,7 @@ const (
 	SaveLoginHistoryRecord                     = `INSERT INTO login_histories (user_id, account_id) VALUES(?, ?);`
 	FindByUserIdAndAccountIdLoginHistoryRecord = `SELECT * FROM login_histories WHERE user_id = ? AND account_id = ? AND logout_at IS NULL`
 	UpdateLoginHistoryRecord                   = `UPDATE login_histories SET logout_at = ?, duration_in_seconds = ? WHERE login_histories_id = ?`
+	InsertIntoDailyQuotaRecord                 = `INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)`
 )
 
 func ExecuteQuery(ctx context.Context, db *sql.DB, query string, args ...interface{}) (sql.Result, error) {

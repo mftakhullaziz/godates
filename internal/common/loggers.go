@@ -2,16 +2,48 @@ package common
 
 import (
 	"bufio"
+	"encoding/json"
 	"io"
 	"log"
 	"os"
+	"strings"
 	"time"
 )
 
 var (
-	logFileName = "build/logs/logger_godating-dealls-service.log"
-	maxLogLines = 10
+	logFileName = "build/logs/godating-service-loggers.log"
+	maxLogLines = 1000
 )
+
+type JSONLogEntry struct {
+	Timestamp string `json:"timestamp"`
+	Prefix    string `json:"prefix"`
+	Message   string `json:"message"`
+}
+
+func jsonLogWriter(out io.Writer) io.Writer {
+	return &jsonLogger{out: out}
+}
+
+type jsonLogger struct {
+	out io.Writer
+}
+
+func (j *jsonLogger) Write(p []byte) (n int, err error) {
+	// Trim the trailing newline character from the log message
+	message := strings.TrimSuffix(string(p), "\n")
+
+	entry := JSONLogEntry{
+		Timestamp: time.Now().Format(time.RFC3339),
+		Prefix:    "[application-service] ",
+		Message:   message,
+	}
+	jsonEntry, err := json.Marshal(entry)
+	if err != nil {
+		return 0, err
+	}
+	return j.out.Write(append(jsonEntry, '\n'))
+}
 
 func SetupLogger() (*os.File, error) {
 	// Open log file in append mode
@@ -22,10 +54,11 @@ func SetupLogger() (*os.File, error) {
 
 	// Create a multi writer to write logs to both file and stdout
 	mw := io.MultiWriter(os.Stdout, logFile)
+	// jsonWriter := jsonLogWriter(mw)
 	log.SetOutput(mw)
 
 	// Set prefix for log messages
-	log.SetPrefix("[godating-dealls-service] ")
+	log.SetPrefix("[application-service] ")
 
 	// Set flags to include date and time in log messages
 	log.SetFlags(log.Ldate | log.Ltime)

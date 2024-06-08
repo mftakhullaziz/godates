@@ -26,16 +26,13 @@ import (
 
 func main() {
 	// Set up logging
-	//setupLogger, err := common.SetupLogger()
-	//common.HandleErrorWithParam(err, "Setup Logger Failed")
-	//defer setupLogger.Close()
-	InitializeLogger()
+	logs := InitializeLogger()
+	defer logs.Close()
 
 	// Init context before run application
 	ctx := context.Background()
 
 	DB := InitializeDB(ctx)
-	// Ensure to close the database connection when the application exits
 	defer conf.CloseDBConnection()
 
 	RS := InitializeRedis(ctx)
@@ -65,8 +62,6 @@ func main() {
 
 	// Set up the router
 	r := router.SetupRouter(ha)
-	//err := http.ListenAndServe(":8000", r)
-	//common.HandleErrorReturn(err)
 
 	// Create a channel to listen for OS signals
 	stop := make(chan os.Signal, 1)
@@ -84,11 +79,11 @@ func main() {
 	log.Println("Shutting down the server...")
 }
 
-func InitializeLogger() {
+func InitializeLogger() *os.File {
 	// Set up logging
 	setupLogger, err := common.SetupLogger()
 	common.HandleErrorWithParam(err, "Setup Logger Failed")
-	defer setupLogger.Close()
+	return setupLogger
 }
 
 func InitializeDB(ctx context.Context) *sql.DB {

@@ -1,0 +1,22 @@
+2024/06/08 21:39:06 [application-service] Connected to DB MySQL success!
+2024/06/08 21:39:06 [application-service] Connected to Redis successfully
+2024/06/08 21:39:06 [application-service] Cron job started
+2024/06/08 21:39:11 [application-service] Executing daily quota update usecase
+2024/06/08 21:39:11 [application-service] users: [{1 1 false} {2 2 true}]
+2024/06/08 21:39:11 [application-service] daily quota: {0 1 0001-01-01 00:00:00 +0000 UTC 0 false 0}
+2024/06/08 21:39:11 [application-service] daily quota entities {0 1 0001-01-01 00:00:00 +0000 UTC 10 0}
+2024/06/08 21:39:11 [application-service] query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+2024/06/08 21:39:11 [application-service] daily quota: {0 2 0001-01-01 00:00:00 +0000 UTC 0 true 0}
+2024/06/08 21:39:11 [application-service] daily quota entities {0 2 0001-01-01 00:00:00 +0000 UTC -1 0}
+2024/06/08 21:39:11 [application-service] query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+2024/06/08 21:39:11 [application-service] Successfully executed daily quota update usecase
+2024/06/08 21:39:16 [application-service] Executing daily quota update usecase
+2024/06/08 21:39:16 [application-service] users: [{1 1 false} {2 2 true}]
+2024/06/08 21:39:16 [application-service] daily quota: {0 1 0001-01-01 00:00:00 +0000 UTC 0 false 0}
+2024/06/08 21:39:16 [application-service] daily quota entities {0 1 0001-01-01 00:00:00 +0000 UTC 10 0}
+2024/06/08 21:39:16 [application-service] query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+2024/06/08 21:39:16 [application-service] daily quota: {0 2 0001-01-01 00:00:00 +0000 UTC 0 true 0}
+2024/06/08 21:39:16 [application-service] daily quota entities {0 2 0001-01-01 00:00:00 +0000 UTC -1 0}
+2024/06/08 21:39:16 [application-service] query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+2024/06/08 21:39:16 [application-service] Successfully executed daily quota update usecase
+2024/06/08 21:39:16 [application-service] Shutting down the server...
