@@ -6,10 +6,12 @@ import (
 	"godating-dealls/internal/common"
 	ae "godating-dealls/internal/core/entities/auths"
 	"godating-dealls/internal/core/entities/selection_histories"
+	"godating-dealls/internal/core/entities/task_history"
 	ue "godating-dealls/internal/core/entities/users"
 	res "godating-dealls/internal/domain"
 	"godating-dealls/internal/infra/jsonwebtoken"
 	"log"
+	"time"
 )
 
 type UserUsecase struct {
@@ -17,10 +19,19 @@ type UserUsecase struct {
 	Ue                     ue.UserEntities
 	Ae                     ae.AuthEntities
 	SelectionHistoryEntity selection_histories.SelectionHistoryEntity
+	TaskHistoryEntity      task_history.TaskHistoryEntity
 }
 
-func NewUserUsecase(db *sql.DB, ue ue.UserEntities, ae ae.AuthEntities, selectionHistoryEntity selection_histories.SelectionHistoryEntity) InputUserBoundary {
-	return &UserUsecase{DB: db, Ue: ue, Ae: ae, SelectionHistoryEntity: selectionHistoryEntity}
+func NewUserUsecase(
+	db *sql.DB,
+	ue ue.UserEntities,
+	ae ae.AuthEntities,
+	selectionHistoryEntity selection_histories.SelectionHistoryEntity,
+	taskHistoryEntity task_history.TaskHistoryEntity) InputUserBoundary {
+	return &UserUsecase{DB: db, Ue: ue, Ae: ae,
+		SelectionHistoryEntity: selectionHistoryEntity,
+		TaskHistoryEntity:      taskHistoryEntity,
+	}
 }
 
 func (u UserUsecase) ExecuteUserViewsUsecase(ctx context.Context, token string, boundary OutputUserBoundary) error {
@@ -36,12 +47,20 @@ func (u UserUsecase) ExecuteUserViewsUsecase(ctx context.Context, token string, 
 		users, err := u.Ue.FindAllUserViewsEntities(ctx, tx, verifiedAccount)
 		common.HandleErrorReturn(err)
 
-		// insert to historical selection users
-		if len(users) > 0 {
-			for _, user := range users {
-				err := u.SelectionHistoryEntity.InsertSelectionHistoryEntity(ctx, tx, user.AccountID)
-				common.HandleErrorReturn(err)
+		// Check if the historical selection task should run
+		shouldRun, err := u.shouldRunHistoricalSelectionTask(ctx, tx)
+		common.HandleErrorReturn(err)
+
+		if shouldRun {
+			if len(users) > 0 {
+				for _, user := range users {
+					err := u.SelectionHistoryEntity.InsertSelectionHistoryEntity(ctx, tx, user.AccountID)
+					common.HandleErrorReturn(err)
+				}
 			}
+			// Update the task history to indicate the task has run today
+			err = u.TaskHistoryEntity.InsertTaskHistoryEntity(ctx, tx, "historical_selection_task", time.Now().Unix())
+			common.HandleErrorReturn(err)
 		}
 
 		// Build response
@@ -70,4 +89,19 @@ func (u UserUsecase) ExecuteUserViewsUsecase(ctx context.Context, token string, 
 		log.Println("Transaction failed:", err)
 	}
 	return err
+}
+
+// shouldRunHistoricalSelectionTask checks if the historical selection task should run today.
+func (u UserUsecase) shouldRunHistoricalSelectionTask(ctx context.Context, tx *sql.Tx) (bool, error) {
+	// Retrieve the last run timestamp from your storage.
+	lastRunTimestamp, err := u.TaskHistoryEntity.GetLatestTaskHistoryEntity(ctx, tx, "historical_selection_task")
+	if err != nil {
+		return false, err
+	}
+
+	// Get the current date.
+	today := time.Now().Truncate(24 * time.Hour)
+
+	// If the last run timestamp is before today, return true indicating the task should run.
+	return lastRunTimestamp < today.Unix(), nil
 }

@@ -12,14 +12,14 @@ func AuthMiddleware(next http.Handler) http.Handler {
 		if authHeader == "" {
 			WriteJSONResponse(w, http.StatusUnauthorized, "Missing Authorization header", map[string]string{
 				"message": "Missing Authorization header",
-			})
+			}, 1)
 			return
 		}
 
 		if !strings.HasPrefix(authHeader, "Bearer ") {
 			WriteJSONResponse(w, http.StatusUnauthorized, "Invalid Authorization header format", map[string]string{
 				"message": "Invalid Authorization header format",
-			})
+			}, 1)
 			return
 		}
 

@@ -20,16 +20,16 @@ func NewAuthPresenter(w http.ResponseWriter) usecase.OutputAuthBoundary {
 // RegisterResponse sends the registration response to the client
 func (ap *AuthPresenter) RegisterResponse(response domain.RegisterResponse, err error) {
 	common.HandleInternalServerError(err, ap.w)
-	common.WriteJSONResponse(ap.w, http.StatusCreated, "Created account successfully", response)
+	common.WriteJSONResponse(ap.w, http.StatusCreated, "Created account successfully", response, 1)
 }
 
 // LoginResponse sends the login response to the client
 func (ap *AuthPresenter) LoginResponse(response domain.LoginResponse, err error) {
 	common.HandleInternalServerError(err, ap.w)
-	common.WriteJSONResponse(ap.w, http.StatusOK, "Login account successfully", response)
+	common.WriteJSONResponse(ap.w, http.StatusOK, "Login account successfully", response, 1)
 }
 
 func (ap *AuthPresenter) LogoutResponse(response domain.LogoutResponse, err error) {
 	common.HandleInternalServerError(err, ap.w)
-	common.WriteJSONResponse(ap.w, http.StatusOK, "Logout account successfully", response)
+	common.WriteJSONResponse(ap.w, http.StatusOK, "Logout account successfully", response, 1)
 }

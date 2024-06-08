@@ -11,6 +11,7 @@ import (
 	dailyQuotaEntities "godating-dealls/internal/core/entities/daily_quotas"
 	loginHistories "godating-dealls/internal/core/entities/login_histories"
 	"godating-dealls/internal/core/entities/selection_histories"
+	"godating-dealls/internal/core/entities/task_history"
 	userEntities "godating-dealls/internal/core/entities/users"
 	authUsecase "godating-dealls/internal/core/usecase/auths"
 	dailyQuotaUsecase "godating-dealls/internal/core/usecase/daily_quotas"
@@ -48,6 +49,7 @@ func main() {
 	loginHistoryRepository := repo.NewLoginHistoriesRepositoryImpl()
 	dailyQuotaRepository := repo.NewDailyQuotasRepositoryImpl()
 	selectionHistoryRepository := repo.NewSelectionHistoriesRepositoryImpl()
+	taskHistoryRepository := repo.NewTaskHistorySQLRepository()
 
 	// Entities represented of enterprise business rules for that self of entity
 	authenticateEntities := authEntities.NewAccountsEntitiesImpl(accountRepository, val)
@@ -55,12 +57,13 @@ func main() {
 	loginHistoryEntities := loginHistories.NewLoginHistoriesEntitiesImpl(val, loginHistoryRepository)
 	dailyQuotasEntities := dailyQuotaEntities.NewDailyQuotasEntitiesImpl(val, dailyQuotaRepository)
 	selectionHistoryEntity := selection_histories.NewSelectionHistoryEntityImpl(selectionHistoryRepository)
+	taskHistoryEntity := task_history.NewTaskHistoryEntityImpl(taskHistoryRepository)
 
 	// Usecase
 	authenticateUsecase := authUsecase.NewAuthUsecase(DB, authenticateEntities, usersEntities, RS, loginHistoryEntities)
 	dailyQuotasUsecase := dailyQuotaUsecase.NewDailyQuotasUsecase(DB, dailyQuotasEntities, usersEntities)
 	InitializeCronJobDailyQuota(ctx, dailyQuotasUsecase)
-	usersUsecase := users.NewUserUsecase(DB, usersEntities, authenticateEntities, selectionHistoryEntity)
+	usersUsecase := users.NewUserUsecase(DB, usersEntities, authenticateEntities, selectionHistoryEntity, taskHistoryEntity)
 
 	// Create the handler with the use case
 	authenticateHandler := handler.NewAuthHandler(authenticateUsecase)

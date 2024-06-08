@@ -25,14 +25,11 @@ const (
 	FindAllUserAccountsView10ListRecord        = `SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address 
 												  FROM users u 
 												  INNER JOIN accounts a ON u.account_id = a.account_id
-												  WHERE a.account_id NOT IN (
-													  SELECT account_id 
-													  FROM selection_histories
-													  WHERE selection_date = CURDATE()
-												  ) 
+												  INNER JOIN selection_histories sh 
+														ON a.account_id = sh.account_id AND u.account_id = sh.account_id AND sh.selection_date = CURDATE()
+												  WHERE a.verified = FALSE
 												  ORDER BY RAND() 
 												  LIMIT 10;`
-
 	InsertIntoSelectionHistory = `INSERT INTO selection_histories (account_id) VALUES (?)`
 )
 

@@ -17,5 +17,5 @@ func NewUserPresenter(w http.ResponseWriter) users.OutputUserBoundary {
 
 func (u UserPresenter) UserViewsResponse(response []domain.UserViewsResponse, err error) {
 	common.HandleInternalServerError(err, u.w)
-	common.WriteJSONResponse(u.w, http.StatusOK, "Get users view successfully", response)
+	common.WriteJSONResponse(u.w, http.StatusOK, "Get users view successfully", response, int64(len(response)))
 }
