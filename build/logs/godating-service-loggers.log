@@ -688,3 +688,13 @@
 [application-service] 2024/06/09 06:02:38 Connected to Redis successfully
 [application-service] 2024/06/09 06:02:38 Cron job started
 [application-service] 2024/06/09 06:15:11 Shutting down the server...
+[application-service] 2024/06/09 06:48:53 Connected to DB MySQL success!
+[application-service] 2024/06/09 06:48:53 Connected to Redis successfully
+[application-service] 2024/06/09 06:48:53 Cron job started
+[application-service] 2024/06/09 06:49:42 Handler | Swipe Request : {
+  "action": "left"
+}
+[application-service] 2024/06/09 06:49:50 Handler | Swipe Request : {
+  "action": "right"
+}
+[application-service] 2024/06/09 06:50:40 Shutting down the server...

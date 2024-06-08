@@ -6,7 +6,11 @@ import (
 	"net/http"
 )
 
-func InitializeRouter(authHandler *handler.AuthHandler, userHandler *handler.UsersHandler) *http.ServeMux {
+func InitializeRouter(
+	authHandler *handler.AuthHandler,
+	userHandler *handler.UsersHandler,
+	swipeHandler *handler.SwipeHandler) *http.ServeMux {
+
 	r := http.NewServeMux()
 
 	// Without middleware
@@ -16,8 +20,7 @@ func InitializeRouter(authHandler *handler.AuthHandler, userHandler *handler.Use
 	// Using middleware authenticate
 	r.Handle("POST /godating-dealls/api/authenticate/logout", md.AuthMiddleware(http.HandlerFunc(authHandler.LogoutUserHandler)))
 	r.Handle("GET /godating-dealls/api/daily-accounts", md.AuthMiddleware(http.HandlerFunc(userHandler.UserViewsHandler)))
-	r.Handle("POST /godating-dealls/api/swipe-left", md.AuthMiddleware(http.HandlerFunc(nil)))
-	r.Handle("POST /godating-dealls/api/swipe-right", md.AuthMiddleware(http.HandlerFunc(nil)))
+	r.Handle("POST /godating-dealls/api/swipes", md.AuthMiddleware(http.HandlerFunc(swipeHandler.SwipeHandler)))
 	r.Handle("GET /godating-dealls/api/quota", md.AuthMiddleware(http.HandlerFunc(nil)))
 	r.Handle("POST /godating-dealls/api/purchase-package", md.AuthMiddleware(http.HandlerFunc(nil)))
 	r.Handle("GET /godating-dealls/api/packages", md.AuthMiddleware(http.HandlerFunc(nil)))

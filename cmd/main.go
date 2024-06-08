@@ -11,10 +11,12 @@ import (
 	dailyQuotaEntities "godating-dealls/internal/core/entities/daily_quotas"
 	loginHistories "godating-dealls/internal/core/entities/login_histories"
 	"godating-dealls/internal/core/entities/selection_histories"
+	"godating-dealls/internal/core/entities/swipes"
 	"godating-dealls/internal/core/entities/task_history"
 	userEntities "godating-dealls/internal/core/entities/users"
 	authUsecase "godating-dealls/internal/core/usecase/auths"
 	dailyQuotaUsecase "godating-dealls/internal/core/usecase/daily_quotas"
+	swipes2 "godating-dealls/internal/core/usecase/swipes"
 	"godating-dealls/internal/core/usecase/users"
 	"godating-dealls/internal/handler"
 	"godating-dealls/internal/infra/mysql/repo"
@@ -50,6 +52,7 @@ func main() {
 	dailyQuotaRepository := repo.NewDailyQuotasRepositoryImpl()
 	selectionHistoryRepository := repo.NewSelectionHistoriesRepositoryImpl()
 	taskHistoryRepository := repo.NewTaskHistorySQLRepository()
+	swipeRepository := repo.NewSwipesRepositoryImpl()
 
 	// Entities represented of enterprise business rules for that self of entity
 	authenticateEntities := authEntities.NewAccountsEntitiesImpl(accountRepository, val)
@@ -58,19 +61,22 @@ func main() {
 	dailyQuotasEntities := dailyQuotaEntities.NewDailyQuotasEntitiesImpl(val, dailyQuotaRepository)
 	selectionHistoryEntity := selection_histories.NewSelectionHistoryEntityImpl(selectionHistoryRepository)
 	taskHistoryEntity := task_history.NewTaskHistoryEntityImpl(taskHistoryRepository)
+	swipeEntity := swipes.NewSwipeEntityImpl(swipeRepository)
 
 	// Usecase
 	authenticateUsecase := authUsecase.NewAuthUsecase(DB, authenticateEntities, usersEntities, RS, loginHistoryEntities)
 	dailyQuotasUsecase := dailyQuotaUsecase.NewDailyQuotasUsecase(DB, dailyQuotasEntities, usersEntities)
 	InitializeCronJobDailyQuota(ctx, dailyQuotasUsecase)
 	usersUsecase := users.NewUserUsecase(DB, usersEntities, authenticateEntities, selectionHistoryEntity, taskHistoryEntity)
+	swipeUsecase := swipes2.NewSwipeUsecase(DB, swipeEntity)
 
 	// Create the handler with the use case
 	authenticateHandler := handler.NewAuthHandler(authenticateUsecase)
 	usersHandler := handler.NewUsersHandler(usersUsecase)
+	swipeHandler := handler.NewSwipeHandler(swipeUsecase)
 
 	// Set up the router
-	r := router.InitializeRouter(authenticateHandler, usersHandler)
+	r := router.InitializeRouter(authenticateHandler, usersHandler, swipeHandler)
 
 	// Create a channel to listen for OS signals
 	stop := make(chan os.Signal, 1)
