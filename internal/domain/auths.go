@@ -22,6 +22,7 @@ type RegisterRequest struct {
 	Email    string `json:"email"`
 	Username string `json:"username"`
 	Password string `json:"password"`
+	FullName string `json:"full_name"`
 }
 
 type RegisterResponse struct {
@@ -32,10 +33,9 @@ type RegisterResponse struct {
 }
 
 type AccountDto struct {
-	Email       *string
-	Username    *string
-	Password    string
-	PhoneNumber string
+	Email    *string
+	Username *string
+	Password string
 }
 
 type Accounts struct {

@@ -5,6 +5,7 @@ import "time"
 type UserDto struct {
 	UserID      int64
 	AccountID   int64
+	FullName    *string
 	DateOfBirth time.Time
 	Age         int
 	Gender      string

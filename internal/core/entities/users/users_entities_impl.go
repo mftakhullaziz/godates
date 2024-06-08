@@ -42,6 +42,7 @@ func (u UserEntitiesImpl) SaveUserEntities(ctx context.Context, tx *sql.Tx, dto 
 		Gender:      "",
 		Address:     "",
 		Bio:         "",
+		FullName:    dto.FullName,
 	}
 	log.Printf("user record saved: %+v", records)
 

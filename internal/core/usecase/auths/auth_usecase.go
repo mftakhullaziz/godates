@@ -115,6 +115,7 @@ func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request domai
 
 		userDto := domain.UserDto{
 			AccountID: account.AccountId,
+			FullName:  &request.FullName,
 		}
 		if err := au.UE.SaveUserEntities(ctx, tx, userDto); err != nil {
 			return err
