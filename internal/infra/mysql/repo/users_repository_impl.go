@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"github.com/go-playground/validator/v10"
 	"godating-dealls/internal/infra/mysql/queries"
 	"godating-dealls/internal/infra/mysql/record"
 	"log"
@@ -13,11 +12,10 @@ import (
 
 type UserRepositoryImpl struct {
 	UsersRepository UserRepository
-	validate        *validator.Validate
 }
 
-func NewUsersRepositoryImpl(validate *validator.Validate) UserRepository {
-	return &UserRepositoryImpl{validate: validate}
+func NewUsersRepositoryImpl() UserRepository {
+	return &UserRepositoryImpl{}
 }
 
 func (u UserRepositoryImpl) CreateUserToDB(ctx context.Context, tx *sql.Tx, userRecord record.UserRecord) (record.UserRecord, error) {

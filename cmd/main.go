@@ -41,9 +41,9 @@ func main() {
 	val := validator.New()
 
 	// Initiate repo
-	ra := repo.NewAccountsRepositoryImpl(val)
-	ru := repo.NewUsersRepositoryImpl(val)
-	rlh := repo.NewLoginHistoriesRepositoryImpl(val)
+	ra := repo.NewAccountsRepositoryImpl()
+	ru := repo.NewUsersRepositoryImpl()
+	rlh := repo.NewLoginHistoriesRepositoryImpl()
 	rdq := repo.NewDailyQuotasRepositoryImpl()
 
 	// Call business rules

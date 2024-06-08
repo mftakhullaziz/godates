@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"github.com/go-playground/validator/v10"
 	"godating-dealls/internal/infra/mysql/queries"
 	"godating-dealls/internal/infra/mysql/record"
 	"time"
@@ -13,11 +12,10 @@ import (
 
 type LoginRepositoryImpl struct {
 	LoginHistoryRepository LoginHistoriesRepository
-	validate               *validator.Validate
 }
 
-func NewLoginHistoriesRepositoryImpl(validate *validator.Validate) LoginHistoriesRepository {
-	return &LoginRepositoryImpl{validate: validate}
+func NewLoginHistoriesRepositoryImpl() LoginHistoriesRepository {
+	return &LoginRepositoryImpl{}
 }
 
 func (l LoginRepositoryImpl) CreateLoginHistoryDB(ctx context.Context, tx *sql.Tx, loginRecord record.LoginHistoriesRecord) (record.LoginHistoriesRecord, error) {

@@ -5,18 +5,16 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"github.com/go-playground/validator/v10"
 	"godating-dealls/internal/infra/mysql/queries"
 	"godating-dealls/internal/infra/mysql/record"
 )
 
 type AccountRepositoryImpl struct {
 	AccountsRepository AccountRepository
-	validate           *validator.Validate
 }
 
-func NewAccountsRepositoryImpl(validate *validator.Validate) AccountRepository {
-	return &AccountRepositoryImpl{validate: validate}
+func NewAccountsRepositoryImpl() AccountRepository {
+	return &AccountRepositoryImpl{}
 }
 
 func (a AccountRepositoryImpl) CreateAccountToDB(ctx context.Context, tx *sql.Tx, accountRecord record.AccountRecord) (record.AccountRecord, error) {
