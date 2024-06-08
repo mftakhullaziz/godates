@@ -52,7 +52,8 @@ CREATE TABLE daily_quotas
 (
     quota_id    INTEGER AUTO_INCREMENT PRIMARY KEY,
     account_id  INTEGER NOT NULL,
-    date        DATE,
+    date        DATE    DEFAULT (CURRENT_DATE),
+    total_quota INTEGER DEFAULT 0,
     swipe_count INTEGER DEFAULT 0,
     FOREIGN KEY (account_id) REFERENCES accounts (account_id)
 );
@@ -81,13 +82,14 @@ CREATE TABLE account_premiums
     FOREIGN KEY (package_id) REFERENCES premium_packages (package_id)
 );
 
-CREATE TABLE viewed_user_accounts
+CREATE TABLE view_accounts
 (
     view_id    INTEGER AUTO_INCREMENT PRIMARY KEY,
     account_id INTEGER NOT NULL,
-    user_id    INTEGER,
+    user_id    INTEGER NOT NULL,
     date       DATE DEFAULT (CURRENT_DATE),
-    FOREIGN KEY (account_id) REFERENCES accounts (account_id)
+    FOREIGN KEY (account_id) REFERENCES accounts (account_id),
+    FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
 
 CREATE TABLE login_histories
@@ -101,11 +103,3 @@ CREATE TABLE login_histories
     FOREIGN KEY (user_id) REFERENCES users (user_id),
     FOREIGN KEY (account_id) REFERENCES accounts (account_id)
 );
-
-
-
--- SELECT EXISTS(SELECT 1 FROM accounts WHERE email = "test@gmail.com")
---
--- SELECT * FROM accounts a WHERE email = "hai3@gmail.com" or username ="hai3";
-
-
