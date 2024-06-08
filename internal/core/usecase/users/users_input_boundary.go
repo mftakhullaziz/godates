@@ -5,5 +5,5 @@ import (
 )
 
 type InputUserBoundary interface {
-	ExecuteUserViewsUsecase(ctx context.Context, boundary OutputUserBoundary) error
+	ExecuteUserViewsUsecase(ctx context.Context, token string, boundary OutputUserBoundary) error
 }

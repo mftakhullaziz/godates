@@ -49,3 +49,18 @@ func VerifyJWTToken(accessToken string) (*JWTTokenClaims, error) {
 	}
 	return nil, fmt.Errorf("invalid token")
 }
+
+//// ExtractToken to extract and decode the token
+//func ExtractToken(tokenString string) (*JWTTokenClaims, error) {
+//	token, err := jwt.ParseWithClaims(tokenString, &JWTTokenClaims{}, func(token *jwt.Token) (interface{}, error) {
+//		// Typically, the key used to sign the token should be passed here.
+//		// For simplicity, we're using a hardcoded secret. In a real-world scenario, ensure to use a proper method to handle the secret.
+//		return []byte("your-256-bit-secret"), nil
+//	})
+//
+//	if claims, ok := token.Claims.(*JWTTokenClaims); ok && token.Valid {
+//		return claims, nil
+//	} else {
+//		return nil, err
+//	}
+//}

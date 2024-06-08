@@ -13,4 +13,5 @@ type AccountRepository interface {
 	FindAccountByUsernameAndEmailFromDB(ctx context.Context, tx *sql.Tx, email string, username string) (record.AccountRecord, error)
 	IsExistAccountByEmailFromDB(ctx context.Context, tx *sql.Tx, email string) bool
 	IsExistAccountByUsernameFromDB(ctx context.Context, tx *sql.Tx, username string) bool
+	FindAccountVerifiedByAccountIdFromDB(ctx context.Context, tx *sql.Tx, accountId int64) (bool, error)
 }

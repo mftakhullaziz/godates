@@ -48,12 +48,12 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request domain.L
 
 		account, err := au.AE.AuthenticateAccount(ctx, tx, accountDTO)
 		if err != nil {
-			return err
+			return errors.New("failed to authenticate account")
 		}
 
 		passwordIsValid, err := common.ComparedPassword(account.Password, []byte(request.Password))
 		if err != nil {
-			return err
+			return errors.New("failed to compare password")
 		}
 
 		if !passwordIsValid {

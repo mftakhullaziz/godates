@@ -67,6 +67,7 @@ func (u UserRepositoryImpl) GetUserByAccountIdFromDB(ctx context.Context, tx *sq
 	err := row.Scan(
 		&userRecord.UserID,
 		&userRecord.AccountID,
+		&userRecord.FullName,
 		&userRecord.DateOfBirth,
 		&userRecord.Age,
 		&userRecord.Gender,
@@ -104,10 +105,45 @@ func (u UserRepositoryImpl) GetAllUsersFromDB(ctx context.Context, tx *sql.Tx) (
 			&user.AccountID,
 			&user.UserID,
 			&user.Verified,
-			&user.FullName,
+		); err != nil {
+			return nil, fmt.Errorf("could not scan row: %v", err)
+		}
+		users = append(users, user)
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, fmt.Errorf("row iteration error: %v", err)
+	}
+
+	return users, nil
+}
+
+func (u UserRepositoryImpl) GetAllUsersViewsFromDB(ctx context.Context, verifiedUser bool, tx *sql.Tx) ([]record.UserAccountRecord, error) {
+	var query string
+	if verifiedUser {
+		query = queries.FindAllUserAccountsViewListRecord
+	} else {
+		query = queries.FindAllUserAccountsView10ListRecord
+	}
+
+	rows, err := tx.QueryContext(ctx, query)
+	if err != nil {
+		return nil, fmt.Errorf("could not execute query: %v", err)
+	}
+	defer rows.Close()
+
+	var users []record.UserAccountRecord
+	for rows.Next() {
+		var user record.UserAccountRecord
+		if err := rows.Scan(
+			&user.AccountID,
+			&user.UserID,
+			&user.Verified,
 			&user.Username,
+			&user.FullName,
 			&user.Gender,
 			&user.Bio,
+			&user.Age,
 			&user.Address,
 		); err != nil {
 			return nil, fmt.Errorf("could not scan row: %v", err)

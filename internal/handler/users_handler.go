@@ -16,19 +16,18 @@ func NewUsersHandler(userInput users.InputUserBoundary) *UsersHandler {
 }
 
 func (uh *UsersHandler) UserViewsHandler(w http.ResponseWriter, r *http.Request) {
-	//var request domain.LoginRequest
-	//if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
-	//	http.Error(w, "Invalid request payload", http.StatusBadRequest)
-	//	return
-	//}
-	//log.Println(request)
-
+	// If user premium is unlimited, if not is just 10 data
 	ctx := r.Context()
+	token, ok := ctx.Value("token").(string)
+	if !ok || token == "" {
+		http.Error(w, "Invalid token", http.StatusUnauthorized)
+		return
+	}
 
 	// Instantiate the presenter
 	presenter := presenters.NewUserPresenter(w)
 
 	// Call the use case method passing the presenter
-	err := uh.UserInput.ExecuteUserViewsUsecase(ctx, presenter)
+	err := uh.UserInput.ExecuteUserViewsUsecase(ctx, token, presenter)
 	common.HandleInternalServerError(err, w)
 }

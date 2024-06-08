@@ -41,7 +41,7 @@ func (u UserEntitiesImpl) SaveUserEntities(ctx context.Context, tx *sql.Tx, dto 
 		Gender:      "",
 		Address:     "",
 		Bio:         "",
-		FullName:    *dto.FullName,
+		FullName:    dto.FullName,
 	}
 	common.PrintJSON("user entities | user record to be saved", records)
 
@@ -84,8 +84,8 @@ func (u UserEntitiesImpl) FindAllUserEntities(ctx context.Context, tx *sql.Tx) (
 	return allUser, nil
 }
 
-func (u UserEntitiesImpl) FindAllUserViewsEntities(ctx context.Context, tx *sql.Tx) ([]domain.AllUserViews, error) {
-	allUsers, err := u.repository.GetAllUsersFromDB(ctx, tx)
+func (u UserEntitiesImpl) FindAllUserViewsEntities(ctx context.Context, tx *sql.Tx, verified bool) ([]domain.AllUserViews, error) {
+	allUsers, err := u.repository.GetAllUsersViewsFromDB(ctx, verified, tx)
 	if err != nil {
 		return nil, errors.New("could not get all users")
 	}
@@ -96,7 +96,7 @@ func (u UserEntitiesImpl) FindAllUserViewsEntities(ctx context.Context, tx *sql.
 			UserID:    user.UserID,
 			AccountID: user.AccountID,
 			Username:  user.Username,
-			FullName:  &user.FullName,
+			FullName:  user.FullName,
 			Gender:    user.Gender,
 			Age:       user.Age,
 			Bio:       user.Bio,

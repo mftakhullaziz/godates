@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"godating-dealls/internal/common"
 	"godating-dealls/internal/infra/mysql/queries"
 	"godating-dealls/internal/infra/mysql/record"
 )
@@ -155,4 +156,19 @@ func (a AccountRepositoryImpl) FindAccountByUsernameAndEmailFromDB(ctx context.C
 
 	// Return the retrieved account record
 	return accountRecord, nil
+}
+
+func (a AccountRepositoryImpl) FindAccountVerifiedByAccountIdFromDB(ctx context.Context, tx *sql.Tx, accountId int64) (bool, error) {
+	// Query the database to find the account record by username
+	row := tx.QueryRowContext(ctx, "SELECT verified FROM accounts WHERE account_id = ?", accountId)
+	// Initialize a new AccountRecord to store the result
+	var accountRecord record.AccountRecord
+	// Scan the row into the AccountRecord fields
+	err := row.Scan(
+		&accountRecord.Verified,
+	)
+	common.HandleErrorReturn(err)
+
+	// Return the retrieved account record
+	return accountRecord.Verified, nil
 }

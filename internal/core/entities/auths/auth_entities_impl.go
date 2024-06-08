@@ -116,3 +116,11 @@ func (a AccountEntitiesImpl) AuthenticateAccount(ctx context.Context, tx *sql.Tx
 
 	return domain.Accounts{}, err
 }
+
+func (a AccountEntitiesImpl) FindAccountVerifiedEntities(ctx context.Context, tx *sql.Tx, accountId int64) (bool, error) {
+	verified, err := a.repository.FindAccountVerifiedByAccountIdFromDB(ctx, tx, accountId)
+	if err != nil {
+		return false, errors.New("failed to find account verified entities")
+	}
+	return verified, nil
+}

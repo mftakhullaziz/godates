@@ -42,16 +42,16 @@ func main() {
 	val := validator.New()
 
 	// Initiate repo
-	ra := repo.NewAccountsRepositoryImpl()
-	ru := repo.NewUsersRepositoryImpl()
-	rlh := repo.NewLoginHistoriesRepositoryImpl()
-	rdq := repo.NewDailyQuotasRepositoryImpl()
+	accountRepository := repo.NewAccountsRepositoryImpl()
+	userRepository := repo.NewUsersRepositoryImpl()
+	loginHistoryRepository := repo.NewLoginHistoriesRepositoryImpl()
+	dailyQuotaRepository := repo.NewDailyQuotasRepositoryImpl()
 
 	// Call business rules
-	ea := authEntities.NewAccountsEntitiesImpl(ra, val)
-	eu := userEntities.NewUserEntitiesImpl(ru, val)
-	elh := loginHistories.NewLoginHistoriesEntitiesImpl(val, rlh)
-	edq := dailyQuotaEntities.NewDailyQuotasEntitiesImpl(val, rdq)
+	ea := authEntities.NewAccountsEntitiesImpl(accountRepository, val)
+	eu := userEntities.NewUserEntitiesImpl(userRepository, val)
+	elh := loginHistories.NewLoginHistoriesEntitiesImpl(val, loginHistoryRepository)
+	edq := dailyQuotaEntities.NewDailyQuotasEntitiesImpl(val, dailyQuotaRepository)
 
 	// Create the use case with entities
 	ua := authUsecase.NewAuthUsecase(DB, ea, eu, RS, elh)

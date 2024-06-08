@@ -46,15 +46,15 @@ type AllUserViews struct {
 }
 
 type UserViewsResponse struct {
-	UserID    int64
-	AccountID int64
-	FullName  *string
-	Username  string
-	Photos    []string
-	Videos    []string
-	Age       int
-	Gender    string
-	Address   string
-	Bio       string
-	Verified  bool
+	UserID    int64    `json:"user_id"`
+	AccountID int64    `json:"account_id"`
+	FullName  *string  `json:"full_name"`
+	Username  string   `json:"username"`
+	Photos    []string `json:"photos"`
+	Videos    []string `json:"videos"`
+	Age       int      `json:"age"`
+	Gender    string   `json:"gender"`
+	Address   string   `json:"address"`
+	Bio       string   `json:"bio"`
+	Verified  bool     `json:"verified"`
 }
