@@ -2,9 +2,7 @@ package auths
 
 import (
 	"context"
-	"crypto/sha256"
 	"database/sql"
-	"encoding/hex"
 	"errors"
 	"fmt"
 	"godating-dealls/internal/common"
@@ -83,7 +81,7 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request payload.
 		common.HandleErrorWithParam(err, "Failed to save login history")
 
 		// Store token to redis
-		redisKey := BuildRedisKey(fmt.Sprintf("access_token:%s:%s", account.AccountId, account.Email))
+		redisKey := common.StringEncoder(fmt.Sprintf("access_token:%s:%s", account.AccountId, account.Email))
 		err = au.Rds.StoreToRedis(ctx, redisKey, token)
 		if err != nil {
 			return errors.New("failed to save token")
@@ -153,7 +151,7 @@ func (au *AuthUsecase) ExecuteLogoutUsecase(ctx context.Context, accessToken *st
 		})
 		common.HandleErrorReturn(err)
 
-		redisKey := BuildRedisKey(fmt.Sprintf("access_token:%s:%s", verify.AccountId, verify.Email))
+		redisKey := common.StringEncoder(fmt.Sprintf("access_token:%s:%s", verify.AccountId, verify.Email))
 		err = au.Rds.ClearFromRedis(ctx, redisKey)
 		common.HandleErrorReturn(err)
 
@@ -170,11 +168,4 @@ func (au *AuthUsecase) ExecuteLogoutUsecase(ctx context.Context, accessToken *st
 		log.Println("Transaction failed:", err)
 	}
 	return err
-}
-
-func BuildRedisKey(input string) string {
-	hash := sha256.New()
-	hash.Write([]byte(input))
-	hashedBytes := hash.Sum(nil)
-	return hex.EncodeToString(hashedBytes)
 }

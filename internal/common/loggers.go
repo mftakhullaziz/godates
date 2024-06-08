@@ -123,3 +123,12 @@ func rotateLogFile(logFileName string) error {
 
 	return nil
 }
+
+// PrintJSON takes any data structure and prints it in JSON format
+func PrintJSON(message string, v interface{}) {
+	jsonData, err := json.MarshalIndent(v, "", "  ")
+	if err != nil {
+		log.Printf(err.Error())
+	}
+	log.Println(message, ":", string(jsonData))
+}

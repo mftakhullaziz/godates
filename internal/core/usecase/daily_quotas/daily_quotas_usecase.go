@@ -40,7 +40,7 @@ func (d DailyQuotasUsecase) ExecuteAutoUpdateDailyQuotaUsecase(ctx context.Conte
 			if user.Verified == true {
 				dailyQuotaDto.UserIsVerified = true
 			}
-			log.Printf("daily quota: %v", dailyQuotaDto)
+			common.PrintJSON("usecase | daily quotas", dailyQuotaDto)
 
 			err := d.Dqe.UpdateOrInsertDailyQuotaEntities(ctx, tx, dailyQuotaDto)
 			common.HandleErrorReturn(err)

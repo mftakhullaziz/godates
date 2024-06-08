@@ -1,22 +1,144 @@
-2024/06/08 21:39:06 [application-service] Connected to DB MySQL success!
-2024/06/08 21:39:06 [application-service] Connected to Redis successfully
-2024/06/08 21:39:06 [application-service] Cron job started
-2024/06/08 21:39:11 [application-service] Executing daily quota update usecase
-2024/06/08 21:39:11 [application-service] users: [{1 1 false} {2 2 true}]
-2024/06/08 21:39:11 [application-service] daily quota: {0 1 0001-01-01 00:00:00 +0000 UTC 0 false 0}
-2024/06/08 21:39:11 [application-service] daily quota entities {0 1 0001-01-01 00:00:00 +0000 UTC 10 0}
-2024/06/08 21:39:11 [application-service] query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
-2024/06/08 21:39:11 [application-service] daily quota: {0 2 0001-01-01 00:00:00 +0000 UTC 0 true 0}
-2024/06/08 21:39:11 [application-service] daily quota entities {0 2 0001-01-01 00:00:00 +0000 UTC -1 0}
-2024/06/08 21:39:11 [application-service] query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
-2024/06/08 21:39:11 [application-service] Successfully executed daily quota update usecase
-2024/06/08 21:39:16 [application-service] Executing daily quota update usecase
-2024/06/08 21:39:16 [application-service] users: [{1 1 false} {2 2 true}]
-2024/06/08 21:39:16 [application-service] daily quota: {0 1 0001-01-01 00:00:00 +0000 UTC 0 false 0}
-2024/06/08 21:39:16 [application-service] daily quota entities {0 1 0001-01-01 00:00:00 +0000 UTC 10 0}
-2024/06/08 21:39:16 [application-service] query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
-2024/06/08 21:39:16 [application-service] daily quota: {0 2 0001-01-01 00:00:00 +0000 UTC 0 true 0}
-2024/06/08 21:39:16 [application-service] daily quota entities {0 2 0001-01-01 00:00:00 +0000 UTC -1 0}
-2024/06/08 21:39:16 [application-service] query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
-2024/06/08 21:39:16 [application-service] Successfully executed daily quota update usecase
-2024/06/08 21:39:16 [application-service] Shutting down the server...
+[application-service] 2024/06/08 21:54:27 Connected to DB MySQL success!
+[application-service] 2024/06/08 21:54:27 Connected to Redis successfully
+[application-service] 2024/06/08 21:54:27 Cron job started
+[application-service] 2024/06/08 21:54:32 Executing daily quota update usecase
+[application-service] 2024/06/08 21:54:32 users: [{1 1 false} {2 2 true}]
+[application-service] 2024/06/08 21:54:32 usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 1,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/08 21:54:32 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 1,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/08 21:54:32 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/08 21:54:32 usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 2,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": true,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/08 21:54:32 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 2,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": -1,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/08 21:54:32 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/08 21:54:32 Successfully executed daily quota update usecase
+[application-service] 2024/06/08 21:54:37 Executing daily quota update usecase
+[application-service] 2024/06/08 21:54:37 users: [{1 1 false} {2 2 true}]
+[application-service] 2024/06/08 21:54:37 usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 1,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/08 21:54:37 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 1,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/08 21:54:37 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/08 21:54:37 usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 2,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": true,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/08 21:54:37 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 2,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": -1,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/08 21:54:37 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/08 21:54:37 Successfully executed daily quota update usecase
+[application-service] 2024/06/08 21:54:42 Executing daily quota update usecase
+[application-service] 2024/06/08 21:54:42 users: [{1 1 false} {2 2 true}]
+[application-service] 2024/06/08 21:54:42 usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 1,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/08 21:54:42 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 1,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/08 21:54:42 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/08 21:54:42 usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 2,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": true,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/08 21:54:42 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 2,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": -1,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/08 21:54:42 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/08 21:54:42 Successfully executed daily quota update usecase
+[application-service] 2024/06/08 21:54:47 Executing daily quota update usecase
+[application-service] 2024/06/08 21:54:47 users: [{1 1 false} {2 2 true}]
+[application-service] 2024/06/08 21:54:47 usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 1,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/08 21:54:47 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 1,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/08 21:54:47 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/08 21:54:47 usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 2,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": true,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/08 21:54:47 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 2,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": -1,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/08 21:54:47 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/08 21:54:47 Successfully executed daily quota update usecase
+[application-service] 2024/06/08 21:54:50 Shutting down the server...

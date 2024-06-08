@@ -1,5 +1,5 @@
 SHELL=/bin/bash
-PACKAGE_NAME=godating-dealls
+PACKAGE_NAME=godating-dealls-service
 BUILD_DIR=./build/compile
 
 # Targets

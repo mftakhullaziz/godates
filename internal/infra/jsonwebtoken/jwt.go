@@ -3,10 +3,11 @@ package jsonwebtoken
 import (
 	"fmt"
 	"github.com/golang-jwt/jwt/v5"
+	"godating-dealls/internal/common"
 	"time"
 )
 
-var jwtSecret = []byte("app-godating-dealls")
+var jwtSecret = []byte(common.StringEncoder("key-app-godating-dealls"))
 
 type JWTTokenClaims struct {
 	UserId    int64  `json:"user_id"`
