@@ -7,6 +7,7 @@ type DailyQuotaRecord struct {
 	QuotaID    int64     `db:"quota_id"`
 	AccountID  int64     `db:"account_id"`
 	Date       time.Time `db:"date"`
+	TotalQuota int64     `db:"total_quota"`
 	SwipeCount int       `db:"swipe_count"`
 }
 

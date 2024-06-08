@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"database/sql"
 	"github.com/go-playground/validator/v10"
+	"github.com/robfig/cron/v3"
 	"godating-dealls/conf"
 	"godating-dealls/internal/common"
 	authEntities "godating-dealls/internal/core/entities/auths"
@@ -17,41 +19,67 @@ import (
 )
 
 func main() {
+	// Init context before run application
+	ctx := context.Background()
+	InitializeLogger()
+	DB := InitializeDB(ctx)
+	RS := InitializeRedis(ctx)
+	InitializeCronJob()
+
+	// Initiate validator
+	val := validator.New()
+
+	// Initiate repo
+	ra := repo.NewAccountsRepositoryImpl(val)
+	ru := repo.NewUsersRepositoryImpl(val)
+	rlh := repo.NewLoginHistoriesRepositoryImpl(val)
+
+	// Call business rules
+	ea := authEntities.NewAccountsEntitiesImpl(ra, val)
+	eu := userEntities.NewUserEntitiesImpl(ru, val)
+	elh := login_histories.NewLoginHistoriesEntitiesImpl(val, rlh)
+
+	// Create the use case with entities
+	ua := authUsecase.NewAuthUsecase(DB, ea, eu, RS, elh)
+
+	// Create the handler with the use case
+	ha := authHandler.NewAuthHandler(ua)
+
+	// Set up the router
+	r := router.SetupRouter(ha)
+	err := http.ListenAndServe(":8000", r)
+	common.HandleErrorReturn(err)
+
+	select {}
+}
+
+func InitializeLogger() {
 	// Set up logging
 	setupLogger, err := common.SetupLogger()
 	common.HandleErrorWithParam(err, "Setup Logger Failed")
 	defer setupLogger.Close()
+}
 
-	// Init context before run application
-	ctx := context.Background()
+func InitializeDB(ctx context.Context) *sql.DB {
 	// Ensure to close the database connection when the application exits
 	defer conf.CloseDBConnection()
 	// Create of the database connection
 	DB := conf.CreateDBConnection(ctx)
+	return DB
+}
+
+func InitializeRedis(ctx context.Context) redisclient.RedisInterface {
 	// Create redis client connection
-	RedisClient := conf.InitializeRedisClient(ctx)
-	RedisService := redisclient.NewRedisService(RedisClient)
+	rdsClient := conf.InitializeRedisClient(ctx)
+	rds := redisclient.NewRedisService(rdsClient)
+	return rds
+}
 
-	// Initiate validator
-	validate := validator.New()
-
-	// Initiate repo
-	repoAuth := repo.NewAccountsRepositoryImpl(validate)
-	repoUser := repo.NewUsersRepositoryImpl(validate)
-	repoLoginHistory := repo.NewLoginHistoriesRepositoryImpl(validate)
-
-	// Call business rules
-	entitiesAuth := authEntities.NewAccountsEntitiesImpl(repoAuth, validate)
-	entitiesUser := userEntities.NewUserEntitiesImpl(repoUser, validate)
-	entitiesLoginHistory := login_histories.NewLoginHistoriesEntitiesImpl(validate, repoLoginHistory)
-
-	// Create the use case with entities
-	usecaseAuth := authUsecase.NewAuthUsecase(DB, entitiesAuth, entitiesUser, RedisService, entitiesLoginHistory)
-	// Create the handler with the use case
-	handlerAuth := authHandler.NewAuthHandler(usecaseAuth)
-
-	// Set up the router
-	r := router.SetupRouter(handlerAuth)
-	err = http.ListenAndServe(":8000", r)
+func InitializeCronJob() {
+	c := cron.New()
+	_, err := c.AddFunc("0 0 * * *", func() {
+		// resetSwipeQuotas()
+	})
 	common.HandleErrorReturn(err)
+	c.Start()
 }
