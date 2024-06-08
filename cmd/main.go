@@ -25,9 +25,14 @@ import (
 )
 
 func main() {
+	// Set up logging
+	//setupLogger, err := common.SetupLogger()
+	//common.HandleErrorWithParam(err, "Setup Logger Failed")
+	//defer setupLogger.Close()
+	InitializeLogger()
+
 	// Init context before run application
 	ctx := context.Background()
-	InitializeLogger()
 
 	DB := InitializeDB(ctx)
 	// Ensure to close the database connection when the application exits

@@ -9,8 +9,8 @@ import (
 )
 
 var (
-	logFileName = "build/logs/service-logger.log"
-	maxLogLines = 10000
+	logFileName = "build/logs/logger_godating-dealls-service.log"
+	maxLogLines = 10
 )
 
 func SetupLogger() (*os.File, error) {

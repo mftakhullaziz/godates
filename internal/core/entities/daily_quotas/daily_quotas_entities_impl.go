@@ -8,6 +8,7 @@ import (
 	"godating-dealls/internal/domain"
 	"godating-dealls/internal/infra/mysql/record"
 	"godating-dealls/internal/infra/mysql/repo"
+	"log"
 	"time"
 )
 
@@ -36,6 +37,7 @@ func (d DailyQuotasEntitiesImpl) UpdateOrInsertDailyQuotaEntities(ctx context.Co
 	if dto.UserIsVerified == true {
 		dailyQuota.TotalQuota = -1
 	}
+	log.Printf("daily quota entities %v", dailyQuota)
 
 	err = d.DailyQuotaRepository.UpdateOrInsertDailyQuota(ctx, tx, dailyQuota)
 	common.HandleErrorReturn(err)
