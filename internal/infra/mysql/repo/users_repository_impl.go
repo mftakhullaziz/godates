@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"godating-dealls/internal/infra/mysql/queries"
 	"godating-dealls/internal/infra/mysql/record"
-	"log"
 )
 
 type UserRepositoryImpl struct {
@@ -23,6 +22,7 @@ func (u UserRepositoryImpl) CreateUserToDB(ctx context.Context, tx *sql.Tx, user
 	result, err := tx.ExecContext(ctx, queries.SaveToUserRecord,
 		userRecord.AccountID,
 		userRecord.DateOfBirth,
+		userRecord.FullName,
 		userRecord.Age,
 		userRecord.Gender,
 		userRecord.Address,
@@ -32,9 +32,6 @@ func (u UserRepositoryImpl) CreateUserToDB(ctx context.Context, tx *sql.Tx, user
 	if err != nil {
 		return record.UserRecord{}, fmt.Errorf("could not insert users: %v", err)
 	}
-
-	// Log the query result
-	log.Printf("Query result: %v", result)
 
 	// Get the last inserted ID
 	userId, err := result.LastInsertId()

@@ -108,6 +108,7 @@ func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request domai
 			Password: request.Password,
 			Email:    &request.Email,
 		}
+		common.PrintJSON("auth usecase | account dto", accountDTO)
 		account, err := au.AE.SaveAccountEntities(ctx, tx, accountDTO)
 		if err != nil {
 			return err
@@ -117,6 +118,7 @@ func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request domai
 			AccountID: account.AccountId,
 			FullName:  &request.FullName,
 		}
+		common.PrintJSON("auth usecase | user dto", userDto)
 		if err := au.UE.SaveUserEntities(ctx, tx, userDto); err != nil {
 			return err
 		}

@@ -27,7 +27,7 @@ func (ah *AuthHandler) RegisterUserHandler(w http.ResponseWriter, r *http.Reques
 		http.Error(w, "Invalid request payload", http.StatusBadRequest)
 		return
 	}
-	log.Println(request)
+	common.PrintJSON("Handler | Register Request", request)
 
 	ctx := r.Context()
 	// Instantiate the presenter

@@ -9,7 +9,6 @@ import (
 	"godating-dealls/internal/domain"
 	"godating-dealls/internal/infra/mysql/record"
 	repository "godating-dealls/internal/infra/mysql/repo"
-	"log"
 )
 
 type UserEntitiesImpl struct {
@@ -42,9 +41,9 @@ func (u UserEntitiesImpl) SaveUserEntities(ctx context.Context, tx *sql.Tx, dto 
 		Gender:      "",
 		Address:     "",
 		Bio:         "",
-		FullName:    dto.FullName,
+		FullName:    *dto.FullName,
 	}
-	log.Printf("user record saved: %+v", records)
+	common.PrintJSON("user entities | user record to be saved", records)
 
 	_, err = u.repository.CreateUserToDB(ctx, tx, records)
 	err = common.HandleErrorDefault(err)

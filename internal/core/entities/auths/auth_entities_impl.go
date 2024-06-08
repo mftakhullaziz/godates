@@ -9,7 +9,6 @@ import (
 	"godating-dealls/internal/domain"
 	"godating-dealls/internal/infra/mysql/record"
 	repository "godating-dealls/internal/infra/mysql/repo"
-	"log"
 )
 
 type AccountEntitiesImpl struct {
@@ -31,7 +30,10 @@ func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, tx *sql.Tx
 
 	// add validate username and email
 	emailIsExist := a.repository.IsExistAccountByEmailFromDB(ctx, tx, *dto.Email)
+	common.PrintJSON("auth entities | email is exist", emailIsExist)
+
 	usernameIsExist := a.repository.IsExistAccountByUsernameFromDB(ctx, tx, *dto.Username)
+	common.PrintJSON("auth entities | username is exist", usernameIsExist)
 
 	if emailIsExist || usernameIsExist {
 		return domain.Accounts{}, errors.New("email or username already exists")
@@ -43,7 +45,7 @@ func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, tx *sql.Tx
 		Email:        *dto.Email,
 		Verified:     false,
 	}
-	log.Printf("account record saved: %+v", records)
+	common.PrintJSON("auth entities | account record to be saved", records)
 
 	account, err := a.repository.CreateAccountToDB(ctx, tx, records)
 	if err != nil {
