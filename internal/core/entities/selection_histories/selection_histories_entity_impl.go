@@ -16,8 +16,12 @@ func NewSelectionHistoryEntityImpl(selectionHistoriesRepository repo.SelectionHi
 	return &SelectionHistoryEntityImpl{SelectionHistoriesRepository: selectionHistoriesRepository}
 }
 
-func (s SelectionHistoryEntityImpl) InsertSelectionHistoryEntity(ctx context.Context, tx *sql.Tx, accountId int64) error {
-	err := s.SelectionHistoriesRepository.InsertIntoSelectionHistories(ctx, tx, record.SelectionHistoryRecord{AccountID: accountId})
+func (s SelectionHistoryEntityImpl) InsertSelectionHistoryEntity(ctx context.Context, tx *sql.Tx, accountIdIdentifier int64, accountId int64) error {
+	err := s.SelectionHistoriesRepository.InsertIntoSelectionHistories(ctx, tx,
+		record.SelectionHistoryRecord{
+			AccountIdIdentifier: accountIdIdentifier,
+			AccountID:           accountId,
+		})
 	common.HandleErrorReturn(err)
 	return nil
 }

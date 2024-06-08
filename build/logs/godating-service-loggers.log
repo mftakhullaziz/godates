@@ -642,3 +642,49 @@
 [application-service] 2024/06/09 05:21:57 Connected to Redis successfully
 [application-service] 2024/06/09 05:21:57 Cron job started
 [application-service] 2024/06/09 05:22:36 { hhhmmjava13@gmail.com test1234}
+[application-service] 2024/06/09 05:24:13 Shutting down the server...
+[application-service] 2024/06/09 05:28:49 Connected to DB MySQL success!
+[application-service] 2024/06/09 05:28:49 Connected to Redis successfully
+[application-service] 2024/06/09 05:28:49 Cron job started
+[application-service] 2024/06/09 05:29:35 Shutting down the server...
+[application-service] 2024/06/09 05:31:00 Connected to DB MySQL success!
+[application-service] 2024/06/09 05:31:00 Connected to Redis successfully
+[application-service] 2024/06/09 05:31:00 Cron job started
+[application-service] 2024/06/09 05:32:30 Shutting down the server...
+[application-service] 2024/06/09 05:32:31 Connected to DB MySQL success!
+[application-service] 2024/06/09 05:32:31 Connected to Redis successfully
+[application-service] 2024/06/09 05:32:31 Cron job started
+[application-service] 2024/06/09 05:32:42 { java21@gmail.com test1234}
+[application-service] 2024/06/09 05:33:29 Shutting down the server...
+[application-service] 2024/06/09 05:33:30 Connected to DB MySQL success!
+[application-service] 2024/06/09 05:33:30 Connected to Redis successfully
+[application-service] 2024/06/09 05:33:30 Cron job started
+[application-service] 2024/06/09 05:36:06 Shutting down the server...
+[application-service] 2024/06/09 05:36:17 Connected to DB MySQL success!
+[application-service] 2024/06/09 05:36:17 Connected to Redis successfully
+[application-service] 2024/06/09 05:36:17 Cron job started
+[application-service] 2024/06/09 05:36:40 Shutting down the server...
+[application-service] 2024/06/09 05:37:29 Connected to DB MySQL success!
+[application-service] 2024/06/09 05:37:29 Connected to Redis successfully
+[application-service] 2024/06/09 05:37:29 Cron job started
+[application-service] 2024/06/09 05:39:45 Shutting down the server...
+[application-service] 2024/06/09 05:53:02 Connected to DB MySQL success!
+[application-service] 2024/06/09 05:53:02 Connected to Redis successfully
+[application-service] 2024/06/09 05:53:02 Cron job started
+[application-service] 2024/06/09 05:54:25 Shutting down the server...
+[application-service] 2024/06/09 05:55:34 Connected to DB MySQL success!
+[application-service] 2024/06/09 05:55:34 Connected to Redis successfully
+[application-service] 2024/06/09 05:55:34 Cron job started
+[application-service] 2024/06/09 05:59:17 Shutting down the server...
+[application-service] 2024/06/09 05:59:18 Connected to DB MySQL success!
+[application-service] 2024/06/09 05:59:19 Connected to Redis successfully
+[application-service] 2024/06/09 05:59:19 Cron job started
+[application-service] 2024/06/09 06:00:37 Shutting down the server...
+[application-service] 2024/06/09 06:00:39 Connected to DB MySQL success!
+[application-service] 2024/06/09 06:00:39 Connected to Redis successfully
+[application-service] 2024/06/09 06:00:39 Cron job started
+[application-service] 2024/06/09 06:02:36 Shutting down the server...
+[application-service] 2024/06/09 06:02:38 Connected to DB MySQL success!
+[application-service] 2024/06/09 06:02:38 Connected to Redis successfully
+[application-service] 2024/06/09 06:02:38 Cron job started
+[application-service] 2024/06/09 06:15:11 Shutting down the server...

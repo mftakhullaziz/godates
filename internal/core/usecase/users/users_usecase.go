@@ -41,20 +41,20 @@ func (u UserUsecase) ExecuteUserViewsUsecase(ctx context.Context, token string, 
 		common.HandleErrorReturn(err)
 
 		// first find account type by claims if account verified return all, if not just 10 data
-		accountId := claims.AccountId
-		verifiedAccount, err := u.Ae.FindAccountVerifiedEntities(ctx, tx, accountId)
-
-		users, err := u.Ue.FindAllUserViewsEntities(ctx, tx, verifiedAccount)
-		common.HandleErrorReturn(err)
+		accountIdIdentifier := claims.AccountId
+		verifiedAccount, err := u.Ae.FindAccountVerifiedEntities(ctx, tx, accountIdIdentifier)
 
 		// Check if the historical selection task should run
 		shouldRun, err := u.shouldRunHistoricalSelectionTask(ctx, tx)
 		common.HandleErrorReturn(err)
 
+		users, err := u.Ue.FindAllUserViewsEntities(ctx, tx, verifiedAccount, shouldRun)
+		common.HandleErrorReturn(err)
+
 		if shouldRun {
 			if len(users) > 0 {
 				for _, user := range users {
-					err := u.SelectionHistoryEntity.InsertSelectionHistoryEntity(ctx, tx, user.AccountID)
+					err := u.SelectionHistoryEntity.InsertSelectionHistoryEntity(ctx, tx, accountIdIdentifier, user.AccountID)
 					common.HandleErrorReturn(err)
 				}
 			}

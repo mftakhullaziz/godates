@@ -6,5 +6,5 @@ import (
 )
 
 type SelectionHistoryEntity interface {
-	InsertSelectionHistoryEntity(ctx context.Context, tx *sql.Tx, accountId int64) error
+	InsertSelectionHistoryEntity(ctx context.Context, tx *sql.Tx, accountIdIdentifier int64, accountId int64) error
 }

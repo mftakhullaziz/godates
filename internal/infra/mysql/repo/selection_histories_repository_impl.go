@@ -18,8 +18,8 @@ func NewSelectionHistoriesRepositoryImpl() SelectionHistoriesRepository {
 
 // InsertIntoSelectionHistories inserts a new record into the selection_histories table
 func (s *SelectionHistoriesRepositoryImpl) InsertIntoSelectionHistories(ctx context.Context, tx *sql.Tx, record record.SelectionHistoryRecord) error {
-	query := `INSERT INTO selection_histories (account_id, selection_date) VALUES (?, CURDATE())`
-	_, err := tx.ExecContext(ctx, query, record.AccountID)
+	query := `INSERT INTO selection_histories (account_id_identifier, account_id, selection_date) VALUES (?, ?, CURDATE())`
+	_, err := tx.ExecContext(ctx, query, record.AccountIdIdentifier, record.AccountID)
 	if err != nil {
 		return err
 	}
