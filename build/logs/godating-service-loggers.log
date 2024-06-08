@@ -274,3 +274,14 @@
 [application-service] 2024/06/09 01:58:58 user repository | user record : {
   "Locker": {}
 }
+[application-service] 2024/06/09 02:33:12 Shutting down the server...
+[application-service] 2024/06/09 02:33:17 Connected to DB MySQL success!
+[application-service] 2024/06/09 02:33:17 Connected to Redis successfully
+[application-service] 2024/06/09 02:33:17 Cron job started
+[application-service] 2024/06/09 02:34:34 { haijoe@gmail.com test1234}
+[application-service] 2024/06/09 02:34:34 Transaction failed: failed to find user
+[application-service] 2024/06/09 02:34:48 { java21@gmail.com test1234}
+[application-service] 2024/06/09 02:34:48 Transaction failed: failed to find user
+[application-service] 2024/06/09 02:35:01 { java21@gmail.com test1234}
+[application-service] 2024/06/09 02:35:01 Transaction failed: failed to find user
+[application-service] 2024/06/09 02:36:04 Shutting down the server...

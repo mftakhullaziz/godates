@@ -20,7 +20,7 @@ const (
 	FindByUserIdAndAccountIdLoginHistoryRecord = `SELECT * FROM login_histories WHERE user_id = ? AND account_id = ? AND logout_at IS NULL`
 	UpdateLoginHistoryRecord                   = `UPDATE login_histories SET logout_at = ?, duration_in_seconds = ? WHERE login_histories_id = ?`
 	InsertIntoDailyQuotaRecord                 = `INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)`
-	FindAllUserAccountsListRecord              = `SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name FROM users u INNER JOIN accounts a ON u.account_id = a.account_id`
+	FindAllUserAccountsListRecord              = `SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address FROM users u INNER JOIN accounts a ON u.account_id = a.account_id`
 )
 
 func ExecuteQuery(ctx context.Context, db *sql.DB, query string, args ...interface{}) (sql.Result, error) {

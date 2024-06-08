@@ -83,3 +83,28 @@ func (u UserEntitiesImpl) FindAllUserEntities(ctx context.Context, tx *sql.Tx) (
 
 	return allUser, nil
 }
+
+func (u UserEntitiesImpl) FindAllUserViewsEntities(ctx context.Context, tx *sql.Tx) ([]domain.AllUserViews, error) {
+	allUsers, err := u.repository.GetAllUsersFromDB(ctx, tx)
+	if err != nil {
+		return nil, errors.New("could not get all users")
+	}
+
+	var allUser []domain.AllUserViews
+	for _, user := range allUsers {
+		usr := domain.AllUserViews{
+			UserID:    user.UserID,
+			AccountID: user.AccountID,
+			Username:  user.Username,
+			FullName:  &user.FullName,
+			Gender:    user.Gender,
+			Age:       user.Age,
+			Bio:       user.Bio,
+			Verified:  user.Verified,
+		}
+
+		allUser = append(allUser, usr)
+	}
+
+	return allUser, nil
+}

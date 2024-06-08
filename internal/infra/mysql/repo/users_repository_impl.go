@@ -106,6 +106,9 @@ func (u UserRepositoryImpl) GetAllUsersFromDB(ctx context.Context, tx *sql.Tx) (
 			&user.Verified,
 			&user.FullName,
 			&user.Username,
+			&user.Gender,
+			&user.Bio,
+			&user.Address,
 		); err != nil {
 			return nil, fmt.Errorf("could not scan row: %v", err)
 		}

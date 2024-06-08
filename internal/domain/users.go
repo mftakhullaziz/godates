@@ -32,3 +32,29 @@ type AllUsers struct {
 	AccountID int64
 	Verified  bool
 }
+
+type AllUserViews struct {
+	UserID    int64
+	AccountID int64
+	FullName  *string
+	Username  string
+	Age       int
+	Gender    string
+	Address   string
+	Bio       string
+	Verified  bool
+}
+
+type UserViewsResponse struct {
+	UserID    int64
+	AccountID int64
+	FullName  *string
+	Username  string
+	Photos    []string
+	Videos    []string
+	Age       int
+	Gender    string
+	Address   string
+	Bio       string
+	Verified  bool
+}

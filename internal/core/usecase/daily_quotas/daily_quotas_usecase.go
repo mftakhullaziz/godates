@@ -28,7 +28,7 @@ func (d DailyQuotasUsecase) ExecuteAutoUpdateDailyQuotaUsecase(ctx context.Conte
 	fn := func(tx *sql.Tx) error {
 		users, err := d.Ue.FindAllUserEntities(ctx, tx)
 		common.HandleErrorReturn(err)
-		log.Printf("users: %v", users)
+		common.PrintJSON("daily usecase | users", users)
 
 		for _, user := range users {
 			dailyQuotaDto := domain.DailyQuotasDto{
@@ -40,7 +40,7 @@ func (d DailyQuotasUsecase) ExecuteAutoUpdateDailyQuotaUsecase(ctx context.Conte
 			if user.Verified == true {
 				dailyQuotaDto.UserIsVerified = true
 			}
-			common.PrintJSON("usecase | daily quotas", dailyQuotaDto)
+			common.PrintJSON("daily usecase | daily quotas", dailyQuotaDto)
 
 			err := d.Dqe.UpdateOrInsertDailyQuotaEntities(ctx, tx, dailyQuotaDto)
 			common.HandleErrorReturn(err)

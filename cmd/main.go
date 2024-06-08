@@ -13,7 +13,8 @@ import (
 	userEntities "godating-dealls/internal/core/entities/users"
 	authUsecase "godating-dealls/internal/core/usecase/auths"
 	dailyQuotaUsecase "godating-dealls/internal/core/usecase/daily_quotas"
-	authHandler "godating-dealls/internal/handler"
+	"godating-dealls/internal/core/usecase/users"
+	"godating-dealls/internal/handler"
 	"godating-dealls/internal/infra/mysql/repo"
 	"godating-dealls/internal/infra/redisclient"
 	"godating-dealls/router"
@@ -54,14 +55,18 @@ func main() {
 
 	// Create the use case with entities
 	ua := authUsecase.NewAuthUsecase(DB, ea, eu, RS, elh)
+
 	udq := dailyQuotaUsecase.NewDailyQuotasUsecase(DB, edq, eu)
 	InitializeCronJobDailyQuota(ctx, udq)
 
+	uu := users.NewUserUsecase(eu, DB)
+
 	// Create the handler with the use case
-	ha := authHandler.NewAuthHandler(ua)
+	ha := handler.NewAuthHandler(ua)
+	hu := handler.NewUsersHandler(uu)
 
 	// Set up the router
-	r := router.InitializeRouter(ha)
+	r := router.InitializeRouter(ha, hu)
 
 	// Create a channel to listen for OS signals
 	stop := make(chan os.Signal, 1)
