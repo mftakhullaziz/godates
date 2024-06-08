@@ -6,7 +6,7 @@ import (
 	"errors"
 	"github.com/go-playground/validator/v10"
 	"godating-dealls/internal/common"
-	"godating-dealls/internal/domain/users"
+	"godating-dealls/internal/domain"
 	"godating-dealls/internal/infra/mysql/record"
 	repository "godating-dealls/internal/infra/mysql/repo"
 	"log"
@@ -21,7 +21,7 @@ func NewUserEntitiesImpl(repository repository.UserRepository, validate *validat
 	return &UserEntitiesImpl{repository: repository, validate: validate}
 }
 
-func (u UserEntitiesImpl) SaveUserEntities(ctx context.Context, tx *sql.Tx, dto users.UserDto) error {
+func (u UserEntitiesImpl) SaveUserEntities(ctx context.Context, tx *sql.Tx, dto domain.UserDto) error {
 	// validate request dto
 	err := u.validate.Struct(dto)
 	if err != nil {
@@ -50,13 +50,13 @@ func (u UserEntitiesImpl) SaveUserEntities(ctx context.Context, tx *sql.Tx, dto 
 	return err
 }
 
-func (u UserEntitiesImpl) FindUserEntities(ctx context.Context, tx *sql.Tx, accountId int64) (users.Users, error) {
+func (u UserEntitiesImpl) FindUserEntities(ctx context.Context, tx *sql.Tx, accountId int64) (domain.Users, error) {
 	user, err := u.repository.GetUserByAccountIdFromDB(ctx, tx, accountId)
 	if err != nil {
-		return users.Users{}, err
+		return domain.Users{}, err
 	}
 
-	usr := users.Users{
+	usr := domain.Users{
 		UserID:    user.UserID,
 		AccountID: user.AccountID,
 	}
@@ -64,15 +64,15 @@ func (u UserEntitiesImpl) FindUserEntities(ctx context.Context, tx *sql.Tx, acco
 	return usr, nil
 }
 
-func (u UserEntitiesImpl) FindAllUserEntities(ctx context.Context, tx *sql.Tx) ([]users.AllUsers, error) {
+func (u UserEntitiesImpl) FindAllUserEntities(ctx context.Context, tx *sql.Tx) ([]domain.AllUsers, error) {
 	allUsers, err := u.repository.GetAllUsersFromDB(ctx, tx)
 	if err != nil {
 		return nil, errors.New("could not get all users")
 	}
 
-	var allUser []users.AllUsers
+	var allUser []domain.AllUsers
 	for _, user := range allUsers {
-		usr := users.AllUsers{
+		usr := domain.AllUsers{
 			UserID:    user.UserID,
 			AccountID: user.AccountID,
 			Verified:  user.Verified,

@@ -10,8 +10,6 @@ import (
 	lh "godating-dealls/internal/core/entities/login_histories"
 	ue "godating-dealls/internal/core/entities/users"
 	"godating-dealls/internal/domain"
-	payload "godating-dealls/internal/domain/auths"
-	"godating-dealls/internal/domain/users"
 	"godating-dealls/internal/infra/jsonwebtoken"
 	"godating-dealls/internal/infra/redisclient"
 	"log"
@@ -40,9 +38,9 @@ func NewAuthUsecase(
 	}
 }
 
-func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request payload.LoginRequest, boundary OutputAuthBoundary) error {
+func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request domain.LoginRequest, boundary OutputAuthBoundary) error {
 	fn := func(tx *sql.Tx) error {
-		accountDTO := payload.AccountDto{
+		accountDTO := domain.AccountDto{
 			Username: &request.Username,
 			Password: request.Password,
 			Email:    &request.Email,
@@ -87,7 +85,7 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request payload.
 			return errors.New("failed to save token")
 		}
 
-		res := payload.LoginResponse{
+		res := domain.LoginResponse{
 			Username:    account.Username,
 			Email:       account.Email,
 			AccessToken: token,
@@ -103,9 +101,9 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request payload.
 	return err
 }
 
-func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request payload.RegisterRequest, boundary OutputAuthBoundary) error {
+func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request domain.RegisterRequest, boundary OutputAuthBoundary) error {
 	fn := func(tx *sql.Tx) error {
-		accountDTO := payload.AccountDto{
+		accountDTO := domain.AccountDto{
 			Username: &request.Username,
 			Password: request.Password,
 			Email:    &request.Email,
@@ -115,14 +113,14 @@ func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request paylo
 			return err
 		}
 
-		userDto := users.UserDto{
+		userDto := domain.UserDto{
 			AccountID: account.AccountId,
 		}
 		if err := au.UE.SaveUserEntities(ctx, tx, userDto); err != nil {
 			return err
 		}
 
-		res := payload.RegisterResponse{
+		res := domain.RegisterResponse{
 			AccountId: account.AccountId,
 			Email:     account.Email,
 			Username:  account.Username,
@@ -155,7 +153,7 @@ func (au *AuthUsecase) ExecuteLogoutUsecase(ctx context.Context, accessToken *st
 		err = au.Rds.ClearFromRedis(ctx, redisKey)
 		common.HandleErrorReturn(err)
 
-		res := payload.LogoutResponse{
+		res := domain.LogoutResponse{
 			Message: "User successfully logged out",
 		}
 		boundary.LogoutResponse(res, nil)

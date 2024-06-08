@@ -3,7 +3,7 @@ package presenters
 import (
 	"godating-dealls/internal/common"
 	usecase "godating-dealls/internal/core/usecase/auths"
-	"godating-dealls/internal/domain/auths"
+	"godating-dealls/internal/domain"
 	"net/http"
 )
 
@@ -18,18 +18,18 @@ func NewAuthPresenter(w http.ResponseWriter) usecase.OutputAuthBoundary {
 }
 
 // RegisterResponse sends the registration response to the client
-func (ap *AuthPresenter) RegisterResponse(response auths.RegisterResponse, err error) {
+func (ap *AuthPresenter) RegisterResponse(response domain.RegisterResponse, err error) {
 	common.HandleInternalServerError(err, ap.w)
 	common.WriteJSONResponse(ap.w, http.StatusCreated, "Created account successfully", response)
 }
 
 // LoginResponse sends the login response to the client
-func (ap *AuthPresenter) LoginResponse(response auths.LoginResponse, err error) {
+func (ap *AuthPresenter) LoginResponse(response domain.LoginResponse, err error) {
 	common.HandleInternalServerError(err, ap.w)
 	common.WriteJSONResponse(ap.w, http.StatusOK, "Login account successfully", response)
 }
 
-func (ap *AuthPresenter) LogoutResponse(response auths.LogoutResponse, err error) {
+func (ap *AuthPresenter) LogoutResponse(response domain.LogoutResponse, err error) {
 	common.HandleInternalServerError(err, ap.w)
 	common.WriteJSONResponse(ap.w, http.StatusOK, "Logout account successfully", response)
 }

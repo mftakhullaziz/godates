@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"godating-dealls/internal/common"
 	input "godating-dealls/internal/core/usecase/auths"
-	"godating-dealls/internal/domain/auths"
+	"godating-dealls/internal/domain"
 	presenters "godating-dealls/internal/presenter"
 	"log"
 	"net/http"
@@ -22,7 +22,7 @@ func NewAuthHandler(usecase input.InputAuthBoundary) *AuthHandler {
 }
 
 func (ah *AuthHandler) RegisterUserHandler(w http.ResponseWriter, r *http.Request) {
-	var request auths.RegisterRequest
+	var request domain.RegisterRequest
 	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
 		http.Error(w, "Invalid request payload", http.StatusBadRequest)
 		return
@@ -39,7 +39,7 @@ func (ah *AuthHandler) RegisterUserHandler(w http.ResponseWriter, r *http.Reques
 }
 
 func (ah *AuthHandler) LoginUserHandler(w http.ResponseWriter, r *http.Request) {
-	var request auths.LoginRequest
+	var request domain.LoginRequest
 	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
 		http.Error(w, "Invalid request payload", http.StatusBadRequest)
 		return

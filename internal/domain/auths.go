@@ -1,4 +1,4 @@
-package auths
+package domain
 
 import "time"
 

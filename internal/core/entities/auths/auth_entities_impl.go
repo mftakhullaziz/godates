@@ -6,7 +6,7 @@ import (
 	"errors"
 	"github.com/go-playground/validator/v10"
 	"godating-dealls/internal/common"
-	"godating-dealls/internal/domain/auths"
+	"godating-dealls/internal/domain"
 	"godating-dealls/internal/infra/mysql/record"
 	repository "godating-dealls/internal/infra/mysql/repo"
 	"log"
@@ -22,11 +22,11 @@ func NewAccountsEntitiesImpl(repository repository.AccountRepository, validate *
 }
 
 // SaveAccountEntities this is business rules enterprise of accounts
-func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, tx *sql.Tx, dto auths.AccountDto) (auths.Accounts, error) {
+func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, tx *sql.Tx, dto domain.AccountDto) (domain.Accounts, error) {
 	// validate request dto
 	err := a.validate.Struct(dto)
 	if err != nil {
-		return auths.Accounts{}, err
+		return domain.Accounts{}, err
 	}
 
 	// add validate username and email
@@ -34,7 +34,7 @@ func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, tx *sql.Tx
 	usernameIsExist := a.repository.IsExistAccountByUsernameFromDB(ctx, tx, *dto.Username)
 
 	if emailIsExist || usernameIsExist {
-		return auths.Accounts{}, errors.New("email or username already exists")
+		return domain.Accounts{}, errors.New("email or username already exists")
 	}
 
 	records := record.AccountRecord{
@@ -47,10 +47,10 @@ func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, tx *sql.Tx
 
 	account, err := a.repository.CreateAccountToDB(ctx, tx, records)
 	if err != nil {
-		return auths.Accounts{}, err
+		return domain.Accounts{}, err
 	}
 
-	result := auths.Accounts{
+	result := domain.Accounts{
 		AccountId: account.AccountID,
 		Username:  account.Username,
 		Email:     account.Email,
@@ -61,19 +61,19 @@ func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, tx *sql.Tx
 	return result, err
 }
 
-func (a AccountEntitiesImpl) AuthenticateAccount(ctx context.Context, tx *sql.Tx, dto auths.AccountDto) (auths.Accounts, error) {
+func (a AccountEntitiesImpl) AuthenticateAccount(ctx context.Context, tx *sql.Tx, dto domain.AccountDto) (domain.Accounts, error) {
 	// validate request dto
 	err := a.validate.Struct(dto)
 	if err != nil {
-		return auths.Accounts{}, err
+		return domain.Accounts{}, err
 	}
 
 	if dto.Username != nil && *dto.Username != "" && dto.Email != nil && *dto.Email != "" {
 		account, err := a.repository.FindAccountByUsernameAndEmailFromDB(ctx, tx, *dto.Email, *dto.Username)
 		if err != nil {
-			return auths.Accounts{}, err
+			return domain.Accounts{}, err
 		}
-		res := auths.Accounts{
+		res := domain.Accounts{
 			AccountId: account.AccountID,
 			Username:  account.Username,
 			Email:     account.Email,
@@ -85,9 +85,9 @@ func (a AccountEntitiesImpl) AuthenticateAccount(ctx context.Context, tx *sql.Tx
 	} else if dto.Username != nil && *dto.Username != "" {
 		account, err := a.repository.FindAccountByUsernameFromDB(ctx, tx, *dto.Username)
 		if err != nil {
-			return auths.Accounts{}, err
+			return domain.Accounts{}, err
 		}
-		res := auths.Accounts{
+		res := domain.Accounts{
 			AccountId: account.AccountID,
 			Username:  account.Username,
 			Email:     account.Email,
@@ -99,9 +99,9 @@ func (a AccountEntitiesImpl) AuthenticateAccount(ctx context.Context, tx *sql.Tx
 	} else if dto.Email != nil && *dto.Email != "" {
 		account, err := a.repository.FindAccountByEmailFromDB(ctx, tx, *dto.Email)
 		if err != nil {
-			return auths.Accounts{}, err
+			return domain.Accounts{}, err
 		}
-		res := auths.Accounts{
+		res := domain.Accounts{
 			AccountId: account.AccountID,
 			Username:  account.Username,
 			Email:     account.Email,
@@ -112,5 +112,5 @@ func (a AccountEntitiesImpl) AuthenticateAccount(ctx context.Context, tx *sql.Tx
 		return res, err
 	}
 
-	return auths.Accounts{}, err
+	return domain.Accounts{}, err
 }

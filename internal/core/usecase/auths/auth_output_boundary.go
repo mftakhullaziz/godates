@@ -1,6 +1,8 @@
 package auths
 
-import res "godating-dealls/internal/domain/auths"
+import (
+	res "godating-dealls/internal/domain"
+)
 
 type OutputAuthBoundary interface {
 	LoginResponse(response res.LoginResponse, err error)
