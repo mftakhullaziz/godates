@@ -61,7 +61,7 @@ func main() {
 	ha := authHandler.NewAuthHandler(ua)
 
 	// Set up the router
-	r := router.SetupRouter(ha)
+	r := router.InitializeRouter(ha)
 
 	// Create a channel to listen for OS signals
 	stop := make(chan os.Signal, 1)
@@ -102,7 +102,7 @@ func InitializeRedis(ctx context.Context) redisclient.RedisInterface {
 func InitializeCronJobDailyQuota(ctx context.Context, boundary dailyQuotaUsecase.InputDailyQuotaBoundary) {
 	c := cron.New()
 	// Run every 24 hours
-	_, err := c.AddFunc("@every 5s", func() { // Changed to run every minute for testing
+	_, err := c.AddFunc("@every 24h", func() { // Changed to run every minute for testing
 		log.Println("Executing daily quota update usecase")
 		err := boundary.ExecuteAutoUpdateDailyQuotaUsecase(ctx)
 		if err != nil {
