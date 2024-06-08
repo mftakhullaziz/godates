@@ -13,10 +13,10 @@ import (
 
 type DailyQuotasEntitiesImpl struct {
 	DailyQuotaRepository repo.DailyQuotasRepository
-	Validate             validator.Validate
+	Validate             *validator.Validate
 }
 
-func NewDailyQuotasEntitiesImpl(validate validator.Validate, dailyQuotaRepository repo.DailyQuotasRepository) DailyQuotasEntities {
+func NewDailyQuotasEntitiesImpl(validate *validator.Validate, dailyQuotaRepository repo.DailyQuotasRepository) DailyQuotasEntities {
 	return &DailyQuotasEntitiesImpl{Validate: validate, DailyQuotaRepository: dailyQuotaRepository}
 }
 
@@ -32,7 +32,8 @@ func (d DailyQuotasEntitiesImpl) UpdateOrInsertDailyQuotaEntities(ctx context.Co
 		TotalQuota: 10, // Set the default quota
 	}
 
-	if common.CheckInt64NotNilAndNotZero(dto.TotalQuotaUnlimited) {
+	// Set total quota is unlimited
+	if dto.UserIsVerified == true {
 		dailyQuota.TotalQuota = -1
 	}
 

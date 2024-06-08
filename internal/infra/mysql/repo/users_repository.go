@@ -10,4 +10,5 @@ type UserRepository interface {
 	CreateUserToDB(ctx context.Context, tx *sql.Tx, userRecord record.UserRecord) (record.UserRecord, error)
 	FindUserByUserIDFromDB(ctx context.Context, tx *sql.Tx, id int64) bool
 	GetUserByAccountIdFromDB(ctx context.Context, tx *sql.Tx, accountId int64) (record.UserRecord, error)
+	GetAllUsersFromDB(ctx context.Context, tx *sql.Tx) ([]record.UserAccountRecord, error)
 }

@@ -94,3 +94,30 @@ func (u UserRepositoryImpl) GetUserByAccountIdFromDB(ctx context.Context, tx *sq
 	// Return the retrieved account record
 	return userRecord, nil
 }
+
+func (u UserRepositoryImpl) GetAllUsersFromDB(ctx context.Context, tx *sql.Tx) ([]record.UserAccountRecord, error) {
+	rows, err := tx.QueryContext(ctx, "SELECT a.account_id, u.user_id, a.verified FROM users u INNER JOIN accounts a ON u.account_id = a.account_id")
+	if err != nil {
+		return nil, fmt.Errorf("could not execute query: %v", err)
+	}
+	defer rows.Close()
+
+	var users []record.UserAccountRecord
+	for rows.Next() {
+		var user record.UserAccountRecord
+		if err := rows.Scan(
+			&user.AccountID,
+			&user.UserID,
+			&user.Verified,
+		); err != nil {
+			return nil, fmt.Errorf("could not scan row: %v", err)
+		}
+		users = append(users, user)
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, fmt.Errorf("row iteration error: %v", err)
+	}
+
+	return users, nil
+}

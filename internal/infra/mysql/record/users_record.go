@@ -18,3 +18,9 @@ type UserRecord struct {
 func (UserRecord) TableName() string {
 	return "users"
 }
+
+// UserAccountRecord represents a user profile with additional verified field
+type UserAccountRecord struct {
+	UserRecord
+	Verified bool
+}

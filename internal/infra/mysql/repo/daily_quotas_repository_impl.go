@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"godating-dealls/internal/infra/mysql/record"
+	"log"
 )
 
 type DailyQuotasRepositoryImpl struct {
@@ -23,6 +24,7 @@ func (d DailyQuotasRepositoryImpl) UpdateOrInsertDailyQuota(ctx context.Context,
             swipe_count = EXCLUDED.swipe_count,
             total_quota = EXCLUDED.total_quota
     `
+	log.Printf("query: %s", query)
 	_, err := tx.ExecContext(ctx, query, dailyQuota.AccountID, dailyQuota.Date, dailyQuota.SwipeCount, dailyQuota.TotalQuota)
 	return err
 }

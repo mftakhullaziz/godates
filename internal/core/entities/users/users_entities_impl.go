@@ -63,3 +63,23 @@ func (u UserEntitiesImpl) FindUserEntities(ctx context.Context, tx *sql.Tx, acco
 
 	return usr, nil
 }
+
+func (u UserEntitiesImpl) FindAllUserEntities(ctx context.Context, tx *sql.Tx) ([]users.AllUsers, error) {
+	allUsers, err := u.repository.GetAllUsersFromDB(ctx, tx)
+	if err != nil {
+		return nil, errors.New("could not get all users")
+	}
+
+	var allUser []users.AllUsers
+	for _, user := range allUsers {
+		usr := users.AllUsers{
+			UserID:    user.UserID,
+			AccountID: user.AccountID,
+			Verified:  user.Verified,
+		}
+
+		allUser = append(allUser, usr)
+	}
+
+	return allUser, nil
+}

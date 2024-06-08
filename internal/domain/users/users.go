@@ -25,3 +25,9 @@ type Users struct {
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
 }
+
+type AllUsers struct {
+	UserID    int64
+	AccountID int64
+	Verified  bool
+}
