@@ -62,3 +62,9 @@ func (d DailyQuotasEntityImpl) UpdateIncreaseSwipeCount(ctx context.Context, tx 
 	common.HandleErrorReturn(err)
 	return nil
 }
+
+func (d DailyQuotasEntityImpl) UpdateTotalQuotasInPremiumAccount(ctx context.Context, tx *sql.Tx, accountId int64) error {
+	err := d.DailyQuotaRepository.UpdateTotalQuotaInPremiumAccount(ctx, tx, record.DailyQuotaRecord{AccountID: accountId})
+	common.HandleErrorReturn(err)
+	return nil
+}

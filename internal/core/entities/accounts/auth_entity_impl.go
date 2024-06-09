@@ -124,3 +124,11 @@ func (a AccountEntityImpl) FindAccountVerifiedEntities(ctx context.Context, tx *
 	}
 	return verified, nil
 }
+
+func (a AccountEntityImpl) UpdateAccountVerified(ctx context.Context, tx *sql.Tx, accountId int64) error {
+	err := a.repository.UpdateAccountVerifiedByAccountIdFromDB(ctx, tx, accountId)
+	if err != nil {
+		return errors.New("failed to update account verified entities")
+	}
+	return nil
+}

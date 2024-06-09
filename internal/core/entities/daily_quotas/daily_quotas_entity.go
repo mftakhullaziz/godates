@@ -11,4 +11,5 @@ type DailyQuotasEntity interface {
 	FetchTotalDailyQuotas(ctx context.Context, tx *sql.Tx, accountId int64) (int64, error)
 	UpdateIncreaseSwipeCountAndDecreaseTotalQuota(ctx context.Context, tx *sql.Tx, accountId int64) error
 	UpdateIncreaseSwipeCount(ctx context.Context, tx *sql.Tx, accountId int64) error
+	UpdateTotalQuotasInPremiumAccount(ctx context.Context, tx *sql.Tx, accountId int64) error
 }

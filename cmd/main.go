@@ -59,7 +59,7 @@ func main() {
 	purchaseRepository := repo.NewPurchasePackagesRepositoryImpl()
 
 	// Entities represented of enterprise business rules for that self of entity
-	authEntity := accounts.NewAccountsEntityImpl(accountRepository, val)
+	accountEntity := accounts.NewAccountsEntityImpl(accountRepository, val)
 	userEntity := usersentity.NewUserEntityImpl(userRepository, val)
 	loginHistoryEntity := loginhistoryentity.NewLoginHistoriesEntityImpl(val, loginHistoryRepository)
 	dailyQuotasEntity := dailyquotaentity.NewDailyQuotasEntityImpl(val, dailyQuotaRepository)
@@ -69,12 +69,12 @@ func main() {
 	packageEntity := packages.NewPackageEntityImpl(packageRepository, purchaseRepository)
 
 	// Usecase
-	authenticateUsecase := accountusecase.NewAuthUsecase(DB, authEntity, userEntity, RS, loginHistoryEntity)
+	authenticateUsecase := accountusecase.NewAuthUsecase(DB, accountEntity, userEntity, RS, loginHistoryEntity)
 	dailyQuotasUsecase := dailyquotausecase.NewDailyQuotasUsecase(DB, dailyQuotasEntity, userEntity)
 	InitializeCronJobDailyQuota(ctx, dailyQuotasUsecase)
-	usersUsecase := users.NewUserUsecase(DB, userEntity, authEntity, selectionHistoryEntity, taskHistoryEntity)
-	swipeUsecase := swipeusecase.NewSwipeUsecase(DB, swipeEntity, dailyQuotasEntity, authEntity)
-	packageUsecase := packageusecase.NewPackageUsecase(DB, packageEntity)
+	usersUsecase := users.NewUserUsecase(DB, userEntity, accountEntity, selectionHistoryEntity, taskHistoryEntity)
+	swipeUsecase := swipeusecase.NewSwipeUsecase(DB, swipeEntity, dailyQuotasEntity, accountEntity)
+	packageUsecase := packageusecase.NewPackageUsecase(DB, packageEntity, accountEntity, dailyQuotasEntity)
 
 	// Create the handler with the use case
 	authenticateHandler := handler.NewAuthHandler(authenticateUsecase)

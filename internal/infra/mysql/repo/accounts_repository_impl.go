@@ -172,3 +172,10 @@ func (a AccountRepositoryImpl) FindAccountVerifiedByAccountIdFromDB(ctx context.
 	// Return the retrieved account record
 	return accountRecord.Verified, nil
 }
+
+func (a AccountRepositoryImpl) UpdateAccountVerifiedByAccountIdFromDB(ctx context.Context, tx *sql.Tx, accountId int64) error {
+	query := "UPDATE accounts SET verified = TRUE WHERE account_id = ?"
+	common.PrintJSON("printed query", query)
+	_, err := tx.ExecContext(ctx, query, accountId)
+	return err
+}

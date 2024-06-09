@@ -5,6 +5,8 @@ import (
 	"database/sql"
 	"errors"
 	"godating-dealls/internal/common"
+	"godating-dealls/internal/core/entities/accounts"
+	"godating-dealls/internal/core/entities/daily_quotas"
 	"godating-dealls/internal/core/entities/packages"
 	"godating-dealls/internal/domain"
 	"godating-dealls/internal/infra/jsonwebtoken"
@@ -12,12 +14,22 @@ import (
 )
 
 type PackageUsecase struct {
-	DB            *sql.DB
-	PackageEntity packages.PackageEntity
+	DB                *sql.DB
+	PackageEntity     packages.PackageEntity
+	AccountEntity     accounts.AccountEntity
+	DailyQuotasEntity daily_quotas.DailyQuotasEntity
 }
 
-func NewPackageUsecase(db *sql.DB, packageEntity packages.PackageEntity) InputPackageBoundary {
-	return &PackageUsecase{DB: db, PackageEntity: packageEntity}
+func NewPackageUsecase(db *sql.DB,
+	packageEntity packages.PackageEntity,
+	accountEntity accounts.AccountEntity,
+	dailyQuotasEntity daily_quotas.DailyQuotasEntity) InputPackageBoundary {
+	return &PackageUsecase{
+		DB:                db,
+		PackageEntity:     packageEntity,
+		AccountEntity:     accountEntity,
+		DailyQuotasEntity: dailyQuotasEntity,
+	}
 }
 
 func (p PackageUsecase) ExecuteGetAllPackages(ctx context.Context, token string, boundary BoundaryPackageOutput) error {
@@ -79,6 +91,15 @@ func (p PackageUsecase) ExecutePurchasedPackages(ctx context.Context, token stri
 		}
 
 		// if success purchase update total quota today to unlimited and account to verified
+		err = p.AccountEntity.UpdateAccountVerified(ctx, tx, claims.AccountId)
+		if err != nil {
+			return errors.New("could not update account verified")
+		}
+
+		err = p.DailyQuotasEntity.UpdateTotalQuotasInPremiumAccount(ctx, tx, claims.AccountId)
+		if err != nil {
+			return errors.New("could not update total quotas")
+		}
 
 		boundary.PurchasePackageResponse(domain.PurchasePackageResponse{
 			PackageID: request.PackageID,

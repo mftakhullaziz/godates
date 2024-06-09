@@ -60,3 +60,10 @@ func (d DailyQuotasRepositoryImpl) UpdateDecreaseTotalCount(ctx context.Context,
 	_, err := tx.ExecContext(ctx, query, dailyQuota.AccountID)
 	return err
 }
+
+func (d DailyQuotasRepositoryImpl) UpdateTotalQuotaInPremiumAccount(ctx context.Context, tx *sql.Tx, dailyQuota record.DailyQuotaRecord) error {
+	query := "UPDATE daily_quotas SET total_quota  = -1 WHERE account_id = ? AND date = CURDATE()"
+	common.PrintJSON("printed query", query)
+	_, err := tx.ExecContext(ctx, query, dailyQuota.AccountID)
+	return err
+}
