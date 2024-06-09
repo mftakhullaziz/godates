@@ -56,6 +56,7 @@ func main() {
 	taskHistoryRepository := repo.NewTaskHistorySQLRepository()
 	swipeRepository := repo.NewSwipesRepositoryImpl()
 	packageRepository := repo.NewPackagesRepositoryImpl()
+	purchaseRepository := repo.NewPurchasePackagesRepositoryImpl()
 
 	// Entities represented of enterprise business rules for that self of entity
 	authEntity := auths.NewAccountsEntitiesImpl(accountRepository, val)
@@ -65,7 +66,7 @@ func main() {
 	selectionHistoryEntity := selection_histories.NewSelectionHistoryEntityImpl(selectionHistoryRepository)
 	taskHistoryEntity := task_history.NewTaskHistoryEntityImpl(taskHistoryRepository)
 	swipeEntity := swipes.NewSwipeEntityImpl(swipeRepository)
-	packageEntity := packages.NewPackageEntityImpl(packageRepository)
+	packageEntity := packages.NewPackageEntityImpl(packageRepository, purchaseRepository)
 
 	// Usecase
 	authenticateUsecase := authUsecase.NewAuthUsecase(DB, authEntity, userEntity, RS, loginHistoryEntity)

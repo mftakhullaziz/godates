@@ -57,3 +57,41 @@ func (p PackageUsecase) ExecuteGetAllPackages(ctx context.Context, token string,
 	}
 	return err
 }
+
+func (p PackageUsecase) ExecutePurchasedPackages(ctx context.Context, token string, request domain.PurchasePackageRequest, boundary BoundaryPackageOutput) error {
+	fn := func(tx *sql.Tx) error {
+		claims, err := jsonwebtoken.VerifyJWTToken(token)
+		if err != nil {
+			return errors.New("invalid token")
+		}
+
+		packageDto := domain.PackageDto{
+			PackageID:                request.PackageID,
+			PackageName:              request.PackageName,
+			Price:                    request.Price,
+			PackageDurationInMonthly: request.PackageDurationInMonthly,
+			UnlimitedSwipes:          request.UnlimitedSwipes,
+			AccountID:                claims.AccountId,
+		}
+		err = p.PackageEntity.PurchasePackage(ctx, tx, packageDto)
+		if err != nil {
+			return errors.New("could not purchase package")
+		}
+
+		// if success purchase update total quota today to unlimited and account to verified
+
+		boundary.PurchasePackageResponse(domain.PurchasePackageResponse{
+			PackageID: request.PackageID,
+			Price:     request.Price,
+			Message:   "Purchased package successfully",
+		}, nil)
+
+		return nil
+	}
+
+	err := common.WithExecuteTransactionalManager(ctx, p.DB, fn)
+	if err != nil {
+		return errors.New("transactional failed")
+	}
+	return err
+}

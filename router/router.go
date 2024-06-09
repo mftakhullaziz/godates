@@ -23,7 +23,7 @@ func InitializeRouter(
 	r.Handle("POST /godating-dealls/api/daily-accounts", md.AuthMiddleware(http.HandlerFunc(userHandler.UserViewsHandler)))
 	r.Handle("POST /godating-dealls/api/swipes", md.AuthMiddleware(http.HandlerFunc(swipeHandler.SwipeHandler)))
 	r.Handle("GET /godating-dealls/api/quota", md.AuthMiddleware(http.HandlerFunc(nil)))
-	r.Handle("POST /godating-dealls/api/purchase-package", md.AuthMiddleware(http.HandlerFunc(nil)))
+	r.Handle("POST /godating-dealls/api/purchase-package", md.AuthMiddleware(http.HandlerFunc(packageHandler.PurchasePackages)))
 	r.Handle("GET /godating-dealls/api/packages", md.AuthMiddleware(http.HandlerFunc(packageHandler.GetPackageHandler)))
 	r.Handle("GET /godating-dealls/api/track-view", md.AuthMiddleware(http.HandlerFunc(nil)))
 

@@ -10,7 +10,7 @@ type AccountPremiumRecord struct {
 	PurchaseDate          time.Time `db:"purchase_date"`
 	ExpiryDate            time.Time `db:"expiry_date"`
 	UnlimitedSwipesActive bool      `db:"unlimited_swipes_active"`
-	VerifiedActive        bool      `db:"verified_active"`
+	Status                bool      `db:"status"`
 }
 
 func (AccountPremiumRecord) TableName() string {

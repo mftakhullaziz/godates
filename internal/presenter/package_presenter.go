@@ -25,3 +25,8 @@ func (p PackagePresenter) PackageResponse(responses []domain.PackageResponse, er
 		common.WriteJSONResponse(p.w, http.StatusOK, "Get packages successfully", responses, int64(len(responses)))
 	}
 }
+
+func (p PackagePresenter) PurchasePackageResponse(response domain.PurchasePackageResponse, err error) {
+	common.HandleInternalServerError(err, p.w)
+	common.WriteJSONResponse(p.w, http.StatusOK, "Purchase packages successfully", response, 1)
+}

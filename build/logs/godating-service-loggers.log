@@ -1380,3 +1380,14 @@
 [application-service] 2024/06/10 00:51:07 Connected to Redis successfully
 [application-service] 2024/06/10 00:51:07 Cron job started
 [application-service] 2024/06/10 00:51:16 Shutting down the server...
+[application-service] 2024/06/10 01:42:54 Connected to DB MySQL success!
+[application-service] 2024/06/10 01:42:54 Connected to Redis successfully
+[application-service] 2024/06/10 01:42:54 Cron job started
+[application-service] 2024/06/10 01:45:34 Handler | Purchase Request : {
+  "package_id": 1,
+  "price": 99999,
+  "package_name": "Basic Package",
+  "package_duration_in_monthly": 1,
+  "unlimited_swipes": true
+}
+[application-service] 2024/06/10 01:49:22 Shutting down the server...

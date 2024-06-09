@@ -5,16 +5,21 @@ import (
 	"database/sql"
 	"errors"
 	"godating-dealls/internal/domain"
+	"godating-dealls/internal/infra/mysql/record"
 	"godating-dealls/internal/infra/mysql/repo"
+	"time"
 )
 
 type PackageEntityImpl struct {
-	PackagesRepository repo.PackagesRepository
+	PackagesRepository         repo.PackagesRepository
+	PurchasePackagesRepository repo.PurchasePackagesRepository
 }
 
-func NewPackageEntityImpl(packagesRepository repo.PackagesRepository) PackageEntity {
+func NewPackageEntityImpl(packagesRepository repo.PackagesRepository,
+	purchasePackagesRepository repo.PurchasePackagesRepository) PackageEntity {
 	return &PackageEntityImpl{
-		PackagesRepository: packagesRepository,
+		PackagesRepository:         packagesRepository,
+		PurchasePackagesRepository: purchasePackagesRepository,
 	}
 }
 
@@ -24,17 +29,33 @@ func (p PackageEntityImpl) GetAllPackagesEntity(ctx context.Context, tx *sql.Tx)
 		return nil, errors.New("get all packages entity is failed")
 	}
 	var packages []domain.PackageDto
-	for _, record := range records {
+	for _, rec := range records {
 		dto := domain.PackageDto{
-			PackageID:                record.PackageID,
-			Description:              record.Description,
-			PackageName:              record.PackageName,
-			Price:                    record.Price,
-			PackageDurationInMonthly: record.PackageDurationInMonthly,
-			UnlimitedSwipes:          record.UnlimitedSwipes,
-			Status:                   record.Status,
+			PackageID:                rec.PackageID,
+			Description:              rec.Description,
+			PackageName:              rec.PackageName,
+			Price:                    rec.Price,
+			PackageDurationInMonthly: rec.PackageDurationInMonthly,
+			UnlimitedSwipes:          rec.UnlimitedSwipes,
+			Status:                   rec.Status,
 		}
 		packages = append(packages, dto)
 	}
 	return packages, nil
+}
+
+func (p PackageEntityImpl) PurchasePackage(ctx context.Context, tx *sql.Tx, dto domain.PackageDto) error {
+	rec := record.AccountPremiumRecord{
+		AccountID:             dto.AccountID,
+		PackageID:             dto.PackageID,
+		PurchaseDate:          time.Now(),
+		ExpiryDate:            time.Now().AddDate(0, int(dto.PackageDurationInMonthly), 0),
+		UnlimitedSwipesActive: dto.UnlimitedSwipes,
+		Status:                dto.Status,
+	}
+	err := p.PurchasePackagesRepository.PurchasePackagesByAccount(ctx, tx, rec)
+	if err != nil {
+		return errors.New("purchase packages by account is failed")
+	}
+	return nil
 }
