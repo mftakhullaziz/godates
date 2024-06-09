@@ -16,25 +16,25 @@ import (
 )
 
 type AuthUsecase struct {
-	DB  *sql.DB
-	AE  ae.AuthEntities
-	UE  ue.UserEntities
-	Rds redisclient.RedisInterface
-	LH  lh.LoginHistoriesEntities
+	DB            *sql.DB
+	AccountEntity ae.AccountEntity
+	UE            ue.UserEntities
+	Rds           redisclient.RedisInterface
+	LH            lh.LoginHistoriesEntities
 }
 
 func NewAuthUsecase(
 	db *sql.DB,
-	ae ae.AuthEntities,
+	accountEntity ae.AccountEntity,
 	ue ue.UserEntities,
 	rds redisclient.RedisInterface,
 	lh lh.LoginHistoriesEntities) InputAuthBoundary {
 	return &AuthUsecase{
-		DB:  db,
-		AE:  ae,
-		UE:  ue,
-		Rds: rds,
-		LH:  lh,
+		DB:            db,
+		AccountEntity: accountEntity,
+		UE:            ue,
+		Rds:           rds,
+		LH:            lh,
 	}
 }
 
@@ -46,7 +46,7 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request domain.L
 			Email:    &request.Email,
 		}
 
-		account, err := au.AE.AuthenticateAccount(ctx, tx, accountDTO)
+		account, err := au.AccountEntity.AuthenticateAccount(ctx, tx, accountDTO)
 		if err != nil {
 			return errors.New("failed to authenticate account")
 		}
@@ -109,7 +109,7 @@ func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request domai
 			Email:    &request.Email,
 		}
 		common.PrintJSON("auth usecase | account dto", accountDTO)
-		account, err := au.AE.SaveAccountEntities(ctx, tx, accountDTO)
+		account, err := au.AccountEntity.SaveAccountEntities(ctx, tx, accountDTO)
 		if err != nil {
 			return err
 		}

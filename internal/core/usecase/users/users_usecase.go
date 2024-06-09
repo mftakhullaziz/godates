@@ -4,7 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"godating-dealls/internal/common"
-	ae "godating-dealls/internal/core/entities/auths"
+	"godating-dealls/internal/core/entities/auths"
 	"godating-dealls/internal/core/entities/selection_histories"
 	"godating-dealls/internal/core/entities/task_history"
 	ue "godating-dealls/internal/core/entities/users"
@@ -17,7 +17,7 @@ import (
 type UserUsecase struct {
 	DB                     *sql.DB
 	Ue                     ue.UserEntities
-	Ae                     ae.AuthEntities
+	AccountEntity          auths.AccountEntity
 	SelectionHistoryEntity selection_histories.SelectionHistoryEntity
 	TaskHistoryEntity      task_history.TaskHistoryEntity
 }
@@ -25,10 +25,11 @@ type UserUsecase struct {
 func NewUserUsecase(
 	db *sql.DB,
 	ue ue.UserEntities,
-	ae ae.AuthEntities,
+	accountEntity auths.AccountEntity,
 	selectionHistoryEntity selection_histories.SelectionHistoryEntity,
 	taskHistoryEntity task_history.TaskHistoryEntity) InputUserBoundary {
-	return &UserUsecase{DB: db, Ue: ue, Ae: ae,
+	return &UserUsecase{DB: db, Ue: ue,
+		AccountEntity:          accountEntity,
 		SelectionHistoryEntity: selectionHistoryEntity,
 		TaskHistoryEntity:      taskHistoryEntity,
 	}
@@ -42,7 +43,7 @@ func (u UserUsecase) ExecuteUserViewsUsecase(ctx context.Context, token string, 
 
 		// first find account type by claims if account verified return all, if not just 10 data
 		accountIdIdentifier := claims.AccountId
-		verifiedAccount, err := u.Ae.FindAccountVerifiedEntities(ctx, tx, accountIdIdentifier)
+		verifiedAccount, err := u.AccountEntity.FindAccountVerifiedEntities(ctx, tx, accountIdIdentifier)
 
 		// Check if the historical selection task should run
 		shouldRun, err := u.shouldRunHistoricalSelectionTask(ctx, tx, accountIdIdentifier)

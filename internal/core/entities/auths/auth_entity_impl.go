@@ -11,17 +11,17 @@ import (
 	repository "godating-dealls/internal/infra/mysql/repo"
 )
 
-type AccountEntitiesImpl struct {
+type AccountEntityImpl struct {
 	repository repository.AccountRepository
 	validate   *validator.Validate
 }
 
-func NewAccountsEntitiesImpl(repository repository.AccountRepository, validate *validator.Validate) AuthEntities {
-	return &AccountEntitiesImpl{repository: repository, validate: validate}
+func NewAccountsEntityImpl(repository repository.AccountRepository, validate *validator.Validate) AccountEntity {
+	return &AccountEntityImpl{repository: repository, validate: validate}
 }
 
 // SaveAccountEntities this is business rules enterprise of accounts
-func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, tx *sql.Tx, dto domain.AccountDto) (domain.Accounts, error) {
+func (a AccountEntityImpl) SaveAccountEntities(ctx context.Context, tx *sql.Tx, dto domain.AccountDto) (domain.Accounts, error) {
 	// validate request dto
 	err := a.validate.Struct(dto)
 	if err != nil {
@@ -63,7 +63,7 @@ func (a AccountEntitiesImpl) SaveAccountEntities(ctx context.Context, tx *sql.Tx
 	return result, err
 }
 
-func (a AccountEntitiesImpl) AuthenticateAccount(ctx context.Context, tx *sql.Tx, dto domain.AccountDto) (domain.Accounts, error) {
+func (a AccountEntityImpl) AuthenticateAccount(ctx context.Context, tx *sql.Tx, dto domain.AccountDto) (domain.Accounts, error) {
 	// validate request dto
 	err := a.validate.Struct(dto)
 	if err != nil {
@@ -117,7 +117,7 @@ func (a AccountEntitiesImpl) AuthenticateAccount(ctx context.Context, tx *sql.Tx
 	return domain.Accounts{}, err
 }
 
-func (a AccountEntitiesImpl) FindAccountVerifiedEntities(ctx context.Context, tx *sql.Tx, accountId int64) (bool, error) {
+func (a AccountEntityImpl) FindAccountVerifiedEntities(ctx context.Context, tx *sql.Tx, accountId int64) (bool, error) {
 	verified, err := a.repository.FindAccountVerifiedByAccountIdFromDB(ctx, tx, accountId)
 	if err != nil {
 		return false, errors.New("failed to find account verified entities")

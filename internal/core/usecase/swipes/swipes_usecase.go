@@ -17,11 +17,11 @@ type SwipeUsecase struct {
 	DB                *sql.DB
 	SwipeEntity       swipes.SwipeEntity
 	DailyQuotasEntity daily_quotas.DailyQuotasEntity
-	AuthEntity        auths.AuthEntities
+	AccountEntity     auths.AccountEntity
 }
 
-func NewSwipeUsecase(db *sql.DB, swipeEntity swipes.SwipeEntity, dailyQuotasEntity daily_quotas.DailyQuotasEntity, authEntity auths.AuthEntities) InputSwipeBoundary {
-	return &SwipeUsecase{DB: db, SwipeEntity: swipeEntity, DailyQuotasEntity: dailyQuotasEntity, AuthEntity: authEntity}
+func NewSwipeUsecase(db *sql.DB, swipeEntity swipes.SwipeEntity, dailyQuotasEntity daily_quotas.DailyQuotasEntity, accountEntity auths.AccountEntity) InputSwipeBoundary {
+	return &SwipeUsecase{DB: db, SwipeEntity: swipeEntity, DailyQuotasEntity: dailyQuotasEntity, AccountEntity: accountEntity}
 }
 
 func (s SwipeUsecase) ExecuteSwipes(ctx context.Context, token string, request domain.SwipeRequest, boundary OutputSwipesBoundary) error {
@@ -33,7 +33,7 @@ func (s SwipeUsecase) ExecuteSwipes(ctx context.Context, token string, request d
 		}
 
 		accountIdIdentifier := claims.AccountId
-		verifiedAccount, err := s.AuthEntity.FindAccountVerifiedEntities(ctx, tx, accountIdIdentifier)
+		verifiedAccount, err := s.AccountEntity.FindAccountVerifiedEntities(ctx, tx, accountIdIdentifier)
 
 		var message string
 

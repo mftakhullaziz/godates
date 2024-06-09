@@ -59,7 +59,7 @@ func main() {
 	purchaseRepository := repo.NewPurchasePackagesRepositoryImpl()
 
 	// Entities represented of enterprise business rules for that self of entity
-	authEntity := auths.NewAccountsEntitiesImpl(accountRepository, val)
+	authEntity := auths.NewAccountsEntityImpl(accountRepository, val)
 	userEntity := usersentity.NewUserEntitiesImpl(userRepository, val)
 	loginHistoryEntity := loginhistoryentity.NewLoginHistoriesEntitiesImpl(val, loginHistoryRepository)
 	dailyQuotasEntity := dailyquotaentity.NewDailyQuotasEntityImpl(val, dailyQuotaRepository)
