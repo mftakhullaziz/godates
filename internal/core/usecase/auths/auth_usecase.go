@@ -6,7 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"godating-dealls/internal/common"
-	"godating-dealls/internal/core/entities/auths"
+	"godating-dealls/internal/core/entities/accounts"
 	"godating-dealls/internal/core/entities/login_histories"
 	"godating-dealls/internal/core/entities/users"
 	"godating-dealls/internal/domain"
@@ -17,7 +17,7 @@ import (
 
 type AuthUsecase struct {
 	DB                   *sql.DB
-	AccountEntity        auths.AccountEntity
+	AccountEntity        accounts.AccountEntity
 	UserEntity           users.UserEntity
 	Rds                  redisclient.RedisInterface
 	LoginHistoriesEntity login_histories.LoginHistoriesEntity
@@ -25,7 +25,7 @@ type AuthUsecase struct {
 
 func NewAuthUsecase(
 	db *sql.DB,
-	accountEntity auths.AccountEntity,
+	accountEntity accounts.AccountEntity,
 	userEntity users.UserEntity,
 	rds redisclient.RedisInterface,
 	loginHistoriesEntity login_histories.LoginHistoriesEntity) InputAuthBoundary {

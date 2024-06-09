@@ -4,7 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"godating-dealls/internal/common"
-	"godating-dealls/internal/core/entities/auths"
+	"godating-dealls/internal/core/entities/accounts"
 	"godating-dealls/internal/core/entities/selection_histories"
 	"godating-dealls/internal/core/entities/task_history"
 	"godating-dealls/internal/core/entities/users"
@@ -17,7 +17,7 @@ import (
 type UserUsecase struct {
 	DB                     *sql.DB
 	UserEntity             users.UserEntity
-	AccountEntity          auths.AccountEntity
+	AccountEntity          accounts.AccountEntity
 	SelectionHistoryEntity selection_histories.SelectionHistoryEntity
 	TaskHistoryEntity      task_history.TaskHistoryEntity
 }
@@ -25,7 +25,7 @@ type UserUsecase struct {
 func NewUserUsecase(
 	db *sql.DB,
 	userEntity users.UserEntity,
-	accountEntity auths.AccountEntity,
+	accountEntity accounts.AccountEntity,
 	selectionHistoryEntity selection_histories.SelectionHistoryEntity,
 	taskHistoryEntity task_history.TaskHistoryEntity) InputUserBoundary {
 	return &UserUsecase{

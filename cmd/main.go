@@ -7,7 +7,7 @@ import (
 	"github.com/robfig/cron/v3"
 	"godating-dealls/conf"
 	"godating-dealls/internal/common"
-	"godating-dealls/internal/core/entities/auths"
+	"godating-dealls/internal/core/entities/accounts"
 	dailyquotaentity "godating-dealls/internal/core/entities/daily_quotas"
 	loginhistoryentity "godating-dealls/internal/core/entities/login_histories"
 	"godating-dealls/internal/core/entities/packages"
@@ -15,10 +15,10 @@ import (
 	"godating-dealls/internal/core/entities/swipes"
 	"godating-dealls/internal/core/entities/task_history"
 	usersentity "godating-dealls/internal/core/entities/users"
-	authUsecase "godating-dealls/internal/core/usecase/auths"
-	dailyQuotaUsecase "godating-dealls/internal/core/usecase/daily_quotas"
-	packages2 "godating-dealls/internal/core/usecase/packages"
-	swipes2 "godating-dealls/internal/core/usecase/swipes"
+	accountusecase "godating-dealls/internal/core/usecase/auths"
+	dailyquotausecase "godating-dealls/internal/core/usecase/daily_quotas"
+	packageusecase "godating-dealls/internal/core/usecase/packages"
+	swipeusecase "godating-dealls/internal/core/usecase/swipes"
 	"godating-dealls/internal/core/usecase/users"
 	"godating-dealls/internal/handler"
 	"godating-dealls/internal/infra/mysql/repo"
@@ -59,7 +59,7 @@ func main() {
 	purchaseRepository := repo.NewPurchasePackagesRepositoryImpl()
 
 	// Entities represented of enterprise business rules for that self of entity
-	authEntity := auths.NewAccountsEntityImpl(accountRepository, val)
+	authEntity := accounts.NewAccountsEntityImpl(accountRepository, val)
 	userEntity := usersentity.NewUserEntityImpl(userRepository, val)
 	loginHistoryEntity := loginhistoryentity.NewLoginHistoriesEntityImpl(val, loginHistoryRepository)
 	dailyQuotasEntity := dailyquotaentity.NewDailyQuotasEntityImpl(val, dailyQuotaRepository)
@@ -69,18 +69,18 @@ func main() {
 	packageEntity := packages.NewPackageEntityImpl(packageRepository, purchaseRepository)
 
 	// Usecase
-	authenticateUsecase := authUsecase.NewAuthUsecase(DB, authEntity, userEntity, RS, loginHistoryEntity)
-	dailyQuotasUsecase := dailyQuotaUsecase.NewDailyQuotasUsecase(DB, dailyQuotasEntity, userEntity)
+	authenticateUsecase := accountusecase.NewAuthUsecase(DB, authEntity, userEntity, RS, loginHistoryEntity)
+	dailyQuotasUsecase := dailyquotausecase.NewDailyQuotasUsecase(DB, dailyQuotasEntity, userEntity)
 	InitializeCronJobDailyQuota(ctx, dailyQuotasUsecase)
 	usersUsecase := users.NewUserUsecase(DB, userEntity, authEntity, selectionHistoryEntity, taskHistoryEntity)
-	swipeUsecase := swipes2.NewSwipeUsecase(DB, swipeEntity, dailyQuotasEntity, authEntity)
-	packageUsease := packages2.NewPackageUsecase(DB, packageEntity)
+	swipeUsecase := swipeusecase.NewSwipeUsecase(DB, swipeEntity, dailyQuotasEntity, authEntity)
+	packageUsecase := packageusecase.NewPackageUsecase(DB, packageEntity)
 
 	// Create the handler with the use case
 	authenticateHandler := handler.NewAuthHandler(authenticateUsecase)
 	usersHandler := handler.NewUsersHandler(usersUsecase)
 	swipeHandler := handler.NewSwipeHandler(swipeUsecase)
-	packageHandler := handler.NewPackageHandler(packageUsease)
+	packageHandler := handler.NewPackageHandler(packageUsecase)
 
 	// Set up the router
 	r := router.InitializeRouter(authenticateHandler, usersHandler, swipeHandler, packageHandler)
@@ -121,7 +121,7 @@ func InitializeRedis(ctx context.Context) redisclient.RedisInterface {
 	return rds
 }
 
-func InitializeCronJobDailyQuota(ctx context.Context, boundary dailyQuotaUsecase.InputDailyQuotaBoundary) {
+func InitializeCronJobDailyQuota(ctx context.Context, boundary dailyquotausecase.InputDailyQuotaBoundary) {
 	c := cron.New()
 	// Run every 24 hours
 	_, err := c.AddFunc("@every 24h", func() { // Changed to run every minute for testing
