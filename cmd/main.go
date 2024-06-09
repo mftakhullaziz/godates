@@ -68,7 +68,7 @@ func main() {
 	dailyQuotasUsecase := dailyQuotaUsecase.NewDailyQuotasUsecase(DB, dailyQuotasEntity, userEntity)
 	InitializeCronJobDailyQuota(ctx, dailyQuotasUsecase)
 	usersUsecase := users.NewUserUsecase(DB, userEntity, authEntity, selectionHistoryEntity, taskHistoryEntity)
-	swipeUsecase := swipes2.NewSwipeUsecase(DB, swipeEntity, dailyQuotasEntity)
+	swipeUsecase := swipes2.NewSwipeUsecase(DB, swipeEntity, dailyQuotasEntity, authEntity)
 
 	// Create the handler with the use case
 	authenticateHandler := handler.NewAuthHandler(authenticateUsecase)

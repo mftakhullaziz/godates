@@ -30,7 +30,11 @@ const (
 													FROM selection_histories sh 
 													INNER JOIN users u ON sh.account_id = u.account_id 
 													INNER JOIN accounts a ON sh.account_id = a.account_id 
-													WHERE sh.account_id_identifier = ? AND a.account_id != ?
+													WHERE sh.account_id_identifier = ? 
+													  AND a.account_id != ?
+													  AND a.account_id NOT IN (
+														SELECT s.account_id_swipe from swipes s WHERE s.account_id = ?
+													)
 													ORDER BY RAND();`
 
 	FindAllUserAccountsView10InFirstHitListRecord = `SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address 
@@ -49,10 +53,14 @@ const (
 												  INNER JOIN accounts a ON u.account_id = a.account_id
 												  INNER JOIN selection_histories sh 
 														ON a.account_id = sh.account_id AND u.account_id = sh.account_id AND sh.selection_date = CURDATE()
-												  WHERE a.verified = FALSE AND sh.account_id_identifier = ? AND a.account_id != ?
+												  WHERE a.verified = FALSE 
+												    AND sh.account_id_identifier = ? 
+												    AND a.account_id != ?
+													AND a.account_id NOT IN (
+														SELECT s.account_id_swipe from swipes s WHERE s.account_id = ?
+													)
 												  ORDER BY RAND() 
 												  LIMIT 10;`
-	InsertIntoSelectionHistory = `INSERT INTO selection_histories (account_id) VALUES (?)`
 )
 
 func ExecuteQuery(ctx context.Context, db *sql.DB, query string, args ...interface{}) (sql.Result, error) {

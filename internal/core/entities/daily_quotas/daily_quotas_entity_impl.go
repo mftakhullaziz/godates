@@ -42,3 +42,23 @@ func (d DailyQuotasEntityImpl) UpdateOrInsertDailyQuotaEntities(ctx context.Cont
 	common.HandleErrorReturn(err)
 	return nil
 }
+
+func (d DailyQuotasEntityImpl) FetchTotalDailyQuotas(ctx context.Context, tx *sql.Tx, accountId int64) (int64, error) {
+	dailyQuotaRecord, err := d.DailyQuotaRepository.FindDailyQuotasByUserId(ctx, tx, accountId)
+	common.HandleErrorReturn(err)
+	return dailyQuotaRecord.TotalQuota, nil
+}
+
+func (d DailyQuotasEntityImpl) UpdateIncreaseSwipeCountAndDecreaseTotalQuota(ctx context.Context, tx *sql.Tx, accountId int64) error {
+	err := d.DailyQuotaRepository.UpdateDecreaseTotalCount(ctx, tx, record.DailyQuotaRecord{AccountID: accountId})
+	common.HandleErrorReturn(err)
+	err = d.DailyQuotaRepository.UpdateIncreaseSwipeCount(ctx, tx, record.DailyQuotaRecord{AccountID: accountId})
+	common.HandleErrorReturn(err)
+	return nil
+}
+
+func (d DailyQuotasEntityImpl) UpdateIncreaseSwipeCount(ctx context.Context, tx *sql.Tx, accountId int64) error {
+	err := d.DailyQuotaRepository.UpdateIncreaseSwipeCount(ctx, tx, record.DailyQuotaRecord{AccountID: accountId})
+	common.HandleErrorReturn(err)
+	return nil
+}

@@ -18,9 +18,9 @@ func NewSwipeEntityImpl(swipesRepository repo.SwipesRepository) SwipeEntity {
 func (s SwipeEntityImpl) InsertSwipeActionEntity(ctx context.Context, tx *sql.Tx, accountId int64, userId int64, action string, accountIdSwipe int64) error {
 	var actionType string
 	if action == "left" {
-		actionType = "passed"
+		actionType = "PASSED"
 	} else {
-		actionType = "liked"
+		actionType = "LIKED"
 	}
 
 	err := s.SwipesRepository.InsertSwipesToDB(ctx, tx, record.SwipeRecord{

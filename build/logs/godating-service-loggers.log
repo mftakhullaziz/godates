@@ -1111,3 +1111,88 @@
 [application-service] 2024/06/09 13:31:04 { hhhmmjava13@gmail.com test1234}
 [application-service] 2024/06/09 13:31:46 { oizizou@gmail.com test1234}
 [application-service] 2024/06/09 13:32:21 Shutting down the server...
+[application-service] 2024/06/09 20:45:23 Connected to DB MySQL success!
+[application-service] 2024/06/09 20:45:23 Connected to Redis successfully
+[application-service] 2024/06/09 20:45:23 Cron job started
+[application-service] 2024/06/09 20:45:53 { oizizou@gmail.com test1234}
+[application-service] 2024/06/09 20:46:24 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 11
+}
+[application-service] 2024/06/09 20:46:55 Shutting down the server...
+[application-service] 2024/06/09 20:46:59 Connected to DB MySQL success!
+[application-service] 2024/06/09 20:46:59 Connected to Redis successfully
+[application-service] 2024/06/09 20:46:59 Cron job started
+[application-service] 2024/06/09 20:47:11 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 11
+}
+[application-service] 2024/06/09 20:49:21 Shutting down the server...
+[application-service] 2024/06/09 20:49:23 Connected to DB MySQL success!
+[application-service] 2024/06/09 20:49:23 Connected to Redis successfully
+[application-service] 2024/06/09 20:49:23 Cron job started
+[application-service] 2024/06/09 20:49:28 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 11
+}
+[application-service] 2024/06/09 20:49:28 printed query : "UPDATE daily_quotas SET total_quota  = total_quota  - 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 20:49:28 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 20:51:43 Shutting down the server...
+[application-service] 2024/06/09 20:51:45 Connected to DB MySQL success!
+[application-service] 2024/06/09 20:51:45 Connected to Redis successfully
+[application-service] 2024/06/09 20:51:45 Cron job started
+[application-service] 2024/06/09 20:52:16 Handler | Swipe Request : {
+  "action_type": "left",
+  "account_id_swipe": 10
+}
+[application-service] 2024/06/09 20:52:16 printed query : "UPDATE daily_quotas SET total_quota  = total_quota  - 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 20:52:16 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 20:52:16 Transaction failed: failed to insert swipe action entity
+[application-service] 2024/06/09 20:53:23 Shutting down the server...
+[application-service] 2024/06/09 20:53:25 Connected to DB MySQL success!
+[application-service] 2024/06/09 20:53:25 Connected to Redis successfully
+[application-service] 2024/06/09 20:53:25 Cron job started
+[application-service] 2024/06/09 20:53:31 Handler | Swipe Request : {
+  "action_type": "left",
+  "account_id_swipe": 10
+}
+[application-service] 2024/06/09 20:53:39 printed query : "UPDATE daily_quotas SET total_quota  = total_quota  - 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 20:53:39 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 20:55:37 Shutting down the server...
+[application-service] 2024/06/09 20:56:10 Connected to DB MySQL success!
+[application-service] 2024/06/09 20:56:10 Connected to Redis successfully
+[application-service] 2024/06/09 20:56:10 Cron job started
+[application-service] 2024/06/09 20:56:17 Handler | Swipe Request : {
+  "action_type": "left",
+  "account_id_swipe": 10
+}
+[application-service] 2024/06/09 20:56:17 printed query : "UPDATE daily_quotas SET total_quota  = total_quota  - 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 20:56:17 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 20:59:50 Shutting down the server...
+[application-service] 2024/06/09 20:59:51 Connected to DB MySQL success!
+[application-service] 2024/06/09 20:59:52 Connected to Redis successfully
+[application-service] 2024/06/09 20:59:52 Cron job started
+[application-service] 2024/06/09 20:59:56 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t  FROM users u \n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN accounts a ON u.account_id = a.account_id\n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\t\tON a.account_id = sh.account_id AND u.account_id = sh.account_id AND sh.selection_date = CURDATE()\n\t\t\t\t\t\t\t\t\t\t\t\t  WHERE a.verified = FALSE AND sh.account_id_identifier = ? AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t  ORDER BY RAND() \n\t\t\t\t\t\t\t\t\t\t\t\t  LIMIT 10;"
+[application-service] 2024/06/09 21:05:05 Shutting down the server...
+[application-service] 2024/06/09 21:06:41 Connected to DB MySQL success!
+[application-service] 2024/06/09 21:06:41 Connected to Redis successfully
+[application-service] 2024/06/09 21:06:41 Cron job started
+[application-service] 2024/06/09 21:06:47 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t  FROM users u \n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN accounts a ON u.account_id = a.account_id\n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\t\tON a.account_id = sh.account_id AND u.account_id = sh.account_id AND sh.selection_date = CURDATE()\n\t\t\t\t\t\t\t\t\t\t\t\t  WHERE a.verified = FALSE \n\t\t\t\t\t\t\t\t\t\t\t\t    AND sh.account_id_identifier = ? \n\t\t\t\t\t\t\t\t\t\t\t\t    AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\tAND a.account_id NOT IN (\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSELECT s.account_id_swipe from swipes s WHERE s.account_id = ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t  ORDER BY RAND() \n\t\t\t\t\t\t\t\t\t\t\t\t  LIMIT 10;"
+[application-service] 2024/06/09 21:07:04 Shutting down the server...
+[application-service] 2024/06/09 21:07:42 Connected to DB MySQL success!
+[application-service] 2024/06/09 21:07:42 Connected to Redis successfully
+[application-service] 2024/06/09 21:07:42 Cron job started
+[application-service] 2024/06/09 21:08:38 { manta@gmail.com test1234}
+[application-service] 2024/06/09 21:08:58 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t\tFROM selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN users u ON sh.account_id = u.account_id \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN accounts a ON sh.account_id = a.account_id \n\t\t\t\t\t\t\t\t\t\t\t\t\tWHERE sh.account_id_identifier = ? \n\t\t\t\t\t\t\t\t\t\t\t\t\t  AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t  AND a.account_id NOT IN (\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSELECT s.account_id_swipe from swipes s WHERE s.account_id = ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t\tORDER BY RAND();"
+[application-service] 2024/06/09 21:09:11 Handler | Swipe Request : {
+  "action_type": "left",
+  "account_id_swipe": 11
+}
+[application-service] 2024/06/09 21:09:11 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:09:15 Handler | Swipe Request : {
+  "action_type": "left",
+  "account_id_swipe": 12
+}
+[application-service] 2024/06/09 21:09:15 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:09:21 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t\tFROM selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN users u ON sh.account_id = u.account_id \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN accounts a ON sh.account_id = a.account_id \n\t\t\t\t\t\t\t\t\t\t\t\t\tWHERE sh.account_id_identifier = ? \n\t\t\t\t\t\t\t\t\t\t\t\t\t  AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t  AND a.account_id NOT IN (\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSELECT s.account_id_swipe from swipes s WHERE s.account_id = ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t\tORDER BY RAND();"
+[application-service] 2024/06/09 21:09:48 Shutting down the server...

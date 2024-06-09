@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"godating-dealls/internal/common"
 	"godating-dealls/internal/infra/mysql/queries"
 	"godating-dealls/internal/infra/mysql/record"
 )
@@ -125,6 +126,7 @@ func (u UserRepositoryImpl) GetAllUsersViewsFromDB(ctx context.Context, verified
 	} else {
 		query = queries.FindAllUserAccountsView10InFirstHitListRecord
 	}
+	common.PrintJSON("printed query for daily views", query)
 
 	rows, err := tx.QueryContext(ctx, query, accountIdIdentifier)
 	if err != nil {
@@ -160,14 +162,14 @@ func (u UserRepositoryImpl) GetAllUsersViewsFromDB(ctx context.Context, verified
 
 func (u UserRepositoryImpl) GetAllUsersNextViewsFromDB(ctx context.Context, verifiedUser bool, accountIdIdentifier int64, tx *sql.Tx) ([]record.UserAccountRecord, error) {
 	var query string
-	fmt.Println("VerifiedUser: ", verifiedUser)
 	if verifiedUser {
 		query = queries.FindAllUserAccountsViewInPremiumSecondListRecord
 	} else {
 		query = queries.FindAllUserAccountsView10InSecondHitListRecord
 	}
+	common.PrintJSON("printed query for daily views", query)
 
-	rows, err := tx.QueryContext(ctx, query, accountIdIdentifier, accountIdIdentifier)
+	rows, err := tx.QueryContext(ctx, query, accountIdIdentifier, accountIdIdentifier, accountIdIdentifier)
 	if err != nil {
 		return nil, fmt.Errorf("could not execute query: %v", err)
 	}
