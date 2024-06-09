@@ -167,7 +167,7 @@ func (u UserRepositoryImpl) GetAllUsersNextViewsFromDB(ctx context.Context, veri
 	} else {
 		query = queries.FindAllUserAccountsView10InSecondHitListRecord
 	}
-	common.PrintJSON("printed query for daily views", query)
+	common.PrintJSON("printed query for daily views in second select", query)
 
 	rows, err := tx.QueryContext(ctx, query, accountIdIdentifier, accountIdIdentifier, accountIdIdentifier)
 	if err != nil {

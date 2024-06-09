@@ -42,11 +42,13 @@ CREATE TABLE swipes
     swipe_id   INTEGER AUTO_INCREMENT PRIMARY KEY,
     account_id INTEGER NOT NULL,
     user_id    INTEGER NOT NULL,
-    action     VARCHAR(5) CHECK (action IN ('left', 'right')
+    action     VARCHAR(10) CHECK (action IN ('PASSED', 'LIKED')
 ) ,
+    account_id_swipe INTEGER NOT NULL,
     swipe_date DATE DEFAULT (CURRENT_DATE),
     FOREIGN KEY (user_id) REFERENCES users (user_id),
-    FOREIGN KEY (account_id) REFERENCES accounts(account_id)
+    FOREIGN KEY (account_id) REFERENCES accounts(account_id),
+        FOREIGN KEY (account_id_swipe) REFERENCES accounts(account_id)
 );
 
 CREATE TABLE daily_quotas
@@ -59,15 +61,17 @@ CREATE TABLE daily_quotas
     FOREIGN KEY (account_id) REFERENCES accounts (account_id)
 );
 
-CREATE TABLE premium_packages
+CREATE TABLE packages
 (
-    package_id       INTEGER AUTO_INCREMENT PRIMARY KEY,
-    description      TEXT,
-    price            NUMERIC,
-    unlimited_swipes BOOLEAN   DEFAULT FALSE,
-    verified         BOOLEAN   DEFAULT FALSE,
-    created_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    package_id                  INTEGER AUTO_INCREMENT PRIMARY KEY,
+    package_name                VARCHAR(255),
+    description                 TEXT,
+    package_duration_in_monthly INTEGER,
+    price                       NUMERIC,
+    unlimited_swipes            BOOLEAN   DEFAULT FALSE,
+    status                      BOOLEAN   DEFAULT FALSE,
+    created_at                  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at                  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE account_premiums
@@ -78,9 +82,9 @@ CREATE TABLE account_premiums
     purchase_date           TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     expiry_date             TIMESTAMP,
     unlimited_swipes_active BOOLEAN   DEFAULT FALSE,
-    verified_active         BOOLEAN   DEFAULT FALSE,
+    status                  BOOLEAN   DEFAULT FALSE,
     FOREIGN KEY (account_id) REFERENCES accounts (account_id),
-    FOREIGN KEY (package_id) REFERENCES premium_packages (package_id)
+    FOREIGN KEY (package_id) REFERENCES packages (package_id)
 );
 
 CREATE TABLE view_accounts
@@ -103,4 +107,23 @@ CREATE TABLE login_histories
     duration_in_seconds DOUBLE DEFAULT NULL,
     FOREIGN KEY (user_id) REFERENCES users (user_id),
     FOREIGN KEY (account_id) REFERENCES accounts (account_id)
+);
+
+CREATE TABLE selection_histories
+(
+    selection_history_id  INTEGER AUTO_INCREMENT PRIMARY KEY,
+    account_id_identifier INTEGER,
+    account_id            INTEGER,
+    selection_date        DATE DEFAULT (CURRENT_DATE),
+    FOREIGN KEY (account_id) REFERENCES accounts (account_id),
+    FOREIGN KEY (account_id_identifier) REFERENCES accounts (account_id)
+);
+
+CREATE TABLE task_histories
+(
+    task_id               INTEGER AUTO_INCREMENT PRIMARY KEY,
+    account_id_identifier INTEGER,
+    task_name             VARCHAR(255) NOT NULL,
+    last_run_timestamp    BIGINT       NOT NULL,
+    FOREIGN KEY (account_id_identifier) REFERENCES accounts (account_id)
 );
