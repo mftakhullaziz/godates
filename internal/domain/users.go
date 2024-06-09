@@ -58,3 +58,7 @@ type UserViewsResponse struct {
 	Bio       string   `json:"bio"`
 	Verified  bool     `json:"verified"`
 }
+
+type UserViewNilResponse struct {
+	Message string `json:"message"`
+}

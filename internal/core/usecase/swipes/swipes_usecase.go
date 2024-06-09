@@ -66,13 +66,16 @@ func (s SwipeUsecase) ExecuteSwipes(ctx context.Context, token string, request d
 					return errors.New("failed to insert swipe action entity")
 				}
 			}
-			message = "The total quota for swipe users is limited"
+
+			message = "The total quota for swipe users is limited, please try next day!"
 		}
 
-		if request.ActionType == "left" {
-			message = "Account Passed!"
-		} else {
-			message = "Account Liked!"
+		if message == "" {
+			if request.ActionType == "left" {
+				message = "Account Passed!"
+			} else {
+				message = "Account Liked!"
+			}
 		}
 		boundary.SwipeResponse(domain.SwipeResponse{
 			Message: message,

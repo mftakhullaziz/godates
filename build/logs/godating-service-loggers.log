@@ -1196,3 +1196,175 @@
 [application-service] 2024/06/09 21:09:15 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
 [application-service] 2024/06/09 21:09:21 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t\tFROM selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN users u ON sh.account_id = u.account_id \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN accounts a ON sh.account_id = a.account_id \n\t\t\t\t\t\t\t\t\t\t\t\t\tWHERE sh.account_id_identifier = ? \n\t\t\t\t\t\t\t\t\t\t\t\t\t  AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t  AND a.account_id NOT IN (\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSELECT s.account_id_swipe from swipes s WHERE s.account_id = ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t\tORDER BY RAND();"
 [application-service] 2024/06/09 21:09:48 Shutting down the server...
+[application-service] 2024/06/09 21:11:12 Connected to DB MySQL success!
+[application-service] 2024/06/09 21:11:12 Connected to Redis successfully
+[application-service] 2024/06/09 21:11:12 Cron job started
+[application-service] 2024/06/09 21:12:54 { hhhmmjava13@gmail.com test1234}
+[application-service] 2024/06/09 21:13:10 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t\tFROM selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN users u ON sh.account_id = u.account_id \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN accounts a ON sh.account_id = a.account_id \n\t\t\t\t\t\t\t\t\t\t\t\t\tWHERE sh.account_id_identifier = ? \n\t\t\t\t\t\t\t\t\t\t\t\t\t  AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t  AND a.account_id NOT IN (\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSELECT s.account_id_swipe from swipes s WHERE s.account_id = ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t\tORDER BY RAND();"
+[application-service] 2024/06/09 21:16:06 Handler | Swipe Request : {
+  "action_type": "left",
+  "account_id_swipe": 1
+}
+[application-service] 2024/06/09 21:16:06 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:16:12 Handler | Swipe Request : {
+  "action_type": "left",
+  "account_id_swipe": 2
+}
+[application-service] 2024/06/09 21:16:12 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:16:15 Handler | Swipe Request : {
+  "action_type": "left",
+  "account_id_swipe": 3
+}
+[application-service] 2024/06/09 21:16:15 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:16:18 Handler | Swipe Request : {
+  "action_type": "left",
+  "account_id_swipe": 4
+}
+[application-service] 2024/06/09 21:16:18 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:16:22 Handler | Swipe Request : {
+  "action_type": "left",
+  "account_id_swipe": 5
+}
+[application-service] 2024/06/09 21:16:22 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:16:27 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 6
+}
+[application-service] 2024/06/09 21:16:28 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:16:31 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 7
+}
+[application-service] 2024/06/09 21:16:31 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:16:34 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 8
+}
+[application-service] 2024/06/09 21:16:34 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:16:37 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 9
+}
+[application-service] 2024/06/09 21:16:37 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:16:43 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 10
+}
+[application-service] 2024/06/09 21:16:43 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:16:54 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 11
+}
+[application-service] 2024/06/09 21:16:54 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:17:03 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 13
+}
+[application-service] 2024/06/09 21:17:03 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:18:00 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 13
+}
+[application-service] 2024/06/09 21:18:00 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:18:34 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t\tFROM selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN users u ON sh.account_id = u.account_id \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN accounts a ON sh.account_id = a.account_id \n\t\t\t\t\t\t\t\t\t\t\t\t\tWHERE sh.account_id_identifier = ? \n\t\t\t\t\t\t\t\t\t\t\t\t\t  AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t  AND a.account_id NOT IN (\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSELECT s.account_id_swipe from swipes s WHERE s.account_id = ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t\tORDER BY RAND();"
+[application-service] 2024/06/09 21:18:35 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t\tFROM selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN users u ON sh.account_id = u.account_id \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN accounts a ON sh.account_id = a.account_id \n\t\t\t\t\t\t\t\t\t\t\t\t\tWHERE sh.account_id_identifier = ? \n\t\t\t\t\t\t\t\t\t\t\t\t\t  AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t  AND a.account_id NOT IN (\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSELECT s.account_id_swipe from swipes s WHERE s.account_id = ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t\tORDER BY RAND();"
+[application-service] 2024/06/09 21:18:36 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t\tFROM selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN users u ON sh.account_id = u.account_id \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN accounts a ON sh.account_id = a.account_id \n\t\t\t\t\t\t\t\t\t\t\t\t\tWHERE sh.account_id_identifier = ? \n\t\t\t\t\t\t\t\t\t\t\t\t\t  AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t  AND a.account_id NOT IN (\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSELECT s.account_id_swipe from swipes s WHERE s.account_id = ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t\tORDER BY RAND();"
+[application-service] 2024/06/09 21:20:34 { oizizou@gmail.com test1234}
+[application-service] 2024/06/09 21:20:43 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t  FROM users u \n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN accounts a ON u.account_id = a.account_id\n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\t\tON a.account_id = sh.account_id AND u.account_id = sh.account_id AND sh.selection_date = CURDATE()\n\t\t\t\t\t\t\t\t\t\t\t\t  WHERE a.verified = FALSE \n\t\t\t\t\t\t\t\t\t\t\t\t    AND sh.account_id_identifier = ? \n\t\t\t\t\t\t\t\t\t\t\t\t    AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\tAND a.account_id NOT IN (\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSELECT s.account_id_swipe from swipes s WHERE s.account_id = ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t  ORDER BY RAND() \n\t\t\t\t\t\t\t\t\t\t\t\t  LIMIT 10;"
+[application-service] 2024/06/09 21:21:58 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 1
+}
+[application-service] 2024/06/09 21:21:58 printed query : "UPDATE daily_quotas SET total_quota  = total_quota  - 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:21:58 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:22:04 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 2
+}
+[application-service] 2024/06/09 21:22:04 printed query : "UPDATE daily_quotas SET total_quota  = total_quota  - 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:22:04 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:22:22 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 4
+}
+[application-service] 2024/06/09 21:22:22 printed query : "UPDATE daily_quotas SET total_quota  = total_quota  - 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:22:22 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:22:25 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 5
+}
+[application-service] 2024/06/09 21:22:25 printed query : "UPDATE daily_quotas SET total_quota  = total_quota  - 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:22:25 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:22:27 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 6
+}
+[application-service] 2024/06/09 21:22:27 printed query : "UPDATE daily_quotas SET total_quota  = total_quota  - 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:22:27 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:22:30 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 7
+}
+[application-service] 2024/06/09 21:22:30 printed query : "UPDATE daily_quotas SET total_quota  = total_quota  - 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:22:30 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:22:34 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 8
+}
+[application-service] 2024/06/09 21:22:34 printed query : "UPDATE daily_quotas SET total_quota  = total_quota  - 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:22:34 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:22:37 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 9
+}
+[application-service] 2024/06/09 21:22:37 printed query : "UPDATE daily_quotas SET total_quota  = total_quota  - 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:22:37 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/09 21:23:04 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t  FROM users u \n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN accounts a ON u.account_id = a.account_id\n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\t\tON a.account_id = sh.account_id AND u.account_id = sh.account_id AND sh.selection_date = CURDATE()\n\t\t\t\t\t\t\t\t\t\t\t\t  WHERE a.verified = FALSE \n\t\t\t\t\t\t\t\t\t\t\t\t    AND sh.account_id_identifier = ? \n\t\t\t\t\t\t\t\t\t\t\t\t    AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\tAND a.account_id NOT IN (\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSELECT s.account_id_swipe from swipes s WHERE s.account_id = ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t  ORDER BY RAND() \n\t\t\t\t\t\t\t\t\t\t\t\t  LIMIT 10;"
+[application-service] 2024/06/09 21:23:12 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 10
+}
+[application-service] 2024/06/09 21:25:12 Shutting down the server...
+[application-service] 2024/06/09 21:25:14 Connected to DB MySQL success!
+[application-service] 2024/06/09 21:25:14 Connected to Redis successfully
+[application-service] 2024/06/09 21:25:14 Cron job started
+[application-service] 2024/06/09 21:25:20 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 10
+}
+[application-service] 2024/06/09 21:25:21 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 10
+}
+[application-service] 2024/06/09 21:26:02 Shutting down the server...
+[application-service] 2024/06/09 21:26:04 Connected to DB MySQL success!
+[application-service] 2024/06/09 21:26:04 Connected to Redis successfully
+[application-service] 2024/06/09 21:26:04 Cron job started
+[application-service] 2024/06/09 21:26:11 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 10
+}
+[application-service] 2024/06/09 21:26:41 Shutting down the server...
+[application-service] 2024/06/09 21:26:53 Connected to DB MySQL success!
+[application-service] 2024/06/09 21:26:53 Connected to Redis successfully
+[application-service] 2024/06/09 21:26:53 Cron job started
+[application-service] 2024/06/09 21:27:06 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 10
+}
+[application-service] 2024/06/09 21:27:37 Shutting down the server...
+[application-service] 2024/06/09 21:29:52 Connected to DB MySQL success!
+[application-service] 2024/06/09 21:29:52 Connected to Redis successfully
+[application-service] 2024/06/09 21:29:52 Cron job started
+[application-service] 2024/06/09 21:30:05 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t  FROM users u \n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN accounts a ON u.account_id = a.account_id\n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\t\tON a.account_id = sh.account_id AND u.account_id = sh.account_id AND sh.selection_date = CURDATE()\n\t\t\t\t\t\t\t\t\t\t\t\t  WHERE a.verified = FALSE \n\t\t\t\t\t\t\t\t\t\t\t\t    AND sh.account_id_identifier = ? \n\t\t\t\t\t\t\t\t\t\t\t\t    AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\tAND a.account_id NOT IN (\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSELECT s.account_id_swipe from swipes s WHERE s.account_id = ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t  ORDER BY RAND() \n\t\t\t\t\t\t\t\t\t\t\t\t  LIMIT 10;"
+[application-service] 2024/06/09 21:30:05 http: superfluous response.WriteHeader call from godating-dealls/internal/common.WriteJSONResponse (response.go:28)
+[application-service] 2024/06/09 21:31:27 Shutting down the server...
+[application-service] 2024/06/09 21:31:29 Connected to DB MySQL success!
+[application-service] 2024/06/09 21:31:29 Connected to Redis successfully
+[application-service] 2024/06/09 21:31:29 Cron job started
+[application-service] 2024/06/09 21:31:34 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t  FROM users u \n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN accounts a ON u.account_id = a.account_id\n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\t\tON a.account_id = sh.account_id AND u.account_id = sh.account_id AND sh.selection_date = CURDATE()\n\t\t\t\t\t\t\t\t\t\t\t\t  WHERE a.verified = FALSE \n\t\t\t\t\t\t\t\t\t\t\t\t    AND sh.account_id_identifier = ? \n\t\t\t\t\t\t\t\t\t\t\t\t    AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\tAND a.account_id NOT IN (\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSELECT s.account_id_swipe from swipes s WHERE s.account_id = ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t  ORDER BY RAND() \n\t\t\t\t\t\t\t\t\t\t\t\t  LIMIT 10;"
+[application-service] 2024/06/09 21:31:37 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t  FROM users u \n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN accounts a ON u.account_id = a.account_id\n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\t\tON a.account_id = sh.account_id AND u.account_id = sh.account_id AND sh.selection_date = CURDATE()\n\t\t\t\t\t\t\t\t\t\t\t\t  WHERE a.verified = FALSE \n\t\t\t\t\t\t\t\t\t\t\t\t    AND sh.account_id_identifier = ? \n\t\t\t\t\t\t\t\t\t\t\t\t    AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\tAND a.account_id NOT IN (\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSELECT s.account_id_swipe from swipes s WHERE s.account_id = ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t  ORDER BY RAND() \n\t\t\t\t\t\t\t\t\t\t\t\t  LIMIT 10;"
+[application-service] 2024/06/09 21:32:05 { haijoe@gmail.com test1234}
+[application-service] 2024/06/09 21:32:16 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t\tFROM users u \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN accounts a ON u.account_id = a.account_id\n\t\t\t\t\t\t\t\t\t\t\t\t\tWHERE a.verified = FALSE \n\t\t\t\t\t\t\t\t\t\t\t\t\tAND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\tAND a.account_id NOT IN (SELECT DISTINCT sh2.account_id_identifier\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tFROM selection_histories sh2 \n\t\t\t\t\t\t\t\t\t\t\t\t\t\tWHERE sh2.selection_date = CURDATE())\n\t\t\t\t\t\t\t\t\t\t\t\t\tORDER BY RAND() \n\t\t\t\t\t\t\t\t\t\t\t\t\tLIMIT 10;"
+[application-service] 2024/06/09 21:32:18 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t  FROM users u \n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN accounts a ON u.account_id = a.account_id\n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\t\tON a.account_id = sh.account_id AND u.account_id = sh.account_id AND sh.selection_date = CURDATE()\n\t\t\t\t\t\t\t\t\t\t\t\t  WHERE a.verified = FALSE \n\t\t\t\t\t\t\t\t\t\t\t\t    AND sh.account_id_identifier = ? \n\t\t\t\t\t\t\t\t\t\t\t\t    AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\tAND a.account_id NOT IN (\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSELECT s.account_id_swipe from swipes s WHERE s.account_id = ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t  ORDER BY RAND() \n\t\t\t\t\t\t\t\t\t\t\t\t  LIMIT 10;"
+[application-service] 2024/06/09 21:32:52 Shutting down the server...
