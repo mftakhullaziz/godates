@@ -1426,3 +1426,3395 @@
 [application-service] 2024/06/10 02:32:29 Cron job started
 [application-service] 2024/06/10 02:34:39 printed query for daily views 1 : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t\tFROM selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN users u ON sh.account_id = u.account_id \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN accounts a ON sh.account_id = a.account_id \n\t\t\t\t\t\t\t\t\t\t\t\t\tWHERE sh.account_id_identifier = ? \n\t\t\t\t\t\t\t\t\t\t\t\t\t  AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t  AND a.account_id NOT IN (\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSELECT s.account_id_swipe from swipes s WHERE s.account_id = ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t\tORDER BY RAND();"
 [application-service] 2024/06/10 02:35:11 Shutting down the server...
+[application-service] 2024/06/10 02:53:36 Connected to DB MySQL success!
+[application-service] 2024/06/10 02:53:36 Connected to Redis successfully
+[application-service] 2024/06/10 02:53:36 Cron job started
+[application-service] 2024/06/10 02:53:49 Handler | Register Request : {
+  "email": "u1@gmail.com",
+  "username": "u1",
+  "password": "test1234",
+  "full_name": "U 1"
+}
+[application-service] 2024/06/10 02:53:49 auth usecase | account dto : {
+  "Email": "u1@gmail.com",
+  "Username": "u1",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:49 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:49 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:49 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u1",
+  "PasswordHash": "$2a$04$nZwkt2wRzO.DLpT2M.DtOOLmnoVY6gH2U5Pk9VT5oBq.e76hc6V.i",
+  "Email": "u1@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:49 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 1,
+  "FullName": "U 1",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:49 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 1,
+  "FullName": "U 1",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:49 Handler | Register Request : {
+  "email": "u2@gmail.com",
+  "username": "u2",
+  "password": "test1234",
+  "full_name": "U 2"
+}
+[application-service] 2024/06/10 02:53:49 auth usecase | account dto : {
+  "Email": "u2@gmail.com",
+  "Username": "u2",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:49 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:49 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:49 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u2",
+  "PasswordHash": "$2a$04$zTEJWvTTfxihd4VN95I4XOh40hPWMIl0w7kv8Ji3fpnipYIXfK3Rq",
+  "Email": "u2@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:49 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 2,
+  "FullName": "U 2",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:49 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 2,
+  "FullName": "U 2",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:49 Handler | Register Request : {
+  "email": "u3@gmail.com",
+  "username": "u3",
+  "password": "test1234",
+  "full_name": "U 3"
+}
+[application-service] 2024/06/10 02:53:49 auth usecase | account dto : {
+  "Email": "u3@gmail.com",
+  "Username": "u3",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:49 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:49 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:49 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u3",
+  "PasswordHash": "$2a$04$55Sa0/kubUbem1KQuWgYgOwl/UkYLHtwFJ4jit9WymjhWJOFT0OfW",
+  "Email": "u3@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:49 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 3,
+  "FullName": "U 3",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:49 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 3,
+  "FullName": "U 3",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u4@gmail.com",
+  "username": "u4",
+  "password": "test1234",
+  "full_name": "U 4"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u4@gmail.com",
+  "Username": "u4",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u4",
+  "PasswordHash": "$2a$04$nic2uBHNn7LXDJKvSfAYzOM7p5zKbHkwBqxDqRbgzO9CldhTS8eYe",
+  "Email": "u4@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 4,
+  "FullName": "U 4",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 4,
+  "FullName": "U 4",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u5@gmail.com",
+  "username": "u5",
+  "password": "test1234",
+  "full_name": "U 5"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u5@gmail.com",
+  "Username": "u5",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u5",
+  "PasswordHash": "$2a$04$xVEIjWzS54IoBXSxIU2tZOG83PjqaRaqvTVcAbyZlKqFwEhlTDut6",
+  "Email": "u5@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 5,
+  "FullName": "U 5",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 5,
+  "FullName": "U 5",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u6@gmail.com",
+  "username": "u6",
+  "password": "test1234",
+  "full_name": "U 6"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u6@gmail.com",
+  "Username": "u6",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u6",
+  "PasswordHash": "$2a$04$timKrItHwl2LGnLPP5HIb.55Voh3mc3pBCDFOezudkfo46u.KGsVe",
+  "Email": "u6@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 6,
+  "FullName": "U 6",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 6,
+  "FullName": "U 6",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u7@gmail.com",
+  "username": "u7",
+  "password": "test1234",
+  "full_name": "U 7"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u7@gmail.com",
+  "Username": "u7",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u7",
+  "PasswordHash": "$2a$04$bSyhejONSwq9uVH.ZgQq8ecQkao6v7WMIGFZ0VIDjHjdOoABP6F1e",
+  "Email": "u7@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 7,
+  "FullName": "U 7",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 7,
+  "FullName": "U 7",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u8@gmail.com",
+  "username": "u8",
+  "password": "test1234",
+  "full_name": "U 8"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u8@gmail.com",
+  "Username": "u8",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u8",
+  "PasswordHash": "$2a$04$z2AIyhmTZPR0OaPtdA.ZcOP6yGLb1DVP9PGu5vXZGJVb/2/uhQVpq",
+  "Email": "u8@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 8,
+  "FullName": "U 8",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 8,
+  "FullName": "U 8",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u9@gmail.com",
+  "username": "u9",
+  "password": "test1234",
+  "full_name": "U 9"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u9@gmail.com",
+  "Username": "u9",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u9",
+  "PasswordHash": "$2a$04$eqmFGtT5Z0gVDyyJpJs7wey3eVP3Ly7Sm.rFvUPi95RQQqvFRWGLa",
+  "Email": "u9@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 9,
+  "FullName": "U 9",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 9,
+  "FullName": "U 9",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u10@gmail.com",
+  "username": "u10",
+  "password": "test1234",
+  "full_name": "U 10"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u10@gmail.com",
+  "Username": "u10",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u10",
+  "PasswordHash": "$2a$04$6ni6xp3O5/MoOF4N9aczD.Cu8FDTh3eoJs63BiMVbfIyPPYXdw24S",
+  "Email": "u10@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 10,
+  "FullName": "U 10",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 10,
+  "FullName": "U 10",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u11@gmail.com",
+  "username": "u11",
+  "password": "test1234",
+  "full_name": "U 11"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u11@gmail.com",
+  "Username": "u11",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u11",
+  "PasswordHash": "$2a$04$Tekru0PdaPutHM/H/Vfb3ejDWhH8rspNunPAFB5Nn9n5ZQyJZBVWa",
+  "Email": "u11@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 11,
+  "FullName": "U 11",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 11,
+  "FullName": "U 11",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u12@gmail.com",
+  "username": "u12",
+  "password": "test1234",
+  "full_name": "U 12"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u12@gmail.com",
+  "Username": "u12",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u12",
+  "PasswordHash": "$2a$04$EaNZD62mO72IHJHPRqhfuuYzhEx2jUHxuHvIBNnDVo4AmTf/UzGSW",
+  "Email": "u12@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 12,
+  "FullName": "U 12",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 12,
+  "FullName": "U 12",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u13@gmail.com",
+  "username": "u13",
+  "password": "test1234",
+  "full_name": "U 13"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u13@gmail.com",
+  "Username": "u13",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u13",
+  "PasswordHash": "$2a$04$R0Q8QFlTCB58.yg3/mp//evdI4cCPsUfVzcH8ZEPuVISar0u.mJlS",
+  "Email": "u13@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 13,
+  "FullName": "U 13",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 13,
+  "FullName": "U 13",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u14@gmail.com",
+  "username": "u14",
+  "password": "test1234",
+  "full_name": "U 14"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u14@gmail.com",
+  "Username": "u14",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u14",
+  "PasswordHash": "$2a$04$w0VCCEDXlGkzitqqUPkenuQGs/YudO2mIHJNfEbvFCQ.nSQ0lP0OS",
+  "Email": "u14@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 14,
+  "FullName": "U 14",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 14,
+  "FullName": "U 14",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u15@gmail.com",
+  "username": "u15",
+  "password": "test1234",
+  "full_name": "U 15"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u15@gmail.com",
+  "Username": "u15",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u15",
+  "PasswordHash": "$2a$04$L1Gj1fqBQglVRi/VICNNaeNakd.Q5Df6gSS.g8g/DfpAaaCIG.RhK",
+  "Email": "u15@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 15,
+  "FullName": "U 15",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 15,
+  "FullName": "U 15",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u16@gmail.com",
+  "username": "u16",
+  "password": "test1234",
+  "full_name": "U 16"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u16@gmail.com",
+  "Username": "u16",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u16",
+  "PasswordHash": "$2a$04$Q34faNweLdd2gNKFdNEqpew0ZM0/mEdpMI7CYs7CwLclf.E4ltlhq",
+  "Email": "u16@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 16,
+  "FullName": "U 16",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 16,
+  "FullName": "U 16",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u17@gmail.com",
+  "username": "u17",
+  "password": "test1234",
+  "full_name": "U 17"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u17@gmail.com",
+  "Username": "u17",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u17",
+  "PasswordHash": "$2a$04$dhg3u2V5jK1h4jn4FNjfLuQaJDiOqBWS6aeUiFzHzhZkRIseXz3a2",
+  "Email": "u17@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 17,
+  "FullName": "U 17",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 17,
+  "FullName": "U 17",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u18@gmail.com",
+  "username": "u18",
+  "password": "test1234",
+  "full_name": "U 18"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u18@gmail.com",
+  "Username": "u18",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u18",
+  "PasswordHash": "$2a$04$xDtxQOsOzQhz4072uJpUe.9VTWxdCf/qXM0ywaiGdDq1Tx43nnG7O",
+  "Email": "u18@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 18,
+  "FullName": "U 18",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 18,
+  "FullName": "U 18",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u19@gmail.com",
+  "username": "u19",
+  "password": "test1234",
+  "full_name": "U 19"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u19@gmail.com",
+  "Username": "u19",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u19",
+  "PasswordHash": "$2a$04$0QeY6VKvQIvqa8YP4ds1Ce197AGtaRcGYl1wviRfCnCSJexZ6Rz4a",
+  "Email": "u19@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 19,
+  "FullName": "U 19",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 19,
+  "FullName": "U 19",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u20@gmail.com",
+  "username": "u20",
+  "password": "test1234",
+  "full_name": "U 20"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u20@gmail.com",
+  "Username": "u20",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u20",
+  "PasswordHash": "$2a$04$4wokhjIUvaeryyY4BA0/ZuPxiGmrjw6LB0wGI1OV.oDyJoMZaPyP2",
+  "Email": "u20@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 20,
+  "FullName": "U 20",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 20,
+  "FullName": "U 20",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u21@gmail.com",
+  "username": "u21",
+  "password": "test1234",
+  "full_name": "U 21"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u21@gmail.com",
+  "Username": "u21",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u21",
+  "PasswordHash": "$2a$04$rl/4upV/wv1dXbrjxeRdBusLmt7avEEZfqIeIMrO/Lvxlbkmjtx1a",
+  "Email": "u21@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 21,
+  "FullName": "U 21",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 21,
+  "FullName": "U 21",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u22@gmail.com",
+  "username": "u22",
+  "password": "test1234",
+  "full_name": "U 22"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u22@gmail.com",
+  "Username": "u22",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u22",
+  "PasswordHash": "$2a$04$kTJzYJJ1.7BwGt0.KNgh7.Z2ypLjaiHH2/bglcZ4dV5GrY0BYmysK",
+  "Email": "u22@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 22,
+  "FullName": "U 22",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 22,
+  "FullName": "U 22",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u23@gmail.com",
+  "username": "u23",
+  "password": "test1234",
+  "full_name": "U 23"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u23@gmail.com",
+  "Username": "u23",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u23",
+  "PasswordHash": "$2a$04$zdlvfmXlIA66SKw6s8pMmOEJh5dnwR7Ir4FGCOd/g15FhIiN3T0Bi",
+  "Email": "u23@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 23,
+  "FullName": "U 23",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 23,
+  "FullName": "U 23",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u24@gmail.com",
+  "username": "u24",
+  "password": "test1234",
+  "full_name": "U 24"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u24@gmail.com",
+  "Username": "u24",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u24",
+  "PasswordHash": "$2a$04$qXZglq/rv6talv4QnIeaU.2I6TcPpPxakBokbxHJ2q8a8ZxgaAi.K",
+  "Email": "u24@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 24,
+  "FullName": "U 24",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 24,
+  "FullName": "U 24",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u25@gmail.com",
+  "username": "u25",
+  "password": "test1234",
+  "full_name": "U 25"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u25@gmail.com",
+  "Username": "u25",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u25",
+  "PasswordHash": "$2a$04$TvOiua0wIIvlyYr2yEoiIOhqrDKxGIcf1Ftl.f6LQoPixsXExw8OO",
+  "Email": "u25@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 25,
+  "FullName": "U 25",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 25,
+  "FullName": "U 25",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u26@gmail.com",
+  "username": "u26",
+  "password": "test1234",
+  "full_name": "U 26"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u26@gmail.com",
+  "Username": "u26",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u26",
+  "PasswordHash": "$2a$04$lE/KP69lYyCskuwafBDte.Ep5sG1pWUTadx7YU5KfIA/PnbN77iMy",
+  "Email": "u26@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 26,
+  "FullName": "U 26",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 26,
+  "FullName": "U 26",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u27@gmail.com",
+  "username": "u27",
+  "password": "test1234",
+  "full_name": "U 27"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u27@gmail.com",
+  "Username": "u27",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u27",
+  "PasswordHash": "$2a$04$J81EbNxaotmJw6bnO6fRceSAdTWNdikQIf9TBTgvIEHg9eEob/0sW",
+  "Email": "u27@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 27,
+  "FullName": "U 27",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 27,
+  "FullName": "U 27",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u28@gmail.com",
+  "username": "u28",
+  "password": "test1234",
+  "full_name": "U 28"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u28@gmail.com",
+  "Username": "u28",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u28",
+  "PasswordHash": "$2a$04$bpplS/1D8EWQytlh.6Ggze/HCmgKbHyOe1ZbmQbdKouMHrsqtStQy",
+  "Email": "u28@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 28,
+  "FullName": "U 28",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 28,
+  "FullName": "U 28",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u29@gmail.com",
+  "username": "u29",
+  "password": "test1234",
+  "full_name": "U 29"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u29@gmail.com",
+  "Username": "u29",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u29",
+  "PasswordHash": "$2a$04$jw1J8fHgknBDZvmFLmiyoeSj.r3yISQjfUQ6mLJTbyV.kk8pq40Yi",
+  "Email": "u29@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 29,
+  "FullName": "U 29",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 29,
+  "FullName": "U 29",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u30@gmail.com",
+  "username": "u30",
+  "password": "test1234",
+  "full_name": "U 30"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u30@gmail.com",
+  "Username": "u30",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u30",
+  "PasswordHash": "$2a$04$ioykk6rTjG0cqsFdBn2lIO7hQ8VRCSAC1k7qMEAVsWkNG6PeHQjT2",
+  "Email": "u30@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 30,
+  "FullName": "U 30",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 30,
+  "FullName": "U 30",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u31@gmail.com",
+  "username": "u31",
+  "password": "test1234",
+  "full_name": "U 31"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u31@gmail.com",
+  "Username": "u31",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u31",
+  "PasswordHash": "$2a$04$O47SpM3uuxrJ3J8wWOajiuNu1ivnocGdgbB1LawoPkNXi9.z18EhW",
+  "Email": "u31@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 31,
+  "FullName": "U 31",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 31,
+  "FullName": "U 31",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u32@gmail.com",
+  "username": "u32",
+  "password": "test1234",
+  "full_name": "U 32"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u32@gmail.com",
+  "Username": "u32",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u32",
+  "PasswordHash": "$2a$04$3UhMQmoTPOxrfsf5qVn3G.vwPZnWYFjZQ55xRz7IyQmbxCmt6MsYq",
+  "Email": "u32@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 32,
+  "FullName": "U 32",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 32,
+  "FullName": "U 32",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u33@gmail.com",
+  "username": "u33",
+  "password": "test1234",
+  "full_name": "U 33"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u33@gmail.com",
+  "Username": "u33",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u33",
+  "PasswordHash": "$2a$04$sOFThJrOSTLF2g9e57CsXOM86VNIDafeWumGlmaAMCvUFsBydMkTa",
+  "Email": "u33@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 33,
+  "FullName": "U 33",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 33,
+  "FullName": "U 33",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u34@gmail.com",
+  "username": "u34",
+  "password": "test1234",
+  "full_name": "U 34"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u34@gmail.com",
+  "Username": "u34",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u34",
+  "PasswordHash": "$2a$04$z6gOhybg1JSJmKbENYQoZORzzyhs6iGgyoeU9J0NPUHYOG5EDw7qG",
+  "Email": "u34@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 34,
+  "FullName": "U 34",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 34,
+  "FullName": "U 34",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u35@gmail.com",
+  "username": "u35",
+  "password": "test1234",
+  "full_name": "U 35"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u35@gmail.com",
+  "Username": "u35",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u35",
+  "PasswordHash": "$2a$04$U7NUfKibP2E8Il9FoMT0D.xc84r.7QjihKNPOP28cHtgN5HL/ZSbm",
+  "Email": "u35@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 35,
+  "FullName": "U 35",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 35,
+  "FullName": "U 35",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u36@gmail.com",
+  "username": "u36",
+  "password": "test1234",
+  "full_name": "U 36"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u36@gmail.com",
+  "Username": "u36",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u36",
+  "PasswordHash": "$2a$04$cBX7Ab9wbJQW4vhmeYtHBOD0JEY0bEHEMXPySWlAOc9sJhwrr61VS",
+  "Email": "u36@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 36,
+  "FullName": "U 36",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 36,
+  "FullName": "U 36",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u37@gmail.com",
+  "username": "u37",
+  "password": "test1234",
+  "full_name": "U 37"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u37@gmail.com",
+  "Username": "u37",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u37",
+  "PasswordHash": "$2a$04$lFFC4lRr69qBsvqKJ92H0.yX9HfisrYrE74ckiQrgkHigEP.S1y6i",
+  "Email": "u37@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 37,
+  "FullName": "U 37",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 37,
+  "FullName": "U 37",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u38@gmail.com",
+  "username": "u38",
+  "password": "test1234",
+  "full_name": "U 38"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u38@gmail.com",
+  "Username": "u38",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u38",
+  "PasswordHash": "$2a$04$WWAC2u6LvZOF5MhBkvPvPOah63dj5VnOHhlvBvW5hNIVv3BKDFRSe",
+  "Email": "u38@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 38,
+  "FullName": "U 38",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 38,
+  "FullName": "U 38",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u39@gmail.com",
+  "username": "u39",
+  "password": "test1234",
+  "full_name": "U 39"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u39@gmail.com",
+  "Username": "u39",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u39",
+  "PasswordHash": "$2a$04$VeDuqzv4w13fqoVLFueTJeHveHEjssUEU/C9bJbKOZsY6DY5KT4uW",
+  "Email": "u39@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 39,
+  "FullName": "U 39",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 39,
+  "FullName": "U 39",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u40@gmail.com",
+  "username": "u40",
+  "password": "test1234",
+  "full_name": "U 40"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u40@gmail.com",
+  "Username": "u40",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u40",
+  "PasswordHash": "$2a$04$uxYuab2AliUJb/LjjVOUAuCLC/q9JdFE6dgvSlfcl0htJ8drIH9WK",
+  "Email": "u40@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 40,
+  "FullName": "U 40",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 40,
+  "FullName": "U 40",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u41@gmail.com",
+  "username": "u41",
+  "password": "test1234",
+  "full_name": "U 41"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u41@gmail.com",
+  "Username": "u41",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u41",
+  "PasswordHash": "$2a$04$w49pLvCHwH5UUYg3zytgEOvFyJdbBRa9bsKdufyv00ZQZUM4foPp.",
+  "Email": "u41@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 41,
+  "FullName": "U 41",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 41,
+  "FullName": "U 41",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u42@gmail.com",
+  "username": "u42",
+  "password": "test1234",
+  "full_name": "U 42"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u42@gmail.com",
+  "Username": "u42",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u42",
+  "PasswordHash": "$2a$04$c4TYbJqWnrfjBk4Kt77wgO9GPFkiP8ORCG0OqqNvY7khyoih1Oar2",
+  "Email": "u42@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 42,
+  "FullName": "U 42",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 42,
+  "FullName": "U 42",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u43@gmail.com",
+  "username": "u43",
+  "password": "test1234",
+  "full_name": "U 43"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u43@gmail.com",
+  "Username": "u43",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u43",
+  "PasswordHash": "$2a$04$BUoMwejzk5KgZwbP4pBVEOV9Ub9XEJvocerpcERT01UrXRunKS5d2",
+  "Email": "u43@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 43,
+  "FullName": "U 43",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 43,
+  "FullName": "U 43",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u44@gmail.com",
+  "username": "u44",
+  "password": "test1234",
+  "full_name": "U 44"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u44@gmail.com",
+  "Username": "u44",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u44",
+  "PasswordHash": "$2a$04$/p3lfbb64dqSh7l/g/2l1eFc0ry71h9.QQ87i4dkQqPsITVDN29Rq",
+  "Email": "u44@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 44,
+  "FullName": "U 44",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 44,
+  "FullName": "U 44",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u45@gmail.com",
+  "username": "u45",
+  "password": "test1234",
+  "full_name": "U 45"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u45@gmail.com",
+  "Username": "u45",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u45",
+  "PasswordHash": "$2a$04$I5vySKzn2gHaycj/3.oCGeAqtXJofdBiuPX1LPj7I6KLo4Ym1ZHfa",
+  "Email": "u45@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 45,
+  "FullName": "U 45",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 45,
+  "FullName": "U 45",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u46@gmail.com",
+  "username": "u46",
+  "password": "test1234",
+  "full_name": "U 46"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u46@gmail.com",
+  "Username": "u46",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u46",
+  "PasswordHash": "$2a$04$2789kIjNUXAlF7HEd3lFdOKPfxXrN3O2ZBQ7ecKLTcK90xKTfj5Pq",
+  "Email": "u46@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 46,
+  "FullName": "U 46",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 46,
+  "FullName": "U 46",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u47@gmail.com",
+  "username": "u47",
+  "password": "test1234",
+  "full_name": "U 47"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u47@gmail.com",
+  "Username": "u47",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u47",
+  "PasswordHash": "$2a$04$LKKzanRIjFOjNgHrQMErIOSMTNbsmN2j/mVo9vLJ0xuVLUi4Nc2fq",
+  "Email": "u47@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 47,
+  "FullName": "U 47",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 47,
+  "FullName": "U 47",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u48@gmail.com",
+  "username": "u48",
+  "password": "test1234",
+  "full_name": "U 48"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u48@gmail.com",
+  "Username": "u48",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u48",
+  "PasswordHash": "$2a$04$pbTOIr.IYTc0WTR2gvV7huFaSTvMDxGPNGFHLAwhfa.YiQ7rvQzBq",
+  "Email": "u48@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 48,
+  "FullName": "U 48",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 48,
+  "FullName": "U 48",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u49@gmail.com",
+  "username": "u49",
+  "password": "test1234",
+  "full_name": "U 49"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u49@gmail.com",
+  "Username": "u49",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u49",
+  "PasswordHash": "$2a$04$Y9cNz0flYnAT4vdWTQyyIO0aXKTimb7Dc65SkF14MYJET2hUANGAa",
+  "Email": "u49@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 49,
+  "FullName": "U 49",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 49,
+  "FullName": "U 49",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 Handler | Register Request : {
+  "email": "u50@gmail.com",
+  "username": "u50",
+  "password": "test1234",
+  "full_name": "U 50"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | account dto : {
+  "Email": "u50@gmail.com",
+  "Username": "u50",
+  "Password": "test1234"
+}
+[application-service] 2024/06/10 02:53:50 auth entities | email is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | username is exist : false
+[application-service] 2024/06/10 02:53:50 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "u50",
+  "PasswordHash": "$2a$04$A9Hvl2KoRxADgG1a./8aHeFVYxntMD0VcO0lp/4DxBxTAuKyVKtqq",
+  "Email": "u50@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 50,
+  "FullName": "U 50",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:53:50 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 50,
+  "FullName": "U 50",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/10 02:55:17 Shutting down the server...
+[application-service] 2024/06/10 02:55:18 Connected to DB MySQL success!
+[application-service] 2024/06/10 02:55:18 Connected to Redis successfully
+[application-service] 2024/06/10 02:55:18 Cron job started
+[application-service] 2024/06/10 02:56:18 Executing daily quota update usecase
+[application-service] 2024/06/10 02:56:18 daily usecase | users : [
+  {
+    "UserID": 1,
+    "AccountID": 1,
+    "Verified": false
+  },
+  {
+    "UserID": 2,
+    "AccountID": 2,
+    "Verified": false
+  },
+  {
+    "UserID": 3,
+    "AccountID": 3,
+    "Verified": false
+  },
+  {
+    "UserID": 4,
+    "AccountID": 4,
+    "Verified": false
+  },
+  {
+    "UserID": 5,
+    "AccountID": 5,
+    "Verified": false
+  },
+  {
+    "UserID": 6,
+    "AccountID": 6,
+    "Verified": false
+  },
+  {
+    "UserID": 7,
+    "AccountID": 7,
+    "Verified": false
+  },
+  {
+    "UserID": 8,
+    "AccountID": 8,
+    "Verified": false
+  },
+  {
+    "UserID": 9,
+    "AccountID": 9,
+    "Verified": false
+  },
+  {
+    "UserID": 10,
+    "AccountID": 10,
+    "Verified": false
+  },
+  {
+    "UserID": 11,
+    "AccountID": 11,
+    "Verified": false
+  },
+  {
+    "UserID": 12,
+    "AccountID": 12,
+    "Verified": false
+  },
+  {
+    "UserID": 13,
+    "AccountID": 13,
+    "Verified": false
+  },
+  {
+    "UserID": 14,
+    "AccountID": 14,
+    "Verified": false
+  },
+  {
+    "UserID": 15,
+    "AccountID": 15,
+    "Verified": false
+  },
+  {
+    "UserID": 16,
+    "AccountID": 16,
+    "Verified": false
+  },
+  {
+    "UserID": 17,
+    "AccountID": 17,
+    "Verified": false
+  },
+  {
+    "UserID": 18,
+    "AccountID": 18,
+    "Verified": false
+  },
+  {
+    "UserID": 19,
+    "AccountID": 19,
+    "Verified": false
+  },
+  {
+    "UserID": 20,
+    "AccountID": 20,
+    "Verified": false
+  },
+  {
+    "UserID": 21,
+    "AccountID": 21,
+    "Verified": false
+  },
+  {
+    "UserID": 22,
+    "AccountID": 22,
+    "Verified": false
+  },
+  {
+    "UserID": 23,
+    "AccountID": 23,
+    "Verified": false
+  },
+  {
+    "UserID": 24,
+    "AccountID": 24,
+    "Verified": false
+  },
+  {
+    "UserID": 25,
+    "AccountID": 25,
+    "Verified": false
+  },
+  {
+    "UserID": 26,
+    "AccountID": 26,
+    "Verified": false
+  },
+  {
+    "UserID": 27,
+    "AccountID": 27,
+    "Verified": false
+  },
+  {
+    "UserID": 28,
+    "AccountID": 28,
+    "Verified": false
+  },
+  {
+    "UserID": 29,
+    "AccountID": 29,
+    "Verified": false
+  },
+  {
+    "UserID": 30,
+    "AccountID": 30,
+    "Verified": false
+  },
+  {
+    "UserID": 31,
+    "AccountID": 31,
+    "Verified": false
+  },
+  {
+    "UserID": 32,
+    "AccountID": 32,
+    "Verified": false
+  },
+  {
+    "UserID": 33,
+    "AccountID": 33,
+    "Verified": false
+  },
+  {
+    "UserID": 34,
+    "AccountID": 34,
+    "Verified": false
+  },
+  {
+    "UserID": 35,
+    "AccountID": 35,
+    "Verified": false
+  },
+  {
+    "UserID": 36,
+    "AccountID": 36,
+    "Verified": false
+  },
+  {
+    "UserID": 37,
+    "AccountID": 37,
+    "Verified": false
+  },
+  {
+    "UserID": 38,
+    "AccountID": 38,
+    "Verified": false
+  },
+  {
+    "UserID": 39,
+    "AccountID": 39,
+    "Verified": false
+  },
+  {
+    "UserID": 40,
+    "AccountID": 40,
+    "Verified": false
+  },
+  {
+    "UserID": 41,
+    "AccountID": 41,
+    "Verified": false
+  },
+  {
+    "UserID": 42,
+    "AccountID": 42,
+    "Verified": false
+  },
+  {
+    "UserID": 43,
+    "AccountID": 43,
+    "Verified": false
+  },
+  {
+    "UserID": 44,
+    "AccountID": 44,
+    "Verified": false
+  },
+  {
+    "UserID": 45,
+    "AccountID": 45,
+    "Verified": false
+  },
+  {
+    "UserID": 46,
+    "AccountID": 46,
+    "Verified": false
+  },
+  {
+    "UserID": 47,
+    "AccountID": 47,
+    "Verified": false
+  },
+  {
+    "UserID": 48,
+    "AccountID": 48,
+    "Verified": false
+  },
+  {
+    "UserID": 49,
+    "AccountID": 49,
+    "Verified": false
+  },
+  {
+    "UserID": 50,
+    "AccountID": 50,
+    "Verified": false
+  }
+]
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 1,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 1,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 2,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 2,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 3,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 3,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 4,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 4,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 5,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 5,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 6,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 6,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 7,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 7,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 8,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 8,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 9,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 9,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 10,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 10,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 11,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 11,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 12,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 12,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 13,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 13,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 14,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 14,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 15,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 15,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 16,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 16,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 17,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 17,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 18,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 18,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 19,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 19,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 20,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 20,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 21,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 21,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 22,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 22,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 23,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 23,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 24,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 24,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 25,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 25,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 26,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 26,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 27,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 27,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 28,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 28,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 29,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 29,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 30,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 30,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 31,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 31,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 32,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 32,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 33,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 33,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 34,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 34,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 35,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 35,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 36,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 36,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 37,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 37,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 38,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 38,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 39,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 39,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 40,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 40,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 41,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 41,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 42,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 42,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 43,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 43,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 44,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 44,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 45,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 45,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 46,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 46,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 47,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 47,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 48,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 48,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 49,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 49,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 50,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 50,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/10 02:56:18 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/10 02:56:18 Successfully executed daily quota update usecase
+[application-service] 2024/06/10 02:56:35 Shutting down the server...
+[application-service] 2024/06/10 02:57:44 Connected to DB MySQL success!
+[application-service] 2024/06/10 02:57:44 Connected to Redis successfully
+[application-service] 2024/06/10 02:57:44 Cron job started
+[application-service] 2024/06/10 02:57:50 { u1@gmail.com test1234}
+[application-service] 2024/06/10 02:59:17 Handler | Purchase Request : {
+  "package_id": 1,
+  "price": 99999,
+  "package_name": "Basic Package",
+  "package_duration_in_monthly": 1,
+  "unlimited_swipes": true
+}
+[application-service] 2024/06/10 02:59:17 printed query : "UPDATE accounts SET verified = TRUE WHERE account_id = ?"
+[application-service] 2024/06/10 02:59:17 printed query : "UPDATE daily_quotas SET total_quota  = -1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/10 02:59:30 { u1@gmail.com test1234}
+[application-service] 2024/06/10 03:00:32 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address FROM users u INNER JOIN accounts a ON u.account_id = a.account_id WHERE a.account_id != ?"
+[application-service] 2024/06/10 03:00:38 printed query for daily views in second select : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address FROM selection_histories sh INNER JOIN users u ON sh.account_id = u.account_id INNER JOIN accounts a ON sh.account_id = a.account_id WHERE sh.account_id_identifier = ? AND a.account_id != ? AND a.account_id NOT IN ( SELECT s.account_id_swipe from swipes s WHERE s.account_id = ? ) ORDER BY RAND();"
+[application-service] 2024/06/10 03:01:28 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 50
+}
+[application-service] 2024/06/10 03:01:28 printed query : "UPDATE daily_quotas SET total_quota  = total_quota  - 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/10 03:01:28 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/10 03:01:47 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 50
+}
+[application-service] 2024/06/10 03:01:47 printed query : "UPDATE daily_quotas SET swipe_count  = swipe_count  + 1 WHERE account_id = ? AND date = CURDATE()"
+[application-service] 2024/06/10 03:01:53 printed query for daily views in second select : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address FROM selection_histories sh INNER JOIN users u ON sh.account_id = u.account_id INNER JOIN accounts a ON sh.account_id = a.account_id WHERE sh.account_id_identifier = ? AND a.account_id != ? AND a.account_id NOT IN ( SELECT s.account_id_swipe from swipes s WHERE s.account_id = ? ) ORDER BY RAND();"
+[application-service] 2024/06/10 03:02:00 printed query for daily views in second select : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address FROM selection_histories sh INNER JOIN users u ON sh.account_id = u.account_id INNER JOIN accounts a ON sh.account_id = a.account_id WHERE sh.account_id_identifier = ? AND a.account_id != ? AND a.account_id NOT IN ( SELECT s.account_id_swipe from swipes s WHERE s.account_id = ? ) ORDER BY RAND();"
+[application-service] 2024/06/10 03:02:54 Shutting down the server...
