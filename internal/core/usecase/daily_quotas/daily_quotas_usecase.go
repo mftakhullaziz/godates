@@ -4,33 +4,33 @@ import (
 	"context"
 	"database/sql"
 	"godating-dealls/internal/common"
-	dailyQuotas "godating-dealls/internal/core/entities/daily_quotas"
-	userEntities "godating-dealls/internal/core/entities/users"
+	"godating-dealls/internal/core/entities/daily_quotas"
+	"godating-dealls/internal/core/entities/users"
 	"godating-dealls/internal/domain"
 	"log"
 )
 
 type DailyQuotasUsecase struct {
-	DB  *sql.DB
-	Dqe dailyQuotas.DailyQuotasEntity
-	Ue  userEntities.UserEntities
+	DB                *sql.DB
+	DailyQuotasEntity daily_quotas.DailyQuotasEntity
+	UserEntity        users.UserEntity
 }
 
-func NewDailyQuotasUsecase(db *sql.DB, dqe dailyQuotas.DailyQuotasEntity, ue userEntities.UserEntities) InputDailyQuotaBoundary {
+func NewDailyQuotasUsecase(db *sql.DB, dailyQuotasEntity daily_quotas.DailyQuotasEntity, userEntity users.UserEntity) InputDailyQuotaBoundary {
 	return &DailyQuotasUsecase{
-		DB:  db,
-		Dqe: dqe,
-		Ue:  ue,
+		DB:                db,
+		DailyQuotasEntity: dailyQuotasEntity,
+		UserEntity:        userEntity,
 	}
 }
 
 func (d DailyQuotasUsecase) ExecuteAutoUpdateDailyQuotaUsecase(ctx context.Context) error {
 	fn := func(tx *sql.Tx) error {
-		users, err := d.Ue.FindAllUserEntities(ctx, tx)
+		usersList, err := d.UserEntity.FindAllUserEntities(ctx, tx)
 		common.HandleErrorReturn(err)
-		common.PrintJSON("daily usecase | users", users)
+		common.PrintJSON("daily usecase | users", usersList)
 
-		for _, user := range users {
+		for _, user := range usersList {
 			dailyQuotaDto := domain.DailyQuotasDto{
 				AccountID:      user.AccountID,
 				UserIsVerified: user.Verified,
@@ -42,7 +42,7 @@ func (d DailyQuotasUsecase) ExecuteAutoUpdateDailyQuotaUsecase(ctx context.Conte
 			}
 			common.PrintJSON("daily usecase | daily quotas", dailyQuotaDto)
 
-			err := d.Dqe.UpdateOrInsertDailyQuotaEntities(ctx, tx, dailyQuotaDto)
+			err := d.DailyQuotasEntity.UpdateOrInsertDailyQuotaEntities(ctx, tx, dailyQuotaDto)
 			common.HandleErrorReturn(err)
 		}
 		return nil

@@ -6,7 +6,7 @@ import (
 	"godating-dealls/internal/domain"
 )
 
-type UserEntities interface {
+type UserEntity interface {
 	SaveUserEntities(ctx context.Context, tx *sql.Tx, dto domain.UserDto) error
 	FindUserEntities(ctx context.Context, tx *sql.Tx, accountId int64) (domain.Users, error)
 	FindAllUserEntities(ctx context.Context, tx *sql.Tx) ([]domain.AllUsers, error)

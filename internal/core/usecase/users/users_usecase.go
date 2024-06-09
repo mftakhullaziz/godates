@@ -7,7 +7,7 @@ import (
 	"godating-dealls/internal/core/entities/auths"
 	"godating-dealls/internal/core/entities/selection_histories"
 	"godating-dealls/internal/core/entities/task_history"
-	ue "godating-dealls/internal/core/entities/users"
+	"godating-dealls/internal/core/entities/users"
 	res "godating-dealls/internal/domain"
 	"godating-dealls/internal/infra/jsonwebtoken"
 	"log"
@@ -16,7 +16,7 @@ import (
 
 type UserUsecase struct {
 	DB                     *sql.DB
-	Ue                     ue.UserEntities
+	UserEntity             users.UserEntity
 	AccountEntity          auths.AccountEntity
 	SelectionHistoryEntity selection_histories.SelectionHistoryEntity
 	TaskHistoryEntity      task_history.TaskHistoryEntity
@@ -24,11 +24,13 @@ type UserUsecase struct {
 
 func NewUserUsecase(
 	db *sql.DB,
-	ue ue.UserEntities,
+	userEntity users.UserEntity,
 	accountEntity auths.AccountEntity,
 	selectionHistoryEntity selection_histories.SelectionHistoryEntity,
 	taskHistoryEntity task_history.TaskHistoryEntity) InputUserBoundary {
-	return &UserUsecase{DB: db, Ue: ue,
+	return &UserUsecase{
+		DB:                     db,
+		UserEntity:             userEntity,
 		AccountEntity:          accountEntity,
 		SelectionHistoryEntity: selectionHistoryEntity,
 		TaskHistoryEntity:      taskHistoryEntity,
@@ -49,12 +51,12 @@ func (u UserUsecase) ExecuteUserViewsUsecase(ctx context.Context, token string, 
 		shouldRun, err := u.shouldRunHistoricalSelectionTask(ctx, tx, accountIdIdentifier)
 		common.HandleErrorReturn(err)
 
-		users, err := u.Ue.FindAllUserViewsEntities(ctx, tx, verifiedAccount, shouldRun, accountIdIdentifier)
+		usersList, err := u.UserEntity.FindAllUserViewsEntities(ctx, tx, verifiedAccount, shouldRun, accountIdIdentifier)
 		common.HandleErrorReturn(err)
 
 		if shouldRun {
-			if len(users) > 0 {
-				for _, user := range users {
+			if len(usersList) > 0 {
+				for _, user := range usersList {
 					err := u.SelectionHistoryEntity.InsertSelectionHistoryEntity(ctx, tx, accountIdIdentifier, user.AccountID)
 					common.HandleErrorReturn(err)
 				}
@@ -66,7 +68,7 @@ func (u UserUsecase) ExecuteUserViewsUsecase(ctx context.Context, token string, 
 
 		// Build response
 		var userViews []res.UserViewsResponse
-		for _, user := range users {
+		for _, user := range usersList {
 			userViews = append(userViews, res.UserViewsResponse{
 				UserID:    user.UserID,
 				AccountID: user.AccountID,

@@ -8,7 +8,7 @@ import (
 	"godating-dealls/internal/common"
 	ae "godating-dealls/internal/core/entities/auths"
 	lh "godating-dealls/internal/core/entities/login_histories"
-	ue "godating-dealls/internal/core/entities/users"
+	"godating-dealls/internal/core/entities/users"
 	"godating-dealls/internal/domain"
 	"godating-dealls/internal/infra/jsonwebtoken"
 	"godating-dealls/internal/infra/redisclient"
@@ -18,7 +18,7 @@ import (
 type AuthUsecase struct {
 	DB            *sql.DB
 	AccountEntity ae.AccountEntity
-	UE            ue.UserEntities
+	UserEntity    users.UserEntity
 	Rds           redisclient.RedisInterface
 	LH            lh.LoginHistoriesEntities
 }
@@ -26,13 +26,13 @@ type AuthUsecase struct {
 func NewAuthUsecase(
 	db *sql.DB,
 	accountEntity ae.AccountEntity,
-	ue ue.UserEntities,
+	userEntity users.UserEntity,
 	rds redisclient.RedisInterface,
 	lh lh.LoginHistoriesEntities) InputAuthBoundary {
 	return &AuthUsecase{
 		DB:            db,
 		AccountEntity: accountEntity,
-		UE:            ue,
+		UserEntity:    userEntity,
 		Rds:           rds,
 		LH:            lh,
 	}
@@ -60,7 +60,7 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request domain.L
 			return errors.New("invalid password")
 		}
 
-		user, err := au.UE.FindUserEntities(ctx, tx, account.AccountId)
+		user, err := au.UserEntity.FindUserEntities(ctx, tx, account.AccountId)
 		if err != nil {
 			return errors.New("failed to find user")
 		}
@@ -119,7 +119,7 @@ func (au *AuthUsecase) ExecuteRegisterUsecase(ctx context.Context, request domai
 			FullName:  &request.FullName,
 		}
 		common.PrintJSON("auth usecase | user dto", userDto)
-		if err := au.UE.SaveUserEntities(ctx, tx, userDto); err != nil {
+		if err := au.UserEntity.SaveUserEntities(ctx, tx, userDto); err != nil {
 			return err
 		}
 

@@ -11,16 +11,16 @@ import (
 	repository "godating-dealls/internal/infra/mysql/repo"
 )
 
-type UserEntitiesImpl struct {
+type UserEntityImpl struct {
 	repository repository.UserRepository
 	validate   *validator.Validate
 }
 
-func NewUserEntitiesImpl(repository repository.UserRepository, validate *validator.Validate) UserEntities {
-	return &UserEntitiesImpl{repository: repository, validate: validate}
+func NewUserEntityImpl(repository repository.UserRepository, validate *validator.Validate) UserEntity {
+	return &UserEntityImpl{repository: repository, validate: validate}
 }
 
-func (u UserEntitiesImpl) SaveUserEntities(ctx context.Context, tx *sql.Tx, dto domain.UserDto) error {
+func (u UserEntityImpl) SaveUserEntities(ctx context.Context, tx *sql.Tx, dto domain.UserDto) error {
 	// validate request dto
 	err := u.validate.Struct(dto)
 	if err != nil {
@@ -50,7 +50,7 @@ func (u UserEntitiesImpl) SaveUserEntities(ctx context.Context, tx *sql.Tx, dto 
 	return err
 }
 
-func (u UserEntitiesImpl) FindUserEntities(ctx context.Context, tx *sql.Tx, accountId int64) (domain.Users, error) {
+func (u UserEntityImpl) FindUserEntities(ctx context.Context, tx *sql.Tx, accountId int64) (domain.Users, error) {
 	user, err := u.repository.GetUserByAccountIdFromDB(ctx, tx, accountId)
 	if err != nil {
 		return domain.Users{}, err
@@ -64,7 +64,7 @@ func (u UserEntitiesImpl) FindUserEntities(ctx context.Context, tx *sql.Tx, acco
 	return usr, nil
 }
 
-func (u UserEntitiesImpl) FindAllUserEntities(ctx context.Context, tx *sql.Tx) ([]domain.AllUsers, error) {
+func (u UserEntityImpl) FindAllUserEntities(ctx context.Context, tx *sql.Tx) ([]domain.AllUsers, error) {
 	allUsers, err := u.repository.GetAllUsersFromDB(ctx, tx)
 	if err != nil {
 		return nil, errors.New("could not get all users")
@@ -84,7 +84,7 @@ func (u UserEntitiesImpl) FindAllUserEntities(ctx context.Context, tx *sql.Tx) (
 	return allUser, nil
 }
 
-func (u UserEntitiesImpl) FindAllUserViewsEntities(ctx context.Context, tx *sql.Tx, verified bool, shouldNext bool, accountIdIdentifier int64) ([]domain.AllUserViews, error) {
+func (u UserEntityImpl) FindAllUserViewsEntities(ctx context.Context, tx *sql.Tx, verified bool, shouldNext bool, accountIdIdentifier int64) ([]domain.AllUserViews, error) {
 	var allUsers []record.UserAccountRecord
 	if shouldNext {
 		allUsers1, err := u.repository.GetAllUsersViewsFromDB(ctx, verified, accountIdIdentifier, tx)
