@@ -12,11 +12,11 @@ import (
 
 type DailyQuotasUsecase struct {
 	DB  *sql.DB
-	Dqe dailyQuotas.DailyQuotasEntities
+	Dqe dailyQuotas.DailyQuotasEntity
 	Ue  userEntities.UserEntities
 }
 
-func NewDailyQuotasUsecase(db *sql.DB, dqe dailyQuotas.DailyQuotasEntities, ue userEntities.UserEntities) InputDailyQuotaBoundary {
+func NewDailyQuotasUsecase(db *sql.DB, dqe dailyQuotas.DailyQuotasEntity, ue userEntities.UserEntities) InputDailyQuotaBoundary {
 	return &DailyQuotasUsecase{
 		DB:  db,
 		Dqe: dqe,

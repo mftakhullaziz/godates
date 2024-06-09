@@ -11,16 +11,16 @@ import (
 	"time"
 )
 
-type DailyQuotasEntitiesImpl struct {
+type DailyQuotasEntityImpl struct {
 	DailyQuotaRepository repo.DailyQuotasRepository
 	Validate             *validator.Validate
 }
 
-func NewDailyQuotasEntitiesImpl(validate *validator.Validate, dailyQuotaRepository repo.DailyQuotasRepository) DailyQuotasEntities {
-	return &DailyQuotasEntitiesImpl{Validate: validate, DailyQuotaRepository: dailyQuotaRepository}
+func NewDailyQuotasEntityImpl(validate *validator.Validate, dailyQuotaRepository repo.DailyQuotasRepository) DailyQuotasEntity {
+	return &DailyQuotasEntityImpl{Validate: validate, DailyQuotaRepository: dailyQuotaRepository}
 }
 
-func (d DailyQuotasEntitiesImpl) UpdateOrInsertDailyQuotaEntities(ctx context.Context, tx *sql.Tx, dto domain.DailyQuotasDto) error {
+func (d DailyQuotasEntityImpl) UpdateOrInsertDailyQuotaEntities(ctx context.Context, tx *sql.Tx, dto domain.DailyQuotasDto) error {
 	today := time.Now().Format("2006-01-02")
 	todayTime, err := time.Parse(today, "2006-01-02")
 	common.HandleErrorReturn(err)

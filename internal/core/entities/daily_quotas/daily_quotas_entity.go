@@ -6,6 +6,6 @@ import (
 	"godating-dealls/internal/domain"
 )
 
-type DailyQuotasEntities interface {
+type DailyQuotasEntity interface {
 	UpdateOrInsertDailyQuotaEntities(ctx context.Context, tx *sql.Tx, dto domain.DailyQuotasDto) error
 }

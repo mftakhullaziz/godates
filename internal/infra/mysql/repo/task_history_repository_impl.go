@@ -17,9 +17,9 @@ func NewTaskHistorySQLRepository() TaskHistoryRepository {
 }
 
 // GetLastRunTimestamp retrieves the last run timestamp for a task from the storage within the provided transaction.
-func (r *TaskHistorySQLRepositoryImpl) GetLastRunTimestamp(ctx context.Context, taskName string, tx *sql.Tx) (int64, error) {
+func (r *TaskHistorySQLRepositoryImpl) GetLastRunTimestamp(ctx context.Context, taskName string, tx *sql.Tx, accountIdIdentifier int64) (int64, error) {
 	var lastRunTimestamp int64
-	err := tx.QueryRowContext(ctx, "SELECT last_run_timestamp FROM task_histories WHERE task_name = ?", taskName).Scan(&lastRunTimestamp)
+	err := tx.QueryRowContext(ctx, "SELECT last_run_timestamp FROM task_histories WHERE task_name = ? and account_id_identifier = ?", taskName, accountIdIdentifier).Scan(&lastRunTimestamp)
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
 			return 0, nil
@@ -30,7 +30,7 @@ func (r *TaskHistorySQLRepositoryImpl) GetLastRunTimestamp(ctx context.Context, 
 }
 
 // UpdateLastRunTimestamp updates the last run timestamp for a task in the storage within the provided transaction.
-func (r *TaskHistorySQLRepositoryImpl) UpdateLastRunTimestamp(ctx context.Context, taskName string, timestamp int64, tx *sql.Tx) error {
-	_, err := tx.ExecContext(ctx, "INSERT INTO task_histories (task_name, last_run_timestamp) VALUES (?, ?) ON DUPLICATE KEY UPDATE last_run_timestamp = ?", taskName, timestamp, timestamp)
+func (r *TaskHistorySQLRepositoryImpl) UpdateLastRunTimestamp(ctx context.Context, taskName string, timestamp int64, tx *sql.Tx, accountIdIdentifier int64) error {
+	_, err := tx.ExecContext(ctx, "INSERT INTO task_histories (account_id_identifier, task_name, last_run_timestamp) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE last_run_timestamp = ?", accountIdIdentifier, taskName, timestamp, timestamp)
 	return err
 }

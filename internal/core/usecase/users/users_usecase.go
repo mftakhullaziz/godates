@@ -45,10 +45,10 @@ func (u UserUsecase) ExecuteUserViewsUsecase(ctx context.Context, token string, 
 		verifiedAccount, err := u.Ae.FindAccountVerifiedEntities(ctx, tx, accountIdIdentifier)
 
 		// Check if the historical selection task should run
-		shouldRun, err := u.shouldRunHistoricalSelectionTask(ctx, tx)
+		shouldRun, err := u.shouldRunHistoricalSelectionTask(ctx, tx, accountIdIdentifier)
 		common.HandleErrorReturn(err)
 
-		users, err := u.Ue.FindAllUserViewsEntities(ctx, tx, verifiedAccount, shouldRun)
+		users, err := u.Ue.FindAllUserViewsEntities(ctx, tx, verifiedAccount, shouldRun, accountIdIdentifier)
 		common.HandleErrorReturn(err)
 
 		if shouldRun {
@@ -59,7 +59,7 @@ func (u UserUsecase) ExecuteUserViewsUsecase(ctx context.Context, token string, 
 				}
 			}
 			// Update the task history to indicate the task has run today
-			err = u.TaskHistoryEntity.InsertTaskHistoryEntity(ctx, tx, "historical_selection_task", time.Now().Unix())
+			err = u.TaskHistoryEntity.InsertTaskHistoryEntity(ctx, tx, "historical_selection_task", time.Now().Unix(), accountIdIdentifier)
 			common.HandleErrorReturn(err)
 		}
 
@@ -92,9 +92,9 @@ func (u UserUsecase) ExecuteUserViewsUsecase(ctx context.Context, token string, 
 }
 
 // shouldRunHistoricalSelectionTask checks if the historical selection task should run today.
-func (u UserUsecase) shouldRunHistoricalSelectionTask(ctx context.Context, tx *sql.Tx) (bool, error) {
+func (u UserUsecase) shouldRunHistoricalSelectionTask(ctx context.Context, tx *sql.Tx, accountIdIdentifier int64) (bool, error) {
 	// Retrieve the last run timestamp from your storage.
-	lastRunTimestamp, err := u.TaskHistoryEntity.GetLatestTaskHistoryEntity(ctx, tx, "historical_selection_task")
+	lastRunTimestamp, err := u.TaskHistoryEntity.GetLatestTaskHistoryEntity(ctx, tx, "historical_selection_task", accountIdIdentifier)
 	if err != nil {
 		return false, err
 	}

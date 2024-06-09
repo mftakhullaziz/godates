@@ -118,15 +118,15 @@ func (u UserRepositoryImpl) GetAllUsersFromDB(ctx context.Context, tx *sql.Tx) (
 	return users, nil
 }
 
-func (u UserRepositoryImpl) GetAllUsersViewsFromDB(ctx context.Context, verifiedUser bool, tx *sql.Tx) ([]record.UserAccountRecord, error) {
+func (u UserRepositoryImpl) GetAllUsersViewsFromDB(ctx context.Context, verifiedUser bool, accountIdIdentifier int64, tx *sql.Tx) ([]record.UserAccountRecord, error) {
 	var query string
 	if verifiedUser {
-		query = queries.FindAllUserAccountsViewListRecord
+		query = queries.FindAllUserAccountsViewInPremiumFirstListRecord
 	} else {
 		query = queries.FindAllUserAccountsView10InFirstHitListRecord
 	}
 
-	rows, err := tx.QueryContext(ctx, query)
+	rows, err := tx.QueryContext(ctx, query, accountIdIdentifier)
 	if err != nil {
 		return nil, fmt.Errorf("could not execute query: %v", err)
 	}
@@ -158,15 +158,16 @@ func (u UserRepositoryImpl) GetAllUsersViewsFromDB(ctx context.Context, verified
 	return users, nil
 }
 
-func (u UserRepositoryImpl) GetAllUsersNextViewsFromDB(ctx context.Context, verifiedUser bool, tx *sql.Tx) ([]record.UserAccountRecord, error) {
+func (u UserRepositoryImpl) GetAllUsersNextViewsFromDB(ctx context.Context, verifiedUser bool, accountIdIdentifier int64, tx *sql.Tx) ([]record.UserAccountRecord, error) {
 	var query string
+	fmt.Println("VerifiedUser: ", verifiedUser)
 	if verifiedUser {
-		query = queries.FindAllUserAccountsViewListRecord
+		query = queries.FindAllUserAccountsViewInPremiumSecondListRecord
 	} else {
 		query = queries.FindAllUserAccountsView10InSecondHitListRecord
 	}
 
-	rows, err := tx.QueryContext(ctx, query)
+	rows, err := tx.QueryContext(ctx, query, accountIdIdentifier, accountIdIdentifier)
 	if err != nil {
 		return nil, fmt.Errorf("could not execute query: %v", err)
 	}

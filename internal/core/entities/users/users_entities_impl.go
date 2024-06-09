@@ -4,7 +4,6 @@ import (
 	"context"
 	"database/sql"
 	"errors"
-	"fmt"
 	"github.com/go-playground/validator/v10"
 	"godating-dealls/internal/common"
 	"godating-dealls/internal/domain"
@@ -85,18 +84,16 @@ func (u UserEntitiesImpl) FindAllUserEntities(ctx context.Context, tx *sql.Tx) (
 	return allUser, nil
 }
 
-func (u UserEntitiesImpl) FindAllUserViewsEntities(ctx context.Context, tx *sql.Tx, verified bool, shouldNext bool) ([]domain.AllUserViews, error) {
+func (u UserEntitiesImpl) FindAllUserViewsEntities(ctx context.Context, tx *sql.Tx, verified bool, shouldNext bool, accountIdIdentifier int64) ([]domain.AllUserViews, error) {
 	var allUsers []record.UserAccountRecord
 	if shouldNext {
-		fmt.Printf("MASYK SINI")
-		allUsers1, err := u.repository.GetAllUsersViewsFromDB(ctx, verified, tx)
+		allUsers1, err := u.repository.GetAllUsersViewsFromDB(ctx, verified, accountIdIdentifier, tx)
 		if err != nil {
 			return nil, errors.New("could not get all users")
 		}
 		allUsers = append(allUsers, allUsers1...)
 	} else {
-		fmt.Printf("MASYK SANA")
-		allUsers2, err := u.repository.GetAllUsersNextViewsFromDB(ctx, verified, tx)
+		allUsers2, err := u.repository.GetAllUsersNextViewsFromDB(ctx, verified, accountIdIdentifier, tx)
 		if err != nil {
 			return nil, errors.New("could not get all users")
 		}

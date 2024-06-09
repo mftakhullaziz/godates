@@ -58,17 +58,17 @@ func main() {
 	authenticateEntities := authEntities.NewAccountsEntitiesImpl(accountRepository, val)
 	usersEntities := userEntities.NewUserEntitiesImpl(userRepository, val)
 	loginHistoryEntities := loginHistories.NewLoginHistoriesEntitiesImpl(val, loginHistoryRepository)
-	dailyQuotasEntities := dailyQuotaEntities.NewDailyQuotasEntitiesImpl(val, dailyQuotaRepository)
+	dailyQuotasEntity := dailyQuotaEntities.NewDailyQuotasEntityImpl(val, dailyQuotaRepository)
 	selectionHistoryEntity := selection_histories.NewSelectionHistoryEntityImpl(selectionHistoryRepository)
 	taskHistoryEntity := task_history.NewTaskHistoryEntityImpl(taskHistoryRepository)
 	swipeEntity := swipes.NewSwipeEntityImpl(swipeRepository)
 
 	// Usecase
 	authenticateUsecase := authUsecase.NewAuthUsecase(DB, authenticateEntities, usersEntities, RS, loginHistoryEntities)
-	dailyQuotasUsecase := dailyQuotaUsecase.NewDailyQuotasUsecase(DB, dailyQuotasEntities, usersEntities)
+	dailyQuotasUsecase := dailyQuotaUsecase.NewDailyQuotasUsecase(DB, dailyQuotasEntity, usersEntities)
 	InitializeCronJobDailyQuota(ctx, dailyQuotasUsecase)
 	usersUsecase := users.NewUserUsecase(DB, usersEntities, authenticateEntities, selectionHistoryEntity, taskHistoryEntity)
-	swipeUsecase := swipes2.NewSwipeUsecase(DB, swipeEntity)
+	swipeUsecase := swipes2.NewSwipeUsecase(DB, swipeEntity, dailyQuotasEntity)
 
 	// Create the handler with the use case
 	authenticateHandler := handler.NewAuthHandler(authenticateUsecase)

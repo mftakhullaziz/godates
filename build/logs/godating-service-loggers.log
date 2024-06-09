@@ -698,3 +698,416 @@
   "action": "right"
 }
 [application-service] 2024/06/09 06:50:40 Shutting down the server...
+[application-service] 2024/06/09 06:55:40 Connected to DB MySQL success!
+[application-service] 2024/06/09 06:55:40 Connected to Redis successfully
+[application-service] 2024/06/09 06:55:40 Cron job started
+[application-service] 2024/06/09 06:56:17 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 10
+}
+[application-service] 2024/06/09 06:57:14 Shutting down the server...
+[application-service] 2024/06/09 06:57:16 Connected to DB MySQL success!
+[application-service] 2024/06/09 06:57:16 Connected to Redis successfully
+[application-service] 2024/06/09 06:57:16 Cron job started
+[application-service] 2024/06/09 06:57:23 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 10
+}
+[application-service] 2024/06/09 06:59:06 Shutting down the server...
+[application-service] 2024/06/09 06:59:07 Connected to DB MySQL success!
+[application-service] 2024/06/09 06:59:07 Connected to Redis successfully
+[application-service] 2024/06/09 06:59:07 Cron job started
+[application-service] 2024/06/09 06:59:12 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 10
+}
+[application-service] 2024/06/09 07:00:01 Shutting down the server...
+[application-service] 2024/06/09 07:00:02 Connected to DB MySQL success!
+[application-service] 2024/06/09 07:00:02 Connected to Redis successfully
+[application-service] 2024/06/09 07:00:02 Cron job started
+[application-service] 2024/06/09 07:00:11 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 10
+}
+[application-service] 2024/06/09 07:00:47 Shutting down the server...
+[application-service] 2024/06/09 07:01:05 Connected to DB MySQL success!
+[application-service] 2024/06/09 07:01:05 Connected to Redis successfully
+[application-service] 2024/06/09 07:01:05 Cron job started
+[application-service] 2024/06/09 07:02:05 Executing daily quota update usecase
+[application-service] 2024/06/09 07:02:05 daily usecase | users : [
+  {
+    "UserID": 1,
+    "AccountID": 1,
+    "Verified": false
+  },
+  {
+    "UserID": 2,
+    "AccountID": 2,
+    "Verified": false
+  },
+  {
+    "UserID": 3,
+    "AccountID": 3,
+    "Verified": false
+  },
+  {
+    "UserID": 4,
+    "AccountID": 4,
+    "Verified": false
+  },
+  {
+    "UserID": 5,
+    "AccountID": 5,
+    "Verified": false
+  },
+  {
+    "UserID": 6,
+    "AccountID": 6,
+    "Verified": false
+  },
+  {
+    "UserID": 7,
+    "AccountID": 7,
+    "Verified": false
+  },
+  {
+    "UserID": 8,
+    "AccountID": 8,
+    "Verified": false
+  },
+  {
+    "UserID": 9,
+    "AccountID": 9,
+    "Verified": false
+  },
+  {
+    "UserID": 10,
+    "AccountID": 10,
+    "Verified": false
+  },
+  {
+    "UserID": 11,
+    "AccountID": 11,
+    "Verified": false
+  },
+  {
+    "UserID": 12,
+    "AccountID": 12,
+    "Verified": true
+  }
+]
+[application-service] 2024/06/09 07:02:05 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 1,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 1,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/09 07:02:05 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 2,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 2,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/09 07:02:05 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 3,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 3,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/09 07:02:05 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 4,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 4,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/09 07:02:05 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 5,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 5,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/09 07:02:05 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 6,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 6,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/09 07:02:05 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 7,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 7,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/09 07:02:05 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 8,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 8,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/09 07:02:05 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 9,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 9,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/09 07:02:05 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 10,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 10,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/09 07:02:05 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 11,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": false,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 11,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 10,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/09 07:02:05 daily usecase | daily quotas : {
+  "QuotaID": 0,
+  "AccountID": 12,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": 0,
+  "UserIsVerified": true,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 entities | daily quota entities : {
+  "QuotaID": 0,
+  "AccountID": 12,
+  "Date": "0001-01-01T00:00:00Z",
+  "TotalQuota": -1,
+  "SwipeCount": 0
+}
+[application-service] 2024/06/09 07:02:05 query: INSERT INTO daily_quotas (account_id, swipe_count, total_quota) VALUES (?, ?, ?)
+[application-service] 2024/06/09 07:02:05 Successfully executed daily quota update usecase
+[application-service] 2024/06/09 07:02:44 Shutting down the server...
+[application-service] 2024/06/09 12:09:45 Connected to DB MySQL success!
+[application-service] 2024/06/09 12:09:45 Connected to Redis successfully
+[application-service] 2024/06/09 12:09:45 Cron job started
+[application-service] 2024/06/09 12:09:47 Shutting down the server...
+[application-service] 2024/06/09 12:16:13 Connected to DB MySQL success!
+[application-service] 2024/06/09 12:16:13 Connected to Redis successfully
+[application-service] 2024/06/09 12:16:13 Cron job started
+[application-service] 2024/06/09 12:16:36 { whoami test1234}
+[application-service] 2024/06/09 12:16:36 Transaction failed: failed to authenticate account
+[application-service] 2024/06/09 12:16:50 { whoami@gmail.com test1234}
+[application-service] 2024/06/09 12:23:46 Shutting down the server...
+[application-service] 2024/06/09 12:27:58 Connected to DB MySQL success!
+[application-service] 2024/06/09 12:27:58 Connected to Redis successfully
+[application-service] 2024/06/09 12:27:58 Cron job started
+[application-service] 2024/06/09 12:29:49 Shutting down the server...
+[application-service] 2024/06/09 12:30:08 Connected to DB MySQL success!
+[application-service] 2024/06/09 12:30:08 Connected to Redis successfully
+[application-service] 2024/06/09 12:30:08 Cron job started
+[application-service] 2024/06/09 12:30:49 Shutting down the server...
+[application-service] 2024/06/09 12:30:52 Connected to DB MySQL success!
+[application-service] 2024/06/09 12:30:52 Connected to Redis successfully
+[application-service] 2024/06/09 12:30:52 Cron job started
+[application-service] 2024/06/09 12:47:41 Shutting down the server...
+[application-service] 2024/06/09 12:47:43 Connected to DB MySQL success!
+[application-service] 2024/06/09 12:47:43 Connected to Redis successfully
+[application-service] 2024/06/09 12:47:43 Cron job started
+[application-service] 2024/06/09 12:47:58 { whoami@gmail.com test1234}
+[application-service] 2024/06/09 12:48:51 { haidev@gmail.com test1234}
+[application-service] 2024/06/09 12:51:14 { hhhmmjava13@gmail.com test1234}
+[application-service] 2024/06/09 12:56:28 Shutting down the server...
+[application-service] 2024/06/09 12:56:30 Connected to DB MySQL success!
+[application-service] 2024/06/09 12:56:30 Connected to Redis successfully
+[application-service] 2024/06/09 12:56:30 Cron job started
+[application-service] 2024/06/09 12:58:50 Shutting down the server...
+[application-service] 2024/06/09 12:58:52 Connected to DB MySQL success!
+[application-service] 2024/06/09 12:58:52 Connected to Redis successfully
+[application-service] 2024/06/09 12:58:52 Cron job started
+[application-service] 2024/06/09 12:59:52 Shutting down the server...
+[application-service] 2024/06/09 12:59:53 Connected to DB MySQL success!
+[application-service] 2024/06/09 12:59:53 Connected to Redis successfully
+[application-service] 2024/06/09 12:59:53 Cron job started
+[application-service] 2024/06/09 13:01:56 Shutting down the server...
+[application-service] 2024/06/09 13:02:01 Connected to DB MySQL success!
+[application-service] 2024/06/09 13:02:01 Connected to Redis successfully
+[application-service] 2024/06/09 13:02:01 Cron job started
+[application-service] 2024/06/09 13:03:03 Shutting down the server...
+[application-service] 2024/06/09 13:03:03 Connected to DB MySQL success!
+[application-service] 2024/06/09 13:03:03 Connected to Redis successfully
+[application-service] 2024/06/09 13:03:03 Cron job started
+[application-service] 2024/06/09 13:03:12 Shutting down the server...
+[application-service] 2024/06/09 13:03:14 Connected to DB MySQL success!
+[application-service] 2024/06/09 13:03:14 Connected to Redis successfully
+[application-service] 2024/06/09 13:03:14 Cron job started
+[application-service] 2024/06/09 13:16:58 Shutting down the server...
+[application-service] 2024/06/09 13:17:00 Connected to DB MySQL success!
+[application-service] 2024/06/09 13:17:00 Connected to Redis successfully
+[application-service] 2024/06/09 13:17:00 Cron job started
+[application-service] 2024/06/09 13:17:35 Shutting down the server...
+[application-service] 2024/06/09 13:18:14 Connected to DB MySQL success!
+[application-service] 2024/06/09 13:18:14 Connected to Redis successfully
+[application-service] 2024/06/09 13:18:14 Cron job started
+[application-service] 2024/06/09 13:18:32 Handler | Register Request : {
+  "email": "manta@gmail.com",
+  "username": "manta",
+  "password": "test1234",
+  "full_name": "Manta"
+}
+[application-service] 2024/06/09 13:18:32 auth usecase | account dto : {
+  "Email": "manta@gmail.com",
+  "Username": "manta",
+  "Password": "test1234"
+}
+[application-service] 2024/06/09 13:18:32 auth entities | email is exist : false
+[application-service] 2024/06/09 13:18:32 auth entities | username is exist : false
+[application-service] 2024/06/09 13:18:32 auth entities | account record to be saved : {
+  "AccountID": 0,
+  "Username": "manta",
+  "PasswordHash": "$2a$04$h0ZBGH8Vib8pU.aNHtQR8OT80OWBenz19NKwS1BKx0wGoZPFz4GlG",
+  "Email": "manta@gmail.com",
+  "Verified": false,
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/09 13:18:32 auth usecase | user dto : {
+  "UserID": 0,
+  "AccountID": 13,
+  "FullName": "Manta",
+  "DateOfBirth": "0001-01-01T00:00:00Z",
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/09 13:18:32 user entities | user record to be saved : {
+  "UserID": 0,
+  "AccountID": 13,
+  "FullName": "Manta",
+  "DateOfBirth": null,
+  "Age": 0,
+  "Gender": "",
+  "Address": "",
+  "Bio": "",
+  "CreatedAt": "0001-01-01T00:00:00Z",
+  "UpdatedAt": "0001-01-01T00:00:00Z"
+}
+[application-service] 2024/06/09 13:18:39 { manta@gmail.com test1234}
+[application-service] 2024/06/09 13:21:10 { oizizou@gmail.com test1234}
+[application-service] 2024/06/09 13:22:26 Shutting down the server...
+[application-service] 2024/06/09 13:22:27 Connected to DB MySQL success!
+[application-service] 2024/06/09 13:22:27 Connected to Redis successfully
+[application-service] 2024/06/09 13:22:27 Cron job started
+[application-service] 2024/06/09 13:29:56 Shutting down the server...
+[application-service] 2024/06/09 13:29:57 Connected to DB MySQL success!
+[application-service] 2024/06/09 13:29:57 Connected to Redis successfully
+[application-service] 2024/06/09 13:29:57 Cron job started
+[application-service] 2024/06/09 13:30:25 { manta@gmail.com test1234}
+[application-service] 2024/06/09 13:31:04 { hhhmmjava13@gmail.com test1234}
+[application-service] 2024/06/09 13:31:46 { oizizou@gmail.com test1234}
+[application-service] 2024/06/09 13:32:21 Shutting down the server...
