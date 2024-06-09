@@ -32,12 +32,12 @@ import (
 )
 
 func main() {
+	// Init context before run application
+	ctx := context.Background()
+
 	// Set up logging
 	logs := InitializeLogger()
 	defer logs.Close()
-
-	// Init context before run application
-	ctx := context.Background()
 
 	DB := InitializeDB(ctx)
 	defer conf.CloseDBConnection()
