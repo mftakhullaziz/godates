@@ -6,7 +6,7 @@ import (
 	"godating-dealls/internal/domain"
 )
 
-type LoginHistoriesEntities interface {
+type LoginHistoriesEntity interface {
 	SaveLoginHistoriesEntities(ctx context.Context, tx *sql.Tx, dto domain.LoginHistoriesDto) error
 	UpdateLoginHistoriesEntities(ctx context.Context, tx *sql.Tx, dto domain.LoginHistoriesDto) error
 }

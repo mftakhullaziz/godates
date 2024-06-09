@@ -61,7 +61,7 @@ func main() {
 	// Entities represented of enterprise business rules for that self of entity
 	authEntity := auths.NewAccountsEntityImpl(accountRepository, val)
 	userEntity := usersentity.NewUserEntityImpl(userRepository, val)
-	loginHistoryEntity := loginhistoryentity.NewLoginHistoriesEntitiesImpl(val, loginHistoryRepository)
+	loginHistoryEntity := loginhistoryentity.NewLoginHistoriesEntityImpl(val, loginHistoryRepository)
 	dailyQuotasEntity := dailyquotaentity.NewDailyQuotasEntityImpl(val, dailyQuotaRepository)
 	selectionHistoryEntity := selection_histories.NewSelectionHistoryEntityImpl(selectionHistoryRepository)
 	taskHistoryEntity := task_history.NewTaskHistoryEntityImpl(taskHistoryRepository)

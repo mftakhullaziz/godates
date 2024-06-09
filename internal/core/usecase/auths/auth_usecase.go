@@ -6,8 +6,8 @@ import (
 	"errors"
 	"fmt"
 	"godating-dealls/internal/common"
-	ae "godating-dealls/internal/core/entities/auths"
-	lh "godating-dealls/internal/core/entities/login_histories"
+	"godating-dealls/internal/core/entities/auths"
+	"godating-dealls/internal/core/entities/login_histories"
 	"godating-dealls/internal/core/entities/users"
 	"godating-dealls/internal/domain"
 	"godating-dealls/internal/infra/jsonwebtoken"
@@ -16,25 +16,25 @@ import (
 )
 
 type AuthUsecase struct {
-	DB            *sql.DB
-	AccountEntity ae.AccountEntity
-	UserEntity    users.UserEntity
-	Rds           redisclient.RedisInterface
-	LH            lh.LoginHistoriesEntities
+	DB                   *sql.DB
+	AccountEntity        auths.AccountEntity
+	UserEntity           users.UserEntity
+	Rds                  redisclient.RedisInterface
+	LoginHistoriesEntity login_histories.LoginHistoriesEntity
 }
 
 func NewAuthUsecase(
 	db *sql.DB,
-	accountEntity ae.AccountEntity,
+	accountEntity auths.AccountEntity,
 	userEntity users.UserEntity,
 	rds redisclient.RedisInterface,
-	lh lh.LoginHistoriesEntities) InputAuthBoundary {
+	loginHistoriesEntity login_histories.LoginHistoriesEntity) InputAuthBoundary {
 	return &AuthUsecase{
-		DB:            db,
-		AccountEntity: accountEntity,
-		UserEntity:    userEntity,
-		Rds:           rds,
-		LH:            lh,
+		DB:                   db,
+		AccountEntity:        accountEntity,
+		UserEntity:           userEntity,
+		Rds:                  rds,
+		LoginHistoriesEntity: loginHistoriesEntity,
 	}
 }
 
@@ -75,7 +75,7 @@ func (au *AuthUsecase) ExecuteLoginUsecase(ctx context.Context, request domain.L
 			UserID:    user.UserID,
 			AccountID: account.AccountId,
 		}
-		err = au.LH.SaveLoginHistoriesEntities(ctx, tx, loginDto)
+		err = au.LoginHistoriesEntity.SaveLoginHistoriesEntities(ctx, tx, loginDto)
 		common.HandleErrorWithParam(err, "Failed to save login history")
 
 		// Store token to redis
@@ -146,7 +146,7 @@ func (au *AuthUsecase) ExecuteLogoutUsecase(ctx context.Context, accessToken *st
 		verify, err := jsonwebtoken.VerifyJWTToken(*accessToken)
 		common.HandleErrorReturn(err)
 
-		err = au.LH.UpdateLoginHistoriesEntities(ctx, tx, domain.LoginHistoriesDto{
+		err = au.LoginHistoriesEntity.UpdateLoginHistoriesEntities(ctx, tx, domain.LoginHistoriesDto{
 			UserID:    verify.UserId,
 			AccountID: verify.AccountId,
 		})

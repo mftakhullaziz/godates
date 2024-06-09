@@ -10,19 +10,19 @@ import (
 	"godating-dealls/internal/infra/mysql/repo"
 )
 
-type LoginHistoriesEntitiesImpl struct {
+type LoginHistoriesEntityImpl struct {
 	LoginRepository repo.LoginHistoriesRepository
 	Validate        *validator.Validate
 }
 
-func NewLoginHistoriesEntitiesImpl(Validate *validator.Validate, LoginRepository repo.LoginHistoriesRepository) LoginHistoriesEntities {
-	return &LoginHistoriesEntitiesImpl{
+func NewLoginHistoriesEntityImpl(Validate *validator.Validate, LoginRepository repo.LoginHistoriesRepository) LoginHistoriesEntity {
+	return &LoginHistoriesEntityImpl{
 		Validate:        Validate,
 		LoginRepository: LoginRepository,
 	}
 }
 
-func (l LoginHistoriesEntitiesImpl) SaveLoginHistoriesEntities(ctx context.Context, tx *sql.Tx, dto domain.LoginHistoriesDto) error {
+func (l LoginHistoriesEntityImpl) SaveLoginHistoriesEntities(ctx context.Context, tx *sql.Tx, dto domain.LoginHistoriesDto) error {
 	// validate request dto
 	err := l.Validate.Struct(dto)
 	if err != nil {
@@ -38,7 +38,7 @@ func (l LoginHistoriesEntitiesImpl) SaveLoginHistoriesEntities(ctx context.Conte
 	return nil
 }
 
-func (l LoginHistoriesEntitiesImpl) UpdateLoginHistoriesEntities(ctx context.Context, tx *sql.Tx, dto domain.LoginHistoriesDto) error {
+func (l LoginHistoriesEntityImpl) UpdateLoginHistoriesEntities(ctx context.Context, tx *sql.Tx, dto domain.LoginHistoriesDto) error {
 	// validate request dto
 	err := l.Validate.Struct(dto)
 	if err != nil {
