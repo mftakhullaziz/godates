@@ -19,7 +19,7 @@ func InitializeRouter(
 
 	// Using middleware authenticate
 	r.Handle("POST /godating-dealls/api/authenticate/logout", md.AuthMiddleware(http.HandlerFunc(authHandler.LogoutUserHandler)))
-	r.Handle("GET /godating-dealls/api/daily-accounts", md.AuthMiddleware(http.HandlerFunc(userHandler.UserViewsHandler)))
+	r.Handle("POST /godating-dealls/api/daily-accounts", md.AuthMiddleware(http.HandlerFunc(userHandler.UserViewsHandler)))
 	r.Handle("POST /godating-dealls/api/swipes", md.AuthMiddleware(http.HandlerFunc(swipeHandler.SwipeHandler)))
 	r.Handle("GET /godating-dealls/api/quota", md.AuthMiddleware(http.HandlerFunc(nil)))
 	r.Handle("POST /godating-dealls/api/purchase-package", md.AuthMiddleware(http.HandlerFunc(nil)))
