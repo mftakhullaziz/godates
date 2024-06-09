@@ -7,13 +7,13 @@ import (
 	"github.com/robfig/cron/v3"
 	"godating-dealls/conf"
 	"godating-dealls/internal/common"
-	authEntities "godating-dealls/internal/core/entities/auths"
-	dailyQuotaEntities "godating-dealls/internal/core/entities/daily_quotas"
-	loginHistories "godating-dealls/internal/core/entities/login_histories"
+	"godating-dealls/internal/core/entities/auths"
+	dailyquotaentity "godating-dealls/internal/core/entities/daily_quotas"
+	loginhistoryentity "godating-dealls/internal/core/entities/login_histories"
 	"godating-dealls/internal/core/entities/selection_histories"
 	"godating-dealls/internal/core/entities/swipes"
 	"godating-dealls/internal/core/entities/task_history"
-	userEntities "godating-dealls/internal/core/entities/users"
+	usersentity "godating-dealls/internal/core/entities/users"
 	authUsecase "godating-dealls/internal/core/usecase/auths"
 	dailyQuotaUsecase "godating-dealls/internal/core/usecase/daily_quotas"
 	swipes2 "godating-dealls/internal/core/usecase/swipes"
@@ -55,19 +55,19 @@ func main() {
 	swipeRepository := repo.NewSwipesRepositoryImpl()
 
 	// Entities represented of enterprise business rules for that self of entity
-	authenticateEntities := authEntities.NewAccountsEntitiesImpl(accountRepository, val)
-	usersEntities := userEntities.NewUserEntitiesImpl(userRepository, val)
-	loginHistoryEntities := loginHistories.NewLoginHistoriesEntitiesImpl(val, loginHistoryRepository)
-	dailyQuotasEntity := dailyQuotaEntities.NewDailyQuotasEntityImpl(val, dailyQuotaRepository)
+	authEntity := auths.NewAccountsEntitiesImpl(accountRepository, val)
+	userEntity := usersentity.NewUserEntitiesImpl(userRepository, val)
+	loginHistoryEntity := loginhistoryentity.NewLoginHistoriesEntitiesImpl(val, loginHistoryRepository)
+	dailyQuotasEntity := dailyquotaentity.NewDailyQuotasEntityImpl(val, dailyQuotaRepository)
 	selectionHistoryEntity := selection_histories.NewSelectionHistoryEntityImpl(selectionHistoryRepository)
 	taskHistoryEntity := task_history.NewTaskHistoryEntityImpl(taskHistoryRepository)
 	swipeEntity := swipes.NewSwipeEntityImpl(swipeRepository)
 
 	// Usecase
-	authenticateUsecase := authUsecase.NewAuthUsecase(DB, authenticateEntities, usersEntities, RS, loginHistoryEntities)
-	dailyQuotasUsecase := dailyQuotaUsecase.NewDailyQuotasUsecase(DB, dailyQuotasEntity, usersEntities)
+	authenticateUsecase := authUsecase.NewAuthUsecase(DB, authEntity, userEntity, RS, loginHistoryEntity)
+	dailyQuotasUsecase := dailyQuotaUsecase.NewDailyQuotasUsecase(DB, dailyQuotasEntity, userEntity)
 	InitializeCronJobDailyQuota(ctx, dailyQuotasUsecase)
-	usersUsecase := users.NewUserUsecase(DB, usersEntities, authenticateEntities, selectionHistoryEntity, taskHistoryEntity)
+	usersUsecase := users.NewUserUsecase(DB, userEntity, authEntity, selectionHistoryEntity, taskHistoryEntity)
 	swipeUsecase := swipes2.NewSwipeUsecase(DB, swipeEntity, dailyQuotasEntity)
 
 	// Create the handler with the use case
