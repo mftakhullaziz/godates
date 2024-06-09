@@ -1368,3 +1368,15 @@
 [application-service] 2024/06/09 21:32:16 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t\tFROM users u \n\t\t\t\t\t\t\t\t\t\t\t\t\tINNER JOIN accounts a ON u.account_id = a.account_id\n\t\t\t\t\t\t\t\t\t\t\t\t\tWHERE a.verified = FALSE \n\t\t\t\t\t\t\t\t\t\t\t\t\tAND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\tAND a.account_id NOT IN (SELECT DISTINCT sh2.account_id_identifier\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tFROM selection_histories sh2 \n\t\t\t\t\t\t\t\t\t\t\t\t\t\tWHERE sh2.selection_date = CURDATE())\n\t\t\t\t\t\t\t\t\t\t\t\t\tORDER BY RAND() \n\t\t\t\t\t\t\t\t\t\t\t\t\tLIMIT 10;"
 [application-service] 2024/06/09 21:32:18 printed query for daily views : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address \n\t\t\t\t\t\t\t\t\t\t\t\t  FROM users u \n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN accounts a ON u.account_id = a.account_id\n\t\t\t\t\t\t\t\t\t\t\t\t  INNER JOIN selection_histories sh \n\t\t\t\t\t\t\t\t\t\t\t\t\t\tON a.account_id = sh.account_id AND u.account_id = sh.account_id AND sh.selection_date = CURDATE()\n\t\t\t\t\t\t\t\t\t\t\t\t  WHERE a.verified = FALSE \n\t\t\t\t\t\t\t\t\t\t\t\t    AND sh.account_id_identifier = ? \n\t\t\t\t\t\t\t\t\t\t\t\t    AND a.account_id != ?\n\t\t\t\t\t\t\t\t\t\t\t\t\tAND a.account_id NOT IN (\n\t\t\t\t\t\t\t\t\t\t\t\t\t\tSELECT s.account_id_swipe from swipes s WHERE s.account_id = ?\n\t\t\t\t\t\t\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t\t\t\t\t\t  ORDER BY RAND() \n\t\t\t\t\t\t\t\t\t\t\t\t  LIMIT 10;"
 [application-service] 2024/06/09 21:32:52 Shutting down the server...
+[application-service] 2024/06/10 00:48:05 Connected to DB MySQL success!
+[application-service] 2024/06/10 00:48:05 Connected to Redis successfully
+[application-service] 2024/06/10 00:48:05 Cron job started
+[application-service] 2024/06/10 00:49:41 Handler | Swipe Request : {
+  "action_type": "right",
+  "account_id_swipe": 10
+}
+[application-service] 2024/06/10 00:51:06 Shutting down the server...
+[application-service] 2024/06/10 00:51:07 Connected to DB MySQL success!
+[application-service] 2024/06/10 00:51:07 Connected to Redis successfully
+[application-service] 2024/06/10 00:51:07 Cron job started
+[application-service] 2024/06/10 00:51:16 Shutting down the server...

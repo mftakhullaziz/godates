@@ -10,12 +10,14 @@ import (
 	"godating-dealls/internal/core/entities/auths"
 	dailyquotaentity "godating-dealls/internal/core/entities/daily_quotas"
 	loginhistoryentity "godating-dealls/internal/core/entities/login_histories"
+	"godating-dealls/internal/core/entities/packages"
 	"godating-dealls/internal/core/entities/selection_histories"
 	"godating-dealls/internal/core/entities/swipes"
 	"godating-dealls/internal/core/entities/task_history"
 	usersentity "godating-dealls/internal/core/entities/users"
 	authUsecase "godating-dealls/internal/core/usecase/auths"
 	dailyQuotaUsecase "godating-dealls/internal/core/usecase/daily_quotas"
+	packages2 "godating-dealls/internal/core/usecase/packages"
 	swipes2 "godating-dealls/internal/core/usecase/swipes"
 	"godating-dealls/internal/core/usecase/users"
 	"godating-dealls/internal/handler"
@@ -53,6 +55,7 @@ func main() {
 	selectionHistoryRepository := repo.NewSelectionHistoriesRepositoryImpl()
 	taskHistoryRepository := repo.NewTaskHistorySQLRepository()
 	swipeRepository := repo.NewSwipesRepositoryImpl()
+	packageRepository := repo.NewPackagesRepositoryImpl()
 
 	// Entities represented of enterprise business rules for that self of entity
 	authEntity := auths.NewAccountsEntitiesImpl(accountRepository, val)
@@ -62,6 +65,7 @@ func main() {
 	selectionHistoryEntity := selection_histories.NewSelectionHistoryEntityImpl(selectionHistoryRepository)
 	taskHistoryEntity := task_history.NewTaskHistoryEntityImpl(taskHistoryRepository)
 	swipeEntity := swipes.NewSwipeEntityImpl(swipeRepository)
+	packageEntity := packages.NewPackageEntityImpl(packageRepository)
 
 	// Usecase
 	authenticateUsecase := authUsecase.NewAuthUsecase(DB, authEntity, userEntity, RS, loginHistoryEntity)
@@ -69,14 +73,16 @@ func main() {
 	InitializeCronJobDailyQuota(ctx, dailyQuotasUsecase)
 	usersUsecase := users.NewUserUsecase(DB, userEntity, authEntity, selectionHistoryEntity, taskHistoryEntity)
 	swipeUsecase := swipes2.NewSwipeUsecase(DB, swipeEntity, dailyQuotasEntity, authEntity)
+	packageUsease := packages2.NewPackageUsecase(DB, packageEntity)
 
 	// Create the handler with the use case
 	authenticateHandler := handler.NewAuthHandler(authenticateUsecase)
 	usersHandler := handler.NewUsersHandler(usersUsecase)
 	swipeHandler := handler.NewSwipeHandler(swipeUsecase)
+	packageHandler := handler.NewPackageHandler(packageUsease)
 
 	// Set up the router
-	r := router.InitializeRouter(authenticateHandler, usersHandler, swipeHandler)
+	r := router.InitializeRouter(authenticateHandler, usersHandler, swipeHandler, packageHandler)
 
 	// Create a channel to listen for OS signals
 	stop := make(chan os.Signal, 1)
