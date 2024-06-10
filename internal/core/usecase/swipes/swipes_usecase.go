@@ -65,9 +65,9 @@ func (s SwipeUsecase) ExecuteSwipes(ctx context.Context, token string, request d
 				if err != nil {
 					return errors.New("failed to insert swipe action entity")
 				}
+			} else {
+				message = "The total quota for swipe users is limited, please try next day!"
 			}
-
-			message = "The total quota for swipe users is limited, please try next day!"
 		}
 
 		if message == "" {
