@@ -2,6 +2,7 @@ package config
 
 import (
 	"context"
+	"crypto/tls"
 	"fmt"
 	"github.com/joho/godotenv"
 	"github.com/redis/go-redis/v9"
@@ -23,9 +24,13 @@ func InitializeRedisClient(ctx context.Context) *redis.Client {
 	uri := fmt.Sprintf("%s:%s", rdsHost, rdsPort)
 
 	RedisClient = redis.NewClient(&redis.Options{
-		Addr:     uri, // Replace with your Redis server address
-		Password: "",  // No password set
-		DB:       0,   // Use default DB
+		Addr:     uri,
+		Password: os.Getenv("REDIS_PASSWORD"),
+		DB:       0,
+		Username: os.Getenv("REDIS_USER"),
+		TLSConfig: &tls.Config{
+			InsecureSkipVerify: true,
+		},
 	})
 
 	// Test the connection
