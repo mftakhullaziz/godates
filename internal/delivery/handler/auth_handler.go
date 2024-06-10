@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"godating-dealls/internal/common"
 	input "godating-dealls/internal/core/usecase/auths"
+	"godating-dealls/internal/delivery/presenter"
 	"godating-dealls/internal/domain"
-	presenters "godating-dealls/internal/presenter"
 	"log"
 	"net/http"
 )

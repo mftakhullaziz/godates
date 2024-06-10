@@ -3,7 +3,7 @@ package handler
 import (
 	"godating-dealls/internal/common"
 	"godating-dealls/internal/core/usecase/daily_quotas"
-	presenters "godating-dealls/internal/presenter"
+	"godating-dealls/internal/delivery/presenter"
 	"net/http"
 )
 

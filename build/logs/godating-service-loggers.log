@@ -4822,3 +4822,4 @@
 [application-service] 2024/06/10 13:20:21 Connected to Redis successfully
 [application-service] 2024/06/10 13:20:21 Cron job started
 [application-service] 2024/06/10 13:21:05 { u1@gmail.com test1234}
+[application-service] 2024/06/10 13:22:34 Shutting down the server...

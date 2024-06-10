@@ -2,16 +2,16 @@ package router
 
 import (
 	md "godating-dealls/internal/common"
-	"godating-dealls/internal/handler"
+	handler2 "godating-dealls/internal/delivery/handler"
 	"net/http"
 )
 
 func InitializeRouter(
-	authHandler *handler.AuthHandler,
-	userHandler *handler.UsersHandler,
-	swipeHandler *handler.SwipeHandler,
-	packageHandler *handler.PackageHandler,
-	quotaHandler *handler.QuotaHandler) *http.ServeMux {
+	authHandler *handler2.AuthHandler,
+	userHandler *handler2.UsersHandler,
+	swipeHandler *handler2.SwipeHandler,
+	packageHandler *handler2.PackageHandler,
+	quotaHandler *handler2.QuotaHandler) *http.ServeMux {
 
 	r := http.NewServeMux()
 

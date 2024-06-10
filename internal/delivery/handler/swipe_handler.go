@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"godating-dealls/internal/common"
 	"godating-dealls/internal/core/usecase/swipes"
+	"godating-dealls/internal/delivery/presenter"
 	"godating-dealls/internal/domain"
-	presenters "godating-dealls/internal/presenter"
 	"net/http"
 )
 

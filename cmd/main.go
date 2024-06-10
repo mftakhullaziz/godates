@@ -20,7 +20,7 @@ import (
 	packageusecase "godating-dealls/internal/core/usecase/packages"
 	swipeusecase "godating-dealls/internal/core/usecase/swipes"
 	"godating-dealls/internal/core/usecase/users"
-	"godating-dealls/internal/handler"
+	handler2 "godating-dealls/internal/delivery/handler"
 	"godating-dealls/internal/infra/mysql/repo"
 	"godating-dealls/internal/infra/redisclient"
 	"godating-dealls/router"
@@ -77,11 +77,11 @@ func main() {
 	packageUsecase := packageusecase.NewPackageUsecase(DB, packageEntity, accountEntity, dailyQuotasEntity)
 
 	// Create the handler with the use case
-	authenticateHandler := handler.NewAuthHandler(authenticateUsecase)
-	usersHandler := handler.NewUsersHandler(usersUsecase)
-	swipeHandler := handler.NewSwipeHandler(swipeUsecase)
-	packageHandler := handler.NewPackageHandler(packageUsecase)
-	quotaHandler := handler.NewQuotaHandler(dailyQuotasUsecase)
+	authenticateHandler := handler2.NewAuthHandler(authenticateUsecase)
+	usersHandler := handler2.NewUsersHandler(usersUsecase)
+	swipeHandler := handler2.NewSwipeHandler(swipeUsecase)
+	packageHandler := handler2.NewPackageHandler(packageUsecase)
+	quotaHandler := handler2.NewQuotaHandler(dailyQuotasUsecase)
 
 	// Set up the router
 	r := router.InitializeRouter(authenticateHandler, usersHandler, swipeHandler, packageHandler, quotaHandler)
