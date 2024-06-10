@@ -4,7 +4,6 @@ import (
 	"context"
 	"crypto/tls"
 	"fmt"
-	"github.com/joho/godotenv"
 	"github.com/redis/go-redis/v9"
 	"godating-dealls/internal/common"
 	"log"
@@ -16,8 +15,8 @@ var RedisClient *redis.Client
 
 // InitializeRedisClient initializes the Redis client
 func InitializeRedisClient(ctx context.Context) *redis.Client {
-	err := godotenv.Load()
-	common.HandleErrorWithParam(err, "Error loading .env file")
+	// err := godotenv.Load()
+	// common.HandleErrorWithParam(err, "Error loading .env file")
 
 	rdsHost := os.Getenv("REDIS_HOST")
 	rdsPort := os.Getenv("REDIS_PORT")
@@ -34,7 +33,7 @@ func InitializeRedisClient(ctx context.Context) *redis.Client {
 	})
 
 	// Test the connection
-	_, err = RedisClient.Ping(ctx).Result()
+	_, err := RedisClient.Ping(ctx).Result()
 	common.HandleErrorWithParam(err, "Error connecting to redisclient")
 	log.Println("Connected to Redis successfully")
 

@@ -4,7 +4,6 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	"github.com/joho/godotenv"
 	"godating-dealls/internal/common"
 	"log"
 	"os"
@@ -18,8 +17,8 @@ var db *sql.DB
 // initMySQLDB initializes the database connection
 func initMySQLDB(ctx context.Context) *sql.DB {
 	// Load .env file
-	err := godotenv.Load()
-	common.HandleErrorWithParam(err, "Error loading .env file")
+	// err := godotenv.Load()
+	// common.HandleErrorWithParam(err, "Error loading .env file")
 
 	dbUser := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASSWORD")
