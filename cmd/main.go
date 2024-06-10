@@ -38,8 +38,8 @@ func main() {
 	ctx := context.Background()
 
 	// Set up logging
-	logs := InitializeLogger()
-	defer logs.Close()
+	// logs := InitializeLogger()
+	// defer logs.Close()
 
 	DB := InitializeDB(ctx)
 	defer config.CloseDBConnection()
