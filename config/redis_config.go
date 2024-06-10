@@ -29,7 +29,7 @@ func InitializeRedisClient(ctx context.Context) *redis.Client {
 		DB:       0,
 		Username: os.Getenv("REDIS_USER"),
 		TLSConfig: &tls.Config{
-			InsecureSkipVerify: true,
+			InsecureSkipVerify: false, // if run from localhost set false
 		},
 	})
 
