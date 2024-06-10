@@ -26,7 +26,7 @@ func InitializeRouter(
 	r.Handle("GET /godating-dealls/api/quota", md.AuthMiddleware(http.HandlerFunc(quotaHandler.CheckQuotaAccountHandler)))
 	r.Handle("POST /godating-dealls/api/purchase-package", md.AuthMiddleware(http.HandlerFunc(packageHandler.PurchasePackages)))
 	r.Handle("GET /godating-dealls/api/packages", md.AuthMiddleware(http.HandlerFunc(packageHandler.GetPackageHandler)))
-	// r.Handle("GET /godating-dealls/api/track-view", md.AuthMiddleware(http.HandlerFunc(nil)))
+	r.Handle("GET /godating-dealls/api/account-details", md.AuthMiddleware(http.HandlerFunc(nil)))
 
 	return r
 }
