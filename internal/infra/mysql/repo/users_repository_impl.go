@@ -160,18 +160,36 @@ func (u UserRepositoryImpl) GetAllUsersViewsFromDB(ctx context.Context, verified
 	return users, nil
 }
 
-func (u UserRepositoryImpl) GetAllUsersNextViewsFromDB(ctx context.Context, verifiedUser bool, accountIdIdentifier int64, tx *sql.Tx) ([]record.UserAccountRecord, error) {
-	var query string
-	if verifiedUser {
-		query = queries.FindAllUserAccountsViewInPremiumSecondListRecord
-	} else {
-		query = queries.FindAllUserAccountsView10InSecondHitListRecord
-	}
-	common.PrintJSON("printed query for daily views in second select", query)
-
-	rows, err := tx.QueryContext(ctx, query, accountIdIdentifier, accountIdIdentifier, accountIdIdentifier)
+func fetchSecondAllUsersViewInPremiumUser(ctx context.Context, tx *sql.Tx, identifier int64) (*sql.Rows, error) {
+	query := queries.FindAllUserAccountsViewInPremiumSecondListRecord
+	rows, err := tx.QueryContext(ctx, query, identifier, identifier)
 	if err != nil {
 		return nil, fmt.Errorf("could not execute query: %v", err)
+	}
+	return rows, nil
+}
+
+func fetchSecondAllUsersViewInRegularUser(ctx context.Context, tx *sql.Tx, identifier int64) (*sql.Rows, error) {
+	query := queries.FindAllUserAccountsView10InSecondHitListRecord
+	rows, err := tx.QueryContext(ctx, query, identifier, identifier, identifier)
+	if err != nil {
+		return nil, fmt.Errorf("could not execute query: %v", err)
+	}
+	return rows, nil
+}
+
+func (u UserRepositoryImpl) GetAllUsersNextViewsFromDB(ctx context.Context, verifiedUser bool, accountIdIdentifier int64, tx *sql.Tx) ([]record.UserAccountRecord, error) {
+	var rows *sql.Rows
+	var err error
+
+	if verifiedUser {
+		rows, err = fetchSecondAllUsersViewInPremiumUser(ctx, tx, accountIdIdentifier)
+	} else {
+		rows, err = fetchSecondAllUsersViewInRegularUser(ctx, tx, accountIdIdentifier)
+	}
+
+	if err != nil {
+		return nil, err
 	}
 	defer rows.Close()
 
