@@ -3,12 +3,13 @@ package users
 import (
 	"context"
 	"database/sql"
+	"errors"
 	"godating-dealls/internal/common"
 	"godating-dealls/internal/core/entities/accounts"
 	"godating-dealls/internal/core/entities/selection_histories"
 	"godating-dealls/internal/core/entities/task_history"
 	"godating-dealls/internal/core/entities/users"
-	res "godating-dealls/internal/domain"
+	"godating-dealls/internal/domain"
 	"godating-dealls/internal/infra/jsonwebtoken"
 	"log"
 	"time"
@@ -67,9 +68,9 @@ func (u UserUsecase) ExecuteUserViewsUsecase(ctx context.Context, token string, 
 		}
 
 		// Build response
-		var userViews []res.UserViewsResponse
+		var userViews []domain.UserViewsResponse
 		for _, user := range usersList {
-			userViews = append(userViews, res.UserViewsResponse{
+			userViews = append(userViews, domain.UserViewsResponse{
 				UserID:    user.UserID,
 				AccountID: user.AccountID,
 				Username:  user.Username,
@@ -107,4 +108,44 @@ func (u UserUsecase) shouldRunHistoricalSelectionTask(ctx context.Context, tx *s
 
 	// If the last run timestamp is before today, return true indicating the task should run.
 	return lastRunTimestamp < today.Unix(), nil
+}
+
+func (u UserUsecase) ExecutePatchUserUsecase(ctx context.Context, token string, request domain.PatchUserRequest, boundary OutputUserBoundary) error {
+	fn := func(tx *sql.Tx) error {
+		// Verify token is not expired
+		claims, err := jsonwebtoken.VerifyJWTToken(token)
+		if err != nil {
+			return errors.New("invalid token")
+		}
+		userID := claims.UserId
+
+		patch := domain.PatchUser{
+			UserID:      userID,
+			FullName:    request.FullName,
+			Gender:      request.Gender,
+			Bio:         request.Bio,
+			Address:     request.Address,
+			DateOfBirth: request.DateOfBirth,
+		}
+		res, err := u.UserEntity.UpdateUserEntities(ctx, tx, patch)
+		boundary.PatchUserResponse(domain.PatchUserResponse{
+			UserID:      res.UserID,
+			AccountID:   res.AccountID,
+			FullName:    res.FullName,
+			Gender:      res.Gender,
+			Bio:         res.Bio,
+			Address:     res.Address,
+			Age:         int(res.Age),
+			DateOfBirth: common.FormatFromTimeToStr(res.DateOfBirth),
+			UpdatedAt:   common.FormatTimeByParam(*res.UpdatedAt),
+		}, nil)
+
+		return nil
+	}
+
+	err := common.WithExecuteTransactionalManager(ctx, u.DB, fn)
+	if err != nil {
+		return errors.New("execute transactional failed: " + err.Error())
+	}
+	return err
 }

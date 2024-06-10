@@ -4,11 +4,13 @@ import (
 	"context"
 	"database/sql"
 	"errors"
+	"fmt"
 	"github.com/go-playground/validator/v10"
 	"godating-dealls/internal/common"
 	"godating-dealls/internal/domain"
 	"godating-dealls/internal/infra/mysql/record"
 	repository "godating-dealls/internal/infra/mysql/repo"
+	"time"
 )
 
 type UserEntityImpl struct {
@@ -137,4 +139,77 @@ func (u UserEntityImpl) FindUserDetailEntity(ctx context.Context, tx *sql.Tx, ac
 	}
 
 	return usr, nil
+}
+
+func (u UserEntityImpl) UpdateUserEntities(ctx context.Context, tx *sql.Tx, dto domain.PatchUser) (domain.PatchUserDto, error) {
+	err := u.validate.Struct(dto)
+	if err != nil {
+		return domain.PatchUserDto{}, err
+	}
+
+	dateOfBirth := parseDateOfBirth(*dto.DateOfBirth)
+	rec := record.UserRecord{
+		UserID:      dto.UserID,
+		FullName:    dto.FullName,
+		Gender:      *dto.Gender,
+		Bio:         *dto.Bio,
+		Address:     *dto.Address,
+		DateOfBirth: &dateOfBirth,
+		Age:         calculateAge(dateOfBirth),
+	}
+
+	user, err := u.repository.UpdateUserToDB(ctx, tx, rec)
+	if err != nil {
+		return domain.PatchUserDto{}, errors.New("could not update user")
+	}
+
+	patchUserDto := domain.PatchUserDto{
+		UserID:      user.UserID,
+		AccountID:   user.AccountID,
+		FullName:    user.FullName,
+		Age:         int64(user.Age),
+		Gender:      &user.Gender,
+		Address:     &user.Address,
+		DateOfBirth: user.DateOfBirth,
+		Bio:         &user.Bio,
+		UpdatedAt:   &user.UpdatedAt,
+	}
+
+	return patchUserDto, nil
+}
+
+func calculateAge(dateOfBirth time.Time) int {
+	if dateOfBirth.IsZero() {
+		return 0
+	}
+
+	now := time.Now()
+	years := now.Year() - dateOfBirth.Year()
+
+	// Adjust the age if the birthdate hasn't occurred yet this year.
+	if now.YearDay() < dateOfBirth.YearDay() {
+		years--
+	}
+
+	return years
+}
+
+func parseDateOfBirth(date string) time.Time {
+	layout := "2006-01-02"
+
+	// Parse the date string
+	dateOfBirth, err := time.Parse(layout, date)
+	if err != nil {
+		fmt.Println("Error parsing date:", err)
+		return time.Time{}
+	}
+	return dateOfBirth
+}
+
+func formatTimePointer(t *time.Time) string {
+	if t == nil {
+		return ""
+	}
+	// Format the time as YYYY-MM-DD
+	return t.Format("2006-01-02")
 }
