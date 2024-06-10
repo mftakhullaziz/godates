@@ -70,7 +70,7 @@ func main() {
 
 	// Usecase
 	authenticateUsecase := accountusecase.NewAuthUsecase(DB, accountEntity, userEntity, RS, loginHistoryEntity)
-	dailyQuotasUsecase := dailyquotausecase.NewDailyQuotasUsecase(DB, dailyQuotasEntity, userEntity)
+	dailyQuotasUsecase := dailyquotausecase.NewDailyQuotasUsecase(DB, dailyQuotasEntity, userEntity, accountEntity, packageEntity)
 	InitializeCronJobDailyQuota(ctx, dailyQuotasUsecase)
 	usersUsecase := users.NewUserUsecase(DB, userEntity, accountEntity, selectionHistoryEntity, taskHistoryEntity)
 	swipeUsecase := swipeusecase.NewSwipeUsecase(DB, swipeEntity, dailyQuotasEntity, accountEntity)
@@ -81,9 +81,10 @@ func main() {
 	usersHandler := handler.NewUsersHandler(usersUsecase)
 	swipeHandler := handler.NewSwipeHandler(swipeUsecase)
 	packageHandler := handler.NewPackageHandler(packageUsecase)
+	quotaHandler := handler.NewQuotaHandler(dailyQuotasUsecase)
 
 	// Set up the router
-	r := router.InitializeRouter(authenticateHandler, usersHandler, swipeHandler, packageHandler)
+	r := router.InitializeRouter(authenticateHandler, usersHandler, swipeHandler, packageHandler, quotaHandler)
 
 	// Create a channel to listen for OS signals
 	stop := make(chan os.Signal, 1)

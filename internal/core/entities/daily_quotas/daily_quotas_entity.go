@@ -12,4 +12,5 @@ type DailyQuotasEntity interface {
 	UpdateIncreaseSwipeCountAndDecreaseTotalQuota(ctx context.Context, tx *sql.Tx, accountId int64) error
 	UpdateIncreaseSwipeCount(ctx context.Context, tx *sql.Tx, accountId int64) error
 	UpdateTotalQuotasInPremiumAccount(ctx context.Context, tx *sql.Tx, accountId int64) error
+	FindTotalDailyQuotasAndSwipeCount(ctx context.Context, tx *sql.Tx, accountId int64) (domain.DailyQuotasDto, error)
 }

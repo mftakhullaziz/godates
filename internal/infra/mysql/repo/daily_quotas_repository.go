@@ -12,4 +12,5 @@ type DailyQuotasRepository interface {
 	UpdateIncreaseSwipeCount(ctx context.Context, tx *sql.Tx, dailyQuota record.DailyQuotaRecord) error
 	UpdateDecreaseTotalCount(ctx context.Context, tx *sql.Tx, dailyQuota record.DailyQuotaRecord) error
 	UpdateTotalQuotaInPremiumAccount(ctx context.Context, tx *sql.Tx, dailyQuota record.DailyQuotaRecord) error
+	FindTotalQuotaByAccountId(ctx context.Context, tx *sql.Tx, accountId int64) (record.DailyQuotaRecord, error)
 }

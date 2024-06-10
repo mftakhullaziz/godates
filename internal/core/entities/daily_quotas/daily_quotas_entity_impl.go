@@ -3,6 +3,7 @@ package daily_quotas
 import (
 	"context"
 	"database/sql"
+	"errors"
 	"github.com/go-playground/validator/v10"
 	"godating-dealls/internal/common"
 	"godating-dealls/internal/domain"
@@ -67,4 +68,17 @@ func (d DailyQuotasEntityImpl) UpdateTotalQuotasInPremiumAccount(ctx context.Con
 	err := d.DailyQuotaRepository.UpdateTotalQuotaInPremiumAccount(ctx, tx, record.DailyQuotaRecord{AccountID: accountId})
 	common.HandleErrorReturn(err)
 	return nil
+}
+
+func (d DailyQuotasEntityImpl) FindTotalDailyQuotasAndSwipeCount(ctx context.Context, tx *sql.Tx, accountId int64) (domain.DailyQuotasDto, error) {
+	quota, err := d.DailyQuotaRepository.FindTotalQuotaByAccountId(ctx, tx, accountId)
+	if err != nil {
+		return domain.DailyQuotasDto{}, errors.New("daily quota not found")
+	}
+
+	result := domain.DailyQuotasDto{
+		TotalQuota: quota.TotalQuota,
+		SwipeCount: quota.SwipeCount,
+	}
+	return result, nil
 }

@@ -59,3 +59,15 @@ func (p PackageEntityImpl) PurchasePackage(ctx context.Context, tx *sql.Tx, dto 
 	}
 	return nil
 }
+
+func (p PackageEntityImpl) FindAccountPremiumPackage(ctx context.Context, tx *sql.Tx, accountId int64) (domain.AccountPurchasePackage, error) {
+	premiumPackage, err := p.PurchasePackagesRepository.FindAccountPremiumByAccountId(ctx, tx, accountId)
+	if err != nil {
+		return domain.AccountPurchasePackage{}, errors.New("find account premium package is failed")
+	}
+	res := domain.AccountPurchasePackage{
+		AccountID: premiumPackage.AccountID,
+		ExpiresIn: premiumPackage.ExpiryDate,
+	}
+	return res, nil
+}

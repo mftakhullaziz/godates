@@ -3,24 +3,38 @@ package daily_quotas
 import (
 	"context"
 	"database/sql"
+	"errors"
 	"godating-dealls/internal/common"
+	"godating-dealls/internal/core/entities/accounts"
 	"godating-dealls/internal/core/entities/daily_quotas"
+	"godating-dealls/internal/core/entities/packages"
 	"godating-dealls/internal/core/entities/users"
 	"godating-dealls/internal/domain"
+	"godating-dealls/internal/infra/jsonwebtoken"
 	"log"
+	"strconv"
 )
 
 type DailyQuotasUsecase struct {
 	DB                *sql.DB
 	DailyQuotasEntity daily_quotas.DailyQuotasEntity
 	UserEntity        users.UserEntity
+	AccountEntity     accounts.AccountEntity
+	PackageEntity     packages.PackageEntity
 }
 
-func NewDailyQuotasUsecase(db *sql.DB, dailyQuotasEntity daily_quotas.DailyQuotasEntity, userEntity users.UserEntity) InputDailyQuotaBoundary {
+func NewDailyQuotasUsecase(
+	db *sql.DB,
+	dailyQuotasEntity daily_quotas.DailyQuotasEntity,
+	userEntity users.UserEntity,
+	accountEntity accounts.AccountEntity,
+	packageEntity packages.PackageEntity) InputDailyQuotaBoundary {
 	return &DailyQuotasUsecase{
 		DB:                db,
 		DailyQuotasEntity: dailyQuotasEntity,
 		UserEntity:        userEntity,
+		AccountEntity:     accountEntity,
+		PackageEntity:     packageEntity,
 	}
 }
 
@@ -51,6 +65,47 @@ func (d DailyQuotasUsecase) ExecuteAutoUpdateDailyQuotaUsecase(ctx context.Conte
 	err := common.WithExecuteTransactionalManager(ctx, d.DB, fn)
 	if err != nil {
 		log.Println("Transaction failed:", err)
+	}
+	return err
+}
+
+func (d DailyQuotasUsecase) ExecuteFindDailyQuotaUsecase(ctx context.Context, token string, boundary DailyQuotasOutputBoundary) error {
+	fn := func(tx *sql.Tx) error {
+		claims, err := jsonwebtoken.VerifyJWTToken(token)
+		if err != nil {
+			return errors.New("invalid token")
+		}
+
+		verifiedAccounts, err := d.AccountEntity.FindAccountVerifiedEntities(ctx, tx, claims.AccountId)
+		if err != nil {
+			return errors.New("invalid find accounts")
+		}
+
+		quota, err := d.DailyQuotasEntity.FindTotalDailyQuotasAndSwipeCount(ctx, tx, claims.AccountId)
+		if err != nil {
+			return errors.New("invalid find quota account")
+		}
+
+		expireQuota, err := d.PackageEntity.FindAccountPremiumPackage(ctx, tx, claims.AccountId)
+		if err != nil {
+			return errors.New("invalid find account premium package")
+		}
+
+		res := domain.DailyQuotaResponse{
+			TotalQuotas: strconv.FormatInt(quota.TotalQuota, 10),
+			SwipeCount:  quota.SwipeCount,
+		}
+
+		if verifiedAccounts {
+			res.TotalQuotas = "Unlimited Until " + expireQuota.ExpiresIn.Format("2006-01-02 15:04:05")
+		}
+		boundary.DailyQuotaResponse(res, nil)
+		return nil
+	}
+
+	err := common.WithExecuteTransactionalManager(ctx, d.DB, fn)
+	if err != nil {
+		return errors.New("execute transactional manager failed: " + err.Error())
 	}
 	return err
 }

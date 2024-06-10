@@ -4818,3 +4818,7 @@
 [application-service] 2024/06/10 03:01:53 printed query for daily views in second select : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address FROM selection_histories sh INNER JOIN users u ON sh.account_id = u.account_id INNER JOIN accounts a ON sh.account_id = a.account_id WHERE sh.account_id_identifier = ? AND a.account_id != ? AND a.account_id NOT IN ( SELECT s.account_id_swipe from swipes s WHERE s.account_id = ? ) ORDER BY RAND();"
 [application-service] 2024/06/10 03:02:00 printed query for daily views in second select : "SELECT a.account_id, u.user_id, a.verified, a.username, u.full_name, u.gender, u.bio, u.age, u.address FROM selection_histories sh INNER JOIN users u ON sh.account_id = u.account_id INNER JOIN accounts a ON sh.account_id = a.account_id WHERE sh.account_id_identifier = ? AND a.account_id != ? AND a.account_id NOT IN ( SELECT s.account_id_swipe from swipes s WHERE s.account_id = ? ) ORDER BY RAND();"
 [application-service] 2024/06/10 03:02:54 Shutting down the server...
+[application-service] 2024/06/10 13:20:21 Connected to DB MySQL success!
+[application-service] 2024/06/10 13:20:21 Connected to Redis successfully
+[application-service] 2024/06/10 13:20:21 Cron job started
+[application-service] 2024/06/10 13:21:05 { u1@gmail.com test1234}

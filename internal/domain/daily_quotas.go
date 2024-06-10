@@ -10,3 +10,8 @@ type DailyQuotasDto struct {
 	UserIsVerified bool
 	SwipeCount     int
 }
+
+type DailyQuotaResponse struct {
+	TotalQuotas string `json:"total_quotas"`
+	SwipeCount  int    `json:"swipe_count"`
+}

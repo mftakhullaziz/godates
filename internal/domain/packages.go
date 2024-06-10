@@ -1,5 +1,7 @@
 package domain
 
+import "time"
+
 type PackageDto struct {
 	PackageID                int64
 	PackageName              string
@@ -33,4 +35,9 @@ type PurchasePackageResponse struct {
 	PackageID int64   `json:"package_id"`
 	Price     float64 `json:"price"`
 	Message   string  `json:"message"`
+}
+
+type AccountPurchasePackage struct {
+	AccountID int64
+	ExpiresIn time.Time
 }
