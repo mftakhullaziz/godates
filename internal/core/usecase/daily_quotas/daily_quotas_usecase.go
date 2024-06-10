@@ -86,19 +86,19 @@ func (d DailyQuotasUsecase) ExecuteFindDailyQuotaUsecase(ctx context.Context, to
 			return errors.New("invalid find quota account")
 		}
 
-		expireQuota, err := d.PackageEntity.FindAccountPremiumPackage(ctx, tx, claims.AccountId)
-		if err != nil {
-			return errors.New("invalid find account premium package")
-		}
-
 		res := domain.DailyQuotaResponse{
 			TotalQuotas: strconv.FormatInt(quota.TotalQuota, 10),
 			SwipeCount:  quota.SwipeCount,
 		}
 
 		if verifiedAccounts {
+			expireQuota, err := d.PackageEntity.FindAccountPremiumPackage(ctx, tx, claims.AccountId)
+			if err != nil {
+				return errors.New("invalid find account premium package")
+			}
 			res.TotalQuotas = "Unlimited Until " + expireQuota.ExpiresIn.Format("2006-01-02 15:04:05")
 		}
+
 		boundary.DailyQuotaResponse(res, nil)
 		return nil
 	}
