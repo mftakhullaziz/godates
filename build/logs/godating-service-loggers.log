@@ -4960,3 +4960,52 @@ created by net/http.(*Server).Serve in goroutine 9
 [application-service] 2024/06/10 20:36:47 Connected to Redis successfully
 [application-service] 2024/06/10 20:36:47 Cron job started
 [application-service] 2024/06/10 20:36:49 Shutting down the server...
+[application-service] 2024/06/10 22:03:29 Connected to DB MySQL success!
+[application-service] 2024/06/10 22:03:34 Error connecting to redisclient: context deadline exceeded
+[application-service] 2024/06/10 22:03:49 Connected to DB MySQL success!
+[application-service] 2024/06/10 22:03:49 Connected to Redis successfully
+[application-service] 2024/06/10 22:03:49 Cron job started
+[application-service] 2024/06/10 22:07:25 { u1@gmail.com test1234}
+[application-service] 2024/06/10 22:07:49 find total swipes : "SELECT SUM(CASE WHEN s.action = 'LIKED' THEN 1 ELSE 0 END) as total_swipe_like, SUM(CASE WHEN s.action = 'PASSED' THEN 1 ELSE 0 END) as total_swipe_pass FROM swipes s WHERE s.account_id_swipe = ?"
+[application-service] 2024/06/10 22:09:17 Shutting down the server...
+[application-service] 2024/06/10 22:09:19 Connected to DB MySQL success!
+[application-service] 2024/06/10 22:09:19 Connected to Redis successfully
+[application-service] 2024/06/10 22:09:19 Cron job started
+[application-service] 2024/06/10 22:09:29 Shutting down the server...
+[application-service] 2024/06/10 22:09:31 Connected to DB MySQL success!
+[application-service] 2024/06/10 22:09:31 Connected to Redis successfully
+[application-service] 2024/06/10 22:09:31 Cron job started
+[application-service] 2024/06/10 22:09:40 Shutting down the server...
+[application-service] 2024/06/10 22:09:40 Connected to DB MySQL success!
+[application-service] 2024/06/10 22:09:40 Connected to Redis successfully
+[application-service] 2024/06/10 22:09:40 Cron job started
+[application-service] 2024/06/10 22:10:02 Shutting down the server...
+[application-service] 2024/06/10 22:10:04 Connected to DB MySQL success!
+[application-service] 2024/06/10 22:10:04 Connected to Redis successfully
+[application-service] 2024/06/10 22:10:04 Cron job started
+[application-service] 2024/06/10 22:11:42 Shutting down the server...
+[application-service] 2024/06/10 22:12:06 Connected to DB MySQL success!
+[application-service] 2024/06/10 22:12:06 Connected to Redis successfully
+[application-service] 2024/06/10 22:12:06 Cron job started
+[application-service] 2024/06/10 22:12:40 find total swipes : "SELECT SUM(CASE WHEN s.action = 'LIKED' THEN 1 ELSE 0 END) as total_swipe_like, SUM(CASE WHEN s.action = 'PASSED' THEN 1 ELSE 0 END) as total_swipe_pass FROM swipes s WHERE s.account_id_swipe = ?"
+[application-service] 2024/06/10 22:15:22 Shutting down the server...
+[application-service] 2024/06/10 22:15:24 Connected to DB MySQL success!
+[application-service] 2024/06/10 22:15:24 Connected to Redis successfully
+[application-service] 2024/06/10 22:15:24 Cron job started
+[application-service] 2024/06/10 22:15:31 find total swipes : "SELECT SUM(CASE WHEN s.action = 'LIKED' THEN 1 ELSE 0 END) as total_swipe_like, SUM(CASE WHEN s.action = 'PASSED' THEN 1 ELSE 0 END) as total_swipe_pass FROM swipes s WHERE s.account_id_swipe = ?"
+[application-service] 2024/06/10 22:15:43 { u1@gmail.com test1234}
+[application-service] 2024/06/10 22:16:42 Shutting down the server...
+[application-service] 2024/06/10 22:16:44 Connected to DB MySQL success!
+[application-service] 2024/06/10 22:16:44 Connected to Redis successfully
+[application-service] 2024/06/10 22:16:44 Cron job started
+[application-service] 2024/06/10 22:16:50 { u1@gmail.com test1234}
+[application-service] 2024/06/10 22:18:27 Shutting down the server...
+[application-service] 2024/06/10 22:18:29 Connected to DB MySQL success!
+[application-service] 2024/06/10 22:18:29 Connected to Redis successfully
+[application-service] 2024/06/10 22:18:29 Cron job started
+[application-service] 2024/06/10 22:19:11 Shutting down the server...
+[application-service] 2024/06/10 22:19:13 Connected to DB MySQL success!
+[application-service] 2024/06/10 22:19:13 Connected to Redis successfully
+[application-service] 2024/06/10 22:19:13 Cron job started
+[application-service] 2024/06/10 22:19:33 find total swipes : "SELECT SUM(CASE WHEN s.action = 'LIKED' THEN 1 ELSE 0 END) as total_swipe_like, SUM(CASE WHEN s.action = 'PASSED' THEN 1 ELSE 0 END) as total_swipe_pass FROM swipes s WHERE s.account_id_swipe = ?"
+[application-service] 2024/06/10 22:19:41 Shutting down the server...

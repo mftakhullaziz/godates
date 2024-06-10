@@ -2,7 +2,6 @@ package config
 
 import (
 	"context"
-	"crypto/tls"
 	"fmt"
 	"github.com/redis/go-redis/v9"
 	"godating-dealls/internal/common"
@@ -27,9 +26,9 @@ func InitializeRedisClient(ctx context.Context) *redis.Client {
 		Password: os.Getenv("REDIS_PASSWORD"),
 		DB:       0,
 		Username: os.Getenv("REDIS_USER"),
-		TLSConfig: &tls.Config{
-			InsecureSkipVerify: true,
-		},
+		//TLSConfig: &tls.Config{
+		//	InsecureSkipVerify: false, // if run from localhost set false
+		//},
 	})
 
 	// Test the connection
