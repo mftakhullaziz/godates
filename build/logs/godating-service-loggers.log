@@ -4869,3 +4869,41 @@ created by net/http.(*Server).Serve in goroutine 9
 [application-service] 2024/06/10 15:15:11 Connected to Redis successfully
 [application-service] 2024/06/10 15:15:11 Cron job started
 [application-service] 2024/06/10 15:15:19 Shutting down the server...
+[application-service] 2024/06/10 15:24:59 Connected to DB MySQL success!
+[application-service] 2024/06/10 15:24:59 Connected to Redis successfully
+[application-service] 2024/06/10 15:24:59 Cron job started
+[application-service] 2024/06/10 15:25:36 Shutting down the server...
+[application-service] 2024/06/10 15:25:38 Connected to DB MySQL success!
+[application-service] 2024/06/10 15:25:38 Connected to Redis successfully
+[application-service] 2024/06/10 15:25:38 Cron job started
+[application-service] 2024/06/10 15:26:15 Shutting down the server...
+[application-service] 2024/06/10 15:26:17 Connected to DB MySQL success!
+[application-service] 2024/06/10 15:26:17 Connected to Redis successfully
+[application-service] 2024/06/10 15:26:17 Cron job started
+[application-service] 2024/06/10 15:26:31 Shutting down the server...
+[application-service] 2024/06/10 15:27:03 Connected to DB MySQL success!
+[application-service] 2024/06/10 15:27:03 Connected to Redis successfully
+[application-service] 2024/06/10 15:27:03 Cron job started
+[application-service] 2024/06/10 15:27:06 find total swipes : "SELECT SUM(CASE WHEN s.action = 'LIKED' THEN 1 ELSE 0 END) as total_swipe_like, SUM(CASE WHEN s.action = 'PASSED' THEN 1 ELSE 0 END) as total_swipe_pass FROM swipes s WHERE s.account_id_swipe = ?"
+[application-service] 2024/06/10 15:33:03 Shutting down the server...
+[application-service] 2024/06/10 15:33:07 Connected to DB MySQL success!
+[application-service] 2024/06/10 15:33:07 Connected to Redis successfully
+[application-service] 2024/06/10 15:33:07 Cron job started
+[application-service] 2024/06/10 15:33:12 find total swipes : "SELECT SUM(CASE WHEN s.action = 'LIKED' THEN 1 ELSE 0 END) as total_swipe_like, SUM(CASE WHEN s.action = 'PASSED' THEN 1 ELSE 0 END) as total_swipe_pass FROM swipes s WHERE s.account_id_swipe = ?"
+[application-service] 2024/06/10 15:33:21 Shutting down the server...
+[application-service] 2024/06/10 15:33:29 Connected to DB MySQL success!
+[application-service] 2024/06/10 15:33:29 Connected to Redis successfully
+[application-service] 2024/06/10 15:33:29 Cron job started
+[application-service] 2024/06/10 15:33:40 { u50@gmail.com test1234}
+[application-service] 2024/06/10 15:33:50 find total swipes : "SELECT SUM(CASE WHEN s.action = 'LIKED' THEN 1 ELSE 0 END) as total_swipe_like, SUM(CASE WHEN s.action = 'PASSED' THEN 1 ELSE 0 END) as total_swipe_pass FROM swipes s WHERE s.account_id_swipe = ?"
+[application-service] 2024/06/10 15:34:59 Shutting down the server...
+[application-service] 2024/06/10 15:35:01 Connected to DB MySQL success!
+[application-service] 2024/06/10 15:35:01 Connected to Redis successfully
+[application-service] 2024/06/10 15:35:01 Cron job started
+[application-service] 2024/06/10 15:35:05 find total swipes : "SELECT SUM(CASE WHEN s.action = 'LIKED' THEN 1 ELSE 0 END) as total_swipe_like, SUM(CASE WHEN s.action = 'PASSED' THEN 1 ELSE 0 END) as total_swipe_pass FROM swipes s WHERE s.account_id_swipe = ?"
+[application-service] 2024/06/10 15:36:24 Shutting down the server...
+[application-service] 2024/06/10 15:36:26 Connected to DB MySQL success!
+[application-service] 2024/06/10 15:36:26 Connected to Redis successfully
+[application-service] 2024/06/10 15:36:26 Cron job started
+[application-service] 2024/06/10 15:36:31 find total swipes : "SELECT SUM(CASE WHEN s.action = 'LIKED' THEN 1 ELSE 0 END) as total_swipe_like, SUM(CASE WHEN s.action = 'PASSED' THEN 1 ELSE 0 END) as total_swipe_pass FROM swipes s WHERE s.account_id_swipe = ?"
+[application-service] 2024/06/10 15:39:36 Shutting down the server...

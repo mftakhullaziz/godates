@@ -49,6 +49,11 @@ func (a AccountUsecase) ExecuteFetchAccountDetail(ctx context.Context, token str
 			return errors.New("invalid fetch users")
 		}
 
+		swipe, err := a.SwipeEntity.FindTotalSwipeActionEntity(ctx, tx, claims.AccountId)
+		if err != nil {
+			return errors.New("invalid fetch swipes")
+		}
+
 		accountData := domain.AccountDataResponse{
 			UserID:      user.UserID,
 			AccountID:   account.AccountId,
@@ -63,8 +68,14 @@ func (a AccountUsecase) ExecuteFetchAccountDetail(ctx context.Context, token str
 			DateOfBirth: user.DateOfBirth,
 		}
 
+		accountView := domain.AccountViewResponse{
+			TotalSwipeLike:   swipe.TotalSwipeLike,
+			TotalSwipePassed: swipe.TotalSwipePassed,
+		}
+
 		res := domain.AccountResponse{
 			AccountData: accountData,
+			AccountView: accountView,
 		}
 		boundary.AccountDetailResponse(res, nil)
 		return nil

@@ -8,3 +8,8 @@ type SwipeRequest struct {
 type SwipeResponse struct {
 	Message string `json:"message"`
 }
+
+type TotalSwipeAction struct {
+	TotalSwipeLike   int64
+	TotalSwipePassed int64
+}

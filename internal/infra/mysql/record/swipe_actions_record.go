@@ -15,3 +15,8 @@ type SwipeRecord struct {
 func (SwipeRecord) TableName() string {
 	return "swipes"
 }
+
+type SwipeActionsRecord struct {
+	TotalSwipeLike *int64 `db:"total_swipe_like"`
+	TotalSwipePass *int64 `db:"total_swipe_pass"`
+}
