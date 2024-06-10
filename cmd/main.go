@@ -15,12 +15,13 @@ import (
 	"godating-dealls/internal/core/entities/swipes"
 	"godating-dealls/internal/core/entities/task_history"
 	usersentity "godating-dealls/internal/core/entities/users"
+	accounts2 "godating-dealls/internal/core/usecase/accounts"
 	accountusecase "godating-dealls/internal/core/usecase/auths"
 	dailyquotausecase "godating-dealls/internal/core/usecase/daily_quotas"
 	packageusecase "godating-dealls/internal/core/usecase/packages"
 	swipeusecase "godating-dealls/internal/core/usecase/swipes"
 	"godating-dealls/internal/core/usecase/users"
-	handler2 "godating-dealls/internal/delivery/handler"
+	"godating-dealls/internal/delivery/handler"
 	"godating-dealls/internal/infra/mysql/repo"
 	"godating-dealls/internal/infra/redisclient"
 	"godating-dealls/router"
@@ -75,16 +76,25 @@ func main() {
 	usersUsecase := users.NewUserUsecase(DB, userEntity, accountEntity, selectionHistoryEntity, taskHistoryEntity)
 	swipeUsecase := swipeusecase.NewSwipeUsecase(DB, swipeEntity, dailyQuotasEntity, accountEntity)
 	packageUsecase := packageusecase.NewPackageUsecase(DB, packageEntity, accountEntity, dailyQuotasEntity)
+	accountUsecase := accounts2.NewAccountsUsecase(DB, accountEntity, selectionHistoryEntity)
 
 	// Create the handler with the use case
-	authenticateHandler := handler2.NewAuthHandler(authenticateUsecase)
-	usersHandler := handler2.NewUsersHandler(usersUsecase)
-	swipeHandler := handler2.NewSwipeHandler(swipeUsecase)
-	packageHandler := handler2.NewPackageHandler(packageUsecase)
-	quotaHandler := handler2.NewQuotaHandler(dailyQuotasUsecase)
+	authenticateHandler := handler.NewAuthHandler(authenticateUsecase)
+	usersHandler := handler.NewUsersHandler(usersUsecase)
+	swipeHandler := handler.NewSwipeHandler(swipeUsecase)
+	packageHandler := handler.NewPackageHandler(packageUsecase)
+	quotaHandler := handler.NewQuotaHandler(dailyQuotasUsecase)
+	accountHandler := handler.NewAccountHandler(accountUsecase)
 
 	// Set up the router
-	r := router.InitializeRouter(authenticateHandler, usersHandler, swipeHandler, packageHandler, quotaHandler)
+	r := router.InitializeRouter(
+		authenticateHandler,
+		usersHandler,
+		swipeHandler,
+		packageHandler,
+		quotaHandler,
+		accountHandler,
+	)
 
 	// Create a channel to listen for OS signals
 	stop := make(chan os.Signal, 1)

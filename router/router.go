@@ -2,16 +2,17 @@ package router
 
 import (
 	md "godating-dealls/internal/common"
-	handler2 "godating-dealls/internal/delivery/handler"
+	"godating-dealls/internal/delivery/handler"
 	"net/http"
 )
 
 func InitializeRouter(
-	authHandler *handler2.AuthHandler,
-	userHandler *handler2.UsersHandler,
-	swipeHandler *handler2.SwipeHandler,
-	packageHandler *handler2.PackageHandler,
-	quotaHandler *handler2.QuotaHandler) *http.ServeMux {
+	authHandler *handler.AuthHandler,
+	userHandler *handler.UsersHandler,
+	swipeHandler *handler.SwipeHandler,
+	packageHandler *handler.PackageHandler,
+	quotaHandler *handler.QuotaHandler,
+	accountHandler *handler.AccountHandler) *http.ServeMux {
 
 	r := http.NewServeMux()
 
@@ -26,7 +27,7 @@ func InitializeRouter(
 	r.Handle("GET /godating-dealls/api/quota", md.AuthMiddleware(http.HandlerFunc(quotaHandler.CheckQuotaAccountHandler)))
 	r.Handle("POST /godating-dealls/api/purchase-package", md.AuthMiddleware(http.HandlerFunc(packageHandler.PurchasePackages)))
 	r.Handle("GET /godating-dealls/api/packages", md.AuthMiddleware(http.HandlerFunc(packageHandler.GetPackageHandler)))
-	r.Handle("GET /godating-dealls/api/account-details", md.AuthMiddleware(http.HandlerFunc(nil)))
+	r.Handle("GET /godating-dealls/api/account-details", md.AuthMiddleware(http.HandlerFunc(accountHandler.FetchAccountDetailsHandler)))
 
 	return r
 }
