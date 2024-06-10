@@ -25,3 +25,8 @@ func (u UserPresenter) UserViewsResponse(response []domain.UserViewsResponse, er
 		common.WriteJSONResponse(u.w, http.StatusOK, "Get users view successfully", response, int64(len(response)))
 	}
 }
+
+func (u UserPresenter) PatchUserResponse(response domain.PatchUserResponse, err error) {
+	common.HandleInternalServerError(err, u.w)
+	common.WriteJSONResponse(u.w, http.StatusCreated, "Patch user successfully", response, int64(1))
+}

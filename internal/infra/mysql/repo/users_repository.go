@@ -13,4 +13,5 @@ type UserRepository interface {
 	GetAllUsersFromDB(ctx context.Context, tx *sql.Tx) ([]record.UserAccountRecord, error)
 	GetAllUsersViewsFromDB(ctx context.Context, verifiedUser bool, accountIdIdentifier int64, tx *sql.Tx) ([]record.UserAccountRecord, error)
 	GetAllUsersNextViewsFromDB(ctx context.Context, verifiedUser bool, accountId int64, tx *sql.Tx) ([]record.UserAccountRecord, error)
+	UpdateUserToDB(ctx context.Context, tx *sql.Tx, userRecord record.UserRecord) (record.UserRecord, error)
 }

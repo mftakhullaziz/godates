@@ -63,3 +63,44 @@ type UserViewsResponse struct {
 type UserViewNilResponse struct {
 	Message string `json:"message"`
 }
+
+type PatchUserRequest struct {
+	FullName    *string `json:"full_name"`
+	Gender      *string `json:"gender"`
+	Address     *string `json:"address"`
+	Bio         *string `json:"bio"`
+	DateOfBirth *string `json:"date_of_birth"`
+}
+
+type PatchUser struct {
+	UserID      int64
+	FullName    *string
+	Gender      *string
+	Address     *string
+	Bio         *string
+	DateOfBirth *string
+}
+
+type PatchUserResponse struct {
+	UserID      int64   `json:"user_id"`
+	FullName    *string `json:"full_name"`
+	Gender      *string `json:"gender"`
+	Address     *string `json:"address"`
+	Bio         *string `json:"bio"`
+	DateOfBirth string  `json:"date_of_birth"`
+	Age         int     `json:"age"`
+	AccountID   int64   `json:"account_id"`
+	UpdatedAt   string  `json:"updated_at"`
+}
+
+type PatchUserDto struct {
+	UserID      int64
+	AccountID   int64
+	Age         int64
+	FullName    *string
+	Gender      *string
+	Address     *string
+	Bio         *string
+	DateOfBirth *time.Time
+	UpdatedAt   *time.Time
+}

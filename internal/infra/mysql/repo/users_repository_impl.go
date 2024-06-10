@@ -200,3 +200,65 @@ func (u UserRepositoryImpl) GetAllUsersNextViewsFromDB(ctx context.Context, veri
 
 	return users, nil
 }
+
+func (u UserRepositoryImpl) UpdateUserToDB(ctx context.Context, tx *sql.Tx, userRecord record.UserRecord) (record.UserRecord, error) {
+	query := `
+		UPDATE users
+		SET full_name = ?, date_of_birth = ?, age = ?, gender = ?, address = ?, bio = ?, updated_at = CURRENT_TIMESTAMP
+		WHERE user_id = ?;
+	`
+
+	_, err := tx.ExecContext(ctx, query,
+		userRecord.FullName,
+		userRecord.DateOfBirth,
+		userRecord.Age,
+		userRecord.Gender,
+		userRecord.Address,
+		userRecord.Bio,
+		userRecord.UserID,
+	)
+
+	if err != nil {
+		return record.UserRecord{}, errors.New("failed to update user record: " + err.Error())
+	}
+
+	// Fetch the updated user record
+	updatedUserRecord, err := u.findUserByID(ctx, tx, userRecord.UserID)
+	if err != nil {
+		return record.UserRecord{}, errors.New("failed to fetch updated user record: " + err.Error())
+	}
+
+	return updatedUserRecord, nil
+}
+
+func (u UserRepositoryImpl) findUserByID(ctx context.Context, tx *sql.Tx, userID int64) (record.UserRecord, error) {
+	query := `
+		SELECT user_id, account_id, full_name, date_of_birth, age, gender, address, bio, created_at, updated_at
+		FROM users
+		WHERE user_id = ?;
+	`
+
+	row := tx.QueryRowContext(ctx, query, userID)
+	var userRecord record.UserRecord
+	err := row.Scan(
+		&userRecord.UserID,
+		&userRecord.AccountID,
+		&userRecord.FullName,
+		&userRecord.DateOfBirth,
+		&userRecord.Age,
+		&userRecord.Gender,
+		&userRecord.Address,
+		&userRecord.Bio,
+		&userRecord.CreatedAt,
+		&userRecord.UpdatedAt,
+	)
+
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return record.UserRecord{}, errors.New("user not found")
+		}
+		return record.UserRecord{}, err
+	}
+
+	return userRecord, nil
+}
