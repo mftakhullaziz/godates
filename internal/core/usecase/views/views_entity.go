@@ -8,4 +8,5 @@ import (
 
 type ViewEntity interface {
 	InsertIntoViewAccountEntity(ctx context.Context, tx *sql.Tx, account domain.ViewedAccount) error
+	FindTotalViewByAccountID(ctx context.Context, tx *sql.Tx, accountIDView int64) (int, error)
 }

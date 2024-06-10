@@ -31,3 +31,11 @@ func (v ViewEntityImpl) InsertIntoViewAccountEntity(ctx context.Context, tx *sql
 	}
 	return nil
 }
+
+func (v ViewEntityImpl) FindTotalViewByAccountID(ctx context.Context, tx *sql.Tx, accountIDView int64) (int, error) {
+	totalView, err := v.ViewAccountsRepository.FindTotalViewByAccountID(ctx, tx, accountIDView)
+	if err != nil {
+		return 0, errors.New("failed to find total view by account id")
+	}
+	return totalView, nil
+}

@@ -4924,3 +4924,13 @@ created by net/http.(*Server).Serve in goroutine 9
 [application-service] 2024/06/10 17:11:33 Cron job started
 [application-service] 2024/06/10 17:11:44 { u1@gmail.com test1234}
 [application-service] 2024/06/10 17:12:12 Shutting down the server...
+[application-service] 2024/06/10 17:13:06 Connected to DB MySQL success!
+[application-service] 2024/06/10 17:13:06 Connected to Redis successfully
+[application-service] 2024/06/10 17:13:06 Cron job started
+[application-service] 2024/06/10 17:13:20 { u2@gmail.com test1234}
+[application-service] 2024/06/10 17:19:35 Shutting down the server...
+[application-service] 2024/06/10 17:19:37 Connected to DB MySQL success!
+[application-service] 2024/06/10 17:19:37 Connected to Redis successfully
+[application-service] 2024/06/10 17:19:37 Cron job started
+[application-service] 2024/06/10 17:19:50 { u50@gmail.com test1234}
+[application-service] 2024/06/10 17:20:16 find total swipes : "SELECT SUM(CASE WHEN s.action = 'LIKED' THEN 1 ELSE 0 END) as total_swipe_like, SUM(CASE WHEN s.action = 'PASSED' THEN 1 ELSE 0 END) as total_swipe_pass FROM swipes s WHERE s.account_id_swipe = ?"

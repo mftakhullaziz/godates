@@ -58,6 +58,11 @@ func (a AccountUsecase) ExecuteFetchAccountDetail(ctx context.Context, token str
 			return errors.New("invalid fetch swipes")
 		}
 
+		totalView, err := a.ViewEntity.FindTotalViewByAccountID(ctx, tx, claims.AccountId)
+		if err != nil {
+			return errors.New("invalid fetch views")
+		}
+
 		accountData := domain.AccountDataResponse{
 			UserID:      user.UserID,
 			AccountID:   account.AccountId,
@@ -75,6 +80,7 @@ func (a AccountUsecase) ExecuteFetchAccountDetail(ctx context.Context, token str
 		accountView := domain.AccountViewResponse{
 			TotalSwipeLike:   swipe.TotalSwipeLike,
 			TotalSwipePassed: swipe.TotalSwipePassed,
+			TotalViews:       int64(totalView),
 		}
 
 		res := domain.AccountResponse{

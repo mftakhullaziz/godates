@@ -23,3 +23,15 @@ func (v ViewAccountsRepositoryImpl) InsertIntoViewAccount(ctx context.Context, t
 	}
 	return nil
 }
+
+func (v ViewAccountsRepositoryImpl) FindTotalViewByAccountID(ctx context.Context, tx *sql.Tx, accountID int64) (int, error) {
+	query := "SELECT COUNT(*) as total_view FROM view_accounts WHERE account_id_viewed = ?"
+	row := tx.QueryRowContext(ctx, query, accountID)
+	var totalViews int
+	err := row.Scan(&totalViews)
+	if err != nil {
+		return 0, errors.New("error fetching total views")
+	}
+
+	return totalViews, nil
+}

@@ -19,6 +19,7 @@ type AccountDataResponse struct {
 type AccountViewResponse struct {
 	TotalSwipeLike   int64 `json:"total_swipe_like"`
 	TotalSwipePassed int64 `json:"total_swipe_passed"`
+	TotalViews       int64 `json:"total_views"`
 }
 
 type AccountResponse struct {
