@@ -15,7 +15,7 @@ import (
 	"godating-dealls/internal/core/entities/swipes"
 	"godating-dealls/internal/core/entities/task_history"
 	usersentity "godating-dealls/internal/core/entities/users"
-	accountsUsecase "godating-dealls/internal/core/usecase/accounts"
+	accountsusecase "godating-dealls/internal/core/usecase/accounts"
 	accountusecase "godating-dealls/internal/core/usecase/auths"
 	dailyquotausecase "godating-dealls/internal/core/usecase/daily_quotas"
 	packageusecase "godating-dealls/internal/core/usecase/packages"
@@ -76,7 +76,7 @@ func main() {
 	usersUsecase := users.NewUserUsecase(DB, userEntity, accountEntity, selectionHistoryEntity, taskHistoryEntity)
 	swipeUsecase := swipeusecase.NewSwipeUsecase(DB, swipeEntity, dailyQuotasEntity, accountEntity)
 	packageUsecase := packageusecase.NewPackageUsecase(DB, packageEntity, accountEntity, dailyQuotasEntity)
-	accountUsecase := accountsUsecase.NewAccountsUsecase(DB, accountEntity, swipeEntity, userEntity)
+	accountUsecase := accountsusecase.NewAccountsUsecase(DB, accountEntity, swipeEntity, userEntity)
 
 	// Create the handler with the use case
 	authenticateHandler := handler.NewAuthHandler(authenticateUsecase)
