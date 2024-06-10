@@ -13,10 +13,27 @@
 
     Architecture 
     This project building using implement clean architecture, with details
-
+    infra
+    core
+    delivery
+    domain
 
     Tech Stack
     Golang 1.22
     JWT
     MySQL
     Redis
+
+    Loggers
+    For logger mekanisme will be created in path build/logs the logger 
+    auto create new after 10000 like, and logger in before will be save 
+    to make history file
+
+
+### How to Run
+    
+    Use makefile
+    
+    make build/service -> this for build project to binary go
+    make run/service -> this for running binary go service
+    make brun/service -> this for build and running
