@@ -8,7 +8,7 @@ import (
 	"godating-dealls/internal/core/entities/accounts"
 	"godating-dealls/internal/core/entities/swipes"
 	"godating-dealls/internal/core/entities/users"
-	"godating-dealls/internal/core/usecase/views"
+	"godating-dealls/internal/core/entities/views"
 	"godating-dealls/internal/domain"
 	"godating-dealls/internal/infra/jsonwebtoken"
 )
