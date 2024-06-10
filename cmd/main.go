@@ -76,7 +76,7 @@ func main() {
 	usersUsecase := users.NewUserUsecase(DB, userEntity, accountEntity, selectionHistoryEntity, taskHistoryEntity)
 	swipeUsecase := swipeusecase.NewSwipeUsecase(DB, swipeEntity, dailyQuotasEntity, accountEntity)
 	packageUsecase := packageusecase.NewPackageUsecase(DB, packageEntity, accountEntity, dailyQuotasEntity)
-	accountUsecase := accounts2.NewAccountsUsecase(DB, accountEntity, selectionHistoryEntity)
+	accountUsecase := accounts2.NewAccountsUsecase(DB, accountEntity, swipeEntity, userEntity)
 
 	// Create the handler with the use case
 	authenticateHandler := handler.NewAuthHandler(authenticateUsecase)

@@ -11,4 +11,5 @@ type AccountEntity interface {
 	AuthenticateAccount(ctx context.Context, tx *sql.Tx, dto domain.AccountDto) (domain.Accounts, error)
 	FindAccountVerifiedEntities(ctx context.Context, tx *sql.Tx, accountId int64) (bool, error)
 	UpdateAccountVerified(ctx context.Context, tx *sql.Tx, accountId int64) error
+	FindAccountDetails(ctx context.Context, tx *sql.Tx, accountId int64) (domain.AccountDetail, error)
 }

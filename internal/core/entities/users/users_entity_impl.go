@@ -118,3 +118,23 @@ func (u UserEntityImpl) FindAllUserViewsEntities(ctx context.Context, tx *sql.Tx
 
 	return allUser, nil
 }
+
+func (u UserEntityImpl) FindUserDetailEntity(ctx context.Context, tx *sql.Tx, accountId int64) (domain.Users, error) {
+	user, err := u.repository.GetUserByAccountIdFromDB(ctx, tx, accountId)
+	if err != nil {
+		return domain.Users{}, err
+	}
+
+	usr := domain.Users{
+		UserID:      user.UserID,
+		AccountID:   user.AccountID,
+		FullName:    user.FullName,
+		DateOfBirth: user.DateOfBirth,
+		Age:         user.Age,
+		Gender:      user.Gender,
+		Address:     user.Address,
+		Bio:         user.Bio,
+	}
+
+	return usr, nil
+}

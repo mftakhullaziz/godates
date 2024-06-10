@@ -132,3 +132,17 @@ func (a AccountEntityImpl) UpdateAccountVerified(ctx context.Context, tx *sql.Tx
 	}
 	return nil
 }
+
+func (a AccountEntityImpl) FindAccountDetails(ctx context.Context, tx *sql.Tx, accountId int64) (domain.AccountDetail, error) {
+	account, err := a.repository.FindAccountByIdFromDB(ctx, tx, accountId)
+	if err != nil {
+		return domain.AccountDetail{}, errors.New("failed to find account details")
+	}
+	result := domain.AccountDetail{
+		AccountId: account.AccountID,
+		Username:  account.Username,
+		Email:     account.Email,
+		Verified:  account.Verified,
+	}
+	return result, err
+}

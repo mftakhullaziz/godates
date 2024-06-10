@@ -46,3 +46,10 @@ type Accounts struct {
 	CreateAt  time.Time
 	UpdateAt  time.Time
 }
+
+type AccountDetail struct {
+	AccountId int64
+	Email     string
+	Username  string
+	Verified  bool
+}

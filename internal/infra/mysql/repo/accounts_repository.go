@@ -15,4 +15,5 @@ type AccountRepository interface {
 	IsExistAccountByUsernameFromDB(ctx context.Context, tx *sql.Tx, username string) bool
 	FindAccountVerifiedByAccountIdFromDB(ctx context.Context, tx *sql.Tx, accountId int64) (bool, error)
 	UpdateAccountVerifiedByAccountIdFromDB(ctx context.Context, tx *sql.Tx, accountId int64) error
+	FindAccountByIdFromDB(ctx context.Context, tx *sql.Tx, id int64) (record.AccountRecord, error)
 }

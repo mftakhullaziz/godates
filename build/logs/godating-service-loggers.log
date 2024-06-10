@@ -4823,3 +4823,49 @@
 [application-service] 2024/06/10 13:20:21 Cron job started
 [application-service] 2024/06/10 13:21:05 { u1@gmail.com test1234}
 [application-service] 2024/06/10 13:22:34 Shutting down the server...
+[application-service] 2024/06/10 15:11:45 Connected to DB MySQL success!
+[application-service] 2024/06/10 15:11:45 Connected to Redis successfully
+[application-service] 2024/06/10 15:11:45 Cron job started
+[application-service] 2024/06/10 15:12:47 http: panic serving [::1]:49268: runtime error: invalid memory address or nil pointer dereference
+goroutine 11 [running]:
+net/http.(*conn).serve.func1()
+	/usr/local/go/src/net/http/server.go:1898 +0xb0
+panic({0x1052cf900?, 0x1055bdee0?})
+	/usr/local/go/src/runtime/panic.go:770 +0x124
+godating-dealls/internal/common.WithReadOnlyTransactionManager.func1()
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/common/transactional_manager.go:44 +0xb4
+panic({0x1052cf900?, 0x1055bdee0?})
+	/usr/local/go/src/runtime/panic.go:770 +0x124
+godating-dealls/internal/core/entities/users.UserEntityImpl.FindUserDetailEntity({{0x105356040?, 0x14000454dd0?}, 0x140001aa150?}, {0x105355468?, 0x1400048e8d0?}, 0x140000333a8?, 0x1051bc928?)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/entities/users/users_entity_impl.go:132 +0x134
+godating-dealls/internal/core/usecase/accounts.AccountUsecase.ExecuteFetchAccountDetail.func1(0x1400048a280)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/accounts/accounts_usecase.go:47 +0x118
+godating-dealls/internal/common.WithReadOnlyTransactionManager({0x105355468?, 0x1400048e8d0?}, 0x10?, 0x14000241828)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/common/transactional_manager.go:53 +0xc8
+godating-dealls/internal/core/usecase/accounts.AccountUsecase.ExecuteFetchAccountDetail({0x14000123450, {0x1053557b0, 0x1400012c9a8}, {0x105352588, 0x14000454e70}, {0x1053557f0, 0x1400012c9c0}}, {0x105355468?, 0x1400048e8d0?}, {0x140000a6007?, ...}, ...)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/core/usecase/accounts/accounts_usecase.go:72 +0xbc
+godating-dealls/internal/delivery/handler.(*AccountHandler).FetchAccountDetailsHandler(0x14000454ee0, {0x105354c08, 0x1400019a1c0}, 0x105147ae8?)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/delivery/handler/account_handler.go:29 +0x10c
+net/http.HandlerFunc.ServeHTTP(0x14000000360?, {0x105354c08?, 0x1400019a1c0?}, 0x105350c60?)
+	/usr/local/go/src/net/http/server.go:2166 +0x38
+godating-dealls/router.InitializeRouter.AuthMiddleware.func7({0x105354c08, 0x1400019a1c0}, 0x14000000360)
+	/Users/miftakhulaziz/Workspace/Go/golang-test/godating-dealls/internal/common/middleware.go:31 +0x1f4
+net/http.HandlerFunc.ServeHTTP(0x140001860d0?, {0x105354c08?, 0x1400019a1c0?}, 0x10514c8e8?)
+	/usr/local/go/src/net/http/server.go:2166 +0x38
+net/http.(*ServeMux).ServeHTTP(0x0?, {0x105354c08, 0x1400019a1c0}, 0x14000000360)
+	/usr/local/go/src/net/http/server.go:2683 +0x1a4
+net/http.serverHandler.ServeHTTP({0x1400048e7b0?}, {0x105354c08?, 0x1400019a1c0?}, 0x6?)
+	/usr/local/go/src/net/http/server.go:3137 +0xbc
+net/http.(*conn).serve(0x1400018e480, {0x105355468, 0x1400048e660})
+	/usr/local/go/src/net/http/server.go:2039 +0x508
+created by net/http.(*Server).Serve in goroutine 9
+	/usr/local/go/src/net/http/server.go:3285 +0x3f0
+[application-service] 2024/06/10 15:14:05 Shutting down the server...
+[application-service] 2024/06/10 15:14:07 Connected to DB MySQL success!
+[application-service] 2024/06/10 15:14:07 Connected to Redis successfully
+[application-service] 2024/06/10 15:14:07 Cron job started
+[application-service] 2024/06/10 15:14:57 Shutting down the server...
+[application-service] 2024/06/10 15:15:11 Connected to DB MySQL success!
+[application-service] 2024/06/10 15:15:11 Connected to Redis successfully
+[application-service] 2024/06/10 15:15:11 Cron job started
+[application-service] 2024/06/10 15:15:19 Shutting down the server...

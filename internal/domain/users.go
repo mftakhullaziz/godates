@@ -18,7 +18,8 @@ type UserDto struct {
 type Users struct {
 	UserID      int64
 	AccountID   int64
-	DateOfBirth time.Time
+	FullName    *string
+	DateOfBirth *time.Time
 	Age         int
 	Gender      string
 	Address     string

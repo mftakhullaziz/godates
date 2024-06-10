@@ -179,3 +179,20 @@ func (a AccountRepositoryImpl) UpdateAccountVerifiedByAccountIdFromDB(ctx contex
 	_, err := tx.ExecContext(ctx, query, accountId)
 	return err
 }
+
+func (a AccountRepositoryImpl) FindAccountByIdFromDB(ctx context.Context, tx *sql.Tx, id int64) (record.AccountRecord, error) {
+	row := tx.QueryRowContext(ctx, "SELECT a.account_id, a.username, a.email, a.verified FROM accounts a WHERE account_id = ?", id)
+	// Initialize a new AccountRecord to store the result
+	var accountRecord record.AccountRecord
+	// Scan the row into the AccountRecord fields
+	err := row.Scan(
+		&accountRecord.AccountID,
+		&accountRecord.Username,
+		&accountRecord.Email,
+		&accountRecord.Verified,
+	)
+	common.HandleErrorReturn(err)
+
+	// Return the retrieved account record
+	return accountRecord, nil
+}
