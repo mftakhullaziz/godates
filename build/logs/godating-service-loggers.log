@@ -4953,6 +4953,13 @@ created by net/http.(*Server).Serve in goroutine 9
 [application-service] 2024/06/10 19:57:54 Connected to Redis successfully
 [application-service] 2024/06/10 19:57:54 Cron job started
 [application-service] 2024/06/10 19:58:00 Shutting down the server...
+[application-service] 2024/06/10 20:36:06 Could not connect to DB MySQL: context deadline exceeded
+[application-service] 2024/06/10 20:36:23 Connected to DB MySQL success!
+[application-service] 2024/06/10 20:36:28 Error connecting to redisclient: context deadline exceeded
+[application-service] 2024/06/10 20:36:47 Connected to DB MySQL success!
+[application-service] 2024/06/10 20:36:47 Connected to Redis successfully
+[application-service] 2024/06/10 20:36:47 Cron job started
+[application-service] 2024/06/10 20:36:49 Shutting down the server...
 [application-service] 2024/06/10 22:03:29 Connected to DB MySQL success!
 [application-service] 2024/06/10 22:03:34 Error connecting to redisclient: context deadline exceeded
 [application-service] 2024/06/10 22:03:49 Connected to DB MySQL success!

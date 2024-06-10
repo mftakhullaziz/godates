@@ -18,9 +18,13 @@ var db *sql.DB
 // initMySQLDB initializes the database connection
 func initMySQLDB(ctx context.Context) *sql.DB {
 	// Load .env file
-	err := godotenv.Load()
-	common.HandleErrorWithParam(err, "Error loading .env file")
-
+	env := os.Getenv("ENV")
+	if env == "development" {
+		err := godotenv.Load()
+		if err != nil {
+			log.Fatalf("Error loading .env file: %v", err)
+		}
+	}
 	dbUser := os.Getenv("DB_USER")
 	dbPassword := os.Getenv("DB_PASSWORD")
 	dbName := os.Getenv("DB_NAME")

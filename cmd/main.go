@@ -38,8 +38,8 @@ func main() {
 	ctx := context.Background()
 
 	// Set up logging
-	logs := InitializeLogger()
-	defer logs.Close()
+	// logs := InitializeLogger()
+	// defer logs.Close()
 
 	DB := InitializeDB(ctx)
 	defer config.CloseDBConnection()
@@ -136,9 +136,10 @@ func InitializeRedis(ctx context.Context) redisclient.RedisInterface {
 }
 
 func InitializeCronJobDailyQuota(ctx context.Context, boundary dailyquotausecase.InputDailyQuotaBoundary) {
+	cronRunning := os.Getenv("CRON_JOB_DAILY_QUOTA")
 	c := cron.New()
 	// Run every 24 hours
-	_, err := c.AddFunc("@every 24h", func() { // Changed to run every minute for testing
+	_, err := c.AddFunc(cronRunning, func() { // Changed to run every minute for testing
 		log.Println("Executing daily quota update usecase")
 		err := boundary.ExecuteAutoUpdateDailyQuotaUsecase(ctx)
 		if err != nil {
