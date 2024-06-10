@@ -15,6 +15,13 @@ import (
 
 var db *sql.DB
 
+func init() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+}
+
 // initMySQLDB initializes the database connection
 func initMySQLDB(ctx context.Context) *sql.DB {
 	// Load .env file
