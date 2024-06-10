@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"github.com/go-playground/validator/v10"
 	"github.com/robfig/cron/v3"
-	"godating-dealls/conf"
+	"godating-dealls/config"
 	"godating-dealls/internal/common"
 	"godating-dealls/internal/core/entities/accounts"
 	dailyquotaentity "godating-dealls/internal/core/entities/daily_quotas"
@@ -41,7 +41,7 @@ func main() {
 	defer logs.Close()
 
 	DB := InitializeDB(ctx)
-	defer conf.CloseDBConnection()
+	defer config.CloseDBConnection()
 
 	RS := InitializeRedis(ctx)
 
@@ -121,13 +121,13 @@ func InitializeLogger() *os.File {
 
 func InitializeDB(ctx context.Context) *sql.DB {
 	// Create of the database connection
-	DB := conf.CreateDBConnection(ctx)
+	DB := config.CreateDBConnection(ctx)
 	return DB
 }
 
 func InitializeRedis(ctx context.Context) redisclient.RedisInterface {
 	// Create redis client connection
-	rdsClient := conf.InitializeRedisClient(ctx)
+	rdsClient := config.InitializeRedisClient(ctx)
 	rds := redisclient.NewRedisService(rdsClient)
 	return rds
 }
