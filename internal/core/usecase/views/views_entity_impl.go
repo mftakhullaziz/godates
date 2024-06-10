@@ -21,8 +21,9 @@ func NewViewEntityImpl(viewAccountsRepository repo.ViewAccountsRepository) ViewE
 
 func (v ViewEntityImpl) InsertIntoViewAccountEntity(ctx context.Context, tx *sql.Tx, account domain.ViewedAccount) error {
 	rec := record.ViewAccountRecord{
-		AccountID: account.AccountIDView,
-		UserID:    account.UserID,
+		AccountID:       account.AccountID,
+		AccountIDViewed: account.AccountIDView,
+		UserIDViewed:    account.UserIDView,
 	}
 	err := v.ViewAccountsRepository.InsertIntoViewAccount(ctx, tx, rec)
 	if err != nil {

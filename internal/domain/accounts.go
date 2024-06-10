@@ -39,6 +39,7 @@ type ViewedAccountRequest struct {
 }
 
 type ViewedAccount struct {
+	AccountID     int64
 	AccountIDView int64
-	UserID        int64
+	UserIDView    int64
 }

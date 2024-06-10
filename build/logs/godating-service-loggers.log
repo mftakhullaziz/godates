@@ -4911,3 +4911,16 @@ created by net/http.(*Server).Serve in goroutine 9
 [application-service] 2024/06/10 16:58:27 Connected to Redis successfully
 [application-service] 2024/06/10 16:58:27 Cron job started
 [application-service] 2024/06/10 16:59:11 Shutting down the server...
+[application-service] 2024/06/10 17:08:52 Connected to DB MySQL success!
+[application-service] 2024/06/10 17:08:52 Connected to Redis successfully
+[application-service] 2024/06/10 17:08:52 Cron job started
+[application-service] 2024/06/10 17:09:25 Shutting down the server...
+[application-service] 2024/06/10 17:09:28 Connected to DB MySQL success!
+[application-service] 2024/06/10 17:09:28 Connected to Redis successfully
+[application-service] 2024/06/10 17:09:28 Cron job started
+[application-service] 2024/06/10 17:11:31 Shutting down the server...
+[application-service] 2024/06/10 17:11:33 Connected to DB MySQL success!
+[application-service] 2024/06/10 17:11:33 Connected to Redis successfully
+[application-service] 2024/06/10 17:11:33 Cron job started
+[application-service] 2024/06/10 17:11:44 { u1@gmail.com test1234}
+[application-service] 2024/06/10 17:12:12 Shutting down the server...

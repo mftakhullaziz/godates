@@ -94,7 +94,7 @@ func (a AccountUsecase) ExecuteFetchAccountDetail(ctx context.Context, token str
 
 func (a AccountUsecase) ExecuteViewAccountDetail(ctx context.Context, token string, request domain.ViewedAccountRequest, boundary OutputAccountBoundary) error {
 	fn := func(tx *sql.Tx) error {
-		_, err := jsonwebtoken.VerifyJWTToken(token)
+		claims, err := jsonwebtoken.VerifyJWTToken(token)
 		if err != nil {
 			return errors.New("invalid token")
 		}
@@ -108,8 +108,9 @@ func (a AccountUsecase) ExecuteViewAccountDetail(ctx context.Context, token stri
 
 		// update to account view
 		rec := domain.ViewedAccount{
+			AccountID:     claims.AccountId,
 			AccountIDView: request.AccountIDView,
-			UserID:        user.UserID,
+			UserIDView:    user.UserID,
 		}
 		err = a.ViewEntity.InsertIntoViewAccountEntity(ctx, tx, rec)
 		if err != nil {
