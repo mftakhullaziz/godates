@@ -25,3 +25,20 @@ type AccountResponse struct {
 	AccountData AccountDataResponse `json:"account_data"`
 	AccountView AccountViewResponse `json:"account_view"`
 }
+
+type ViewedAccountResponse struct {
+	AccountID int64   `json:"account_id"`
+	UserName  string  `json:"user_name"`
+	Email     string  `json:"email"`
+	Verified  bool    `json:"verified"`
+	FullName  *string `json:"full_name"`
+}
+
+type ViewedAccountRequest struct {
+	AccountIDView int64 `json:"account_id_view"`
+}
+
+type ViewedAccount struct {
+	AccountIDView int64
+	UserID        int64
+}

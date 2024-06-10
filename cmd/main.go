@@ -21,6 +21,7 @@ import (
 	packageusecase "godating-dealls/internal/core/usecase/packages"
 	swipeusecase "godating-dealls/internal/core/usecase/swipes"
 	"godating-dealls/internal/core/usecase/users"
+	"godating-dealls/internal/core/usecase/views"
 	"godating-dealls/internal/delivery/handler"
 	"godating-dealls/internal/infra/mysql/repo"
 	"godating-dealls/internal/infra/redisclient"
@@ -58,6 +59,7 @@ func main() {
 	swipeRepository := repo.NewSwipesRepositoryImpl()
 	packageRepository := repo.NewPackagesRepositoryImpl()
 	purchaseRepository := repo.NewPurchasePackagesRepositoryImpl()
+	viewRepository := repo.NewViewAccountsRepositoryImpl()
 
 	// Entities represented of enterprise business rules for that self of entity
 	accountEntity := accounts.NewAccountsEntityImpl(accountRepository, val)
@@ -68,6 +70,7 @@ func main() {
 	taskHistoryEntity := task_history.NewTaskHistoryEntityImpl(taskHistoryRepository)
 	swipeEntity := swipes.NewSwipeEntityImpl(swipeRepository)
 	packageEntity := packages.NewPackageEntityImpl(packageRepository, purchaseRepository)
+	viewEntity := views.NewViewEntityImpl(viewRepository)
 
 	// Usecase
 	authenticateUsecase := accountusecase.NewAuthUsecase(DB, accountEntity, userEntity, RS, loginHistoryEntity)
@@ -76,7 +79,7 @@ func main() {
 	usersUsecase := users.NewUserUsecase(DB, userEntity, accountEntity, selectionHistoryEntity, taskHistoryEntity)
 	swipeUsecase := swipeusecase.NewSwipeUsecase(DB, swipeEntity, dailyQuotasEntity, accountEntity)
 	packageUsecase := packageusecase.NewPackageUsecase(DB, packageEntity, accountEntity, dailyQuotasEntity)
-	accountUsecase := accountsusecase.NewAccountsUsecase(DB, accountEntity, swipeEntity, userEntity)
+	accountUsecase := accountsusecase.NewAccountsUsecase(DB, accountEntity, swipeEntity, userEntity, viewEntity)
 
 	// Create the handler with the use case
 	authenticateHandler := handler.NewAuthHandler(authenticateUsecase)

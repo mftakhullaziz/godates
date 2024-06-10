@@ -28,6 +28,7 @@ func InitializeRouter(
 	r.Handle("POST /godating-dealls/api/purchase-package", md.AuthMiddleware(http.HandlerFunc(packageHandler.PurchasePackages)))
 	r.Handle("GET /godating-dealls/api/packages", md.AuthMiddleware(http.HandlerFunc(packageHandler.GetPackageHandler)))
 	r.Handle("GET /godating-dealls/api/account-details", md.AuthMiddleware(http.HandlerFunc(accountHandler.FetchAccountDetailsHandler)))
+	r.Handle("POST /godating-dealls/api/account-view", md.AuthMiddleware(http.HandlerFunc(accountHandler.AccountViewHandler)))
 
 	return r
 }
