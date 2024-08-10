@@ -1,4 +1,4 @@
-# Technical Test - Software Engineer at Dealls
+# Godates BE Services
 
 Author: Miftakhul Aziz \
 Email: mftakhullaziz@gmail.com
